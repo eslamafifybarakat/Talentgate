@@ -1,0 +1,9 @@
+<!-- ---------------------site & dashboard ------------------ -->
+<ng-container *ngIf="true">
+  <footer class="bg-white-color shadow">
+    <div class="text-dark-color text-center footer p-3" [class.dash]="moduleType=='dashboard' && !toggleSideMenu">
+      <!-- [ngClass]="getDashClass()" -->
+      <p class="mb-0">{{'general.allRights'|translate}}</p>
+    </div>
+  </footer>
+</ng-container>
