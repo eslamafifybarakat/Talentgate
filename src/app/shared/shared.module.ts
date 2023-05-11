@@ -1,14 +1,10 @@
 import { LanguageSelectorComponent } from './components/header/components/language-selector/language-selector.component';
-import { UserInfoComponent } from './components/header/components/user-info/user-info.component';
 import { BrowseImageOrVideoComponent } from './components/browse-image-or-video/browse-image-or-video.component';
-
 import { UploadButtonComponent } from './components/upload-button/upload-button.component';
 import { ThemeComponent } from './components/header/components/theme/theme.component';
 import { UploadImageComponent } from './components/upload-image/upload-image.component';
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
-
 import { AngMaterialModule } from './modules/ang-material/ang-material.module';
-
 import { HeaderComponent } from './components/header/header.component';
 import { SearchComponent } from './components/search/search.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -28,7 +24,6 @@ const allSharedComponents = [
   UploadImageComponent,
   FileUploadComponent,
   SkeletonComponent,
-  UserInfoComponent,
   HeaderComponent,
   FooterComponent,
   SearchComponent,

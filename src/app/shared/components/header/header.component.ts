@@ -39,5 +39,6 @@ export class HeaderComponent implements OnInit {
     this.toggleSideMenu = !this.toggleSideMenu;
     this.sharedService?.showSideMenu?.next(this.toggleSideMenu);
   }
+  
 }
 

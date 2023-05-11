@@ -6,10 +6,14 @@ import { CoreModule } from '../core/core.module';
 import { CommonModule } from '@angular/common';
 import { AgmCoreModule } from '@agm/core';
 import { NgModule } from '@angular/core';
+import { OnboardingComponent } from './onboarding/onboarding.component';
+import { SearchComponent } from './onboarding/search/search.component';
 
 @NgModule({
   declarations: [
     PagesComponent,
+    OnboardingComponent,
+    SearchComponent,
   ],
   imports: [
     ReactiveFormsModule,
