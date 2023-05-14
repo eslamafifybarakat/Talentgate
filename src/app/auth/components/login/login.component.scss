@@ -1,25 +1,30 @@
-.login-1{
-margin: 0 auto;
-
-span {
-  color: var(--grey-100);
-  font-size: 21px;
-}
-
-.form-check {
-  // margin: 0 10% auto;
-  display: flex;
-  justify-content: space-around;
-  padding: 10px 90px;
-
-  .form-check-content {
-    margin: 0 !important;
+.auth-form {
+  .firstdiv {
+    background-image: url(../../../../assets/images/auth/login.jpg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    border-radius: var(--border-radius-card);
   }
-
-  a {
+  .content {
+    h2 {
+      padding-bottom: 10px !important;
+      color: var(--text-main-color);
+    }
+    h3 {
+      font-size: 22px;
+      color: var(--grey-100);
+      text-align: initial;
+    }
+  }
+  .or-span {
+    display: block;
+    margin: 0 47% auto;
+    padding: 20px 0;
     color: var(--grey-100);
   }
-}
 
+  span {
+    display: block;
+    margin: -10px auto;
+  }
 }
-

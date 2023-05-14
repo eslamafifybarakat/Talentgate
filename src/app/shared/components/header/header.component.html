@@ -1,20 +1,21 @@
------------------ site---------------
 
 
-<!-- ---------------------site & dashboard-------------------------- -->
+<!-- ---------------------site -------------------------- -->
 <ng-container *ngIf="true">
-  <nav class="navbar navbar-expand-lg bg-white-color position-fixed w-100 px-4"
+  <nav class="navbar navbar-expand-lg bg-white-color  position-fixed w-100 px-4"
     [class.shadow-none]="moduleType=='dashboard' && !toggleSideMenu"
     [class.dash]="moduleType=='dashboard' && !toggleSideMenu">
-    <div class="container">
+    <div class="container-fluid">
       <a class="navbar-brand d-flex gap-2 align-items-center m-0">
- <img src="/../../../assets/images/logo/logo.jpg" alt="logo" class="logo">
+        <!-- <ng-container *ngIf="moduleType=='dashboard'"> -->
+        <i class="fas fa-bars toggle d-flex justify-content-center align-items-center rounded"
+          (click)="toggleSide()"></i>
         <!-- </ng-container> -->
-        <!-- <ng-container *ngIf="moduleType!='dashboard' || toggleSideMenu">
-
-        </ng-container> -->
-
+        <ng-container *ngIf="moduleType!='dashboard' || toggleSideMenu">
+          <img src="assets/images/logo/logo.png" alt="logo" class="logo">
+        </ng-container>
       </a>
+
       <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
         aria-label="Toggle navigation">
@@ -22,11 +23,6 @@
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
         <ul class="navbar-nav gap-3 align-items-center mb-2 mb-lg-0">
-            <li class="nav-item">
-         <button class="secound-button">login</button>
-         <button class="main-button">Signup</button>
-          </li>
-
           <li class="nav-item">
             <app-theme></app-theme>
           </li>
@@ -35,21 +31,10 @@
           </li>
 
         </ul>
-        <!-- <div>
-          <ul class="d-flex align-items-center justify-content-center my-xl-0 my-md-3 my-sm-3 my-3 gap-3">
-            <li class="nav-item">
-              <app-theme></app-theme>
-            </li>
-            <li class="nav-item">
-              <app-user-info></app-user-info>
-            </li>
-            <li class="nav-item">
-              <app-language-selector></app-language-selector>
-            </li>
-
-          </ul>
-        </div> -->
       </div>
     </div>
   </nav>
 </ng-container>
+
+
+

@@ -1,0 +1,103 @@
+<div id="modal">
+  <form [formGroup]="modalForm" (ngSubmit)="submit()">
+    <div class="mb-3 d-flex align-items-center justify-content-between gap-2 flex-wrap">
+      <label for="active" class="fw-bold">{{'labels.tankActivation'|translate}}</label>
+      <p-inputSwitch id="active" formControlName="active"></p-inputSwitch>
+    </div>
+
+    <div class="mb-3">
+      <label for="name" class="mb-2 required">{{'labels.name'|translate}}</label>
+      <input type="text" class="form-control" formControlName="name" autocomplete="cc-name"
+        (input)="publicService?.clearValidationErrors(formControls?.name)"
+        [class.is-invalid]="formControls?.name?.invalid && (formControls?.name?.dirty || formControls?.name?.touched)"
+        placeholder="{{'placeholder.name'|translate}}">
+      <div class="mt-2">
+        <ng-container *ngIf="formControls?.name?.invalid && (formControls?.name?.dirty || formControls?.name?.touched)">
+          <ng-container *ngIf="formControls?.name?.errors?.['required']">
+            <span class="text-danger fs-8">
+              {{'validations.requiredName'|translate}}
+            </span>
+          </ng-container>
+
+          <ng-container *ngIf="formControls?.name?.errors?.['minlength']">
+            <span class="text-danger fs-8 d-block">
+              {{'validations.name_length'|translate}}
+            </span>
+          </ng-container>
+        </ng-container>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label required">
+        {{"labels.tankSize"|translate}}
+      </label>
+      <span class="p-input-icon-right select-loading d-block">
+        <p-dropdown [options]="tanksSize" formControlName="tankSize" optionLabel="name" [filter]="true"
+          [virtualScroll]="true" [virtualScrollItemSize]="38" filterBy="value" appendTo="body"
+          [readonly]="isLoadingTanksSize" scrollHeight="150px" emptyMessage="{{'general.no_result_found'|translate}}"
+          [class.ng-dirty]="formControls?.tankSize?.invalid && (formControls?.tankSize?.dirty || formControls?.tankSize?.touched)"
+          [showClear]="true" placeholder="{{'placeholder.tankSize'|translate}}">
+        </p-dropdown>
+        <ng-container *ngIf="isLoadingTanksSize">
+          <i class="pi pi-spin pi-spinner"></i>
+        </ng-container>
+      </span>
+      <div class="my-2">
+        <ng-container
+          *ngIf="formControls?.tankSize?.invalid && (formControls?.tankSize?.dirty || formControls?.tankSize?.touched)">
+          <ng-container *ngIf="formControls?.tankSize?.errors?.['required']">
+            <span class="text-danger fs-8">
+              {{"validations.required_field"|translate}}
+            </span>
+          </ng-container>
+        </ng-container>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="palateNo" class="mb-2 required">{{'labels.palateNo'|translate}}</label>
+      <input type="text" class="form-control" formControlName="palateNo" autocomplete="cc-name"
+        (input)="publicService?.clearValidationErrors(formControls?.palateNo)"
+        [class.is-invalid]="formControls?.palateNo?.invalid && (formControls?.palateNo?.dirty || formControls?.palateNo?.touched)"
+        placeholder="{{'placeholder.palateNo'|translate}}">
+      <div class="mt-2">
+        <ng-container
+          *ngIf="formControls?.palateNo?.invalid && (formControls?.palateNo?.dirty || formControls?.palateNo?.touched)">
+          <ng-container *ngIf="formControls?.palateNo?.errors?.['required']">
+            <span class="text-danger fs-8">
+              {{'validations.required_field'|translate}}
+            </span>
+          </ng-container>
+
+          <ng-container *ngIf="formControls?.palateNo?.errors?.['minlength']">
+            <span class="text-danger fs-8 d-block">
+              {{'validations.length'|translate}}
+            </span>
+          </ng-container>
+        </ng-container>
+      </div>
+    </div>
+    <div class="d-flex justify-content-end gap-3 flex-wrap mt-5">
+      <button type="submit" class="btn btn-solid-main d-flex align-items-center justify-content-center gap-2">
+
+        <ng-container *ngIf="!isEdit;else edit">
+          <span>
+            {{'general.save'|translate}}
+          </span>
+          <i class="pi pi-save"></i>
+        </ng-container>
+        <ng-template #edit>
+          <span>
+            {{'general.edit'|translate}}
+          </span>
+          <i class="pi pi-pencil"></i>
+        </ng-template>
+      </button>
+      <button type="button" class="btn btn-outline-main d-flex align-items-center gap-2" (click)="cancel()">
+        <span>
+          {{'general.cancel'|translate}}
+        </span>
+        <i class="pi pi-times"></i>
+      </button>
+    </div>
+  </form>
+</div>

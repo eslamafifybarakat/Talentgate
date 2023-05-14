@@ -14,7 +14,7 @@ import { AuthUserService } from '../../services/auth-user.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss','./../register/register.component.scss']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
   private unsubscribe: Subscription[] = [];

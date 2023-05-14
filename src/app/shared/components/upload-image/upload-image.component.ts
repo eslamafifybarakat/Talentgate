@@ -1,7 +1,7 @@
 import { FormControl, FormBuilder } from '@angular/forms';
 import { FileUpload } from 'primeng/fileupload';
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-// import { BrowseImageOrVideoComponent } from '../browse-image-or-video/browse-image-or-video.component';
+import { BrowseImageOrVideoComponent } from '../browse-image-or-video/browse-image-or-video.component';
 
 @Component({
   selector: 'app-upload-image',

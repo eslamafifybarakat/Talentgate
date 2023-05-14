@@ -23,7 +23,11 @@ export class HeaderComponent implements OnInit {
       console.log(this.moduleType);
     })
 
-    }
+    // if (window?.innerWidth < 700) {
+    //   this.toggleSideMenu = true;
+    //   this.sharedService?.showSideMenu?.next(true);
+    // }
+  }
 
   getDashClass(): string {
     let styleClass = '';
@@ -39,6 +43,5 @@ export class HeaderComponent implements OnInit {
     this.toggleSideMenu = !this.toggleSideMenu;
     this.sharedService?.showSideMenu?.next(this.toggleSideMenu);
   }
-  
 }
 
