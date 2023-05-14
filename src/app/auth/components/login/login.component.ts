@@ -19,7 +19,6 @@ import { AuthUserService } from '../../services/auth-user.service';
 export class LoginComponent implements OnInit {
   private unsubscribe: Subscription[] = [];
   currentLanguage: any;
-
   constructor(
     public checkValidityService: CheckValidityService,
     public translationService: TranslationService,

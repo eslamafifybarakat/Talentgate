@@ -1,5 +1,4 @@
-{
-  "languages": {
+{"languages": {
     "english": "English",
     "arabic": "Arabic"
   },
@@ -181,21 +180,14 @@
     "palateNo": "رقم اللوحة"
   },
   "placeholder": {
-    "status":"الحالة",
-    "isWorking": "متاح للتعين",
     "email": "أدخل البريد الإلكتروني",
     "password": "أدخل كلمة المرور",
-    "search": "بحث",
+    "fullname": "الاسم بالكامل",
+    "repeatpassword": "تكرار كلمة المرور ",
     "name": "أدخل الاسم",
+    "search": "بحث",
     "username": "أدخل اسم المستخدم",
-    "supervisor": "اختر المشرف",
-    "mobilePhone": "أدخل رقم الهاتف",
-    "tank": "اختر الصهريج",
-    "driver": "اختر السائق",
-    "driverStatus": "اختر حالة السائق",
-    "tankSize": "اختر سعة الصهريج",
-    "orderStatus": "اختر حالة الطلب",
-    "palateNo": "أدخل رقم اللوحة"
+    "mobilePhone": "أدخل رقم الهاتف"
   },
   "validations": {
     "required_field": "هذا الحقل مطلوب",
@@ -223,13 +215,15 @@
     "orderStatus": "حالة الطلب مطلوبة"
   },
   "form": {
-    "welcomeBack": "Welcome to Talentgate",
+    "welcomeBack": "مرحبًا بك في Talentgate",
     "enterDetails": " الرجاء إدخال التفاصيل الخاصة بك",
     "enterRegisterDetails": "مرحبًا! الرجاء إدخال التفاصيل الخاصة بك",
-    "registration": "إنشاء حساب",
+    "create-account": "إنشاء حساب",
     "login": "تسجيل الدخول",
     "signUpWithlinkedIn": "تسجيل الدخول بواسطه لينكدان",
     "signUp": "انشاء حساب",
+    "terms": "لقد قرأت وفهمت وأقبل وأوافق على الالتزام بما يلي",
+    "terms-conditions":"الأحكام والشروط",
     "logOut": "تسجيل الخروج",
     "send": "إرسال",
     "no_account": "ليس لديك حساب؟",

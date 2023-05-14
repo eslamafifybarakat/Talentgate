@@ -179,21 +179,15 @@
     "status": "Status"
   },
   "placeholder": {
-    "status": "Status",
-    "isWorking": "isWorking",
     "email": "Email address",
     "password": "password",
     "search": "Search",
-    "name": "Enter name",
     "username": "Enter username",
+    "fullname": "Full Name",
+    "repeatpassword":"Repeat Password",
     "supervisor": "Select supervisor",
-    "mobilePhone": "Enter mobile phone",
-    "tank": "Select tank",
-    "driver": "Select driver",
-    "driverStatus": "Select driver status",
-    "tankSize": "Select tank size",
-    "orderStatus": "Select order status",
-    "palateNo": "Enter palate no"
+    "mobilePhone": "Enter mobile phone"
+
   },
   "validations": {
     "required_field": "This field is reuired",
@@ -224,13 +218,16 @@
     "welcomeBack": "Welcome to Talentgate",
     "enterDetails": "Please enter your login details",
     "enterRegisterDetails": "Welcome! please enter your details",
-    "registration": "Create Account",
     "login": "Login",
-    "signUp": "Signup",
+    "signUp": "Sign up",
+    "registration":"Create An Account",
     "signUpWithlinkedIn":"Signup With LinkedIn" ,
     "logOut": "Logout",
+    "terms": "I have read, understand, accept and agree to be bound by the following terms and conditions.",
+    "terms-conditions":"terms and conditions",
     "send": "Send",
     "no_account": "Don't have an account?",
+    "create-account": "Create An Account",
     "have_account": "Have an account",
     "remember": "Keep me logged in",
     "forget_password": "Forget Password?",
@@ -241,7 +238,6 @@
     "resetPassword": "Reset password"
   },
   "sideMenu": {
-    "dashboard": "Dashboard",
     "tanks": "Tanks",
     "driver": "Drivers",
     "supervisors": "Supervisors",

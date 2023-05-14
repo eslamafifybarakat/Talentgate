@@ -106,6 +106,14 @@ input:-webkit-autofill {
   }
 }
 
+
+
+
+// .input-container input {
+//   padding-left: 30px;
+// }
+
+
 .form-control.is-valid,
 .was-validated .form-control:valid {
   // background-image: url(../../assets/images/form/valid.svg) !important;
@@ -150,14 +158,40 @@ input:-webkit-autofill {
 }
 
 
-
-
 .formcontrol-auth
 {
 padding: 2rem 1rem;
 border-radius: 100px;
 }
 
+// icon
+.input-container {
+  position: relative;
 
+  i {
+  position: absolute;
+  top: 50%;
+  right: 2rem;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+  color: var(--bg-main-color);
+}
 
+}
 
+p-password .pi{
+  font-family: "FontAwesome";
+  font-size: 1.5rem;
+  right: 2rem !important;
+  color: var(--bg-main-color) !important;
+}
+p-password .pi-eye:before
+{
+  content: "\f023"
+
+}
+
+p-password .pi-eye-slash:before
+{
+  content: "\f3c1"
+}
