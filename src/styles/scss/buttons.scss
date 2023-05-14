@@ -113,3 +113,36 @@
 .btn-outline-main.active {
   border: 1px solid var(--bg-main-color) !important;
 }
+
+
+
+
+.main-button,.form-btn,
+.secound-button{
+  width: 140px;
+  height: 42px;
+  border-radius:var(--border-radius);
+  border: none;
+  color: var(--white);
+  background-color: var(--main-color);
+
+  &:hover{
+    opacity: 0.7;
+  }
+}
+.secound-button{
+  background-color:white;
+  color: var(--main-color);
+
+  &:hover{
+    color: var(--white);
+    background-color: var(--bg-main-color);
+  }
+}
+.form-btn{
+  width: 159px;
+  height: 54px;
+  // font-size: 25px;
+  border-radius:var( --border-button-radius);
+
+}

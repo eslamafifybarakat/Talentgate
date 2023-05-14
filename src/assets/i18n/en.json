@@ -221,12 +221,12 @@
     "orderStatus": "Order status is required"
   },
   "form": {
-    "welcomeBack": "Welcome back",
-    "enterDetails": "Welcome back! please enter your details",
+    "welcomeBack": "Welcome to Talentgate",
+    "enterDetails": "Please enter your login details",
     "enterRegisterDetails": "Welcome! please enter your details",
     "registration": "Create Account",
     "login": "Login",
-    "signUp": "Sign up",
+    "signUp": "Signup",
     "signUpWithlinkedIn":"Signup With LinkedIn" ,
     "logOut": "Logout",
     "send": "Send",

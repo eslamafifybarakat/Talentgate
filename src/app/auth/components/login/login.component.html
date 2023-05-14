@@ -1,6 +1,6 @@
 <div class="auth-form p-t-12">
   <div class="container">
-   <div class="firstdiv">
+   <div class="firstdiv ">
     <div class="row justify-content-end">
       <div class="col-lg-6 col-md-8 col-11">
         <div class="global-card p-sm-5 p-4 align-items-end">
@@ -8,15 +8,17 @@
             <app-language-selector></app-language-selector>
           </div> -->
           <div class="content">
-      <h2>Welcome to Talentgate</h2>
-      <h3>Please enter your login details</h3>
+      <h2> {{'form.welcomeBack'|translate}}</h2>
+      <h3>{{'form.enterDetails'|translate}}</h3>
     </div>
           <form [formGroup]="loginForm" (ngSubmit)="submit()" class="pt-3 ">
             <div class="mb-4">
-              <input type="text" class="form-control formcontrol-auth" formControlName="username" autocomplete="cc-name"
+              <input type="text" class="form-control" formControlName="username" autocomplete="cc-name"
                 (input)="publicService?.clearValidationErrors(formControls?.username)"
                 [class.is-invalid]="formControls?.username?.invalid && (formControls?.username?.dirty || formControls?.username?.touched)"
                 placeholder="{{'placeholder.email'|translate}}">
+
+                <i class="fa-regular fa-envelope"></i>
               <div class="mt-2">
                 <ng-container
                   *ngIf="formControls?.username?.invalid && (formControls?.username?.dirty || formControls?.username?.touched)">
@@ -40,9 +42,9 @@
             </div>
             <div class="mb-4">
               <div class="rounded-input p-mask"
-                [class.border-red]="formControls?.password?.invalid && (formControls?.password?.dirty || formControls?.password?.touched)"
+                [class.border-red]="formControls?.password?.invalid && (formControls?.password?.dirty ||formControls?.password?.touched)"
                 [class.is-valid]="formControls?.password?.valid && (formControls?.password?.dirty || formControls?.password?.touched)">
-                <p-password [toggleMask]="true" formControlName="password"
+                <p-password  formControlName="password"
                   placeholder="{{'placeholder.password'|translate}}" autocomplete="cc-name" [feedback]="false">
                 </p-password>
               </div>

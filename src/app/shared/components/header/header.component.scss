@@ -1,12 +1,13 @@
 .navbar {
-
   background-color: transparent;
   transition: all 0.5s ease !important;
   height: 66px;
   top: 0;
   z-index: 66;
   .logo {
-    width: 150px;
+    width: 42px;
+    height:42px;
+
   }
   .toggle.fa-bars {
     width: 40px;
