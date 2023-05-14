@@ -4,7 +4,8 @@
   top: 0;
   z-index: 66;
   .logo {
-    width: 150px;
+    width: 42px;
+    height:42px;
   }
   .toggle.fa-bars {
     width: 40px;
@@ -12,5 +13,8 @@
     background-color: var(--bg-main-color);
     color: var(--text-white-color);
   }
-}
+  .main-button{
+    margin: 0 5px;
 
+}
+}

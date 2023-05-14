@@ -115,11 +115,33 @@
 // }
 
 
-.main-button{
+.main-button,.form-btn,
+.secound-button{
   width: 140px;
   height: 42px;
   border-radius:var(--border-button-nav-radius);
   border: none;
   color: var(--white);
   background-color: var(--main-color);
+  
+  &:hover{
+    opacity: 0.7;
+  }
+}
+
+.secound-button{
+  background-color:white;
+  color: var(--main-color);
+
+  &:hover{
+    color: var(--white);
+    background-color: var(--main-color);
+  }
+}
+.form-btn{
+  width: 159px;
+  height: 54px;
+  font-size: 25px;
+  border-radius:var( --border-button-radius);
+
 }

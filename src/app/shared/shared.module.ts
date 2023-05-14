@@ -1,9 +1,9 @@
 import { LanguageSelectorComponent } from './components/header/components/language-selector/language-selector.component';
-import { BrowseImageOrVideoComponent } from './components/browse-image-or-video/browse-image-or-video.component';
+// import { BrowseImageOrVideoComponent } from './components/browse-image-or-video/browse-image-or-video.component';
 import { UploadButtonComponent } from './components/upload-button/upload-button.component';
 import { ThemeComponent } from './components/header/components/theme/theme.component';
 import { UploadImageComponent } from './components/upload-image/upload-image.component';
-import { FileUploadComponent } from './components/file-upload/file-upload.component';
+// import { FileUploadComponent } from './components/file-upload/file-upload.component';
 import { AngMaterialModule } from './modules/ang-material/ang-material.module';
 import { HeaderComponent } from './components/header/header.component';
 import { SearchComponent } from './components/search/search.component';
@@ -22,7 +22,7 @@ const allSharedComponents = [
   LanguageSelectorComponent,
   UploadButtonComponent,
   UploadImageComponent,
-  FileUploadComponent,
+  // FileUploadComponent,
   SkeletonComponent,
   HeaderComponent,
   FooterComponent,
@@ -41,7 +41,7 @@ const allSharedModule = [
 @NgModule({
   declarations: [
     ...allSharedComponents,
-    BrowseImageOrVideoComponent,
+    // BrowseImageOrVideoComponent,
     HeaderComponent,
     FooterComponent,
     NotificationComponent,

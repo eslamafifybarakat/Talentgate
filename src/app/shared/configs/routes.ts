@@ -2,14 +2,7 @@ export const AppRoutes = {
   auth: {
     login: 'login',
     register: 'register',
+    singup: 'singup',
     forgetPassword: 'forgetPassword',
   },
-  dashboard: {
-    welcome: 'welcome-dashboard',
-    dashboard: 'dashboard',
-    tanks: 'tanks',
-    drivers: 'drivers',
-    supervisors: 'supervisors',
-    orders: 'orders'
-  }
 }

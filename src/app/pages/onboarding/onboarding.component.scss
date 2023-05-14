@@ -1,43 +1,162 @@
+.onbording-page {
+  padding: 100px 0 0 0;
 
-.login {
-  padding: 80px 0;
-  height: 100vh;
   vertical-align: middle;
-  .login-doc {
-    width: 90%;
+  .content {
     h2 {
-      // color: $brand-primary;
-      font-size: 30px;
-      margin: 5% 0;
-      text-transform: capitalize;
-      font-weight: 800;
+      font-size: 90px;
+      font-weight: bold;
       span {
-        // color: $th-brand;
-        font-size: 40px;
+        color: var(--main-color);
       }
     }
-    .dic-icon {
-      margin: 20px;
-      font-size: 20px;
-      i {
-        // color: $brand-primary;
-        font-size: 25px;
-      }
+    p {
+      font-size: 24px;
+      max-width: 600px;
+      color: var(--grey-100);
     }
-    .custom-carousel {
-      width: 70%;
-      margin: 7% auto;
-      .carousel-item {
-        width: 100%;
+    form {
+      margin: 10px 30px;
+      // padding: 5px 14px;
+      padding: 0 10px;
+      width: 507px;
+      height: 69px;
+      border-radius: var(--border-radius);
+      border: 3px solid var(--main-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .search-input {
+        display: flex;
         height: 100%;
-        overflow: hidden;
-        img {
-          width: 100%;
-          border-radius: 5px;
+        align-items: center;
+        padding-left: 10px;
+        i {
+          width: 34px;
+          height: 34px;
+          color: var(--main-color);
+          font-size: 2rem;
+          font-weight: bold;
+        }
+        input {
+          margin: 19px 10px 0;
+          height: 70%;
+          border: none;
+          color: var(--main-color);
+          padding: 10px 0;
+          &::placeholder {
+            font-size: 25px;
+          }
+        }
+      }
+    }
+  }
+  .img-wrppear {
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    height: 500px;
+    background-image: url("../../../assets/images/onbording/onbording.png");
+    img {
+      width: 100%;
+    }
+    .Upload-file {
+      display: flex;
+      justify-self: end;
+      align-items: center;
+      flex-direction: column;
+      bottom: 30px;
+      left: 60%;
+      position: absolute;
+      transform: translate(60%, -121%);
+
+      .filelabel {
+        background-color: white;
+        border-radius: 3px;
+        width: 40px;
+        margin: auto;
+        padding: 5px;
+        cursor: pointer;
+        text-align: center;
+        i {
+          transition: 200ms color;
+          width: 30px;
+          height: 30px;
+          border-radius: 3px;
+          background-color: var(--grey-900);
+          color:var(--main-color);
+        }
+        .title {
+          color: grey;
+          transition: 200ms color;
+        }
+        #FileInput {
+          display: none;
+        }
+      }
+      div {
+        text-align: center;
+        background-color: var(--main-color);
+        width: 181px;
+        font-size: 16px;
+        color: var(--white);
+        padding: 12px 0;
+        border-radius: var(--border-button-radius);
+        span {
+          font-size: 14px;
+          color: var(--oof_white-01);
         }
       }
     }
   }
 
-}
+  .who-trust {
+    p {
+      font-size: 24px;
+      color: var(--grey-100);
+      font-style: normal;
+    }
+    .content-img {
+      padding: 14px;
+      width: 503px;
+      height: 90px;
+      border-radius: var(--border-radius);
+      border: 1px solid var(--main-color);
+      display: flex;
+      justify-content: center;
 
+      img {
+        width: 25%;
+        padding: 0 10px;
+      }
+    }
+  }
+  .baged {
+    display: flex;
+    justify-content: center;
+    .countries {
+      padding: 0 35px;
+      position: relative;
+      .number {
+        font-size: 60px;
+        color: var(--black);
+        position: relative;
+        &::after {
+          content: "";
+          width: 43px;
+          height: 43px;
+          left: -12px;
+          top: 10px;
+          border-radius: 50%;
+          position: absolute;
+          border: 1px solid transparent;
+          // background-color: #333;
+          background-color: var(--grey-900);
+          z-index: -1;
+        }
+      }
+      .dic {
+        font-size: 18px;
+      }
+    }
+  }
+}

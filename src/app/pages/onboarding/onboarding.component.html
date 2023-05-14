@@ -1,21 +1,77 @@
-<div class="login">
+<div class="onbording-page">
   <div class="container">
     <div class="row">
-      <div class="col-lg-6">
-        <div class="login-doc">
-          <h2>Your <span>dream job </span> is waiting here </h2>
-        <p>Let your talents, personality and potential do the talking. We give you the opportunity to share your story through.</p>
-       <!-- <app-search></app-search> -->
+      <div class="col-lg-7">
+        <div class="content">
+          <h2>Your <span>dream job</span><br> is waiting here</h2>
+          <p>
+            Let your talents, personality and potential do the talking. We give
+            you the opportunity to share your story through.
+          </p>
+          <!-- form -->
+          <form>
+            <div class="search-input">
+              <i class="pi pi-search"></i>
+              <input id="search" type="search" placeholder="Search..." autofocus />
+            </div>
+            <button type="submit" class="form-btn main-button">Find Job</button>
+          </form>
         </div>
       </div>
-      <div class="col-lg-6">
-        <div class="wrapper fadeInDown">
-          <div id="formContent">
-            <div class="login-dic">
-              <h2>LOGIN NOW!</h2>
-              <div class="go_login">
-                <h6>Don't have an account ?</h6>
-                <a routerLink="/auth/signup"> Join us </a>
+      <div class="col-lg-5">
+        <div class="img-wrppear">
+          <!-- <div class="img">
+            <img src="../../../assets/images/onbording/onbording.jpg" alt="" />
+          </div> -->
+          <div class="Upload-file">
+            <label class="filelabel">
+              <i class="pi pi-upload"></i>
+              <input class="FileUpload1" id="FileInput" name="booking_attachment" type="file" />
+            </label>
+            <div>
+              Upload Your CV <br>
+              <span> It only takes a few seconds</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="card flex justify-content-center"> -->
+        <!-- <p-toast></p-toast> -->
+        <!-- <p-fileUpload name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" (onUpload)="onUpload($event)" [multiple]="true" accept="image/*" >
+                  <ng-template pTemplate="content">
+                      <ul *ngIf="uploadedFiles.length">
+                          <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
+                      </ul>
+                  </ng-template>
+              </p-fileUpload> -->
+        <!-- </div> -->
+      </div>
+      <div class="col-lg-12">
+        <div class="row">
+          <div class="col-lg-5">
+            <div class="baged">
+              <div class="countries">
+                <!-- <span class="circle"></span> -->
+                <!-- <p-badge  size="large" severity="warning"></p-badge> -->
+                <p class="number">12k</p>
+                <div class="dic">COUNTRIES</div>
+              </div>
+
+              <div class="countries">
+                <!-- <span class="circle"></span> -->
+                <p class="number"> 11K</p>
+                <div class="dic">PARTICIPANTS</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-7">
+            <div class="who-trust">
+              <p>People Who trust us</p>
+              <div class="content-img">
+                <img src="../../../assets/images/onbording/Google.png" alt="Google" />
+                <img src="../../../assets/images/onbording/Oracle.png" alt="Oracle" />
+                <img src="../../../assets/images/onbording/slack.png" alt="slack" />
+                <img src="../../../assets/images/onbording/fliker.png" alt="fliker" />
               </div>
             </div>
           </div>
