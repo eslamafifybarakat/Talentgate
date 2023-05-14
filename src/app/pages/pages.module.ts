@@ -6,10 +6,12 @@ import { CoreModule } from '../core/core.module';
 import { CommonModule } from '@angular/common';
 import { AgmCoreModule } from '@agm/core';
 import { NgModule } from '@angular/core';
+import { OnboardingComponent } from './onboarding/onboarding.component';
 
 @NgModule({
   declarations: [
     PagesComponent,
+    OnboardingComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -19,6 +21,11 @@ import { NgModule } from '@angular/core';
     SharedModule,
     FormsModule,
     CoreModule
+  ]
+
+  ,exports :[
+    PagesComponent,
+    OnboardingComponent
   ]
 })
 export class PagesModule { }

@@ -9,9 +9,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
-let coreComponents = [
-
-];
+let coreComponents = [];
 
 @NgModule({
   declarations: [
