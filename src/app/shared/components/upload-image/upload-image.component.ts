@@ -71,8 +71,6 @@ export class UploadImageComponent implements OnInit {
 
   uploadedFiles: any = [];
   showCancel: boolean = false;
-
-
   fileSrc: any;
   fileName: any;
   isLoadingImage: boolean = false;

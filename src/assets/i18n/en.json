@@ -4,9 +4,11 @@
     "arabic": "Arabic"
   },
   "general": {
+    "yourprofile": "Complete your Profile",
+    "addpic": "Add Picture",
+
     "filter": "Filter",
     "details": "Details",
-    "yourprofile": "Complete your Profile",
     "default": "Default",
     "youtubeLink": "Video YouTube",
     "uploadVideo": "Upload Video",
@@ -154,30 +156,7 @@
     "driverArrivedToStation": "Driver Arrived To Station"
   },
   "labels": {
-    "isWorking": "Is working",
-    "email": "Email",
-    "name": "Name",
-    "active": "Active",
-    "password": "Password",
-    "confirmPassword": "Confirm Password",
-    "newPassword": "Enter new password",
-    "confirmNewPassword": "Confirm new password",
-    "userActivation": "User activation",
-    "tankActivation": "Tank activation",
-    "driverActivation": "Driver activation",
-    "supervisorActivation": "Supervisor activation",
-    "driverStatus": "Driver status",
-    "tankSize": "Tank Size",
-    "palateNo": "Palate No",
-    "username": "Username",
-    "supervisor": "Supervisor",
-
-    "tank": "Tank",
-    "driver": "Driver",
-    "startDate": "Start Date",
-    "endDate": "End Date",
-    "orderStatus": "Order status",
-    "status": "Status"
+ 
   },
   "placeholder": {
     "email": "Email address",
@@ -185,7 +164,7 @@
     "username": "Enter username",
     "fullname": "Full Name",
     "repeatpassword": "Repeat Password",
-   "mobilePhone": "Mobile phone",
+    "mobilePhone": "Mobile phone",
     "country": "Country ",
     "state": "State",
     "UploadResume": "Upload your resume",
@@ -220,7 +199,7 @@
     "welcomeBack": "Welcome to Talentgate",
     "enterDetails": "Please enter your login details",
     "login": "Login",
-    "addpic":"Add Picture",
+
     "registration": "Create An Account",
     "signUpWithlinkedIn": "Signup With LinkedIn",
 

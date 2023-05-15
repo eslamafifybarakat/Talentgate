@@ -60,16 +60,17 @@
 
                 </div>
               </div>
-
               <!-- uplode file  -->
               <div class="mb-4">
                 <div class="input-container form-control">
                   <i class="pi pi-upload"></i>
-                  <label class="my-2" for="file">Upload your resume</label>
-                  <input type="file" name="file" id="file" multiple class="form-control" formControlName="username"
-                    autocomplete="cc-name" (input)="publicService?.clearValidationErrors(formControls?.username)"
+                  <input type="file" name="file" id="file" class="inputfile" />
+                  <label for="file"> {{'placeholder.UploadResume'|translate}}</label>
+                  <!-- <input type="file" name="file" id="file" class="inputfile" multiple class="form-control"
+                    formControlName="username" autocomplete="cc-name"
+                    (input)="publicService?.clearValidationErrors(formControls?.username)"
                     [class.is-invalid]="formControls?.username?.invalid && (formControls?.username?.dirty || formControls?.username?.touched)"
-                    placeholder="{{'placeholder.mobilePhone'|translate}}">
+                    placeholder="{{'placeholder.mobilePhone'|translate}}"> -->
 
                 </div>
 

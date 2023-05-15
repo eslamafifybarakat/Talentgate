@@ -6,6 +6,8 @@
     "filter": "التصفية",
     "details": "التفاصيل",
     "default": "الافتراضي",
+    "addpic":"اضف صوره",
+    "yourprofile": "أكمل ملفك الشخصي",
     "notificationExam": "اختبار الإشعار",
     "youtubeLink": "فيديو يوتيوب YouTube",
     "uploadVideo": "رفع فيديو",
@@ -188,7 +190,7 @@
     "search": "بحث",
     "username": "أدخل اسم المستخدم",
     "mobilePhone": "أدخل رقم الهاتف",
-    "yourprofile": "أكمل ملفك الشخصي",
+
     "country":"الدوله ",
     "state":"ولاية",
     "UploadResume":"تحميل السيرة الذاتية"
