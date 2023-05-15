@@ -5,4 +5,18 @@
     background-size: contain;
     border-radius: var(--border-radius-card);
   }
+
+  .content {
+    h2 {
+      font-size: 1.7rem;
+      // padding-bottom: 10px !important;
+      color: var(--text-main-color);
+    }
+
+  }
+
+  span {
+    display: block;
+    margin: -10px auto;
+  }
 }

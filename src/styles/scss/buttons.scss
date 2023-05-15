@@ -10,13 +10,11 @@
   transition: all 0.4s ease-in-out;
   z-index: 1;
 }
-
 .btn-solid-main:hover,
 .btn-solid-main:focus {
   color: var(--text-white-color) !important;
   background-color: var(--bg-main-color);
 }
-
 .btn-outline-main {
   min-width: 7rem;
   color: var(--text-main-color);
@@ -29,7 +27,6 @@
   transition: all 0.4s ease-in-out;
   z-index: 1;
 }
-
 .btn-solid-second {
   min-width: 7rem;
   color: var(--text-white-color);
@@ -54,7 +51,6 @@
   transition: all 0.4s ease-in-out;
   z-index: 1;
 }
-
 .btn-solid-secondary {
   min-width: 7rem;
   color: var(--text-desc-color);
@@ -66,13 +62,11 @@
   transition: all 0.4s ease-in-out;
   z-index: 1;
 }
-
 .btn-solid-secondary:hover,
 .btn-solid-secondary:focus {
   color: var(--text-desc-color);
   background-color: var(--bg-secondary-color);
 }
-
 .btn-outline-secondary {
   color: var(--text-secondary-color);
   background-color: var(--text-white-color);
@@ -84,18 +78,15 @@
   transition: all 0.4s ease-in-out;
   z-index: 1;
 }
-
 .btn:disabled,
 .btn:disabled:hover {
   opacity: 0.65;
   background-color: var(--bg-main-color);
   color: var(--text-white-color);
 }
-
 .form-btn {
   height: 3.4rem;
 }
-
 .btn-card {
   min-width: 40px;
   height: 40px;
@@ -114,9 +105,6 @@
   border: 1px solid var(--bg-main-color) !important;
 }
 
-
-
-
 .main-button,.form-btn,
 .secound-button{
   width: 140px;
@@ -125,7 +113,6 @@
   border: none;
   color: var(--white);
   background-color: var(--main-color);
-
   &:hover{
     opacity: 0.7;
   }
