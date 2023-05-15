@@ -1,15 +1,16 @@
-<div class="fileupload w-50 my-5">
+<div class="fileupload text-align-center">
   <div class="cust-rounded">
-    <div>
       <div class="dropzone" fileDragDrop (filesChangeEmiter)="onFileChange($event)">
         <div class="text-wrapper">
+
+          <i class="fa-solid fa-camera"></i>
           <div class="centered">
-            <i class="fa-solid fa-camera"></i>
+
             <input type="file" name="file" id="file" (change)="onFileChange($event)" multiple>
             <label class="my-2" for="file">Add Picture</label>
           </div>
         </div>
       </div>
-    </div>
+
   </div>
 </div>
