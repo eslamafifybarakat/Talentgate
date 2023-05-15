@@ -1,7 +1,7 @@
 import { LanguageSelectorComponent } from './components/header/components/language-selector/language-selector.component';
 import { UserInfoComponent } from './components/header/components/user-info/user-info.component';
 import { OverlayLoadingComponent } from './components/overlay-spinner/overlay-loading.component';
-import { BrowseImageOrVideoComponent } from './components/browse-image-or-video/browse-image-or-video.component';
+
 import { ConfirmDeleteComponent } from './components/confirm-delete/confirm-delete.component';
 import { UploadButtonComponent } from './components/upload-button/upload-button.component';
 import { ThemeComponent } from './components/header/components/theme/theme.component';
@@ -51,8 +51,7 @@ const allSharedModule = [
 @NgModule({
   declarations: [
     ...allSharedComponents,
-    BrowseImageOrVideoComponent,
-    HeaderComponent,
+      HeaderComponent,
     FooterComponent,
     NotificationComponent,
   ],

@@ -10,19 +10,27 @@ import { CheckValidityService } from './../../../shared/services/check-validity/
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AuthUserService } from '../../services/auth-user.service';
 import { Subscription } from 'rxjs';
-interface Country {
+import { SelectItem } from 'primeng/api';
+
+interface City {
   name: string;
   code: string;
 }
 @Component({
   selector: 'app-sing-up',
   templateUrl: './sing-up.component.html',
-  styleUrls: ['./sing-up.component.scss','./../register/register.component.scss']
+  styleUrls: [
+    './sing-up.component.scss',
+    './../register/register.component.scss',
+  ],
 })
 export class SingUpComponent implements OnInit {
-  countries: Country[] | undefined;
+cities!: City[];
+  selectedCities!: City[];
 
-  selectedCountries: Country[] | undefined;
+  countries!: any[];
+ selectedCountry!: string;
+
   private unsubscribe: Subscription[] = [];
   currentLanguage: any;
   constructor(
@@ -33,14 +41,24 @@ export class SingUpComponent implements OnInit {
     public publicService: PublicService,
     private cdr: ChangeDetectorRef,
     protected router: Router,
-    public fb: FormBuilder,
+    public fb: FormBuilder
   ) {
 
-    this.countrie()
   }
 
 
-  countrie(){
+
+
+  ngOnInit() {
+    this.cities = [
+      { name: 'New York', code: 'NY' },
+      { name: 'Rome', code: 'RM' },
+      { name: 'London', code: 'LDN' },
+      { name: 'Istanbul', code: 'IST' },
+      { name: 'Paris', code: 'PRS' },
+    ];
+
+
     this.countries = [
       { name: 'Australia', code: 'AU' },
       { name: 'Brazil', code: 'BR' },
@@ -53,29 +71,35 @@ export class SingUpComponent implements OnInit {
       { name: 'Spain', code: 'ES' },
       { name: 'United States', code: 'US' }
   ];
-  }
-  ngOnInit(): void {
     this.currentLanguage = window?.localStorage?.getItem(keys?.language);
   }
 
-  signUpForm = this.fb?.group(
-    {
-      username: ['', {
+
+  signUpForm = this.fb?.group({
+    username: [
+      '',
+      {
         validators: [
           Validators.required,
           Validators.pattern(patterns?.userName),
-          Validators?.minLength(3)], updateOn: "blur"
-      }],
-      password: ['', {
+          Validators?.minLength(3),
+        ],
+        updateOn: 'blur',
+      },
+    ],
+    password: [
+      '',
+      {
         validators: [
           Validators.required,
           Validators?.minLength(8),
           Validators?.maxLength(20),
-        ], updateOn: "blur"
-      }],
-      remember: [false, []]
-    }
-  );
+        ],
+        updateOn: 'blur',
+      },
+    ],
+    remember: [false, []],
+  });
 
   get formControls(): any {
     return this.signUpForm?.controls;
@@ -84,12 +108,9 @@ export class SingUpComponent implements OnInit {
   getCurrentUserData(): void {
     this.authUserService?.getUserData()?.subscribe((res: any) => {
       // this.authUserService?.saveUserData(res);
-    })
+    });
   }
 
-  forgetPassWord(): void {
-    this.router?.navigateByUrl(`auth/${AppRoutes?.auth?.forgetPassword}`);
-  }
 
   submit(): void {
     if (this.signUpForm?.valid) {
@@ -97,15 +118,13 @@ export class SingUpComponent implements OnInit {
       let data = {
         username: this.signUpForm?.value?.username,
         password: this.signUpForm?.value?.password,
-        rememberClient: true
+        rememberClient: true,
       };
       setTimeout(() => {
         this.router?.navigateByUrl('/dashboard');
         this.publicService?.show_loader?.next(false);
         console.log(this.signUpForm?.value);
-
       }, 1000);
-
     } else {
       this.publicService?.show_loader?.next(false);
       this.checkValidityService?.validateAllFormFields(this.signUpForm);

@@ -5,7 +5,6 @@ import { CommonModule } from '@angular/common';
 import { HttpLoaderFactory } from 'src/app/app.module';
 
 
-
 @NgModule({
   declarations: [],
   imports: [

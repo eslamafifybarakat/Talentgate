@@ -2,12 +2,10 @@
   <div class="cust-rounded">
       <div class="dropzone" fileDragDrop (filesChangeEmiter)="onFileChange($event)">
         <div class="text-wrapper">
-
           <i class="fa-solid fa-camera"></i>
           <div class="centered">
-
             <input type="file" name="file" id="file" (change)="onFileChange($event)" multiple>
-            <label class="my-2" for="file">Add Picture</label>
+            <label class="my-2" for="file">{{'form.addpic'|translate}}</label>
           </div>
         </div>
       </div>

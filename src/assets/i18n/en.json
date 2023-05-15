@@ -6,6 +6,7 @@
   "general": {
     "filter": "Filter",
     "details": "Details",
+    "yourprofile": "Complete your Profile",
     "default": "Default",
     "youtubeLink": "Video YouTube",
     "uploadVideo": "Upload Video",
@@ -170,7 +171,7 @@
     "palateNo": "Palate No",
     "username": "Username",
     "supervisor": "Supervisor",
-    "mobilePhone": "Mobile phone",
+
     "tank": "Tank",
     "driver": "Driver",
     "startDate": "Start Date",
@@ -181,17 +182,14 @@
   "placeholder": {
     "email": "Email address",
     "password": "password",
-    "search": "Search",
     "username": "Enter username",
     "fullname": "Full Name",
     "repeatpassword": "Repeat Password",
-    "supervisor": "Select supervisor",
-    "mobilePhone": "Phone Number",
-
-    "yourprofile": "Complete your Profile",
+   "mobilePhone": "Mobile phone",
     "country": "Country ",
     "state": "State",
-    "UploadResume": "Upload your resume"
+    "UploadResume": "Upload your resume",
+    "search": "Search"
   },
   "validations": {
     "required_field": "This field is reuired",
@@ -222,7 +220,7 @@
     "welcomeBack": "Welcome to Talentgate",
     "enterDetails": "Please enter your login details",
     "login": "Login",
-
+    "addpic":"Add Picture",
     "registration": "Create An Account",
     "signUpWithlinkedIn": "Signup With LinkedIn",
 
