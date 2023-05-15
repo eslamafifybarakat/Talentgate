@@ -2,9 +2,8 @@
   height: 130px;
   display: table;
   width: 100%;
-  background-color: rgba(140, 149, 163, 0.6);
-  border: dotted 1px rgba(140, 149, 163, 0.6);
 }
+
 
 input[type="file"] {
   display: none;
@@ -27,10 +26,16 @@ input[type="file"] {
 }
 
 .text-wrapper {
-  display: table-cell;
-  vertical-align: middle;
+  // display: table-cell;
+  vertical-align: bottom;
+  background-color: rgba(140, 149, 163, 0.6);
+position: relative;
+  i{
+    font-size: 100px;
+    top: 7px;
+    position: absolute;
+  }
 }
-
 .centered {
   font-family: sans-serif;
   font-size: 1.3em;
@@ -40,18 +45,19 @@ input[type="file"] {
   justify-content: center;
 }
 
-.support {
-  font-weight: 400;
-  font-size: 10px;
-  line-height: 20px;
-  color: #8c95a3;
+.cust-rounded{
+  width: 75%;
+  padding: 20px;
+  border-radius: 50%;
+border: 10px solid  rgba(140, 149, 163, 0.6);
+overflow: hidden;
 }
 .add-profile {
   font-weight: 600;
   font-size: 14px;
   line-height: 20px;
   text-transform: capitalize;
-  color: #000000;
+  color: #000000
 }
 .fileItem {
   width: calc(25% - 6px);

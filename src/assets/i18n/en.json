@@ -184,10 +184,14 @@
     "search": "Search",
     "username": "Enter username",
     "fullname": "Full Name",
-    "repeatpassword":"Repeat Password",
+    "repeatpassword": "Repeat Password",
     "supervisor": "Select supervisor",
-    "mobilePhone": "Enter mobile phone"
+    "mobilePhone": "Phone Number",
 
+    "yourprofile": "Complete your Profile",
+    "country": "Country ",
+    "state": "State",
+    "UploadResume": "Upload your resume"
   },
   "validations": {
     "required_field": "This field is reuired",
@@ -217,14 +221,16 @@
   "form": {
     "welcomeBack": "Welcome to Talentgate",
     "enterDetails": "Please enter your login details",
-    "enterRegisterDetails": "Welcome! please enter your details",
     "login": "Login",
+
+    "registration": "Create An Account",
+    "signUpWithlinkedIn": "Signup With LinkedIn",
+
     "signUp": "Sign up",
-    "registration":"Create An Account",
-    "signUpWithlinkedIn":"Signup With LinkedIn" ,
+
     "logOut": "Logout",
     "terms": "I have read, understand, accept and agree to be bound by the following ",
-    "terms-conditions":"terms and conditions",
+    "terms-conditions": "terms and conditions",
     "send": "Send",
     "no_account": "Don't have an account?",
     "create-account": "Create An Account",
@@ -300,24 +306,8 @@
       "Friday",
       "Saturday"
     ],
-    "dayNamesShort": [
-      "Sun",
-      "Mon",
-      "Tue",
-      "Wed",
-      "Thu",
-      "Fri",
-      "Sat"
-    ],
-    "dayNamesMin": [
-      "Su",
-      "Mo",
-      "Tu",
-      "We",
-      "Th",
-      "Fr",
-      "Sa"
-    ],
+    "dayNamesShort": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+    "dayNamesMin": ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
     "monthNames": [
       "January",
       "February",

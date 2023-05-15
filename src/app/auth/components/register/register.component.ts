@@ -69,25 +69,25 @@ export class RegisterComponent implements OnInit {
   }
 
   submit(): void {
-    if (this.registrerForm?.valid) {
-      this.publicService?.show_loader?.next(true);
-      let data = {
-        username: this.registrerForm?.value?.username,
-        password: this.registrerForm?.value?.password,
-        rememberClient: true
-      };
-      setTimeout(() => {
-        this.router?.navigateByUrl('/dashboard');
-        this.publicService?.show_loader?.next(false);
-        console.log(this.registrerForm?.value);
+    // if (this.registrerForm?.valid) {
+    //   this.publicService?.show_loader?.next(true);
+    //   let data = {
+    //     username: this.registrerForm?.value?.username,
+    //     password: this.registrerForm?.value?.password,
+    //     rememberClient: true
+    //   };
+    //   setTimeout(() => {
+    //     this.router?.navigateByUrl('');
+    //     this.publicService?.show_loader?.next(false);
+    //     console.log(this.registrerForm?.value);
 
-      }, 1000);
+    //   }, 1000);
 
-    } else {
-      this.publicService?.show_loader?.next(false);
-      this.checkValidityService?.validateAllFormFields(this.registrerForm);
-    }
-    this.cdr?.detectChanges();
+    // } else {
+    //   this.publicService?.show_loader?.next(false);
+    //   this.checkValidityService?.validateAllFormFields(this.registrerForm);
+    // }
+    // this.cdr?.detectChanges();
   }
 
   ngOnDestroy(): void {

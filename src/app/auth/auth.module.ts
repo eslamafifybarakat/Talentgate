@@ -5,12 +5,14 @@ import { NgModule } from '@angular/core';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { SharedModule } from '../shared/shared.module';
+import { SingUpComponent } from './components/sing-up/sing-up.component';
 
 @NgModule({
   declarations: [
     AuthComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    SingUpComponent
   ],
   imports: [
     AuthRoutingModule,
@@ -21,7 +23,8 @@ import { SharedModule } from '../shared/shared.module';
   exports: [
     // AuthComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    SingUpComponent
   ],
 
 })

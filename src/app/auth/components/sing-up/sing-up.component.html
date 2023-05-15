@@ -1,51 +1,132 @@
-<div class="container">
-
-  <div class="auth-form">
-
-    <div class="col-xl-12 col-md-12 ">
-      <form>
-        <h2>Complete your Profile</h2>
-        <div class="row">
-          <div class="col-12">
-            <div class="form-content">
-              <input type="number" class="form-input" name="username" placeholder="Phone Number">
-              <i class="pi pi-user"></i>
+<div class="auth-form p-t-12">
+  <div class="container">
+    <div class="firstdiv ">
+      <div class="row justify-content-end">
+        <div class="col-lg-6 col-md-8 col-11">
+          <div class="global-card p-sm-5 p-4 align-items-end">
+            <!-- <div class="d-flex justify-content-end gap-2">
+            <app-language-selector></app-language-selector>
+          </div> -->
+            <div class="content">
+              <!-- <h2> {{'form.yourprofile'|translate}}</h2> -->
+              <h2> Complete your Profile</h2>
             </div>
-          </div>
-          <div class="col-12">
-            <div class="row">
-              <div class="col-6">
-                <div class="form-content">
-                  <input type="select" class="form-input" name="username" placeholder="Password">
-                  <i class="pi pi-user"></i>
+            <form [formGroup]= "signUpForm" (ngSubmit)="submit()" class="pt-3 ">
+
+              
+                <app-file-upload></app-file-upload>
+              <!-- Phone Number -->
+              <div class="mb-4">
+                <input type="text" class="form-control" formControlName="username" autocomplete="cc-name"
+                  (input)="publicService?.clearValidationErrors(formControls?.username)"
+                  [class.is-invalid]="formControls?.username?.invalid && (formControls?.username?.dirty || formControls?.username?.touched)"
+                  placeholder="{{'placeholder.mobilePhone'|translate}}">
+
+                <div class="mt-2">
+                  <ng-container
+                    *ngIf="formControls?.username?.invalid && (formControls?.username?.dirty || formControls?.username?.touched)">
+                    <ng-container *ngIf="formControls?.username?.errors?.['required']">
+                      <span class="text-danger fs-8 ps-3">
+                        {{'validations.requiredEmail'|translate}}
+                      </span>
+                    </ng-container>
+                    <ng-container *ngIf="formControls?.username?.errors?.['pattern']">
+                      <span class="text-danger fs-8 d-block ps-3">
+                        {{'validations.not_valid'|translate}}
+                      </span>
+                    </ng-container>
+                    <ng-container *ngIf="formControls?.username?.errors?.['minlength']">
+                      <span class="text-danger fs-8 d-block ps-3">
+                        {{'validations.length'|translate}}
+                      </span>
+                    </ng-container>
+                  </ng-container>
                 </div>
               </div>
-
-              <!-- <div class="col-6">
-                <div class="form-content">
-                  <input type="select" class="form-input" name="username" placeholder="Password">
-                  <i class="pi pi-user"></i>
+              <!-- Country-->
+              <div class="mb-4">
+                <div class="input-container">
+                  <i class="fa-regular fa-envelope"></i>
+                  <input type="text" class="form-control" formControlName="username" autocomplete="cc-name"
+                    (input)="publicService?.clearValidationErrors(formControls?.username)"
+                    [class.is-invalid]="formControls?.username?.invalid && (formControls?.username?.dirty || formControls?.username?.touched)"
+                    placeholder="{{'placeholder.email'|translate}}">
                 </div>
+<!--
+                <div class="card flex justify-content-center">
+                  <p-multiSelect [options]="countries" [(ngModel)]="selectedCountries" defaultLabel="Select a Country" optionLabel="name" >
+                      <ng-template let-value pTemplate="selectedItems">
+                          <div class="flex align-items-center gap-2" *ngFor="let option of selectedCountries1">
+                              <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png" [class]="'flag flag-' + option.code.toLowerCase()" style="width: 18px"/>
+                              <div>{{ option.name }}</div>
+                          </div>
+                          <div *ngIf="!selectedCountries1 || selectedCountries1.length === 0">Select Countries</div>
+                      </ng-template>
+                      <ng-template let-country pTemplate="item">
+                          <div class="flex align-items-center gap-2">
+                              <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png" [class]="'flag flag-' + country.code.toLowerCase()" style="width: 18px"/>
+                              <div>{{ country.name }}</div>
+                          </div>
+                      </ng-template>
+                  </p-multiSelect>
               </div> -->
 
-            </div>
-            <div class="col-12">
-              <div class="form-content">
-                <input type="file" class="form-input" name="username" placeholder="Upload your resume">
-                <i class="pi pi-upload"></i>
+                <div class="mt-2">
+                  <ng-container
+                    *ngIf="formControls?.username?.invalid && (formControls?.username?.dirty || formControls?.username?.touched)">
+                    <ng-container *ngIf="formControls?.username?.errors?.['required']">
+                      <span class="text-danger fs-8 ps-3">
+                        {{'validations.requiredEmail'|translate}}
+                      </span>
+                    </ng-container>
+                    <ng-container *ngIf="formControls?.username?.errors?.['pattern']">
+                      <span class="text-danger fs-8 d-block ps-3">
+                        {{'validations.not_valid'|translate}}
+                      </span>
+                    </ng-container>
+                    <ng-container *ngIf="formControls?.username?.errors?.['minlength']">
+                      <span class="text-danger fs-8 d-block ps-3">
+                        {{'validations.length'|translate}}
+                      </span>
+                    </ng-container>
+                  </ng-container>
+                </div>
               </div>
-            </div>
-          </div>
-          <div class="col-12">
-            <input type="submit" class="form-button" value="Sign Up">
+              <!-- State-->
+              <div>
+                <div class="rounded-input p-mask"
+                  [class.border-red]="formControls?.password?.invalid && (formControls?.password?.dirty ||formControls?.password?.touched)"
+                  [class.is-valid]="formControls?.password?.valid && (formControls?.password?.dirty || formControls?.password?.touched)">
+                </div>
+                <div class="mt-3">
+                  <ng-container
+                    *ngIf="formControls?.password?.invalid && (formControls?.password?.dirty || formControls?.password?.touched)">
+                    <ng-container *ngIf="formControls?.password?.errors?.['required']">
+                      <span class="text-danger fs-8 ps-3">
+                        {{'validations.requiredPassword'|translate}}
+                      </span>
+                    </ng-container>
+                    <ng-container
+                      *ngIf="formControls?.password?.errors?.['minlength']|| formControls?.password?.errors?.['maxlength']">
+                      <span class="text-danger fs-8 ps-3">
+                        {{'validations.pass_length'|translate}}
+                      </span>
+                    </ng-container>
+                  </ng-container>
+                </div>
+              </div>
+
+
+              <button type="submit" class="btn w-100 btn-solid-main form-btn formcontrol-auth"
+                routerLink="/auth/signup">
+                <span>
+                  {{'form.signUp'|translate}}
+                </span>
+              </button>
+            </form>
           </div>
         </div>
-
-
-
-
-      </form>
+      </div>
     </div>
-
   </div>
 </div>
