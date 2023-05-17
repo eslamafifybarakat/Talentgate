@@ -25,10 +25,10 @@ interface City {
   ],
 })
 export class SingUpComponent implements OnInit {
-cities!: City[];
+  cities!: City[];
   selectedCities!: City[];
   countries!: any[];
- selectedCountry!: string;
+  selectedCountry!: string;
 
   private unsubscribe: Subscription[] = [];
   currentLanguage: any;
@@ -66,10 +66,16 @@ cities!: City[];
       { name: 'Japan', code: 'JP' },
       { name: 'Spain', code: 'ES' },
       { name: 'United States', code: 'US' }
-  ];
+    ];
     this.currentLanguage = window?.localStorage?.getItem(keys?.language);
   }
 
+  getUploadFiles(ev: any): void {
+    console.log(ev);
+  }
+  uploadFile(ev: any): void {
+    console.log(ev);
+  }
 
   signUpForm = this.fb?.group({
     username: [
@@ -106,6 +112,84 @@ cities!: City[];
       // this.authUserService?.saveUserData(res);
     });
   }
+
+
+  // country
+  // getAllCoutries(): any {
+  //   this.isLoadingCoutries = true;
+  //   this.orderService?.getCoutriesListList()?.subscribe(
+  //     (res: any) => {
+  //       if (res?.statusCode == 200 && res?.isSuccess == true) {
+  //         this.coutriesListList = res?.data;
+  //         this.isLoadingCoutries = false;
+  //       } else {
+  //         res?.message ? this.alertsService?.openSweetAlert('info', res?.message) : '';
+  //         this.isLoadingCoutries = false;
+  //       }
+  //     },
+  //     (err: any) => {
+  //       err?.message ? this.alertsService?.openSweetAlert('error', err?.message) : '';
+  //       this.isLoadingCoutries = false;
+  //     });
+  //   this.cdr?.detectChanges();
+
+  //   let data: any = [{
+  //     id: 1,
+  //     name: 'egypt'
+  //   }
+  //     , {
+  //     id: 2,
+  //     name: 'sodan'
+  //   }];
+  //   this.coutriesListList = data;
+  // }
+  // onChangeCountry(item: any): void {
+  //   if (item?.value?.id) {
+  //     this.getStateByCountryId(item?.value?.id);
+  //     this.orderForm?.patchValue({
+  //       supervisor: null
+  //     });
+  //     this.orderForm?.controls?.supervisor?.enable();
+  //   }
+  // }
+  // onClearCountry(): void {
+  //   this.orderForm?.patchValue({
+  //     supervisor: null,
+  //     driver: null
+  //   });
+  //   this.supervisorsList = [];
+  //   this.driversList = [];
+
+  //   this.orderForm?.controls?.supervisor?.disable();
+  //   this.orderForm?.controls?.driver?.disable();
+  // }
+
+  // state
+  // getStateByCountryId(districtId: any): any {
+  //   this.isLoadingSupervisors = true;
+  //   this.supervisorsService?.getSupervisorsByDistrictId(districtId)?.subscribe(
+  //     (res: any) => {
+  //       if (res?.statusCode == 200 && res?.isSuccess == true) {
+  //         let arr: any = [];
+  //         res?.data ? res?.data?.forEach((supervisor: any) => {
+  //           arr?.push({
+  //             name: supervisor?.arName,
+  //             id: supervisor?.id
+  //           });
+  //         }) : '';
+  //         this.supervisorsList = arr;
+  //         this.isLoadingSupervisors = false;
+  //       } else {
+  //         res?.message ? this.alertsService?.openSweetAlert('info', res?.message) : '';
+  //         this.isLoadingSupervisors = false;
+  //       }
+  //     },
+  //     (err: any) => {
+  //       err?.message ? this.alertsService?.openSweetAlert('error', err?.message) : '';
+  //       this.isLoadingSupervisors = false;
+  //     });
+  //   this.cdr?.detectChanges();
+  // }
 
 
   submit(): void {
