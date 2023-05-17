@@ -50,7 +50,8 @@ export class LoginComponent implements OnInit {
       {
         validators: [
           Validators.required,
-          
+          Validators?.minLength(8),
+          Validators?.maxLength(20),
         ],
         updateOn: 'blur',
       },
