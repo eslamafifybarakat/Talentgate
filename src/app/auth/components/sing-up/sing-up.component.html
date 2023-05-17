@@ -14,7 +14,7 @@
               <app-file-upload></app-file-upload>
               <!-- Phone Number -->
               <div class="mb-4">
-                <input type="text" class="form-control" formControlName="username" autocomplete="cc-name"
+                <input type="text" class="form-control bg-gray" formControlName="username" autocomplete="cc-name"
                   (input)="publicService?.clearValidationErrors(formControls?.username)"
                   [class.is-invalid]="formControls?.username?.invalid && (formControls?.username?.dirty || formControls?.username?.touched)"
                   placeholder="{{'placeholder.mobilePhone'|translate}}">
@@ -45,7 +45,7 @@
                     <!-- State-->
                     <div>
                       <div class=" flex justify-content-center">
-                        <p-treeSelect placeholder="{{'placeholder.country'|translate}}" [options]="countries"
+                        <p-treeSelect placeholder="{{'placeholder.country'|translate}}" [options]="countries" class="bg-gray"
                           [filter]="true" [filterInputAutoFocus]="true"></p-treeSelect>
                       </div>
                     </div>
@@ -62,9 +62,9 @@
               </div>
               <!-- uplode file  -->
               <div class="mb-4">
-                <div class="input-container form-control">
+                <div class="input-container form-control" >
                   <i class="pi pi-upload"></i>
-                  <input type="file" name="file" id="file" class="inputfile" />
+                  <input type="file" name="file" id="file" class="inputfile bg-gray"  />
                   <label for="file"> {{'placeholder.UploadResume'|translate}}</label>
                   <!-- <input type="file" name="file" id="file" class="inputfile" multiple class="form-control"
                     formControlName="username" autocomplete="cc-name"
