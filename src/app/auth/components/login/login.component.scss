@@ -1,9 +1,11 @@
 .auth-form {
   .firstdiv {
-    background-image: url(../../../../assets/images/auth/login.jpg);
+    width: 100%;
+ background-image: url(../../../../assets/images/auth/login.jpg);
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
     border-radius: var(--border-radius-card);
+
   }
   .content {
     h2 {
@@ -12,7 +14,7 @@
       color: var(--text-main-color);
     }
     h3 {
-      font-size: 20px;
+      font-size: 18px;
       color: var(--grey-100);
       text-align: initial;
     }

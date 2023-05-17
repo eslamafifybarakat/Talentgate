@@ -26,6 +26,7 @@ import { PasswordModule } from 'primeng/password';
 import { TreeSelectModule } from 'primeng/treeselect';
 import { SliderModule } from 'primeng/slider';
 import { TooltipModule } from 'primeng/tooltip';
+import { RadioButtonModule } from 'primeng/radiobutton';
 
 
 const primeNgModules = [
@@ -55,6 +56,7 @@ const primeNgModules = [
   StepsModule,
   ToastModule,
   TableModule,
+  RadioButtonModule
 ];
 @NgModule({
   declarations: [],

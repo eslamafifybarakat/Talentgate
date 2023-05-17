@@ -39,25 +39,25 @@
                   </ng-container>
                 </div> -->
               </div>
-
-              <div class="mb-4">
+              <div >
                 <div class="row">
-
-                  <div class="col-xl-6">
+                  <div class="col-xl-6 mb-4">
                     <!-- State-->
                     <div>
-                      <p-multiSelect [options]="countries" [(ngModel)]="selectedCountry" optionLabel="name"
-                        placeholder="{{'placeholder.country'|translate}}"></p-multiSelect>
+                      <div class=" flex justify-content-center">
+                        <p-treeSelect placeholder="{{'placeholder.country'|translate}}" [options]="countries"
+                          [filter]="true" [filterInputAutoFocus]="true"></p-treeSelect>
+                      </div>
                     </div>
                   </div>
-
-                  <!-- <div class="col-xl-6">
+                  <div class="col-xl-6 mb-4">
                     <div>
-                      <p-multiSelect [options]="cities" [(ngModel)]="selectedCities" optionLabel="name"
-                        placeholder="{{'placeholder.country'|translate}}"></p-multiSelect>
+                      <div class=" flex justify-content-center">
+                        <p-treeSelect placeholder="{{'placeholder.state'|translate}}" [options]="countries"
+                          [filter]="true" [filterInputAutoFocus]="true"></p-treeSelect>
+                      </div>
                     </div>
-                  </div> -->
-
+                  </div>
                 </div>
               </div>
               <!-- uplode file  -->
@@ -96,8 +96,6 @@
     </ng-container>
   </div> -->
               </div>
-
-
               <button type="submit" class="btn w-100 btn-solid-main form-btn formcontrol-auth"
                 routerLink="/auth/signup">
                 <span>

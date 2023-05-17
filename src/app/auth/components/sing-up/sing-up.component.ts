@@ -27,7 +27,6 @@ interface City {
 export class SingUpComponent implements OnInit {
 cities!: City[];
   selectedCities!: City[];
-
   countries!: any[];
  selectedCountry!: string;
 
@@ -45,9 +44,6 @@ cities!: City[];
   ) {
 
   }
-
-
-
 
   ngOnInit() {
     this.cities = [

@@ -6,7 +6,6 @@
   "general": {
     "yourprofile": "Complete your Profile",
     "addpic": "Add Picture",
-
     "filter": "Filter",
     "details": "Details",
     "default": "Default",
@@ -156,7 +155,7 @@
     "driverArrivedToStation": "Driver Arrived To Station"
   },
   "labels": {
- 
+
   },
   "placeholder": {
     "email": "Email address",
@@ -171,24 +170,34 @@
     "search": "Search"
   },
   "validations": {
-    "required_field": "This field is reuired",
-    "not_valid": "This data is not vaild",
+
+ "requiredEmail": "Email is required",
+  "emailNotCorrect": "Email is not correct email pattern",
+ "not_valid": "This Email is not vaild",
+
+
+  "pass_length": "Password length must be 8–20",
+ "requiredPassword": "Password is required",
+  "passwordPattern": "Your password must be 8 or more characters, contains upper & lower case letters, numbers, at least one special character (!%*?&|...)",
+ "oneLowercase": "At least one lowercase",
+    "oneUppercase": "At least one uppercase",
+
+"required_field": "This field is reuired",
+
     "notValidLink": "This link is not vaild",
-    "pass_length": "Password length must be 8–20",
+
     "name_length": "Name min length must be 3",
     "length": "  Length must be larger than 2",
     "requiredName": "Name is required",
     "username": "UserName is required",
-    "requiredEmail": "Email is required",
+
     "requiredAddress": "Address is required",
-    "emailNotCorrect": "Email is not correct email pattern",
-    "requiredPassword": "Password is required",
+
     "requiredConfirmPassword": "Confirm password is required",
-    "passwordPattern": "Your password must be 8 or more characters, contains upper & lower case letters, numbers, at least one special character (!%*?&|...)",
+
     "not_matched": "Confirm password must match password",
     "PickPassword": "Pick a password",
-    "oneLowercase": "At least one lowercase",
-    "oneUppercase": "At least one uppercase",
+
     "oneNumeric": "At least one numeric",
     "MinimumCharacters": "Minimum 5 characters",
     "startDate": "Start date is required",
@@ -199,14 +208,16 @@
     "welcomeBack": "Welcome to Talentgate",
     "enterDetails": "Please enter your login details",
     "login": "Login",
-
+    "findJob":"Find Job",
     "registration": "Create An Account",
     "signUpWithlinkedIn": "Signup With LinkedIn",
 
+
+    "search": "Search...",
     "signUp": "Sign up",
 
     "logOut": "Logout",
-    "terms": "I have read, understand, accept and agree to be bound by the following ",
+    "terms": "I have read,understand,accept and agree to be bound by the following",
     "terms-conditions": "terms and conditions",
     "send": "Send",
     "no_account": "Don't have an account?",

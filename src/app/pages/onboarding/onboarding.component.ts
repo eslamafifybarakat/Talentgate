@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
-
+import { TranslationService } from './../../shared/services/i18n/translation.service';
 @Component({
   selector: 'app-onboarding',
   templateUrl: './onboarding.component.html',
@@ -9,7 +9,10 @@ import { MessageService } from 'primeng/api';
 export class OnboardingComponent implements OnInit {
   uploadedFiles: any[] = [];
 
-  constructor(private messageService: MessageService) {}
+  constructor(private messageService: MessageService ,
+     public translationService: TranslationService,) {
+
+  }
   ngOnInit(): void {
     throw new Error('Method not implemented.');
   }

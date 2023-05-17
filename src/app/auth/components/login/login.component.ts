@@ -28,34 +28,18 @@ export class LoginComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     protected router: Router,
     public fb: FormBuilder,
-  ) { }
-
+  ) {}
   ngOnInit(): void {
     this.currentLanguage = window?.localStorage?.getItem(keys?.language);
   }
 
   loginForm = this.fb?.group(
-    {
-      username: ['', {
-        validators: [
-          Validators.required,
-          Validators.pattern(patterns?.userName),
-          Validators?.minLength(3)], updateOn: "blur"
-      }],
-      password: ['', {
-        validators: [
-          Validators.required,
-          Validators?.minLength(8),
-          Validators?.maxLength(20),
-        ], updateOn: "blur"
-      }],
-      remember: [false, []]
-    }
-  );
+    {username: ['',{ validators: [ Validators.required,Validators.pattern(patterns?.userName),Validators?.minLength(3)],updateOn: "blur"}],
+     password: ['',{ validators: [Validators.required, Validators?.minLength(8),Validators?.maxLength(20), ],updateOn: "blur"}],
+    remember: [false, []]
+    });
 
-  get formControls(): any {
-    return this.loginForm?.controls;
-  }
+  get formControls(): any {return this.loginForm?.controls;}
 
   getCurrentUserData(): void {
     this.authUserService?.getUserData()?.subscribe((res: any) => {
@@ -63,9 +47,7 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  forgetPassWord(): void {
-    this.router?.navigateByUrl(`auth/${AppRoutes?.auth?.forgetPassword}`);
-  }
+  forgetPassWord(): void { this.router?.navigateByUrl(`auth/${AppRoutes?.auth?.forgetPassword}`);}
 
   submit(): void {
     if (this.loginForm?.valid) {
@@ -73,42 +55,24 @@ export class LoginComponent implements OnInit {
       let data = {
         username: this.loginForm?.value?.username,
         password: this.loginForm?.value?.password,
-        rememberClient: true
       };
-      setTimeout(() => {
-        this.router?.navigateByUrl('/dashboard');
-        this.publicService?.show_loader?.next(false);
-        console.log(this.loginForm?.value);
-
-      }, 1000);
-      // this.authUserService?.login(data)?.subscribe(
-      //   (res: any) => {
-      //     if (res?.success == true) {
-      //       this.publicService?.show_loader?.next(false);
-      //       this.loginForm?.reset();
-      //       this.authUserService?.getUserData()?.subscribe(
-      //         (res: any) => {
-      //           if (res?.success == true) {
-      //             this.publicService?.show_loader?.next(false);
-      //           } else {
-      //             this.publicService?.show_loader?.next(false);
-      //             res?.error?.message ? this.alertsService?.openSweetAlert('error', res?.error?.message) : '';
-      //           }
-      //         },
-      //         (err: any) => {
-      //           err ? this.alertsService?.openSweetAlert('error', err) : '';
-      //           this.publicService?.show_loader?.next(false);
-      //         });
-      //     } else {
-      //       this.publicService?.show_loader?.next(false);
-      //       res?.error?.message ? this.alertsService?.openSweetAlert('error', res?.error?.message) : '';
-      //     }
-      //   },
-      //   (err: any) => {
-      //     err ? this.alertsService?.openSweetAlert('error', err) : '';
-      //     this.publicService?.show_loader?.next(false);
-      //   }
-      // );
+      this.authUserService?.login(data)?.subscribe(
+        (res: any) => {
+          if (res?.statusCode == 200) {
+            this.router?.navigate(['/home']);
+            window.localStorage.setItem(keys.token, res?.data?.token);
+            window.localStorage.setItem(keys.userLoginData, JSON.stringify(res?.data?.user));
+            this.publicService?.show_loader?.next(false);
+          } else {
+            this.publicService?.show_loader?.next(false);
+            res?.error?.message ? this.alertsService?.openSweetAlert('error', res?.error?.message) : '';
+          }
+        },
+        (err: any) => {
+          err ? this.alertsService?.openSweetAlert('error', err) : '';
+          this.publicService?.show_loader?.next(false);
+        }
+      );
     } else {
       this.publicService?.show_loader?.next(false);
       this.checkValidityService?.validateAllFormFields(this.loginForm);

@@ -2,7 +2,7 @@
   .firstdiv {
     background-image: url(../../../../assets/images/auth/register.jpg);
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
     border-radius: var(--border-radius-card);
   }
 
@@ -18,5 +18,11 @@
   span {
     display: block;
     margin: -10px auto;
+  }
+
+  .terms{
+    color: var(--bg-main-color);
+    text-decoration: underline;
+    border-bottom: 1px solid var(--bg-main-color);
   }
 }

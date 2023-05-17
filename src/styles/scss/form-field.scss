@@ -1,8 +1,11 @@
+
+// placeholder
+
 input[type]::-webkit-input-placeholder,
 textarea::-webkit-input-placeholder,
 select::-webkit-input-placeholder,
 select.form-control.has-value {
-  color: var(--text-desc-color) !important;
+  color: var(--bg-main-color) !important;
   font-size: 1rem;
 }
 
@@ -24,6 +27,10 @@ select.form-control.has-value {
   font-size: 1rem;
 }
 
+
+
+///////////////////////////
+
 // input[type]:-ms-input-placeholder,
 // textarea:-ms-input-placeholder,
 // select:-ms-input-placeholder,
@@ -32,9 +39,9 @@ select.form-control.has-value {
 //   font-size: 1rem;
 // }
 
-input:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0 1000px var(--bg-input-color) inset !important;
-}
+// input:-webkit-autofill {
+//   -webkit-box-shadow: 0 0 0 1000px var(--bg-input-color) inset !important;
+// }
 
 // .form-check-input[type="checkbox"]:focus {
 //   box-shadow: none;
@@ -67,12 +74,7 @@ input:-webkit-autofill {
   border-color:var(--bg-main-color);
 
 }
-// .p-dropdown {
-//   background-color: #fafafa;
-//   border-radius: var(--border-radius);
-//   height: 3.4rem;
-//   border-color: var(--border-color);
-// }
+
 .form-control-left {
   border-left: 0;
 }
@@ -106,45 +108,37 @@ input:-webkit-autofill {
   }
 }
 
-
-
-
-// .input-container input {
-//   padding-left: 30px;
-// }
-
-
 .form-control.is-valid,
 .was-validated .form-control:valid {
   // background-image: url(../../assets/images/form/valid.svg) !important;
   border: 1px solid var(--border-color);
 }
 
-.border-red {
-  border: 1px solid #dc3545 !important;
-  border-radius: var(--border-radius) !important;
+// .border-red {
+//   border: 1px solid #dc3545 !important;
+//   border-radius: var(--border-radius) !important;
 
-  .ng-select-container {
-    border: 0 !important;
-  }
-  .p-input-icon-right > .p-inputtext,
-  .p-calendar {
-    border: 0 !important;
-  }
-}
+//   .ng-select-container {
+//     border: 0 !important;
+//   }
+//   .p-input-icon-right > .p-inputtext,
+//   .p-calendar {
+//     border: 0 !important;
+//   }
+// }
 
-.border-green {
-  border: 1px solid #198754 !important;
-  border-radius: 0.625rem !important;
+// .border-green {
+//   border: 1px solid #198754 !important;
+//   border-radius: 0.625rem !important;
 
-  .ng-select-container {
-    border: 0 !important;
-  }
-}
+//   .ng-select-container {
+//     border: 0 !important;
+//   }
+// }
 
-.textarea {
-  height: 120px;
-}
+// .textarea {
+//   height: 120px;
+// }
 .required {
   &:after {
     content: "*";
@@ -158,16 +152,6 @@ input:-webkit-autofill {
 }
 
 
-.formcontrol-auth ,.formcontrol-input
-{
-padding: 2rem 1rem;
-border-radius: 100px;
-}
-.formcontrol-input{
- background-color: var(--white);
- color: var(--bg-main-color);
- border: 1px solid var(--bg-main-color);
-}
 // icon
 .input-container {
   position: relative;
@@ -186,6 +170,7 @@ border-radius: 100px;
 p-password .pi{
   font-family: "FontAwesome";
   font-size: 1.5rem;
+  top: 30px;
   right: 2rem !important;
   color: var(--bg-main-color) !important;
 }
@@ -200,8 +185,21 @@ p-password .pi-eye-slash:before
   content: "\f3c1"
 }
 
-.sign_up .p-multiselect{
-  border: 1px solid #3a5380;
+.sign_up .p-treeselect{
+  border: 1px solid #3a5380 !important;
   border-radius: 3rem !important;
-  padding: 0.5rem;
+  padding: 0.5rem !important;
 }
+
+
+.p-treeselect-panel .p-treeselect-header .p-treeselect-filter-container .p-treeselect-filter {
+  padding-right: 15rem;
+}
+
+
+.p-treeselect-panel .p-treeselect-header .p-treeselect-filter-container .p-inputtext {
+  background-color: var(--bg-white-color) !important;
+  height: 2rem !important;
+}
+
+

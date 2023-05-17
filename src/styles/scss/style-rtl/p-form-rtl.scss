@@ -1,11 +1,4 @@
-.p-input-icon-right > i:last-of-type {
-  left: 0.75rem !important;
-  right: inherit !important;
-}
-.p-input-icon-right > .p-inputtext {
-  padding-left: 2.5rem !important;
-  padding-right: 1rem !important;
-}
+
 .required {
   &:after {
     margin-right: 3px !important;
@@ -93,8 +86,15 @@
   padding-left: inherit !important;
 }
 .p-column-filter-constraint {
-  .p-multiselect .p-multiselect-panel {
+  .p-treeselect .p-treeselect-panel {
     left: 0 !important;
     right: inherit !important;
   }
+}
+
+
+
+.input-container i {
+  right:unset;
+  left: 2rem;
 }
