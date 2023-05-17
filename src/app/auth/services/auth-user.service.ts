@@ -17,8 +17,10 @@ export class AuthUserService {
     private router: Router,
   ) { }
 
+  // langkey:any = ;
+
   login(data: any): Observable<any> {
-    return this.http?.post<any>(this.apiUrl + roots?.auth?.login, data);
+    return this.http?.post<any>(this.apiUrl + roots?.auth?.login+ '/' + window.localStorage.getItem(keys.language) , data);
   }
   getUserData(): Observable<any> {
     return this.http?.get<any>(this.apiUrl + roots?.auth?.getUserData);

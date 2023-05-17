@@ -1,6 +1,6 @@
 export const roots = {
   auth: {
-    login: 'auth/login',
+    login: '/candidates/sign_in',
     getUserData: '/get-user-data',
     forgetPassword: '/forget-password',
   },

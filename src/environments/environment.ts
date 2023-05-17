@@ -5,8 +5,8 @@
 export const environment = {
   production: false,
 
-  apiUrl: " http://qa-tms.qatarcentral.cloudapp.azure.com/api",
-  publicUrl: " http://qa-tms.qatarcentral.cloudapp.azure.com/api"
+  apiUrl: "https://api.talentsgates.website/api",
+  publicUrl: "https://api.talentsgates.website/api"
 };
 
 /*

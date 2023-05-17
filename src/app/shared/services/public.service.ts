@@ -34,17 +34,14 @@ export class PublicService {
 
   showSideMenu = new BehaviorSubject<boolean>(false);
   changePageSub = new BehaviorSubject<{}>({});
-
   alphabet: any = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
   constructor(
     private translate: TranslateService,
     private http: HttpClient
   ) { }
-
   ngOnInit(): void {
     this.toggleAsideMenu?.next(true);
   }
-
   base64ToImageFile(data: any, filename: any) {
     const arr = data.split(',');
     const mime = arr[0].match(/:(.*?);/)[1];

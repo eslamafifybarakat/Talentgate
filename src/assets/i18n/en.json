@@ -10,6 +10,9 @@
     "trustUs": "People Who trust us",
     "countries": "countries",
     "participants": "participants",
+
+    "uploadYourCV": "Upload Your CV",
+    "uploadCV": "It only takes a few seconds",
     "details": "Details",
     "default": "Default",
      "filter": "Filter",
@@ -170,35 +173,27 @@
     "mobilePhone": "Mobile phone",
     "country": "Country ",
     "state": "State",
-    "UploadResume": "Upload your resume",
-    "search": "Search"
+    "search": "Search...",
+    "UploadResume": "Upload your resume"
+
   },
   "validations": {
-
  "requiredEmail": "Email is required",
   "emailNotCorrect": "Email is not correct email pattern",
  "not_valid": "This Email is not vaild",
-
-
   "pass_length": "Password length must be 8–20",
  "requiredPassword": "Password is required",
   "passwordPattern": "Your password must be 8 or more characters, contains upper & lower case letters, numbers, at least one special character (!%*?&|...)",
  "oneLowercase": "At least one lowercase",
     "oneUppercase": "At least one uppercase",
-
 "required_field": "This field is reuired",
-
     "notValidLink": "This link is not vaild",
-
     "name_length": "Name min length must be 3",
     "length": "  Length must be larger than 2",
     "requiredName": "Name is required",
     "username": "UserName is required",
-
     "requiredAddress": "Address is required",
-
     "requiredConfirmPassword": "Confirm password is required",
-
     "not_matched": "Confirm password must match password",
     "PickPassword": "Pick a password",
 
@@ -217,7 +212,7 @@
     "signUpWithlinkedIn": "Signup With LinkedIn",
 
 
-    "search": "Search...",
+
     "signUp": "Sign up",
 
     "logOut": "Logout",
