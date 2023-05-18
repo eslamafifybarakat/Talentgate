@@ -11,17 +11,18 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AuthUserService {
   apiUrl = environment?.apiUrl;
+  langkey: any = window.localStorage.getItem(keys.language);
 
-  constructor(
-    private http: HttpClient,
-    private router: Router,
-  ) { }
-
-  // langkey:any = ;
+  constructor(private http: HttpClient, private router: Router) { }
 
   login(data: any): Observable<any> {
-    return this.http?.post<any>(this.apiUrl + roots?.auth?.login+ '/' + window.localStorage.getItem(keys.language) , data);
+    return this.http?.post<any>(this.apiUrl + roots?.auth?.login + '/' + this.langkey, data);
   }
+
+  signup(data: any): Observable<any> {
+    return this.http?.post<any>(this.apiUrl + roots?.auth?.signup + '/' + this.langkey, data);
+  }
+
   getUserData(): Observable<any> {
     return this.http?.get<any>(this.apiUrl + roots?.auth?.getUserData);
   }
@@ -33,6 +34,13 @@ export class AuthUserService {
   }
   isLoggedOut(): boolean {
     return !this.isLoggedIn();
+  }
+
+  uploadImage(file: File): Promise<any> {
+    const formData = new FormData();
+    formData.append('image', file);
+
+    return this.http.post<any>('api/upload', formData).toPromise();
   }
   signOut(): any {
     window?.localStorage?.removeItem(keys?.logged);

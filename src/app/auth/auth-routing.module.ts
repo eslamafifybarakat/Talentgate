@@ -4,15 +4,14 @@ import { AuthComponent } from './auth.component';
 import { AppRoutes } from '../shared/configs/routes';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-import { SingUpComponent } from './components/sing-up/sing-up.component';
 
 const routes: Routes = [
-  { path: '',  component: AuthComponent,
+  {
+    path: '', component: AuthComponent,
     children: [
-      {  path: AppRoutes?.auth?.login,    component: LoginComponent, data: { title: 'titles.login'}},
-      { path: AppRoutes?.auth?.register,  component: RegisterComponent,data: {title: 'titles.register' }},
-      { path: AppRoutes?.auth?.singup,  component: SingUpComponent,data: {title: 'titles.singup'}},
-      {  path: '',  redirectTo: AppRoutes?.auth?.login,   pathMatch: 'full', },
+      { path: AppRoutes?.auth?.login, component: LoginComponent, data: { title: 'titles.login' } },
+      { path: AppRoutes?.auth?.register, component: RegisterComponent, data: { title: 'titles.register' } },
+      { path: '', redirectTo: AppRoutes?.auth?.login, pathMatch: 'full', },
 
     ]
   }];

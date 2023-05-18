@@ -113,7 +113,6 @@ export class UploadImageComponent implements OnInit {
     console.log(this.urlFiles);
 
   }
-
   // upload(): void {
   //   let fileReader = new FileReader();
   //   for (let file of this.uploadedFiles) {
