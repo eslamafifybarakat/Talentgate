@@ -9,37 +9,33 @@ import { FileUpload } from 'primeng/fileupload';
 })
 export class FileUploadComponent implements OnInit {
 
+  selectedFile: File | null = null;
+  cvUrl: string | null = null;
 
-
+  constructor(private authUserService: AuthUserService){}
   ngOnInit(): void {
+ 
   }
-
-  onFileChange(pFileList: any) {
-    // this.files = Object.keys(pFileList).map((key: any) => pFileList[key]);
-    console.log(pFileList)
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
   }
-  constructor(private _auth: AuthUserService) { }
+  uploadCV() {
+    if (this.selectedFile) {
+    
+      const formData = new FormData();
+      formData.append('cv', this.selectedFile, this.selectedFile.name);
 
-  handleUpload(event: any) {
-    // Handle file upload event
-    console.log(event.files);
+      this.authUserService.uploadcv('data').subscribe(
+     response => {
+          console.log('Upload successful:', response);
+          this.cvUrl = response.url; // Assuming the API response contains the URL of the uploaded CV
+        },
+        (error: any) => {
+          console.error('Upload failed:', error);
+        }
+      );
+    }
   }
-
-  // uploadImage() {
-  //   const fileUpload: FileUpload = ;
-  //   if (fileUpload && fileUpload.files.length > 0) {
-  //     const file = fileUpload.files[0];
-
-  //     this._auth.uploadImage(file)
-  //       .then(response => {
-  //         // Handle successful upload response
-  //         console.log(response);
-  //       })
-  //       .catch(error => {
-  //         // Handle upload error
-  //         console.error(error);
-  //       });
-  //   }
-  // }
-
 }
+
+

@@ -3,6 +3,7 @@ export const roots = {
     login: '/candidates/sign_in',
     signup: '/candidates/signup',
     uploadcv: 'candidates/uploadcv',
+    countries: 'countries',
     getUserData: '/get-user-data',
     forgetPassword: '/forget-password',
   },

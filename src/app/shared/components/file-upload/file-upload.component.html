@@ -1,9 +1,31 @@
 
+
 <!-- 
+<div class="mb-4">
+  <div class="input-container form-control">
+    <i class="pi pi-upload"></i>
+    <input type="file" name="file" id="file" class="inputfile bg-gray"
+      [class.is-invalid]="secondFormControls?.name_cv?.invalid && (secondFormControls?.name_cv?.dirty || secondFormControls?.name_cv?.touched)" />
+    <label for="file"> {{'placeholder.UploadResume'|translate}}</label>
+  </div>
+  <div class="mt-3">
+    <ng-container
+      *ngIf="secondFormControls?.name_cv?.invalid && (secondFormControls?.name_cv?.dirty || secondFormControls?.name_cv?.touched)">
+      <ng-container *ngIf="secondFormControls?.name_cv?.errors?.['required']">
+        <span class="text-danger fs-8 ps-3">
+          {{'validations.required_field'|translate}}
+        </span>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>  -->
+
             <div>
-              <h3>Upload Image</h3>
-              <p-fileUpload id="fileUpload" name="myfile" (onUpload)="handleUpload($event)"
-                            accept="image/*" chooseLabel="Select Image"
-                            uploadLabel="Upload" cancelLabel="Cancel"></p-fileUpload>
-              <button pButton label="Upload" (click)="uploadImage()"></button>
-            </div> -->
+              <h2>Upload CV</h2>
+              <input type="file" (change)="onFileSelected($event)" accept=".pdf,.doc,.docx">
+              <button (click)="uploadCV()">Upload</button>
+            </div>
+            <div *ngIf="cvUrl">
+              <h2>View CV</h2>
+              <iframe [src]="cvUrl" width="100%" height="500px"></iframe>
+            </div>

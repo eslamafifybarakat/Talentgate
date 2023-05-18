@@ -9,53 +9,6 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./upload-image.component.scss']
 })
 export class UploadImageComponent implements OnInit {
-  //   uploadedFiles: any = [];
-  //   showCancel: boolean = false;
-  //   myFile: any;
-  //   @Input() multiple: boolean = false;
-  //   constructor(
-  //     private fb: FormBuilder
-  //   ) { }
-
-  //   ngOnInit(): void {
-  //   }
-  //   onBeforeSend(event: any) {
-  //     // if (event.xhr.upload) {
-  //     //  event.xhr.upload.addEventListener('progress', this.onUploadProgress.bind(this), false);
-  //     console.log(event);
-
-  //     // }
-  //     // Modify payload here to patch the image file
-  //   }
-  //   onSelectEvent(event: any) {
-  //     this.uploadedFiles = event.currentFiles;
-  //     console.log(event.currentFiles.length);
-  //     console.log(this.uploadedFiles.length);
-  //     // this.showCancel = true;
-
-  //     // const myObject = this.form.value;
-  //     // console.log("file:", myObject.myFile)
-  //     console.log(this.myFile);
-  //   }
-  //   remove(event: any): void {
-  //     console.log(event);
-
-  //   }
-  //   removeFile(file: File, uploader: any) {
-  //     const index = uploader.files.indexOf(file);
-  //     uploader.remove(null, index);
-  //     this.uploadedFiles?.splice()
-  //   }
-
-  //   clear(event: any): void {
-  //     console.log(this.uploadedFiles);
-  //     this.showCancel = false;
-  //   }
-  // }
-
-
-
-
   @Input() multiple: boolean = false;
   @Input() maxFileSize: any = 1000000;
   // @Input() uploadText: string = this.publicService?.translateTextFromJson('general.Upload');
@@ -69,11 +22,13 @@ export class UploadImageComponent implements OnInit {
 
   @Output() filesHandler: EventEmitter<any> = new EventEmitter();
 
-  uploadedFiles: any = [];
+    isLoadingImage: boolean = false;
+
   showCancel: boolean = false;
+    uploadedFiles: any = [];
+
   fileSrc: any;
   fileName: any;
-  isLoadingImage: boolean = false;
   hasError: boolean = false;
   urlFiles: any;
   constructor(
@@ -85,10 +40,8 @@ export class UploadImageComponent implements OnInit {
     if (this.isEdit) {
       this.showFile = true;
       console.log(this.uploadedFiles);
-
     }
   }
-
   onSelectEvent(event?: any): void {
     this.uploadedFiles = event?.currentFiles;
     this.fileName = event?.currentFiles[0].name
@@ -113,26 +66,6 @@ export class UploadImageComponent implements OnInit {
     console.log(this.urlFiles);
 
   }
-  // upload(): void {
-  //   let fileReader = new FileReader();
-  //   for (let file of this.uploadedFiles) {
-  //     fileReader.readAsDataURL(file);
-  //     fileReader.onload = this._handleReaderLoaded.bind(this);
-  //   }
-  // }
-
-  // _handleReaderLoaded(e: any): void {
-  //   var reader = e.target;
-  //   console.log(reader?.result);
-
-  //   this.urlFiles?.push({
-  //     name: reader?.result?.name
-  //   });
-  //   this.isEdit ? this.isEditImage = reader?.result : this.fileSrc = reader.result
-  //   // this.fileSrc = reader.result;
-  //   this.isLoadingImage = false;
-  //   console.log(this.urlFiles);
-  // }
 
   browse(): void {
     // this.dialog.open(BrowseImageOrVideoComponent, {

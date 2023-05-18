@@ -2,12 +2,19 @@
 }
 
 @media (max-width: 1200px) {
+  
+ 
 }
 
 @media (min-width: 1200px) {
 }
 
-@media (min-width: 1024px) {
+@media (max-width: 1024px) {
+
+   .global-card {
+    
+    padding: 4rem 2rem !important; 
+  }
 }
 
 @media (max-width: 991px) {
@@ -46,15 +53,11 @@
   .py-7 {
     padding: 3rem 0 !important;
   }
-  #dynamic-global-data-table {
-    .search-input {
-      min-width: 100% !important;
-    }
-  }
 
-  .p-dialog {
-    min-width: 90% !important;
+  .global-card {
+    padding: 2rem 1rem !important; 
   }
+ 
 }
 
 @media (max-width: 425px) {
@@ -72,6 +75,14 @@
   .p-dialog {
     min-width: 90% !important;
   }
+
+
+
+
+  .global-card {
+    padding: 3rem  0.8rem !important; 
+  }
+ 
 }
 
 @media (max-width: 375px) {

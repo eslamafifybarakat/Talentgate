@@ -2,7 +2,7 @@
   <div class="container">
     <div class="firstdiv ">
       <div class="row justify-content-end">
-        <div class="col-lg-6 col-md-8 col-11">
+        <div class="col-lg-6 col-md-12 ">
           <!-- <ng-container *ngIf="showNextContent"> -->
           <ng-container *ngIf="!showNextContent">
             <div class="global-card p-sm-5 p-4 align-items-end">
@@ -40,16 +40,22 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-6">
+                  <div class="col-xl-6 col-md-12">
                     <!-- Country -->
                     <div class="mb-4">
-                      <div class="input-container">
+                      <!-- <div class="input-container">
                         <i class="fa-regular fa-user"></i>
                         <input type="text" class="form-control" formControlName="country" autocomplete="cc-name"
                           (input)="publicService.clearValidationErrors(secondFormControls?.country)"
                           [class.is-invalid]="secondFormControls?.country?.invalid && (secondFormControls?.country?.dirty || secondFormControls?.country?.touched)"
                           placeholder="{{'placeholder.country'|translate}}">
-                      </div>
+                      </div> -->
+
+                      <select formControlName="country" name="select_box" class="form-select custom-select form-control"
+                        placeholder="country">
+                        <option value=""> {{'placeholder.country'|translate}} </option>
+                        <option> eg</option>
+                      </select>
                       <div class="mt-3">
                         <ng-container
                           *ngIf="secondFormControls?.country?.invalid && (secondFormControls?.country?.dirty || secondFormControls?.country?.touched)">
@@ -67,16 +73,21 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-xl-6 col-md-12">
                     <!-- City -->
                     <div class="mb-4">
-                      <div class="input-container">
+                      <!-- <div class="input-container">
                         <i class="fa-regular fa-user"></i>
                         <input type="text" class="form-control" formControlName="city" autocomplete="cc-name"
                           (input)="publicService.clearValidationErrors(secondFormControls?.city)"
                           [class.is-invalid]="secondFormControls?.city?.invalid && (secondFormControls?.city?.dirty || secondFormControls?.city?.touched)"
                           placeholder="{{'placeholder.state'|translate}}">
-                      </div>
+                      </div> -->
+                      <select formControlName="state" name="select_box" class="form-select custom-select form-control"
+                        placeholder="country">
+                        <option value=""> {{'placeholder.country'|translate}} </option>
+                        <option> eg</option>
+                      </select>
                       <div class="mt-3">
                         <ng-container
                           *ngIf="secondFormControls?.city?.invalid && (secondFormControls?.city?.dirty || secondFormControls?.city?.touched)">
@@ -95,12 +106,14 @@
                     </div>
                   </div>
                 </div>
-                <!-- uplode CV -->
+
+
+                <!-- uplode CV
                 <div class="mb-4">
                   <div class="input-container form-control">
                     <i class="pi pi-upload"></i>
                     <input type="file" name="file" id="file" class="inputfile bg-gray"
-                    [class.is-invalid]="secondFormControls?.name_cv?.invalid && (secondFormControls?.name_cv?.dirty || secondFormControls?.name_cv?.touched)"/>
+                      [class.is-invalid]="secondFormControls?.name_cv?.invalid && (secondFormControls?.name_cv?.dirty || secondFormControls?.name_cv?.touched)" />
                     <label for="file"> {{'placeholder.UploadResume'|translate}}</label>
                   </div>
                   <div class="mt-3">
@@ -113,8 +126,18 @@
                       </ng-container>
                     </ng-container>
                   </div>
-                </div>
+                </div> -->
 
+                <div class="mb-4">
+                  <div class="card flex justify-content-center">
+                    <p-fileUpload name="demo[]" url="https://api.talentsgates.website/api/candidates/uploadcv"
+                      (onUpload)="onUpload($event)" [multiple]="false" accept="application/pdf">
+                      <ng-template pTemplate="content">
+                        <ul *ngIf="uploadedFile">{{ uploadedFile.name }} - {{ uploadedFile.size }} bytes</ul>
+                      </ng-template>
+                    </p-fileUpload>
+                  </div>
+                </div>
                 <button type="submit" class="btn w-100 btn-solid-main form-btn formcontrol-auth">
                   <span>
                     {{'form.signUp'|translate}}
@@ -246,13 +269,21 @@
                 </div>
               </div>
               <div class="d-flex justify-content-between my-3">
-                <div class="field-checkbox d-flex align-items-baseline ">
-                  <input class="form-check-input m-0" type="checkbox" formControlName="remember" id="flexCheckChecked">
-                  <label class="form-check-label" for="flexCheckChecked">
+                <div class="field-checkbox d-flex ">
+                  <!-- <input class="form-check-input m-0" type="checkbox" formControlName="remember" id="flexCheckChecked"> -->
+                  <div class="d-flex justify-content-baseline">
+                    <p-checkbox [binary]="true" inputId="binary"></p-checkbox>
+                  </div>
+                  <label class="form-check-label mx-2" for="flexCheckChecked">
                     {{'form.terms'|translate}} <a class="terms">{{'form.terms-conditions'|translate}}</a>
                   </label>
                 </div>
               </div>
+
+
+
+
+
 
               <button type="submit" class="btn w-100 btn-solid-main form-btn formcontrol-auth">
                 <span>

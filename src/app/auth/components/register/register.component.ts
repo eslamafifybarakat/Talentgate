@@ -4,7 +4,7 @@ import { AuthUserService } from '../../services/auth-user.service';
 import { TranslationService } from 'src/app/shared/services/i18n/translation.service';
 import { AlertsService } from 'src/app/core/services/alerts/alerts.service';
 import { PublicService } from 'src/app/shared/services/public.service';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { keys } from 'src/app/shared/configs/localstorage-key';
@@ -23,10 +23,12 @@ export class RegisterComponent implements OnInit {
   private unsubscribe: Subscription[] = [];
   showNextContent: boolean = false;
   currentLanguage: any;
-  cities!: City[];
-  countries!: any[];
-  selectedCities!: City[];
-  selectedCountry!: string;
+  checked!: boolean;
+  countries : any
+  // cv
+  cv: any
+  selectedFile: File | null = null;
+  cvUrl: string | null = null;
 
   constructor(
     public checkValidityService: CheckValidityService,
@@ -38,30 +40,8 @@ export class RegisterComponent implements OnInit {
     protected router: Router,
     public fb: FormBuilder
   ) { }
-
   ngOnInit() {
     this.currentLanguage = window?.localStorage?.getItem(keys?.language);
-
-    this.cities = [
-      { name: 'New York', code: 'NY' },
-      { name: 'Rome', code: 'RM' },
-      { name: 'London', code: 'LDN' },
-      { name: 'Istanbul', code: 'IST' },
-      { name: 'Paris', code: 'PRS' },
-    ];
-
-    this.countries = [
-      { name: 'Australia', code: 'AU' },
-      { name: 'Brazil', code: 'BR' },
-      { name: 'China', code: 'CN' },
-      { name: 'Egypt', code: 'EG' },
-      { name: 'France', code: 'FR' },
-      { name: 'Germany', code: 'DE' },
-      { name: 'India', code: 'IN' },
-      { name: 'Japan', code: 'JP' },
-      { name: 'Spain', code: 'ES' },
-      { name: 'United States', code: 'US' }
-    ];
   }
 
   firstRegForm = this.fb?.group(
@@ -240,20 +220,25 @@ export class RegisterComponent implements OnInit {
     this.cdr?.detectChanges();
   }
 
-  // getUploadFiles(ev: any): void {
-  //   console.log(ev);
-  // }
-  // uploadFile(ev: any): void {
-  //   console.log(ev);
-  // }
-
-  // getCurrentUserData(): void {
-  //   this.authUserService?.getUserData()?.subscribe((res: any) => {
-  //     // this.authUserService?.saveUserData(res);
-  //   });
-  // }
-
   ngOnDestroy(): void {
     this.unsubscribe?.forEach((sb) => sb?.unsubscribe());
+  }
+
+
+  // getCountries(){
+  //   this.authUserService?.countries()?.subscribe(
+  //     (res: any) => { 
+  //        this.countries = data.countries
+  //       // console.log( "ayat");
+  //     },
+      
+  //   );
+  // }
+  // cv
+  uploadedFile: File | null = null;
+  onUpload(event: any) {
+    if (event.files && event.files.length > 0) {
+      this.uploadedFile = event.files[0];
+    }
   }
 }
