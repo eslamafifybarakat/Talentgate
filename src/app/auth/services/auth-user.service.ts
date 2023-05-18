@@ -23,6 +23,10 @@ export class AuthUserService {
     return this.http?.post<any>(this.apiUrl + roots?.auth?.signup + '/' + this.langkey, data);
   }
 
+  uploadcv(data: any): Observable<any> {
+    return this.http?.post<any>(this.apiUrl + roots?.auth?.uploadcv, data);
+  }
+
   getUserData(): Observable<any> {
     return this.http?.get<any>(this.apiUrl + roots?.auth?.getUserData);
   }

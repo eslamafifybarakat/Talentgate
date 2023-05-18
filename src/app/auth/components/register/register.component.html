@@ -2,9 +2,9 @@
   <div class="container">
     <div class="firstdiv ">
       <div class="row justify-content-end">
-
         <div class="col-lg-6 col-md-8 col-11">
-          <ng-container *ngIf="showNextContent">
+          <!-- <ng-container *ngIf="showNextContent"> -->
+          <ng-container *ngIf="!showNextContent">
             <div class="global-card p-sm-5 p-4 align-items-end">
               <!-- <div class="d-flex justify-content-end gap-2">
               <app-language-selector></app-language-selector>
@@ -13,59 +13,25 @@
                 <h2 class="text-center"> {{'general.yourprofile'|translate}}</h2>
               </div>
               <form [formGroup]="secondRegForm" (ngSubmit)="submitSecondRegForm()" class="pt-3 sign_up">
-                <app-file-upload></app-file-upload>
                 <app-upload-image></app-upload-image>
                 <!-- Phone Number -->
                 <div class="mb-4">
-                  <input type="text" class="form-control bg-gray" formControlName="username" autocomplete="cc-name"
-                    (input)="publicService?.clearValidationErrors(secondFormControls?.username)"
-                    [class.is-invalid]="secondFormControls?.username?.invalid && (secondFormControls?.username?.dirty || secondFormControls?.username?.touched)"
-                    placeholder="{{'placeholder.mobilePhone'|translate}}">
-
-                </div>
-                <div>
-                  <div class="row">
-                    <div class="col-xl-6 mb-4">
-                      <!-- State-->
-                      <div>
-                        <div class=" flex justify-content-center">
-                          <!-- <p-treeSelect placeholder="{{'placeholder.country'|translate}}" [options]="countries"
-                            class="bg-gray" [filter]="true" [filterInputAutoFocus]="true"></p-treeSelect> -->
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-xl-6 mb-4">
-                      <div>
-                        <div class=" flex justify-content-center">
-                          <!-- <p-treeSelect placeholder="{{'placeholder.state'|translate}}" [options]="countries"
-                            [filter]="true" [filterInputAutoFocus]="true"></p-treeSelect> -->
-                        </div>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-                <!-- uplode file  -->
-                <div class="mb-4">
-                  <div class="input-container form-control">
-                    <i class="pi pi-upload"></i>
-                    <input type="file" name="file" id="file" class="inputfile bg-gray" />
-                    <label for="file"> {{'placeholder.UploadResume'|translate}}</label>
+                  <div class="input-container">
+                    <i class="fa-regular fa-user"></i>
+                    <input type="number" class="form-control" formControlName="phone_number" autocomplete="cc-name"
+                      (input)="publicService.clearValidationErrors(secondFormControls?.phone_number)"
+                      [class.is-invalid]="secondFormControls?.phone_number?.invalid && (secondFormControls?.phone_number?.dirty || secondFormControls?.phone_number?.touched)"
+                      placeholder="{{'placeholder.mobilePhone'|translate}}">
                   </div>
                   <div class="mt-3">
                     <ng-container
-                      *ngIf="secondFormControls?.username?.invalid && (secondFormControls?.username?.dirty || secondFormControls?.username?.touched)">
-                      <ng-container *ngIf="secondFormControls?.username?.errors?.['required']">
+                      *ngIf="secondFormControls?.phone_number?.invalid && (secondFormControls?.phone_number?.dirty || secondFormControls?.phone_number?.touched)">
+                      <ng-container *ngIf="secondFormControls?.phone_number?.errors?.['required']">
                         <span class="text-danger fs-8 ps-3">
-                          {{'validations.requiredEmail'|translate}}
+                          {{'validations.required_field'|translate}}
                         </span>
                       </ng-container>
-                      <ng-container *ngIf="secondFormControls?.username?.errors?.['pattern']">
-                        <span class="text-danger fs-8 d-block ps-3">
-                          {{'validations.not_valid'|translate}}
-                        </span>
-                      </ng-container>
-                      <ng-container *ngIf="secondFormControls?.username?.errors?.['minlength']">
+                      <ng-container *ngIf="secondFormControls?.phone_number?.errors?.['minlength']">
                         <span class="text-danger fs-8 d-block ps-3">
                           {{'validations.length'|translate}}
                         </span>
@@ -73,8 +39,83 @@
                     </ng-container>
                   </div>
                 </div>
-                <button type="submit" class="btn w-100 btn-solid-main form-btn formcontrol-auth"
-                  routerLink="/auth/signup">
+                <div class="row">
+                  <div class="col-md-6">
+                    <!-- Country -->
+                    <div class="mb-4">
+                      <div class="input-container">
+                        <i class="fa-regular fa-user"></i>
+                        <input type="text" class="form-control" formControlName="country" autocomplete="cc-name"
+                          (input)="publicService.clearValidationErrors(secondFormControls?.country)"
+                          [class.is-invalid]="secondFormControls?.country?.invalid && (secondFormControls?.country?.dirty || secondFormControls?.country?.touched)"
+                          placeholder="{{'placeholder.country'|translate}}">
+                      </div>
+                      <div class="mt-3">
+                        <ng-container
+                          *ngIf="secondFormControls?.country?.invalid && (secondFormControls?.country?.dirty || secondFormControls?.country?.touched)">
+                          <ng-container *ngIf="secondFormControls?.country?.errors?.['required']">
+                            <span class="text-danger fs-8 ps-3">
+                              {{'validations.required_field'|translate}}
+                            </span>
+                          </ng-container>
+                          <ng-container *ngIf="secondFormControls?.country?.errors?.['minlength']">
+                            <span class="text-danger fs-8 d-block ps-3">
+                              {{'validations.length'|translate}}
+                            </span>
+                          </ng-container>
+                        </ng-container>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <!-- City -->
+                    <div class="mb-4">
+                      <div class="input-container">
+                        <i class="fa-regular fa-user"></i>
+                        <input type="text" class="form-control" formControlName="city" autocomplete="cc-name"
+                          (input)="publicService.clearValidationErrors(secondFormControls?.city)"
+                          [class.is-invalid]="secondFormControls?.city?.invalid && (secondFormControls?.city?.dirty || secondFormControls?.city?.touched)"
+                          placeholder="{{'placeholder.state'|translate}}">
+                      </div>
+                      <div class="mt-3">
+                        <ng-container
+                          *ngIf="secondFormControls?.city?.invalid && (secondFormControls?.city?.dirty || secondFormControls?.city?.touched)">
+                          <ng-container *ngIf="secondFormControls?.city?.errors?.['required']">
+                            <span class="text-danger fs-8 ps-3">
+                              {{'validations.required_field'|translate}}
+                            </span>
+                          </ng-container>
+                          <ng-container *ngIf="secondFormControls?.username?.errors?.['minlength']">
+                            <span class="text-danger fs-8 d-block ps-3">
+                              {{'validations.length'|translate}}
+                            </span>
+                          </ng-container>
+                        </ng-container>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- uplode CV -->
+                <div class="mb-4">
+                  <div class="input-container form-control">
+                    <i class="pi pi-upload"></i>
+                    <input type="file" name="file" id="file" class="inputfile bg-gray"
+                    [class.is-invalid]="secondFormControls?.name_cv?.invalid && (secondFormControls?.name_cv?.dirty || secondFormControls?.name_cv?.touched)"/>
+                    <label for="file"> {{'placeholder.UploadResume'|translate}}</label>
+                  </div>
+                  <div class="mt-3">
+                    <ng-container
+                      *ngIf="secondFormControls?.name_cv?.invalid && (secondFormControls?.name_cv?.dirty || secondFormControls?.name_cv?.touched)">
+                      <ng-container *ngIf="secondFormControls?.name_cv?.errors?.['required']">
+                        <span class="text-danger fs-8 ps-3">
+                          {{'validations.required_field'|translate}}
+                        </span>
+                      </ng-container>
+                    </ng-container>
+                  </div>
+                </div>
+
+                <button type="submit" class="btn w-100 btn-solid-main form-btn formcontrol-auth">
                   <span>
                     {{'form.signUp'|translate}}
                   </span>
@@ -82,6 +123,7 @@
               </form>
             </div>
           </ng-container>
+
           <div class="global-card p-sm-5 p-4 align-items-end" *ngIf="!showNextContent">
             <!-- <div class="d-flex justify-content-end gap-2">
             <app-language-selector></app-language-selector>
@@ -96,7 +138,7 @@
                 <div class="input-container">
                   <i class="fa-regular fa-user"></i>
                   <input type="text" class="form-control" formControlName="username" autocomplete="cc-name"
-                    (input)="publicService?.clearValidationErrors(firstFormControls?.username)"
+                    (input)="publicService.clearValidationErrors(firstFormControls?.username)"
                     [class.is-invalid]="firstFormControls?.username?.invalid && (firstFormControls?.username?.dirty || firstFormControls?.username?.touched)"
                     placeholder="{{'placeholder.fullname'|translate}}">
                 </div>
@@ -126,7 +168,7 @@
                 <div class="input-container">
                   <i class="fa-regular fa-envelope"></i>
                   <input type="email" class="form-control" formControlName="email" autocomplete="cc-name"
-                    (input)="publicService?.clearValidationErrors(firstFormControls?.email)"
+                    (input)="publicService.clearValidationErrors(firstFormControls?.email)"
                     [class.is-invalid]="firstFormControls?.email?.invalid && (firstFormControls?.email?.dirty || firstFormControls?.email?.touched)"
                     placeholder="{{'placeholder.email'|translate}}">
                 </div>

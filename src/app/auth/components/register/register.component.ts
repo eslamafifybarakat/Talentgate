@@ -136,29 +136,55 @@ export class RegisterComponent implements OnInit {
 
   // Second Reg Form
   secondRegForm = this.fb?.group({
-    username: [
+    phone_number: [
       '',
-      // {
-      //   validators: [
-      //     Validators.required,
-      //     Validators.pattern(patterns?.userName),
-      //     Validators?.minLength(3),
-      //   ],
-      //   updateOn: 'blur',
-      // },
+      {
+        validators: [
+          Validators.required,
+          Validators?.minLength(10),
+        ],
+        updateOn: 'blur',
+      },
     ],
-    password: [
+    country_code: [''],
+    country: [
       '',
-      // {
-      //   validators: [
-      //     Validators.required,
-      //     Validators?.minLength(8),
-      //     Validators?.maxLength(20),
-      //   ],
-      //   updateOn: 'blur',
-      // },
+      {
+        validators: [
+          Validators.required,
+          Validators?.minLength(3),
+        ],
+        updateOn: 'blur',
+      },
     ],
-    // remember: [false, []],
+    city: [
+      '',
+      {
+        validators: [
+          Validators.required,
+          Validators?.minLength(3),
+        ],
+        updateOn: 'blur',
+      },
+    ],
+    image: [
+      '',
+      {
+        validators: [
+          Validators.required,
+        ],
+        updateOn: 'blur',
+      },
+    ],
+    name_cv: [
+      '',
+      {
+        validators: [
+          Validators.required,
+        ],
+        updateOn: 'blur',
+      },
+    ],
   });
 
   get secondFormControls(): any {
@@ -168,21 +194,18 @@ export class RegisterComponent implements OnInit {
   submitSecondRegForm(): void {
     if (this.secondRegForm?.valid) {
       this.publicService?.show_loader?.next(true);
+
       let data = {
         full_name: this.firstRegForm?.value?.username,
         email: this.firstRegForm?.value?.email,
         password: this.firstRegForm?.value?.password,
-        phone_number: "01012542265",
-        country_code: "168542",
-        country: "Egypt",
-        city: "Cairo",
-        image: "hfjsdjh",
-        cv: {
-          name_cv: "Ayat CV"
-        },
-        // rememberClient: true,
+        phone_number: this.secondRegForm?.value.phone_number,
+        country_code: this.secondRegForm?.value.country,
+        country: this.secondRegForm?.value.country,
+        city: this.secondRegForm?.value.city,
+        image: this.secondRegForm?.value.image,
+        cv: { name_cv: this.secondRegForm?.value.name_cv },
       };
-      // console.log(data);
 
       this.authUserService?.signup(data)?.subscribe(
         (res: any) => {

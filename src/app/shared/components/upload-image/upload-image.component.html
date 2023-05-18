@@ -1,102 +1,13 @@
-<!-- <p-fileUpload name="myfile[]" url="./upload.php" [multiple]="multiple" accept="image/*" [maxFileSize]="1000000"
-  [class.removeChoose]="showCancel" (onSelect)="onSelectEvent($event)" (onBeforeUpload)="onBeforeSend($event)"
-  [showUploadButton]="false" [files]="myFile" (onClear)="clear($event)" [showCancelButton]="true" [chooseLabel]="''"
-  [chooseIcon]="'pi pi-upload'" (onRemove)="remove($event)">
-
-  <ng-template pTemplate="content" let-files>
-    <ng-container *ngIf="!showCancel">
-      <div class="content px-3">Additional content.</div>
-    </ng-container>
-  </ng-template>
-
-</p-fileUpload> -->
-
-<!--
-<p-fileUpload id="upload-image" url="./upload.php" [multiple]="multiple" [accept]="acceptFille"
-  [maxFileSize]="maxFileSize" [chooseLabel]="''" [chooseIcon]="'pi pi-upload'" [showCancelButton]="showCancel"
-  [class.removeChoose]="showCancel" (onSelect)="onSelectEvent($event)" [showUploadButton]="false"
-  (onClear)="clearItems($event)" (onRemove)="removeItem($event)"
-  [invalidFileSizeMessageDetail]="'maximum upload size is'+' '+maximumSize">
-  <ng-template pTemplate="content" let-files>
-    <ng-container *ngIf="!showFile&&!hasError">
-      <div class="content px-2">upload</div>
-    </ng-container>
-    <ng-container *ngIf="showFile">
-      <div class="d-flex align-items-center gap-2">
-        <ng-container *ngIf="enablePreview">
-          <button type="button" class="btn bg-main-color text-white-color" (click)="browse()">
-            <span class="d-flex align-items-center gap-2">
-              <span>browse</span>
-              <i class="pi pi-play"></i>
-            </span>
-          </button>
-        </ng-container>
-
-        <ng-container *ngIf="type=='image'; else video">
-          <ng-container *ngIf="!isLoadingImage">
-            <div>
-              <img [src]="isEdit?isEditImage:fileSrc" alt="image">
-            </div>
-          </ng-container>
-          <ng-container *ngIf="isLoadingImage">
-            <p-skeleton shape="circle" size="2rem" styleClass="mr-2"></p-skeleton>
-          </ng-container>
-
-        </ng-container>
-        <ng-template #video>
-          <div>{{fileName}}</div>
-        </ng-template>
-
-      </div>
-    </ng-container>
-
-  </ng-template>
-  <ng-template let-file pTemplate="file">
-
-  </ng-template>
-
-</p-fileUpload>
- -->
-
-
 <div class="fileupload text-align-center">
   <div class="cust-rounded">
-      <div class="dropzone" fileDragDrop >
-        <div class="text-wrapper">
-          <i class="fa-solid fa-camera"></i>
-          <div class="centered">
-            <input type="file" name="file" id="file" multiple>
-            <label class="my-2" for="file">{{'general.addpic'|translate}}</label>
-          </div>
+    <div class="dropzone" fileDragDrop>
+      <div class="text-wrapper">
+        <i class="fa-solid fa-camera"></i>
+        <div class="centered">
+          <input type="file" name="file" id="file" multiple>
+          <label class="my-2" for="file">{{'general.addpic'|translate}}</label>
         </div>
       </div>
+    </div>
   </div>
-</div>
-
-<div class="fileupload text-align-center">
-  <div class="cust-rounded">
-      <div class="dropzone" fileDragDrop >
-        <div class="text-wrapper">
-          <i class="fa-solid fa-camera"></i>
-          <div class="centered">
-            <p-fileUpload name="myfile" url="./api/upload"
-            accept="image/*"  chooseLabel="{{'general.addpic'|translate}}"
-            uploadLabel="Upload" cancelLabel="Cancel"></p-fileUpload>
-          </div>
-        </div>
-      </div>
-  </div>
-</div>
-
-
-
-
-
-
-<div>
-  <h3>Upload Image</h3>
-  <p-fileUpload name="myfile" url="./api/upload"
-                accept="image/*"  chooseLabel="{{'general.addpic'|translate}}"
-                uploadLabel="Upload" cancelLabel="Cancel"></p-fileUpload>
-  <button pButton label="Upload" ></button>
 </div>
