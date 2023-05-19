@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { SharedService } from '../../services/shared.service';
 
 @Component({
@@ -9,10 +9,21 @@ import { SharedService } from '../../services/shared.service';
 export class HeaderComponent implements OnInit {
   toggleSideMenu: boolean = false;
   moduleType: string = '';
-
   @Input() collapsed: boolean = false;
   @Input() screenWidth: any = 0;
 
+  scrollDown: boolean = false;
+  @HostListener("window:scroll", ["$event"])
+  handleKeyDown() {
+    let element = document.querySelector(".navbar") as HTMLElement;
+    if (window.pageYOffset > 30) {
+      element.classList.add("headerScroll");
+      this.scrollDown = true;
+    } else {
+      element.classList.remove("headerScroll");
+      this.scrollDown = false;
+    }
+  }
   constructor(
     private sharedService: SharedService,
   ) { }

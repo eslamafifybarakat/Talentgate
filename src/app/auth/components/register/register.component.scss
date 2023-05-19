@@ -1,4 +1,5 @@
 .auth-form {
+  padding-top: 5.5rem;
   .firstdiv {
     background-image: url(../../../../assets/images/auth/register.jpg);
     background-repeat: no-repeat;
@@ -12,7 +13,6 @@
       // padding-bottom: 10px !important;
       color: var(--text-main-color);
     }
-
   }
 
   span {
@@ -20,7 +20,7 @@
     margin: -10px auto;
   }
 
-  .terms{
+  .terms {
     color: var(--bg-main-color);
     text-decoration: underline;
     border-bottom: 1px solid var(--bg-main-color);
@@ -31,23 +31,20 @@ input[type="file"] {
   display: none;
 }
 
-.test{
+.test {
   color: #6c757d !important;
   font-size: 20px;
 }
 
-
-
 .inputfile {
-	width: 0.1px;
-	height: 0.1px;
-	opacity: 0;
-	overflow: hidden;
-	position: absolute;
-	z-index: -1;
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
 }
 .inputfile + label {
-
   position: absolute;
   top: 19px;
   // font-size: 1.25em;
@@ -64,17 +61,8 @@ input[type="file"] {
 // }
 
 .inputfile + label {
-	cursor: pointer; /* "hand" cursor */
+  cursor: pointer; /* "hand" cursor */
 }
-.bg-gray
-{
-  background-color: #576F9333;
-
+.bg-gray {
+  background-color: #576f9333;
 }
-
-
-
-
-
-
-

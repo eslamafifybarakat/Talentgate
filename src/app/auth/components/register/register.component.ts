@@ -44,7 +44,7 @@ export class RegisterComponent implements OnInit {
     public fb: FormBuilder
   ) { }
   ngOnInit() {
-    this.step = 1;
+    this.step = 2;
     this.currentLanguage = window?.localStorage?.getItem(keys?.language);
   }
 

@@ -1,11 +1,11 @@
 .auth-form {
+  padding-top: 5.5rem;
   .firstdiv {
     width: 100%;
- background-image: url(../../../../assets/images/auth/login.jpg);
+    background-image: url(../../../../assets/images/auth/login.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     border-radius: var(--border-radius-card);
-
   }
   .content {
     h2 {
