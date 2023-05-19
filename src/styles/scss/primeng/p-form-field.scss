@@ -48,3 +48,8 @@ p-inputnumber,
   background-color: var(--bg-main-color) !important;
   border-color: var(--bg-main-color) !important;
 }
+.border-red {
+  .p-password-input {
+    border-color: #dc3545 !important;
+  }
+}

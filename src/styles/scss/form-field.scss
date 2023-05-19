@@ -1,4 +1,3 @@
-
 // placeholder
 
 input[type]::-webkit-input-placeholder,
@@ -26,8 +25,6 @@ select.form-control.has-value {
   color: var(--text-desc-color);
   font-size: 1rem;
 }
-
-
 
 ///////////////////////////
 
@@ -71,10 +68,18 @@ select.form-control.has-value {
   border-radius: var(--border-radius);
   padding: 2rem;
   background-color: var(--white);
-  border-color:var(--bg-main-color);
-
+  border-color: var(--bg-main-color);
 }
-
+.p-dropdown {
+  border-radius: var(--border-radius);
+  background-color: var(--white);
+  border-color: var(--bg-main-color);
+  height: 4rem !important;
+}
+.p-dropdown .p-dropdown-label.p-placeholder {
+  padding: 2rem;
+  line-height: 0 !important;
+}
 .form-control-left {
   border-left: 0;
 }
@@ -151,59 +156,57 @@ select.form-control.has-value {
   background-image: none !important;
 }
 
-
 // icon
 .input-container {
   position: relative;
 
   i {
-  position: absolute;
-  top: 50%;
-  right: 2rem;
-  transform: translateY(-50%);
-  font-size: 1.5rem;
-  color: var(--bg-main-color);
+    position: absolute;
+    top: 50%;
+    right: 2rem;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    color: var(--bg-main-color);
+  }
 }
 
-}
-
-p-password .pi{
+p-password .pi {
   font-family: "FontAwesome";
   font-size: 1.5rem;
   top: 30px;
   right: 2rem !important;
   color: var(--bg-main-color) !important;
 }
-p-password .pi-eye:before
-{
-  content: "\f023"
-
+p-password .pi-eye:before {
+  content: "\f023";
+  font-size: 2rem !important;
 }
 
-p-password .pi-eye-slash:before
-{
-  content: "\f3c1"
+p-password .pi-eye-slash:before {
+  content: "\f3c1";
+  // font-size: 1.1rem !important;
 }
 
-.sign_up .p-treeselect{
+.sign_up .p-treeselect {
   border: 1px solid #3a5380 !important;
   border-radius: 3rem !important;
   padding: 0.5rem !important;
 }
 
-
-.p-treeselect-panel .p-treeselect-header .p-treeselect-filter-container .p-treeselect-filter {
+.p-treeselect-panel
+  .p-treeselect-header
+  .p-treeselect-filter-container
+  .p-treeselect-filter {
   padding-right: 15rem;
 }
 
-
-.p-treeselect-panel .p-treeselect-header .p-treeselect-filter-container .p-inputtext {
+.p-treeselect-panel
+  .p-treeselect-header
+  .p-treeselect-filter-container
+  .p-inputtext {
   background-color: var(--bg-white-color) !important;
   height: 2rem !important;
 }
-
-
-
 
 p-checkbox {
   display: inline-flex;
@@ -212,6 +215,4 @@ p-checkbox {
 }
 
 .p-fileupload .p-fileupload-buttonbar .p-button {
-
- 
- }
+}

@@ -1,10 +1,10 @@
 export const keys = {
-  language: 'housingRulesLanguage',
-  logged: 'housingRulesLogged',
-  userLoginData: 'housingRulesUserLoginData',
-  userData: 'housingRulesUserData',
-  theme: 'housingRulestheme',
-  token: 'housingRulesToken',
-  lastRoute: 'housingRulesLastRoute',
-  lastRouteUrl: 'housingRulesLastRouteUrl',
+  language: 'talentsGatesLanguage',
+  logged: 'talentsGatesLogged',
+  userLoginData: 'talentsGatesUserLoginData',
+  userData: 'talentsGatesUserData',
+  theme: 'talentsGatesTheme',
+  token: 'talentsGatesToken',
+  lastRoute: 'talentsGatesLastRoute',
+  lastRouteUrl: 'talentsGatesLastRouteUrl',
 };

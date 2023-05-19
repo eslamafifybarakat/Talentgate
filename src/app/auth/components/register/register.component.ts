@@ -24,11 +24,14 @@ export class RegisterComponent implements OnInit {
   showNextContent: boolean = false;
   currentLanguage: any;
   checked!: boolean;
-  countries : any
   // cv
   cv: any
   selectedFile: File | null = null;
   cvUrl: string | null = null;
+  step: any;
+  countries: any = [];
+  isLoadingCountry: boolean = false;
+  cities: any = [];
 
   constructor(
     public checkValidityService: CheckValidityService,
@@ -41,6 +44,7 @@ export class RegisterComponent implements OnInit {
     public fb: FormBuilder
   ) { }
   ngOnInit() {
+    this.step = 1;
     this.currentLanguage = window?.localStorage?.getItem(keys?.language);
   }
 
@@ -103,9 +107,10 @@ export class RegisterComponent implements OnInit {
   submitFirstRegForm(): void {
     if (this.firstRegForm?.valid) {
       this.showNextContent = true;
-      this.publicService?.show_loader?.next(true);
+      this.step += 1;
+      // this.publicService?.show_loader?.next(true);
       setTimeout(() => {
-        this.publicService?.show_loader?.next(false);
+        // this.publicService?.show_loader?.next(false);
       }, 1000);
     } else {
       this.publicService?.show_loader?.next(false);
@@ -115,7 +120,7 @@ export class RegisterComponent implements OnInit {
   }
 
   // Second Reg Form
-  secondRegForm = this.fb?.group({
+  secondRegisterForm = this.fb?.group({
     phone_number: [
       '',
       {
@@ -128,7 +133,7 @@ export class RegisterComponent implements OnInit {
     ],
     country_code: [''],
     country: [
-      '',
+      null,
       {
         validators: [
           Validators.required,
@@ -168,54 +173,54 @@ export class RegisterComponent implements OnInit {
   });
 
   get secondFormControls(): any {
-    return this.secondRegForm?.controls;
+    return this.secondRegisterForm?.controls;
   }
 
   submitSecondRegForm(): void {
-    if (this.secondRegForm?.valid) {
+    if (this.secondRegisterForm?.valid) {
       this.publicService?.show_loader?.next(true);
 
       let data = {
         full_name: this.firstRegForm?.value?.username,
         email: this.firstRegForm?.value?.email,
         password: this.firstRegForm?.value?.password,
-        phone_number: this.secondRegForm?.value.phone_number,
-        country_code: this.secondRegForm?.value.country,
-        country: this.secondRegForm?.value.country,
-        city: this.secondRegForm?.value.city,
-        image: this.secondRegForm?.value.image,
-        cv: { name_cv: this.secondRegForm?.value.name_cv },
+        phone_number: this.secondRegisterForm?.value.phone_number,
+        country_code: this.secondRegisterForm?.value.country,
+        country: this.secondRegisterForm?.value.country,
+        city: this.secondRegisterForm?.value.city,
+        image: this.secondRegisterForm?.value.image,
+        cv: { name_cv: this.secondRegisterForm?.value.name_cv },
       };
 
-      this.authUserService?.signup(data)?.subscribe(
-        (res: any) => {
-          if (res?.statusCode == 200) {
-            this.router?.navigate(['/login']);
-            window.localStorage.setItem(keys.token, res?.data?.token);
-            window.localStorage.setItem(
-              keys.userLoginData,
-              JSON.stringify(res?.data?.user)
-            );
-            this.publicService?.show_loader?.next(false);
-          } else {
-            this.publicService?.show_loader?.next(false);
-            res?.error?.message
-              ? this.alertsService?.openSweetAlert('error', res?.error?.message) : '';
-          }
-        },
-        (err: any) => {
-          err ? this.alertsService?.openSweetAlert('error', err) : '';
-          this.publicService?.show_loader?.next(false);
-        }
-      );
+      // this.authUserService?.signup(data)?.subscribe(
+      //   (res: any) => {
+      //     if (res?.statusCode == 200) {
+      //       this.router?.navigate(['/login']);
+      //       window.localStorage.setItem(keys.token, res?.data?.token);
+      //       window.localStorage.setItem(
+      //         keys.userLoginData,
+      //         JSON.stringify(res?.data?.user)
+      //       );
+      //       this.publicService?.show_loader?.next(false);
+      //     } else {
+      //       this.publicService?.show_loader?.next(false);
+      //       res?.error?.message
+      //         ? this.alertsService?.openSweetAlert('error', res?.error?.message) : '';
+      //     }
+      //   },
+      //   (err: any) => {
+      //     err ? this.alertsService?.openSweetAlert('error', err) : '';
+      //     this.publicService?.show_loader?.next(false);
+      //   }
+      // );
       setTimeout(() => {
         this.router?.navigateByUrl('/dashboard');
         this.publicService?.show_loader?.next(false);
-        console.log(this.secondRegForm?.value);
+        console.log(this.secondRegisterForm?.value);
       }, 1000);
     } else {
       this.publicService?.show_loader?.next(false);
-      this.checkValidityService?.validateAllFormFields(this.secondRegForm);
+      this.checkValidityService?.validateAllFormFields(this.secondRegisterForm);
     }
     this.cdr?.detectChanges();
   }
@@ -227,11 +232,11 @@ export class RegisterComponent implements OnInit {
 
   // getCountries(){
   //   this.authUserService?.countries()?.subscribe(
-  //     (res: any) => { 
+  //     (res: any) => {
   //        this.countries = data.countries
   //       // console.log( "ayat");
   //     },
-      
+
   //   );
   // }
   // cv
