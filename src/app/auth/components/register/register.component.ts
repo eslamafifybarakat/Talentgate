@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { keys } from 'src/app/shared/configs/localstorage-key';
 import { patterns } from 'src/app/shared/configs/patternValidations';
-// import { ConfirmPasswordValidator } from 'src/app/shared/configs/confirm-password-validator';
+import { CountryISO, SearchCountryField } from 'ngx-intl-tel-input';
 
 @Component({
   selector: 'app-register',
@@ -31,6 +31,13 @@ export class RegisterComponent implements OnInit {
   cvFilePath: any;
   imgFilePath: any;
 
+  SearchCountryField = SearchCountryField;
+  CountryISO = CountryISO;
+  preferredCountries: CountryISO[] = [
+    CountryISO.Egypt,
+    CountryISO.UnitedKingdom
+  ];
+
   constructor(
     public checkValidityService: CheckValidityService,
     public translationService: TranslationService,
@@ -42,7 +49,7 @@ export class RegisterComponent implements OnInit {
     public fb: FormBuilder
   ) { }
   ngOnInit() {
-    this.step = 1;
+    this.step = 2;
     this.getCountries();
     this.currentLanguage = window?.localStorage?.getItem(keys?.language);
   }
@@ -104,7 +111,7 @@ export class RegisterComponent implements OnInit {
 
   secondRegisterForm = this.fb?.group({
     phone_number: [
-      '',
+      null,
       {
         validators: [
           Validators.required,
@@ -112,7 +119,6 @@ export class RegisterComponent implements OnInit {
         updateOn: 'blur',
       },
     ],
-    country_code: [''],
     country: [
       null,
       {
@@ -155,6 +161,8 @@ export class RegisterComponent implements OnInit {
   }
 
   submitSecondRegForm(): void {
+    console.log(this.secondRegisterForm?.value);
+
     if (this.secondRegisterForm?.valid) {
       this.publicService?.show_loader?.next(true);
       let formInfo: any = this.secondRegisterForm?.value;
@@ -162,8 +170,8 @@ export class RegisterComponent implements OnInit {
         full_name: this.firstRegisterForm?.value?.username,
         email: this.firstRegisterForm?.value?.email,
         password: this.firstRegisterForm?.value?.password,
-        phone_number: formInfo.phone_number,
-        country_code: '8989',
+        phone_number: formInfo.phone_number?.number,
+        country_code: formInfo.phone_number?.countryCode,
         country: formInfo?.country?.id,
         city: formInfo.city,
         image: this.imgFilePath,

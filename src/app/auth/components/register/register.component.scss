@@ -65,3 +65,10 @@
 .photo {
   width: 150px;
 }
+:host::ng-deep {
+  .border-red {
+    .iti--allow-dropdown input[type="tel"] {
+      border-color: #dc3545 !important;
+    }
+  }
+}

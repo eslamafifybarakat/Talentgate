@@ -149,31 +149,33 @@
                     </label>
                   </div>
                   <div class="mb-4">
-                    <div class="input-container">
-                      <i class="fa-regular fa-user"></i>
-                      <input type="number" class="form-control" formControlName="phone_number" autocomplete="cc-name"
-                        (input)="publicService.clearValidationErrors(secondFormControls?.phone_number)"
-                        [class.is-invalid]="secondFormControls?.phone_number?.invalid && (secondFormControls?.phone_number?.dirty || secondFormControls?.phone_number?.touched)"
-                        placeholder="{{'placeholder.mobilePhone'|translate}}">
+                    <div
+                      [class.border-red]="(secondFormControls?.['phone_number']?.touched || secondFormControls?.['phone_number']?.dirty) && secondFormControls?.['phone_number']?.invalid">
+                      <ngx-intl-tel-input class="px-1 intel-tel-input" [preferredCountries]="[
+                      CountryISO.UnitedStates,
+                      CountryISO.Egypt
+                    ]" [enableAutoCountrySelect]="false" [enablePlaceholder]="true" [searchCountryFlag]="true"
+                        [searchCountryField]="[
+                      SearchCountryField.Iso2,
+                      SearchCountryField.Name
+                    ]" [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.Egypt" [maxLength]="15"
+                        [phoneValidation]="true" name="phone_number" formControlName="phone_number"
+                        (input)="publicService?.clearValidationErrors(secondFormControls?.phone_number)">
+                      </ngx-intl-tel-input>
                     </div>
-                    <div class="mt-2">
-                      <ng-container
-                        *ngIf="secondFormControls?.phone_number?.invalid && (secondFormControls?.phone_number?.dirty || secondFormControls?.phone_number?.touched)">
+                    <ng-container
+                      *ngIf="secondFormControls?.phone_number?.invalid && (secondFormControls?.phone_number?.dirty || secondFormControls?.phone_number?.touched)">
+                      <div class="mt-2">
                         <ng-container *ngIf="secondFormControls?.phone_number?.errors?.['required']">
                           <span class="text-danger fs-8 ps-3">
                             {{'validations.required_field'|translate}}
                           </span>
                         </ng-container>
-                        <ng-container *ngIf="secondFormControls?.phone_number?.errors?.['minlength']">
-                          <span class="text-danger fs-8 d-block ps-3">
-                            {{'validations.length'|translate}}
-                          </span>
-                        </ng-container>
-                      </ng-container>
-                    </div>
+                      </div>
+                    </ng-container>
                   </div>
                   <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-xl-6">
                       <div class="mb-4">
                         <span class="p-input-icon-right select-loading d-block">
                           <p-dropdown [options]="countries" formControlName="country" optionLabel="name" [filter]="true"
@@ -201,7 +203,7 @@
 
 
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-xl-6">
                       <div class="mb-4">
                         <span class="p-input-icon-right select-loading d-block">
                           <p-dropdown [options]="cities" formControlName="city" optionLabel="name" [filter]="true"

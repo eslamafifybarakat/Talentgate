@@ -216,3 +216,15 @@ p-checkbox {
 
 .p-fileupload .p-fileupload-buttonbar .p-button {
 }
+.iti {
+  width: 100%;
+}
+.iti--allow-dropdown .iti__flag-container {
+  left: 20px !important;
+}
+.iti--allow-dropdown input[type="tel"] {
+  padding-left: 70px !important;
+}
+.iti--allow-dropdown .iti__flag-container:hover .iti__selected-flag {
+  background-color: transparent !important;
+}

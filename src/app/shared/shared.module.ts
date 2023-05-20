@@ -21,7 +21,9 @@ import { NgModule } from '@angular/core';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { NotificationComponent } from './components/header/components/notification/notification.component';
 import { SkeletonComponent } from './components/skeleton/skeleton.component';
-
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const allSharedComponents = [
   LanguageSelectorComponent,
@@ -40,18 +42,21 @@ const allSharedComponents = [
   ThemeComponent
 ]
 const allSharedModule = [
+  NgxIntlTelInputModule,
+  BsDropdownModule,
   ReactiveFormsModule,
   ClickOutsideModule,
   AngMaterialModule,
   TranslateModule,
   PrimeNgModule,
   FormsModule,
+  NgbModule
 ]
 
 @NgModule({
   declarations: [
     ...allSharedComponents,
-      HeaderComponent,
+    HeaderComponent,
     FooterComponent,
     NotificationComponent,
   ],

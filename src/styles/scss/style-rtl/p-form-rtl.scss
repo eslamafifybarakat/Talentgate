@@ -1,4 +1,3 @@
-
 .required {
   &:after {
     margin-right: 3px !important;
@@ -92,9 +91,19 @@
   }
 }
 
-
-
 .input-container i {
-  right:unset;
+  right: unset;
   left: 2rem;
+}
+.iti--allow-dropdown .iti__flag-container {
+  right: 20px !important;
+  left: inherit !important;
+}
+.iti--allow-dropdown input[type="tel"] {
+  padding-right: 70px !important;
+  padding-left: 20px !important;
+}
+.iti__arrow {
+  margin-right: 6px !important;
+  margin-left: inherit !important;
 }
