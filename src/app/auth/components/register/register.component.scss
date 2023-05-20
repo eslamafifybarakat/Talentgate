@@ -1,24 +1,17 @@
 .auth-form {
   padding-top: 5.5rem;
   .firstdiv {
-    background-image: url(../../../../assets/images/auth/register.jpg);
+    background-image: url(../../../../assets/images/auth/register.jfif);
     background-repeat: no-repeat;
     background-size: cover;
+    // background-position: center;
     border-radius: var(--border-radius-card);
   }
 
-  .content {
-    h2 {
-      font-size: 1.7rem;
-      // padding-bottom: 10px !important;
-      color: var(--text-main-color);
-    }
-  }
-
-  span {
-    display: block;
-    margin: -10px auto;
-  }
+  // span {
+  //   display: block;
+  //   margin: -10px auto;
+  // }
 
   .terms {
     color: var(--bg-main-color);
@@ -27,9 +20,9 @@
   }
 }
 
-input[type="file"] {
-  display: none;
-}
+// input[type="file"] {
+//   display: none;
+// }
 
 .test {
   color: #6c757d !important;
@@ -65,4 +58,10 @@ input[type="file"] {
 }
 .bg-gray {
   background-color: #576f9333;
+}
+.pi-upload {
+  color: var(--text-main-color) !important;
+}
+.photo {
+  width: 150px;
 }

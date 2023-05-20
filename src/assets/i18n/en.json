@@ -171,7 +171,8 @@
     "fullname": "Full Name",
     "repeatpassword": "Repeat Password",
     "mobilePhone": "Mobile phone",
-    "country": "Country ",
+    "country": "Country",
+    "city": "City",
     "state": "State",
     "search": "Search...",
     "UploadResume": "Upload your resume"

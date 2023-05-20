@@ -4,12 +4,9 @@
       <div class="row justify-content-end">
         <div class="col-lg-6 col-md-12">
           <div class="global-card p-sm-5 p-4 align-items-end">
-            <!-- <div class="d-flex justify-content-end gap-2">
-            <app-language-selector></app-language-selector>
-          </div> -->
             <div class="content">
-              <h2> {{'form.welcomeBack'|translate}}</h2>
-              <h3>{{'form.enterDetails'|translate}}</h3>
+              <h2 class="fs-2"> {{'form.welcomeBack'|translate}}</h2>
+              <h3 class="text-desc-color">{{'form.enterDetails'|translate}}</h3>
             </div>
             <form [formGroup]="loginForm" (ngSubmit)="submit()" class="pt-3 ">
               <div class="mb-4">
@@ -76,20 +73,21 @@
                   <div class="d-flex justify-content-baseline">
                     <p-checkbox [binary]="true" inputId="binary"></p-checkbox>
                   </div>
-                  <label class="form-check-label" for="flexCheckChecked">{{'form.remember' | translate}}</label>
+                  <label class="form-check-label fs-6 text-desc-color" for="flexCheckChecked">{{'form.remember' |
+                    translate}}</label>
                 </div>
-                <u class="text-main-color">
-                  <a class="fs-8" (click)="forgetPassWord()"> {{'form.forget_password'|translate}} </a></u>
+                <a class="fs-6 text-desc-color" (click)="forgetPassWord()"> {{'form.forget_password'|translate}}
+                </a>
               </div>
 
-              <button type="submit" class=" w-100 btn-solid-main form-btn  formcontrol-input ">
+              <button type="submit" class=" w-100 btn-outline-main form-btn  mt-3">
                 <span> {{'form.login'|translate}}</span>
               </button>
               <span class="or-span"> {{'general.or'|translate}}</span>
-              <button type="submit" class=" w-100 btn-solid-main form-btn  formcontrol-auth">
-                <span>
-                  {{'form.signUpWithlinkedIn'|translate}}
-                  <i class="fa-brands fa-linkedin ps-3"></i>
+              <button type="submit" class=" w-100 btn-solid-main form-btn">
+                <span class=" d-flex justify-content-center align-items-center gap-3">
+                  <span> {{'form.signUpWithlinkedIn'|translate}}</span>
+                  <i class="pi pi-linkedin"></i>
                 </span>
               </button>
             </form>

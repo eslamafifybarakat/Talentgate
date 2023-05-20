@@ -23,15 +23,13 @@ export class AuthUserService {
     return this.http?.post<any>(this.apiUrl + roots?.auth?.signup + '/' + this.langkey, data);
   }
 
-  uploadcv(files:any): Observable<any> {
+  uploadcv(files: any): Observable<any> {
     return this.http?.post<any>(this.apiUrl + roots?.auth?.uploadcv, files);
   }
 
-  countries(): Observable<any> {
-    return this.http?.get<any>(this.apiUrl + roots?.auth?.countries +'/' + this.langkey);
+  getCountries(): Observable<any> {
+    return this.http?.get<any>(this.apiUrl + roots?.auth?.countries + '/' + this.langkey);
   }
-
-
 
   getUserData(): Observable<any> {
     return this.http?.get<any>(this.apiUrl + roots?.auth?.getUserData);
@@ -46,11 +44,11 @@ export class AuthUserService {
     return !this.isLoggedIn();
   }
 
-  uploadImage(file: File): Promise<any> {
-    const formData = new FormData();
-    formData.append('image', file);
-
-    return this.http.post<any>('api/upload', formData).toPromise();
+  uploadImage(data: any): Observable<any> {
+    // const formData = new FormData();
+    // formData.append('image', file);
+    // return this.http.post<any>('api/upload', formData).toPromise();
+    return this.http?.post<any>(this.apiUrl + roots?.auth?.upLoadImage, data);
   }
   signOut(): any {
     window?.localStorage?.removeItem(keys?.logged);
