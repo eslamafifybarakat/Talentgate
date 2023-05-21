@@ -14,7 +14,13 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { DatePipe } from "@angular/common";
 import { DialogService } from 'primeng/dynamicdialog';
-
+import {
+  SocialLoginModule,
+  SocialAuthServiceConfig,
+  FacebookLoginProvider,
+  // LinkedInLoginProvider
+} from 'angularx-social-login';
+import { GoogleLoginProvider } from 'angularx-social-login';
 @NgModule({
   declarations: [
     AppComponent
@@ -36,11 +42,39 @@ import { DialogService } from 'primeng/dynamicdialog';
         deps: [HttpClient],
       },
     }),
+    SocialLoginModule,
+
   ],
   providers: [
     DatePipe,
     AsyncPipe,
-    DialogService
+    DialogService,
+    {
+      provide: "SocialAuthServiceConfig",
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              "625050741021-3fht4vpobaf8gl4ugth1i0u5rv4ndlv3.apps.googleusercontent.com"
+            ),
+          },
+          ,
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider("480854273392442"),
+          },
+          // {
+          //   id: LinkedInLoginProvider.PROVIDER_ID,
+          //   provider: new LinkedInLoginProvider("77v591qvhegzkx"),
+          // },
+        ],
+        onError: (err) => {
+          console.error(err);
+        },
+      } as SocialAuthServiceConfig,
+    },
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],

@@ -84,7 +84,8 @@
                 <span> {{'form.login'|translate}}</span>
               </button>
               <span class="or-span"> {{'general.or'|translate}}</span>
-              <button type="submit" class=" w-100 btn-solid-main form-btn">
+              <button (click)="authUserService?.loginWithLinkedIn()" type="submit"
+                class=" w-100 btn-solid-main form-btn">
                 <span class=" d-flex justify-content-center align-items-center gap-3">
                   <span> {{'form.signUpWithlinkedIn'|translate}}</span>
                   <i class="pi pi-linkedin"></i>

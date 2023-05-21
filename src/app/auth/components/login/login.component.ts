@@ -22,13 +22,13 @@ export class LoginComponent implements OnInit {
   constructor(
     public checkValidityService: CheckValidityService,
     public translationService: TranslationService,
-    private authUserService: AuthUserService,
+    public authUserService: AuthUserService,
     public alertsService: AlertsService,
     public publicService: PublicService,
     private cdr: ChangeDetectorRef,
     protected router: Router,
     public fb: FormBuilder
-  ) {}
+  ) { }
   ngOnInit(): void {
     this.currentLanguage = window?.localStorage?.getItem(keys?.language);
   }

@@ -5,7 +5,7 @@ import { keys } from './../../shared/configs/localstorage-key';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-
+declare const IN: any;
 @Injectable({
   providedIn: 'root'
 })
@@ -56,5 +56,20 @@ export class AuthUserService {
     window?.localStorage?.removeItem(keys?.userData);
     window?.localStorage?.removeItem(keys?.token);
     this.router?.navigate(['/auth']);
+  }
+
+  loginWithLinkedIn(): void {
+    IN.User.authorize(() => {
+      IN.API.Profile("me")
+        .fields("id,firstName,lastName,emailAddress")
+        .result((res: any) => {
+          const user = res.values[0];
+          console.log(user);
+        })
+        .error((error: any) => {
+          console.log(error);
+          // Handle error
+        });
+    });
   }
 }
