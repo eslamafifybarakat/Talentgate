@@ -29,8 +29,9 @@
           <img src="../../../assets/images/welcome/welcome.jfif" class="w-md-90 w-sm-100" alt="">
 
           <div class="upload-file position-absolute text-center">
+            <input type="file" #uploadCV id="uploadCV" hidden (change)="selectFile($event)" accept="application/pdf">
             <div class="upload-icon bg-white-color d-flex justify-content-center align-items-center m-auto">
-              <div class="icon d-flex justify-content-center align-items-center pointer">
+              <div class="icon d-flex justify-content-center align-items-center pointer" (click)="uploadCV?.click()">
                 <i class="pi pi-upload fs-5"></i>
               </div>
             </div>
