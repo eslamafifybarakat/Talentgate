@@ -29,8 +29,6 @@ export class OnboardingComponent implements OnInit {
   }
   selectFile(event: any): void {
     this.cvFileName = event?.target?.files[0]?.name;
-    console.log(event?.target?.files[0]);
-
     let fileReader = new FileReader();
     fileReader.readAsDataURL(event?.target?.files[0]);
     fileReader.onload = this._handleReaderLoaded.bind(this);
