@@ -1,61 +1,61 @@
 .onbording-page {
-  padding: 100px 0 0 0;
+  padding-top: 120px;
 
   vertical-align: middle;
   .content {
     h2 {
-      font-size: 90px;
+      // font-size: 90px;
       font-weight: bold;
       span {
         color: var(--main-color);
       }
     }
     p {
-      font-size: 24px;
-      max-width: 600px;
+      // font-size: 24px;
+      // max-width: 600px;
       color: var(--grey-100);
     }
-    form {
-      margin: 10px 30px;
-      // padding: 5px 14px;
-      padding: 0 10px;
-      width: 507px;
-      height: 69px;
-      border-radius: var(--border-input-radius);
-      border: 3px solid var(--main-color);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      .search-input {
-        display: flex;
-        height: 100%;
-        align-items: center;
-        padding-left: 10px;
-        i {
-          width: 34px;
-          height: 34px;
-          color: var(--main-color);
-          font-size: 2rem;
-          font-weight: bold;
-        }
-        input {
-          margin: 19px 10px 0;
-          height: 70%;
-          border: none;
-          color: var(--main-color);
-          padding: 10px 0;
-          &::placeholder {
-            font-size: 25px;
-          }
-        }
-      }
-    }
+    // form {
+    //   margin: 10px 30px;
+    //   // padding: 5px 14px;
+    //   padding: 0 10px;
+    //   width: 507px;
+    //   height: 69px;
+    //   border-radius: var(--border-input-radius);
+    //   border: 3px solid var(--main-color);
+    //   display: flex;
+    //   justify-content: space-between;
+    //   align-items: center;
+    //   .search-input {
+    //     display: flex;
+    //     height: 100%;
+    //     align-items: center;
+    //     padding-left: 10px;
+    //     i {
+    //       width: 34px;
+    //       height: 34px;
+    //       color: var(--main-color);
+    //       font-size: 2rem;
+    //       font-weight: bold;
+    //     }
+    //     input {
+    //       margin: 19px 10px 0;
+    //       height: 70%;
+    //       border: none;
+    //       color: var(--main-color);
+    //       padding: 10px 0;
+    //       &::placeholder {
+    //         font-size: 25px;
+    //       }
+    //     }
+    //   }
+    // }
   }
   .img-wrppear {
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    height: 500px;
-    background-image: url("../../../assets/images/onbording/onbording.png");
+    // background-size: 100% 100%;
+    // background-repeat: no-repeat;
+    // height: 500px;
+    // background-image: url("../../../assets/images/onbording/onbording.png");
     img {
       width: 100%;
     }
@@ -83,7 +83,7 @@
           height: 30px;
           border-radius: 3px;
           background-color: var(--grey-900);
-          color:var(--main-color);
+          color: var(--main-color);
         }
         .title {
           color: grey;
@@ -108,7 +108,49 @@
       }
     }
   }
-
+  .findJob {
+    border: 3px solid var(--bg-main-color);
+    border-radius: 10px;
+  }
+  .search {
+    font-size: 1.5rem;
+    color: var(--text-main-color);
+    &::placeholder {
+      font-size: 1.5rem;
+      color: var(--text-main-color);
+    }
+  }
+  .pi-search {
+    color: var(--text-main-color) !important;
+  }
+  .upload-file {
+    bottom: -40px;
+    right: 0;
+    .upload-cv {
+      box-shadow: 0px 3px 6px #3a538046;
+      border: 3px solid #3a5380;
+      border-radius: 14px;
+    }
+    .upload-icon {
+      box-shadow: 0px 3px 6px #00000029;
+      border-radius: 7px;
+      width: 60px;
+      height: 60px;
+      margin-bottom: -10px !important;
+      position: relative;
+      z-index: 7;
+      .icon {
+        background-color: #9da9c0;
+        border-radius: 3px;
+        width: 45px;
+        height: 45px;
+      }
+    }
+  }
+  .few-second {
+    color: #fefefe;
+    opacity: 0.5;
+  }
   .who-trust {
     p {
       font-size: 24px;
@@ -116,14 +158,12 @@
       font-style: normal;
     }
     .content-img {
-      padding: 14px;
-      width: 503px;
-      height: 90px;
-      border-radius: var(--border-input-radius);
-      border: 1px solid var(--main-color);
-      display: flex;
-      justify-content: center;
-
+      // padding: 14px;
+      // width: 503px;
+      // height: 90px;
+      box-shadow: 3px 3px 6px #ffffff14;
+      border: 2px solid #3a5380;
+      border-radius: 14px;
       img {
         width: 25%;
         padding: 0 10px;
@@ -131,10 +171,8 @@
     }
   }
   .baged {
-    display: flex;
-    justify-content: center;
     .countries {
-      padding: 0 35px;
+      // padding: 0 35px;
       position: relative;
       .number {
         font-size: 60px;
@@ -155,7 +193,8 @@
         }
       }
       .dic {
-        font-size: 18px;
+        font-size: 20px;
+        margin-top: -7px;
       }
     }
   }

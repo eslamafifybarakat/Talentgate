@@ -2,28 +2,42 @@
 }
 
 @media (max-width: 1200px) {
-  
- 
 }
 
 @media (min-width: 1200px) {
 }
-
-@media (max-width: 1024px) {
-
-   .global-card {
-    
-    padding: 4rem 2rem !important; 
+@media (min-width: 1024px) {
+  .title-lg {
+    font-size: 5.5rem;
+  }
+  .fs-decs {
+    font-size: 1.5rem;
+  }
+  .w-md-85 {
+    width: 85%;
   }
 }
-
-@media (max-width: 991px) {
-  .w-md-100 {
-    width: 100% !important;
+@media (max-width: 1024px) {
+  .global-card {
+    padding: 4rem 2rem !important;
   }
+  .w-md-85 {
+    width: 85%;
+  }
+}
+@media (min-width: 991px) {
   .w-md-90 {
     width: 90% !important;
   }
+}
+@media (max-width: 991px) {
+  .w-md-85 {
+    width: 85%;
+  }
+  .w-md-100 {
+    width: 100% !important;
+  }
+
   .navbar-nav {
     background-color: var(--bg-white-color) !important;
     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
@@ -36,9 +50,14 @@
     min-width: 70% !important;
   }
 
-
-  .firstdiv{
+  .firstdiv {
     background: none !important;
+  }
+  .title-lg {
+    font-size: 4.5rem;
+  }
+  .fs-decs {
+    font-size: 1.3rem;
   }
 }
 
@@ -46,6 +65,12 @@
 }
 
 @media (max-width: 767px) {
+  .title-lg {
+    font-size: 3.5rem;
+  }
+  .fs-decs {
+    font-size: 1.2rem;
+  }
   .w-sm-100 {
     width: 100% !important;
   }
@@ -55,12 +80,14 @@
   }
 
   .global-card {
-    padding: 2rem 1rem !important; 
+    padding: 2rem 1rem !important;
   }
- 
 }
 
 @media (max-width: 425px) {
+  .title-lg {
+    font-size: 3rem;
+  }
   .otp-code {
     input {
       width: 4rem !important;
@@ -76,13 +103,9 @@
     min-width: 90% !important;
   }
 
-
-
-
   .global-card {
-    padding: 3rem  0.8rem !important; 
+    padding: 3rem 0.8rem !important;
   }
- 
 }
 
 @media (max-width: 375px) {

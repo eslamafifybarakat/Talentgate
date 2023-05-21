@@ -1,39 +1,84 @@
-<div class="onbording-page">
+<div class="onbording-page pb-4">
   <div class="container">
     <div class="row">
-      <div class="col-lg-7">
+      <div class="col-lg-7 order-lg-1 order-2">
         <div class="content">
-          <h2>Your <span>dream job</span><br> is waiting here</h2>
-          <p>{{'general.personality'|translate}}</p>
-
-
+          <h2 class="title-lg">Your <span>dream job</span><br> is waiting here</h2>
+          <p class="mt-3 fs-decs w-md-85">{{'general.personality'|translate}}</p>
           <!-- form -->
           <form>
-            <div class="search-input">
+            <div class="p-inputgroup findJob w-75 ms-md-5 ms-0 mt-4 w-sm-100">
+              <span class="p-input-icon-left w-100">
+                <i class="pi pi-search fs-4  fw-bold"></i>
+                <input type="text" class="mx-2 search border-0 bg-transparent" pInputText placeholder="Search" />
+              </span>
+              <span class="p-inputgroup-addon py-0 bg-transparent px-4 border-0">
+                <button class="btn btn-solid-main fs-5 px-3">Find job</button>
+              </span>
+            </div>
+            <!-- <div class="search-input">
               <i class="pi pi-search"></i>
               <input id="search" type="search" placeholder="Search..." autofocus />
             </div>
-            <button type="submit" class="form-btn main-button" disabled > {{'form.findJob'|translate}}</button>
+            <button type="submit" class="form-btn main-button" disabled> {{'form.findJob'|translate}}</button> -->
           </form>
         </div>
       </div>
-      <div class="col-lg-5">
-        <div class="img-wrppear">
-          <div class="Upload-file">
-            <label class="filelabel">
+      <div class="col-lg-5 order-lg-2 order-1 mb-lg-0 mb-5">
+        <div class="img-wrppear position-relative">
+          <img src="../../../assets/images/welcome/welcome.jfif" class="w-md-90 w-sm-100" alt="">
+
+          <div class="upload-file position-absolute text-center">
+            <div class="upload-icon bg-white-color d-flex justify-content-center align-items-center m-auto">
+              <div class="icon d-flex justify-content-center align-items-center pointer">
+                <i class="pi pi-upload fs-5"></i>
+              </div>
+            </div>
+            <div class="bg-main-color p-3 upload-cv">
+              <h6 class="fw-500 text-white-color">Upload Your CV</h6>
+              <p class="few-second">It only takes a few seconds</p>
+            </div>
+          </div>
+          <!-- <div class="Upload-file"> -->
+          <!-- <label class="filelabel">
               <i class="pi pi-upload"></i>
               <input class="FileUpload1" id="FileInput" name="booking_attachment" type="file" />
             </label>
             <div>
               {{'general.uploadYourCV'|translate}}<br>
               <span> {{'general.uploadCV'|translate}}</span>
-            </div>
+            </div> -->
+          <!-- </div> -->
+        </div>
+      </div>
+    </div>
+    <div class="row mt-4 justify-content-between align-items-end">
+      <div class="col-md-5 mb-md-0 mb-4">
+        <div class="row baged mx-0">
+          <div class="col-sm-6 countries">
+            <p class="number">12k</p>
+            <p class="dic text-uppercase">{{'general.countries'|translate}}</p>
+          </div>
+          <div class="col-sm-6 countries">
+            <p class="number"> 11K</p>
+            <p class="dic text-uppercase">{{'general.participants'|translate}}</p>
           </div>
         </div>
-
       </div>
-      <div class="col-lg-12">
-        <div class="row">
+      <div class="col-md-6">
+        <div class="who-trust">
+          <p class="mb-3">{{'general.trustUs'|translate}}</p>
+          <div class="content-img p-3">
+            <img src="../../../assets/images/onbording/Google.png" alt="Google" />
+            <img src="../../../assets/images/onbording/Oracle.png" alt="Oracle" />
+            <img src="../../../assets/images/onbording/slack.png" alt="slack" />
+            <img src="../../../assets/images/onbording/fliker.png" alt="fliker" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="row">
           <div class="col-lg-5">
             <div class="baged">
               <div class="countries">
@@ -57,8 +102,8 @@
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
+        </div> -->
+
+  <!-- </div> -->
 </div>
+<!-- </div> -->
