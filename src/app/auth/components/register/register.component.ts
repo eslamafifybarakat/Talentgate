@@ -1,15 +1,16 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { CheckValidityService } from 'src/app/shared/services/check-validity/check-validity.service';
-import { AuthUserService } from '../../services/auth-user.service';
 import { TranslationService } from 'src/app/shared/services/i18n/translation.service';
+import { CheckValidityService } from 'src/app/shared/services/check-validity/check-validity.service';
+import { ConfirmPasswordValidator } from './../../../shared/configs/confirm-password-validator';
 import { AlertsService } from 'src/app/core/services/alerts/alerts.service';
 import { PublicService } from 'src/app/shared/services/public.service';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { keys } from 'src/app/shared/configs/localstorage-key';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { patterns } from 'src/app/shared/configs/patternValidations';
 import { CountryISO, SearchCountryField } from 'ngx-intl-tel-input';
+import { AuthUserService } from '../../services/auth-user.service';
+import { keys } from 'src/app/shared/configs/localstorage-key';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -48,8 +49,9 @@ export class RegisterComponent implements OnInit {
     protected router: Router,
     public fb: FormBuilder
   ) { }
+
   ngOnInit() {
-    this.step = 2;
+    this.step = 1;
     this.getCountries();
     this.currentLanguage = window?.localStorage?.getItem(keys?.language);
   }
@@ -83,27 +85,25 @@ export class RegisterComponent implements OnInit {
         {
           validators: [
             Validators.required,
-            Validators?.minLength(8),
-            Validators?.maxLength(20),
+            Validators?.pattern(patterns?.password)
           ],
           updateOn: 'blur',
         },
       ],
-      // confirmPassword: [
-      //   '',
-      //   {
-      //     validators: [
-      //       Validators.required,
-      //       Validators?.minLength(8),
-      //       Validators?.maxLength(20),
-      //     ],
-      //     updateOn: 'blur',
-      //   },
-      // ],
+      confirmPassword: [
+        '',
+        {
+          validators: [
+            Validators.required,
+            Validators?.pattern(patterns?.password)
+          ],
+          updateOn: 'blur',
+        },
+      ],
     },
-    // {
-    //   validator: ConfirmPasswordValidator?.MatchPassword,
-    // }
+    {
+      validator: ConfirmPasswordValidator?.MatchPassword,
+    }
   );
   get firstFormControls(): any {
     return this.firstRegisterForm?.controls;
@@ -159,7 +159,6 @@ export class RegisterComponent implements OnInit {
     }
     this.cdr?.detectChanges();
   }
-
   submitSecondRegForm(): void {
     console.log(this.secondRegisterForm?.value);
 
@@ -205,6 +204,7 @@ export class RegisterComponent implements OnInit {
     }
     this.cdr?.detectChanges();
   }
+
   selectImage(event: any): void {
     let fileReader = new FileReader();
     fileReader.readAsDataURL(event?.target?.files[0]);

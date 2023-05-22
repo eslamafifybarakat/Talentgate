@@ -17,9 +17,9 @@
                     [class.is-invalid]="formControls?.username?.invalid && (formControls?.username?.dirty || formControls?.username?.touched)"
                     placeholder="{{'placeholder.email'|translate}}">
                 </div>
-                <div class="mt-3">
-                  <ng-container
-                    *ngIf="formControls?.username?.invalid && (formControls?.username?.dirty || formControls?.username?.touched)">
+                <ng-container
+                  *ngIf="formControls?.username?.invalid && (formControls?.username?.dirty || formControls?.username?.touched)">
+                  <div class="mt-2">
                     <ng-container *ngIf="formControls?.username?.errors?.['required']">
                       <span class="text-danger fs-8 ps-3">
                         {{'validations.requiredEmail'|translate}}
@@ -35,8 +35,8 @@
                         {{'validations.emailNotCorrect'|translate}}
                       </span>
                     </ng-container>
-                  </ng-container>
-                </div>
+                  </div>
+                </ng-container>
               </div>
               <div>
                 <div class="rounded-input p-mask"
@@ -47,22 +47,21 @@
                     placeholder="{{'placeholder.password'|translate}}" autocomplete="cc-name" [feedback]="false">
                   </p-password>
                 </div>
-                <div class="mt-3">
-                  <ng-container
-                    *ngIf="formControls?.password?.invalid && (formControls?.password?.dirty || formControls?.password?.touched)">
+                <ng-container
+                  *ngIf="formControls?.password?.invalid && (formControls?.password?.dirty || formControls?.password?.touched)">
+                  <div class="mt-2 ps-3">
                     <ng-container *ngIf="formControls?.password?.errors?.['required']">
-                      <span class="text-danger fs-8 ps-3">
+                      <span class="text-danger fs-8">
                         {{'validations.requiredPassword'|translate}}
                       </span>
                     </ng-container>
-                    <ng-container
-                      *ngIf="formControls?.password?.errors?.['minlength']|| formControls?.password?.errors?.['maxlength']">
-                      <span class="text-danger fs-8 ps-3">
-                        {{'validations.pass_length'|translate}}
+                    <ng-container *ngIf="formControls?.password?.errors?.['pattern']">
+                      <span class="text-danger fs-8">
+                        {{'validations.passwordPattern'|translate}}
                       </span>
                     </ng-container>
-                  </ng-container>
-                </div>
+                  </div>
+                </ng-container>
               </div>
               <div class="d-flex justify-content-between my-3">
                 <div class="field-checkbox d-flex align-items-center gap-2">
@@ -84,7 +83,7 @@
                 <span> {{'form.login'|translate}}</span>
               </button>
               <span class="or-span"> {{'general.or'|translate}}</span>
-              <button (click)="authUserService?.loginWithLinkedIn()" type="submit"
+              <button (click)="authUserService?.loginWithLinkedIn()" type="button"
                 class=" w-100 btn-solid-main form-btn">
                 <span class=" d-flex justify-content-center align-items-center gap-3">
                   <span> {{'form.signUpWithlinkedIn'|translate}}</span>

@@ -1,15 +1,14 @@
-import { TranslationService } from './../../../shared/services/i18n/translation.service';
-import { keys } from './../../../shared/configs/localstorage-key';
-import { AppRoutes } from './../../../shared/configs/routes';
-import { patterns } from './../../../shared/configs/patternValidations';
-import { FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { PublicService } from './../../../shared/services/public.service';
-import { AlertsService } from './../../../core/services/alerts/alerts.service';
 import { CheckValidityService } from './../../../shared/services/check-validity/check-validity.service';
-import { Subscription } from 'rxjs';
+import { TranslationService } from './../../../shared/services/i18n/translation.service';
+import { AlertsService } from './../../../core/services/alerts/alerts.service';
+import { PublicService } from './../../../shared/services/public.service';
+import { patterns } from './../../../shared/configs/patternValidations';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AuthUserService } from '../../services/auth-user.service';
+import { keys } from './../../../shared/configs/localstorage-key';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +18,7 @@ import { AuthUserService } from '../../services/auth-user.service';
 export class LoginComponent implements OnInit {
   private unsubscribe: Subscription[] = [];
   currentLanguage: any;
+
   constructor(
     public checkValidityService: CheckValidityService,
     public translationService: TranslationService,
@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
     protected router: Router,
     public fb: FormBuilder
   ) { }
+
   ngOnInit(): void {
     this.currentLanguage = window?.localStorage?.getItem(keys?.language);
   }
@@ -50,8 +51,7 @@ export class LoginComponent implements OnInit {
       {
         validators: [
           Validators.required,
-          // Validators?.minLength(8),
-          // Validators?.maxLength(20),
+          Validators?.pattern(patterns?.password)
         ],
         updateOn: 'blur',
       },
