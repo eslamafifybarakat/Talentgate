@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
   @HostListener("window:scroll", ["$event"])
   handleKeyDown() {
     let element = document.querySelector(".navbar") as HTMLElement;
-    if (window.pageYOffset > 30) {
+    if (window.pageYOffset > 20) {
       element.classList.add("headerScroll");
       this.scrollDown = true;
     } else {
