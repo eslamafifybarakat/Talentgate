@@ -7,11 +7,13 @@ import { CommonModule } from '@angular/common';
 import { AgmCoreModule } from '@agm/core';
 import { NgModule } from '@angular/core';
 import { OnboardingComponent } from './onboarding/onboarding.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
     PagesComponent,
-    OnboardingComponent
+    OnboardingComponent,
+    HomeComponent
   ],
   imports: [
     ReactiveFormsModule,

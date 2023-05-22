@@ -24,6 +24,7 @@ import { SkeletonComponent } from './components/skeleton/skeleton.component';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxStarRatingModule } from 'ngx-star-rating';
 
 const allSharedComponents = [
   LanguageSelectorComponent,
@@ -45,6 +46,7 @@ const allSharedModule = [
   NgxIntlTelInputModule,
   BsDropdownModule,
   ReactiveFormsModule,
+  NgxStarRatingModule,
   ClickOutsideModule,
   AngMaterialModule,
   TranslateModule,
