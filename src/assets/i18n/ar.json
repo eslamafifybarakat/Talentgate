@@ -3,6 +3,7 @@
     "arabic": "Arabic"
   },
   "general": {
+    "visit":"زيارة",
     "filter": "التصفية",
     "details": "التفاصيل",
     "default": "الافتراضي",
@@ -252,6 +253,13 @@
     "goHome": "إذهب الي الرئيسية",
     "resetPassword": "تغيير كلمة المرور"
   },
+  "home":{
+    "matchingProfile":"مطابقة ملف التعريف الخاص بك",
+    "appliedJobs":"الوظائف التطبيقية",
+    "recent":"مؤخرًا",
+"recommended":"موصى به لك",
+"whoIsHiring":"من يوظف"
+      },
   "sideMenu": {
     "dashboard": "لوحة التحكم",
     "tanks": "الصهاريج",

@@ -1,4 +1,4 @@
-import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
 import { SharedService } from '../../services/shared.service';
 
 @Component({
@@ -11,6 +11,7 @@ export class HeaderComponent implements OnInit {
   moduleType: string = '';
   @Input() collapsed: boolean = false;
   @Input() screenWidth: any = 0;
+  @Output() searchHandler: EventEmitter<any> = new EventEmitter();
 
   scrollDown: boolean = false;
   @HostListener("window:scroll", ["$event"])
@@ -53,6 +54,13 @@ export class HeaderComponent implements OnInit {
   toggleSide(): void {
     this.toggleSideMenu = !this.toggleSideMenu;
     this.sharedService?.showSideMenu?.next(this.toggleSideMenu);
+  }
+  searchHandlerEmit(event: any): void {
+    this.searchHandler.emit(event)
+  }
+  clearSearchValue(search: any): void {
+    search.value = '';
+    this.searchHandler.emit('');
   }
 }
 

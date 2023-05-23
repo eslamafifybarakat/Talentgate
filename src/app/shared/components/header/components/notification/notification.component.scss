@@ -4,12 +4,44 @@
     .notification-content {
       max-height: 70vh;
       overflow-x: auto;
+      border: 2px solid var(--bg-main-color);
+      border-radius: 0 0 5px 5px;
+      &::-webkit-scrollbar {
+        width: 10px; /* Width of the scrollbar */
+      }
+
+      /* Track style (optional) */
+      &::-webkit-scrollbar-track {
+        background: transparent; /* Color of the scrollbar track */
+      }
+
+      /* Handle style */
+      &::-webkit-scrollbar-thumb {
+        background: var(--body-color); /* Color of the scrollbar handle */
+        border-radius: 5px; /* Border radius of the handle */
+        margin: 10px; /* Margin around the handle */
+      }
     }
   }
   .active-notification {
     background-color: #f1f6fc;
+    &:after {
+      content: "";
+      position: absolute;
+      background-color: #0359ff;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      left: 10px;
+      top: 50%;
+      // transform: translate(10px, 0px);
+    }
   }
   .notification-icon {
     width: 1.5rem;
+  }
+  .not-img {
+    min-width: 50px;
+    height: 50px;
   }
 }

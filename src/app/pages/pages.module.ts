@@ -8,12 +8,16 @@ import { AgmCoreModule } from '@agm/core';
 import { NgModule } from '@angular/core';
 import { OnboardingComponent } from './onboarding/onboarding.component';
 import { HomeComponent } from './components/home/home.component';
+import { ApplyJobComponent } from './components/apply-job/apply-job.component';
+import { CalenderComponent } from './components/calender/calender.component';
 
 @NgModule({
   declarations: [
     PagesComponent,
     OnboardingComponent,
-    HomeComponent
+    HomeComponent,
+    ApplyJobComponent,
+    CalenderComponent
   ],
   imports: [
     ReactiveFormsModule,

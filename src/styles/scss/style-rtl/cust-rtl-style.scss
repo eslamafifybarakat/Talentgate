@@ -6,6 +6,10 @@
   margin-left: 0.5rem !important;
   margin-right: inherit !important;
 }
+.ms-4 {
+  margin-right: 1.5rem !important;
+  margin-left: inherit !important;
+}
 .general-dropdown .dropdown-menu {
   left: 0 !important;
   right: inherit !important;
@@ -108,26 +112,21 @@
   }
 }
 
-
 .firstdiv {
-
- .row{
-  justify-content:end !important;
- }
-
+  .row {
+    justify-content: end !important;
+  }
 }
 
-
-.Upload-file{
-left: unset;
+.Upload-file {
+  left: unset;
   right: 60%;
 }
 
-
-.p-inputgroup{
-.p-inputgroup-addon{
-i{
-  left:5rem;
-}
-}
+.p-inputgroup {
+  .p-inputgroup-addon {
+    i {
+      left: 5rem;
+    }
+  }
 }

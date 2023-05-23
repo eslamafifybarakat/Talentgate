@@ -4,6 +4,7 @@
     "arabic": "Arabic"
   },
   "general": {
+    "visit":"Visit",
     "yourprofile": "Complete your Profile",
     "addpic": "Add Picture",
     "personality": "Let your talents, personality and potential do the talking. We give you the opportunity to share your story through.",
@@ -231,6 +232,13 @@
     "createdSuccessfully": "Your account has been created successfully",
     "goHome": "Go to home",
     "resetPassword": "Reset password"
+  },
+  "home":{
+"matchingProfile":"Matching your profile",
+"appliedJobs":"Applied Jobs",
+"recent":"Recent",
+"recommended":"Recommended for you",
+"whoIsHiring":"Who is Hiring"
   },
   "sideMenu": {
     "tanks": "Tanks",

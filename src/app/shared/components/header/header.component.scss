@@ -29,8 +29,9 @@
 .nav-link {
   color: var(--text-dark-color);
   position: relative;
+  // margin: 0 10px;
   .fas {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
   }
   &.active {
     color: var(--text-main-color) !important;
@@ -45,4 +46,8 @@
       border-radius: 20px;
     }
   }
+}
+
+.p-input-icon-right > i.pi-times {
+  right: 35px !important;
 }
