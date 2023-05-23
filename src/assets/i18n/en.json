@@ -166,6 +166,7 @@
 
   },
   "placeholder": {
+    "address":"Address",
     "email": "Email address",
     "password": "password",
     "username": "Enter username",

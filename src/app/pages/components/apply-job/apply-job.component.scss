@@ -1,0 +1,105 @@
+.tabs {
+  box-shadow: 0px 3px 6px #00000029;
+  .nav-pills .nav-link {
+    border: 1px solid var(--bg-main-color) !important;
+    border-radius: 50px;
+    color: var(--text-main-color) !important;
+    &.active {
+      background-color: var(--bg-main-color) !important;
+      color: var(--text-white-color) !important;
+    }
+  }
+  .dropdown-toggle::after {
+    display: block !important;
+    // content: "\f107" !important;
+    // font-family: "FontAwesome" !important;
+  }
+}
+.recent-content {
+  color: #3d4c57;
+  height: calc(100vh - 290px);
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  &::-webkit-scrollbar-track {
+    border-radius: 0.5rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--bg-main-color);
+    border-radius: 0.5rem;
+  }
+}
+.search-content {
+  margin-bottom: 1.2rem;
+}
+.no-data {
+  width: 200px;
+}
+:host ::ng-deep {
+  label.star {
+    padding: 2px !important;
+    font-size: 14px !important;
+    color: #f8b84e !important;
+  }
+  input.star:checked ~ label.star:before {
+    color: #f8b84e !important;
+  }
+}
+.content {
+  height: calc(100vh - 250px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  &::-webkit-scrollbar {
+    width: 0.5rem;
+  }
+  &::-webkit-scrollbar-thumb {
+    // background: #b8b8b8;
+    background: var(--bg-main-color);
+  }
+}
+
+.recommended-content {
+  background-color: #ebeef5;
+  box-shadow: 0px 3px 6px #3a53804d;
+  border-radius: 8px;
+  &.active {
+    background-color: #d6e3ec;
+  }
+  .recommended-img {
+    width: 70px;
+    height: 70px;
+  }
+}
+.gray-600 {
+  color: #474747;
+}
+.gray-500 {
+  color: #747373;
+}
+.gray-400 {
+  color: #a3a3a3;
+}
+.dot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  background-color: #a3a3a3;
+  border-radius: 50%;
+}
+.job-details {
+  height: calc(100vh - 236px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  &::-webkit-scrollbar {
+    width: 0.5rem;
+  }
+  &::-webkit-scrollbar-thumb {
+    // background: #b8b8b8;
+    background: var(--bg-main-color);
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+}

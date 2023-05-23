@@ -12,16 +12,27 @@
         <i class="fas fa-bars text-main-color fs-4"></i>
       </button>
       <div class="collapse navbar-collapse justify-content-between gap-2" id="navbarSupportedContent">
-        <div>
-          <span class="p-input-icon-right ms-4">
-            <ng-container *ngIf="search.value">
-              <i (click)="clearSearchValue(search)" class="pi pi-times text-danger cursor-pointer"></i>
-            </ng-container>
-            <i class="pi pi-search"></i>
-            <input type="text" #search (keyup.enter)="searchHandlerEmit(search?.value)"
-              placeholder="{{'placeholder.search'|translate}}" class="form-control search" />
-          </span>
-          {{search.value}}
+        <div class="d-flex gap-2">
+          <ng-container *ngIf="true">
+            <span class="p-input-icon-right ms-4">
+              <ng-container *ngIf="search.value">
+                <i (click)="clearSearchValue(search)" class="pi pi-times text-danger cursor-pointer"></i>
+              </ng-container>
+              <i class="pi pi-search"></i>
+              <input type="text" #search (keyup.enter)="searchHandlerEmit(search?.value)"
+                placeholder="{{'placeholder.search'|translate}}" class="form-control search" />
+            </span>
+          </ng-container>
+          <ng-container>
+            <span class="p-input-icon-right">
+              <ng-container *ngIf="search.value">
+                <i (click)="clearSearchValue(search)" class="pi pi-times text-danger cursor-pointer"></i>
+              </ng-container>
+              <i class="fas fa-location-dot"></i>
+              <input type="text" #search (keyup.enter)="searchHandlerEmit(search?.value)"
+                placeholder="{{'placeholder.address'|translate}}" class="form-control search" />
+            </span>
+          </ng-container>
         </div>
         <ul class="navbar-nav gap-3 align-items-center mb-2 mb-lg-0">
           <ng-container *ngIf="true">

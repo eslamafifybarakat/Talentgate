@@ -51,3 +51,6 @@
 .p-input-icon-right > i.pi-times {
   right: 35px !important;
 }
+.p-input-icon-right > i:last-of-type {
+  color: var(--text-main-color) !important;
+}
