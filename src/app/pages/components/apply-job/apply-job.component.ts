@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./apply-job.component.scss']
 })
 export class ApplyJobComponent implements OnInit {
-  searchResults: any = [];
+  searchResults: any = [3, 3, 3, 3, 33, 3, 3, 8, 9,];
   recommendedResults: any = [
     { id: 1, image: '../../../../assets/images/home/product.jfif', title: 'Product Designer', name: 'Google', rate: 3, address: 'Tunis,Tunisia', time: new Date(), isActive: true },
     { id: 2, image: '../../../../assets/images/home/product.jfif', title: 'Product Designer', name: 'Google', rate: 3, address: 'Tunis,Tunisia', time: new Date(), isActive: false },
@@ -46,9 +46,9 @@ export class ApplyJobComponent implements OnInit {
   };
   rating3: any = 3;
   skills: any = [{ title: 'User interface Design' }, { title: 'User Experience' }, { title: '88' }];
-
+  selectedOption: any;
   links: any = [
-    { id: 1, name: 'Most relevant', dropdown: [] },
+    { id: 1, name: 'Most relevant', dropdown: [{ name: 'dd' }] },
     { id: 2, name: 'Experience level', dropdown: [] },
     { id: 3, name: 'Experience levels', dropdown: [] },
     { id: 4, name: 'Job type', dropdown: [] },
@@ -61,6 +61,7 @@ export class ApplyJobComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.selectedOption = null;
   }
 
   changeData(id: any): void {

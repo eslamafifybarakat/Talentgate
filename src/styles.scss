@@ -74,3 +74,30 @@ body {
 .mat-dialog-container {
   position: relative !important;
 }
+.nav {
+  .p-dropdown {
+    height: 2rem !important;
+    padding: 0 !important;
+    background-color: transparent !important;
+    border: 0 !important;
+    .pi {
+      color: var(--text-main-color) !important;
+    }
+  }
+  .p-dropdown .p-dropdown-label.p-placeholder {
+    color: var(--text-main-color) !important;
+    padding: 15px 7px !important;
+  }
+  .active {
+    .p-dropdown .p-dropdown-label.p-placeholder,
+    .pi {
+      color: var(--text-white-color) !important;
+    }
+  }
+}
+.p-dropdown-label:not(.p-placeholder) {
+  display: none !important;
+}
+.p-dropdown:not(.p-disabled).p-focus {
+  box-shadow: none !important;
+}

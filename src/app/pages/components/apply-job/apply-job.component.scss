@@ -4,6 +4,7 @@
     border: 1px solid var(--bg-main-color) !important;
     border-radius: 50px;
     color: var(--text-main-color) !important;
+    padding: 3px !important;
     &.active {
       background-color: var(--bg-main-color) !important;
       color: var(--text-white-color) !important;
@@ -106,6 +107,7 @@
 .nav {
   flex-wrap: nowrap;
   overflow-x: auto;
+  overflow-y: clip;
   &::-webkit-scrollbar-thumb {
     // background: #b8b8b8;
     background: var(--bg-main-color);

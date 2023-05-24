@@ -7,9 +7,17 @@
             <button class="nav-link" [class.active]="i==0" id="pills-{{item?.id}}-tab" data-bs-toggle="pill"
               [attr.data-bs-target]="'#pills-'+item?.id" type="button" role="tab"
               [attr.aria-controls]="'pills-'+item?.id" aria-selected="false">
-              <div class="dropdown">
+              <p-dropdown [options]="item?.dropdown" placeholder="{{item?.name}}" appendTo="body"
+                [ariaLabel]="item?.name">
+                <ng-template let-item pTemplate="item">
+                  <div class="flex align-items-center">
+                    <a>{{item.name}}</a>
+                  </div>
+                </ng-template>
+              </p-dropdown>
+              <!-- <div class="dropdown">
                 <span class="dropdown-toggle d-flex align-items-center gap-1" type="button" data-bs-toggle="dropdown"
-                  aria-expanded="false">
+                  aria-expanded="true">
                   <span>
                     {{item?.name}}
                   </span>
@@ -20,7 +28,7 @@
                   <li><a class="dropdown-item" href="#">Another action</a></li>
                   <li><a class="dropdown-item" href="#">Something else here</a></li>
                 </ul>
-              </div>
+              </div> -->
             </button>
           </li>
         </ng-container>
