@@ -4,6 +4,7 @@
     "arabic": "Arabic"
   },
   "general": {
+    "uploadImageHint":"Please upload image",
     "notifications":"Notifications",
     "visit":"Visit",
     "yourprofile": "Complete your Profile",

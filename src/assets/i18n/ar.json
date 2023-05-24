@@ -3,6 +3,7 @@
     "arabic": "Arabic"
   },
   "general": {
+    "uploadImageHint":"Please upload image",
     "notifications":"الاشعارات",
     "visit":"زيارة",
     "filter": "التصفية",

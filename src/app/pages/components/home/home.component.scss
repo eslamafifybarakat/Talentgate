@@ -1,8 +1,12 @@
 #home {
+  .container-fluid {
+    --bs-gutter-x: 3.5rem !important;
+  }
   .person-img {
     width: 75px;
     height: 75px;
     margin-top: -3rem;
+    border: 1px solid #fff;
   }
   .applied-jobs {
     border-right: 1px solid #00000029;
@@ -25,7 +29,7 @@
   }
   .recent-content {
     color: #3d4c57;
-    height: calc(100vh - 180px);
+    max-height: calc(100vh - 180px);
     overflow-y: auto;
     overflow-x: hidden;
 

@@ -9,3 +9,55 @@
     </ng-template>
   </p-table>
 </ng-container>
+
+<ng-container *ngIf="type=='searchResult'">
+  <ng-container *ngFor="let item of [9,8,7,6,9,7]">
+    <div class="d-flex align-items-center gap-2  search-content mb-4">
+      <p-skeleton size="1rem" shape="circle"></p-skeleton>
+      <div><p-skeleton width="14rem" borderRadius="6px"></p-skeleton></div>
+    </div>
+  </ng-container>
+</ng-container>
+
+<ng-container *ngIf="type=='hiringAreas'">
+  <ng-container *ngFor="let item of [9,8,7,7]">
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+      <div class="d-flex align-items-center gap-3">
+        <div class="hiring-img rounded-circle overflow-hidden">
+          <p-skeleton size="3rem" shape="circle"></p-skeleton>
+        </div>
+        <div>
+          <p-skeleton width="5rem" borderRadius="6px" styleClass="mb-2"></p-skeleton>
+          <p-skeleton width="7rem" borderRadius="6px"></p-skeleton>
+        </div>
+      </div>
+      <p-skeleton width="4rem" height="2.1rem" borderRadius="50px"></p-skeleton>
+    </div>
+  </ng-container>
+</ng-container>
+
+<ng-container *ngIf="type=='jobRecommended'">
+  <div class="row recommended">
+    <ng-container *ngFor="let item of [9,8,7,6,8,9]">
+      <div class="col-xl-6 col-lg-12 col-md-6">
+        <div class="recomended-content p-3">
+          <div class="d-flex justify-content-between  gap-2">
+            <div class="d-flex align-items-center gap-2">
+              <p-skeleton size="4rem" shape="circle"></p-skeleton>
+              <div>
+                <p-skeleton width="6rem" borderRadius="6px" height="1.1rem" styleClass="mb-2"></p-skeleton>
+                <div class="d-flex gap-1 flex-wrap">
+                  <p-skeleton width="5rem" borderRadius="6px" height=".9rem" styleClass="mb-1"></p-skeleton>
+                  <p-skeleton width="9rem" borderRadius="6px" height=".9rem" styleClass="mb-1"></p-skeleton>
+                </div>
+                <p-skeleton width="7rem" borderRadius="6px" height=".9rem"></p-skeleton>
+              </div>
+            </div>
+            <p-skeleton size="1rem" borderRadius="6px"></p-skeleton>
+          </div>
+          <p-skeleton width="8rem" borderRadius="6px" styleClass="mt-2"></p-skeleton>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</ng-container>

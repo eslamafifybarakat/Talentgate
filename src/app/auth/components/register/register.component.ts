@@ -31,6 +31,7 @@ export class RegisterComponent implements OnInit {
   cvFileName: any;
   cvFilePath: any;
   imgFilePath: any;
+  imgFileSrc: any;
 
   SearchCountryField = SearchCountryField;
   CountryISO = CountryISO;
@@ -109,6 +110,15 @@ export class RegisterComponent implements OnInit {
   }
 
   secondRegisterForm = this.fb?.group({
+    image: [
+      null,
+      {
+        validators: [
+          Validators.required,
+        ],
+
+      },
+    ],
     phone_number: [
       null,
       {
@@ -124,7 +134,6 @@ export class RegisterComponent implements OnInit {
         validators: [
           Validators.required,
         ],
-        updateOn: 'blur',
       },
     ],
     city: [
@@ -133,7 +142,6 @@ export class RegisterComponent implements OnInit {
         validators: [
           Validators.required,
         ],
-        updateOn: 'blur',
       },
     ],
     cv: [
@@ -162,7 +170,7 @@ export class RegisterComponent implements OnInit {
   submitSecondRegForm(): void {
     console.log(this.secondRegisterForm?.value);
 
-    if (this.secondRegisterForm?.valid) {
+    if (this.secondRegisterForm?.valid && this.imgFilePath) {
       this.publicService?.show_loader?.next(true);
       let formInfo: any = this.secondRegisterForm?.value;
       let data: any = {
@@ -171,21 +179,19 @@ export class RegisterComponent implements OnInit {
         password: this.firstRegisterForm?.value?.password,
         phone_number: formInfo.phone_number?.number,
         country_code: formInfo.phone_number?.countryCode,
-        country: formInfo?.country?.id,
-        city: formInfo.city,
+        country: formInfo?.country?._id,
+        city: formInfo.city?._id,
         image: this.imgFilePath,
         cv: { name_cv: this.cvFilePath },
       };
 
       this.authUserService?.signup(data)?.subscribe(
         (res: any) => {
-          if (res?.code == 200) {
+          if (res?.status == 200) {
             this.router?.navigate(['/login']);
-            // window.localStorage.setItem(keys.token, res?.data?.token);
-            // window.localStorage.setItem(
-            //   keys.userLoginData,
-            //   JSON.stringify(res?.data?.user)
-            // );
+            window.localStorage.setItem(keys.token, res?.data?.token);
+            window.localStorage.setItem(keys.userLoginData, JSON.stringify(res?.data?.user)
+            );
             this.publicService?.show_loader?.next(false);
           } else {
             this.publicService?.show_loader?.next(false);
@@ -201,6 +207,7 @@ export class RegisterComponent implements OnInit {
     } else {
       this.publicService?.show_loader?.next(false);
       this.checkValidityService?.validateAllFormFields(this.secondRegisterForm);
+      this.alertsService?.openSweetAlert('warning', this.publicService?.translateTextFromJson('general.uploadImageHint'));
     }
     this.cdr?.detectChanges();
   }
@@ -208,17 +215,19 @@ export class RegisterComponent implements OnInit {
   selectImage(event: any): void {
     let fileReader = new FileReader();
     fileReader.readAsDataURL(event?.target?.files[0]);
+    this.secondRegisterForm?.get('image')?.setValue(event?.target?.files[0]);
     fileReader.onload = this._handleReaderLoadedImage.bind(this);
   }
   _handleReaderLoadedImage(e: any): void {
     var reader = e.target;
     let formData = new FormData();
     let image = this.publicService?.base64ToImageFile(reader.result, "image");
-    formData.append("image_name", image);
+    formData.append("image", image);
     this.authUserService?.uploadImage(formData)?.subscribe(
       (res: any) => {
-        if (res?.code == 200) {
-          this.imgFilePath = res?.data?.file_Path;
+        if (res?.status == 200) {
+          this.imgFilePath = res?.data?.file_path;
+          this.imgFileSrc = reader.result;
         } else {
           res?.message ? this.alertsService?.openSweetAlert('info', res?.message) : '';
         }
@@ -228,12 +237,16 @@ export class RegisterComponent implements OnInit {
       });
     this.cdr?.detectChanges();
   }
-
+  removeImage(): void {
+    this.imgFilePath = null;
+    this.imgFileSrc = null;
+    this.secondRegisterForm?.get('cv')?.reset();
+  }
   getCountries(): any {
     this.isLoadingCountry = true;
     this.authUserService?.getCountries()?.subscribe(
       (res: any) => {
-        if (res?.data) {
+        if (res?.status == 200) {
           this.countries = res?.data ? res?.data?.countries : [];
           this.isLoadingCountry = false;
         } else {
@@ -248,11 +261,17 @@ export class RegisterComponent implements OnInit {
     this.cdr?.detectChanges();
   }
   onChangeCountry(event: any): void {
+    console.log(event);
+
     this.secondRegisterForm?.get('city')?.reset();
     this.countries?.forEach((item: any) => {
       if (item?.id == event?.id) {
         this.cities = item?.cities ? item?.cities : [];
       }
+      console.log(item);
+
+      console.log(this.cities);
+
     });
   }
 
@@ -260,7 +279,6 @@ export class RegisterComponent implements OnInit {
     this.secondRegisterForm?.get('cv')?.setValue(event?.target?.files[0]);
     this.cvFileName = event?.target?.files[0]?.name;
     console.log(event?.target?.files[0]);
-
     let fileReader = new FileReader();
     fileReader.readAsDataURL(event?.target?.files[0]);
     fileReader.onload = this._handleReaderLoaded.bind(this);
@@ -273,8 +291,9 @@ export class RegisterComponent implements OnInit {
     formData.append("name_cv", file);
     this.authUserService?.uploadcv(formData)?.subscribe(
       (res: any) => {
-        if (res?.code == 200) {
-          this.cvFilePath = res?.data?.file_Path;
+        if (res?.status == 200) {
+          this.cvFilePath = res?.data?.file_path;
+          console.log(res?.data);
         } else {
           res?.message ? this.alertsService?.openSweetAlert('info', res?.message) : '';
         }
@@ -286,7 +305,8 @@ export class RegisterComponent implements OnInit {
   }
   clearCvFile(): void {
     this.cvFileName = null;
-    this.secondRegisterForm?.get('cv')?.reset();
+    this.cvFilePath = null;
+    this.secondRegisterForm?.get('image')?.reset();
   }
 
   ngOnDestroy(): void {

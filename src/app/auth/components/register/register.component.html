@@ -1,9 +1,9 @@
-<div class="auth-form">
-  <div class="container">
+<div class="auth-form" id="registration">
+  <div class="container-fluid">
     <div class="firstdiv ">
-      <div class="row justify-content-end">
-        <div class="col-lg-6 col-md-12 ">
-          <div class="global-card p-sm-5 p-4 align-items-end">
+      <div class="row justify-content-end align-items-center min-vh-100">
+        <div class="col-lg-7 col-md-12 ">
+          <div class="global-card p-sm-5 p-4 align-items-end  min-vh-100">
             <ng-container *ngIf="step==1">
               <div>
                 <h2 class="text-main-color"> {{'form.create-account'|translate}}</h2>
@@ -147,9 +147,33 @@
                 <form [formGroup]="secondRegisterForm" (ngSubmit)="submitSecondRegForm()" class="pt-3 sign_up">
                   <div class="d-flex justify-content-center mb-4">
                     <input type="file" id="profilePicture" accept="image/*" (change)="selectImage($event)" hidden>
-                    <label for="profilePicture">
+                    <!-- <label for="profilePicture">
                       <img class="photo pointer" src="../../../../assets/images/auth/picture.png" alt="">
-                    </label>
+                    </label> -->
+                    <div class="w-auto position-relative">
+                      <ng-container *ngIf="imgFilePath">
+                        <div (click)="removeImage()"
+                          class="d-flex justify-content-center align-items-center remove-img rounded-circle bg-white-color shadow pointer">
+                          <i class="pi pi-times text-danger"></i>
+                        </div>
+                      </ng-container>
+
+                      <div
+                        class="profile-img rounded-circle d-flex justify-content-center align-items-center position-relative">
+                        <ng-container *ngIf="imgFilePath; else noImg">
+                          <img [src]="imgFileSrc" class="img-src" alt="">
+                        </ng-container>
+                        <ng-template #noImg>
+                          <i class="pi pi-camera fs-2"></i>
+                        </ng-template>
+
+                        <label for="profilePicture" class="add-photo d-flex justify-content-center align-items-center">
+                          <!-- <div > -->
+                          <a class="fs-6-1 text-center text-white-color">Add Photo</a>
+                          <!-- </div> -->
+                        </label>
+                      </div>
+                    </div>
                   </div>
                   <div class="mb-4">
                     <div
@@ -184,7 +208,7 @@
                           <p-dropdown [options]="countries" formControlName="country" optionLabel="name" [filter]="true"
                             [virtualScroll]="true" [virtualScrollItemSize]="38" filterBy="name" appendTo="body"
                             [filterPlaceholder]="'placeholder.search'|translate" [readonly]="isLoadingCountry"
-                            scrollHeight="200px" emptyMessage="{{'general.no_result_found'|translate}}"
+                            (onChange)="onChangeCountry($event)" emptyMessage="{{'general.no_result_found'|translate}}"
                             [class.ng-dirty]="secondFormControls?.country?.invalid && (secondFormControls?.country?.dirty || secondFormControls?.country?.touched)"
                             [showClear]="true" placeholder="{{'placeholder.country'|translate}}">
                           </p-dropdown>
@@ -212,14 +236,13 @@
                           <p-dropdown [options]="cities" formControlName="city" optionLabel="name" [filter]="true"
                             [filterPlaceholder]="'placeholder.search'|translate" [virtualScroll]="true"
                             [virtualScrollItemSize]="38" filterBy="name" appendTo="body" [readonly]="isLoadingCountry"
-                            scrollHeight="200px" emptyMessage="{{'general.no_result_found'|translate}}"
+                            emptyMessage="{{'general.no_result_found'|translate}}"
                             [class.ng-dirty]="secondFormControls?.city?.invalid && (secondFormControls?.city?.dirty || secondFormControls?.city?.touched)"
-                            (onChange)="onChangeCountry($event)" [showClear]="true"
-                            placeholder="{{'placeholder.city'|translate}}">
+                            [showClear]="true" placeholder="{{'placeholder.city'|translate}}">
                           </p-dropdown>
-                          <ng-container *ngIf="isLoadingCountry">
+                          <!-- <ng-container *ngIf="isLoadingCountry">
                             <i class="pi pi-spin pi-spinner"></i>
-                          </ng-container>
+                          </ng-container> -->
                         </span>
                         <div class="mt-2">
                           <ng-container
@@ -254,7 +277,7 @@
                       </ng-container>
                     </div>
 
-                    <ng-container *ngIf="cvFileName">
+                    <ng-container *ngIf="cvFileName && cvFilePath">
                       <div class="bg-light rounded-pill p-1">
                         <div class="mx-2 d-flex justify-content-between gap-2">
                           <div class="d-flex align-items-center gap-2">

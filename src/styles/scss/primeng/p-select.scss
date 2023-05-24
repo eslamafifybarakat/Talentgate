@@ -67,3 +67,11 @@
   padding: 24px;
   border-radius: 8px;
 }
+
+.p-dropdown.p-dropdown-clearable .p-dropdown-label {
+  // padding: 20px;
+  line-height: 0 !important;
+}
+.p-dropdown-panel {
+  padding: 0 !important;
+}

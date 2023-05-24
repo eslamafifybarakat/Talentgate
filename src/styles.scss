@@ -95,9 +95,13 @@ body {
     }
   }
 }
-.p-dropdown-label:not(.p-placeholder) {
-  display: none !important;
-}
+// .p-dropdown-label:not(.p-placeholder) {
+//   display: none !important;
+// }
 .p-dropdown:not(.p-disabled).p-focus {
   box-shadow: none !important;
+}
+.p-scroller {
+  max-height: 200px !important;
+  min-height: 82px !important;
 }

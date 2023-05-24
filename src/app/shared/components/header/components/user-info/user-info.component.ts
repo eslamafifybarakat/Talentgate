@@ -1,3 +1,4 @@
+import { keys } from './../../../../configs/localstorage-key';
 import { AuthUserService } from './../../../../../auth/services/auth-user.service';
 import { AlertsService } from './../../../../../core/services/alerts/alerts.service';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
@@ -25,6 +26,7 @@ export class UserInfoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.userData = JSON.parse(window.localStorage.getItem(keys?.userLoginData) || '{}');
     this.userInfoList = userInfoMenu;
   }
 

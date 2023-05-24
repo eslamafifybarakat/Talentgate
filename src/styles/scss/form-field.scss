@@ -171,19 +171,20 @@ select.form-control.has-value {
 }
 
 p-password .pi {
-  font-family: "FontAwesome";
+  // font-family: "FontAwesome";
   font-size: 1.5rem;
-  top: 30px;
   right: 2rem !important;
   color: var(--bg-main-color) !important;
+  transform: translate(0px, -50%);
+  margin: 0 !important;
 }
 p-password .pi-eye:before {
-  content: "\f023";
-  font-size: 2rem !important;
+  content: "\e95f";
+  // font-size: 1.5rem !important;
 }
 
 p-password .pi-eye-slash:before {
-  content: "\f3c1";
+  content: "\e960";
   // font-size: 1.1rem !important;
 }
 
@@ -227,4 +228,13 @@ p-checkbox {
 }
 .iti--allow-dropdown .iti__flag-container:hover .iti__selected-flag {
   background-color: transparent !important;
+}
+
+#registration {
+  .form-control,
+  .p-dropdown,
+  p-password .p-inputtext {
+    background: #ebeef5;
+    // border: 1px solid #576f93;
+  }
 }

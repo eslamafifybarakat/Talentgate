@@ -4,7 +4,7 @@
       <button class="btn dropdown-toggle d-flex align-items-center gap-2" type="button" aria-expanded="false"
         [attr.aria-expanded]="!collapse" (click)="collapse = !collapse">
         <div class="user-img-parent">
-          <img [src]="userData?.image" onerror="src='assets/images/home/person.jpg'"
+          <img [src]="userData?.image" onerror="src='assets/images/not-found/no-user.svg'"
             class="user-img fit-object-cover rounded-circle w-100 h-100" alt="user-image" />
         </div>
         <p>Ali</p>

@@ -1,4 +1,5 @@
-import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
+import { PublicService } from './../../services/public.service';
+import { Component, EventEmitter, HostListener, Input, OnInit, Output, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { keys } from 'src/app/shared/configs/localstorage-key';
 import { SharedService } from '../../services/shared.service';
 import { Router } from '@angular/router';
@@ -28,9 +29,14 @@ export class HeaderComponent implements OnInit {
       this.scrollDown = false;
     }
   }
+  searchValue: any;
+  @ViewChild('search') search: any;
+
   constructor(
     private sharedService: SharedService,
-    private router: Router
+    private publicService: PublicService,
+    private cdr: ChangeDetectorRef,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -63,7 +69,13 @@ export class HeaderComponent implements OnInit {
     this.sharedService?.showSideMenu?.next(this.toggleSideMenu);
   }
   searchHandlerEmit(event: any): void {
-    this.searchHandler.emit(event)
+    this.publicService?.recallSearchResults?.next(
+      {
+        recall: true,
+        searchValue: event
+      }
+    );
+    this.cdr.detectChanges();
   }
   clearSearchValue(search: any): void {
     search.value = '';

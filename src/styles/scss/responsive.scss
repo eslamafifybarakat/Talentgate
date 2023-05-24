@@ -17,6 +17,11 @@
     width: 85%;
   }
 }
+.auth-form {
+  .p-sm-5 {
+    padding: 6rem 7rem !important;
+  }
+}
 @media (max-width: 1024px) {
   // .global-card {
   //   padding: 4rem 2rem !important;
@@ -94,6 +99,12 @@
   // .global-card {
   //   padding: 2rem 1rem !important;
   // }
+
+  .auth-form {
+    .p-sm-5 {
+      padding: 4rem !important;
+    }
+  }
 }
 
 @media (max-width: 425px) {
