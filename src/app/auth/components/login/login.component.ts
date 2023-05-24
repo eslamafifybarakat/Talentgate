@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
       {
         validators: [
           Validators.required,
-          Validators?.pattern(patterns?.password)
+          // Validators?.pattern(patterns?.password)
         ],
         updateOn: 'blur',
       },
@@ -80,7 +80,7 @@ export class LoginComponent implements OnInit {
         email: this.loginForm?.value?.username,
         password: this.loginForm?.value?.password,
       };
-      this.router?.navigate(['/home']);
+      // this.router?.navigate(['/home']);
 
       window.localStorage.setItem(keys.logged, 'true');
       this.authUserService?.login(data)?.subscribe(
