@@ -183,8 +183,8 @@
                         <span class="p-input-icon-right select-loading d-block">
                           <p-dropdown [options]="countries" formControlName="country" optionLabel="name" [filter]="true"
                             [virtualScroll]="true" [virtualScrollItemSize]="38" filterBy="name" appendTo="body"
-                            [readonly]="isLoadingCountry" scrollHeight="200px"
-                            emptyMessage="{{'general.no_result_found'|translate}}"
+                            [filterPlaceholder]="'placeholder.search'|translate" [readonly]="isLoadingCountry"
+                            scrollHeight="200px" emptyMessage="{{'general.no_result_found'|translate}}"
                             [class.ng-dirty]="secondFormControls?.country?.invalid && (secondFormControls?.country?.dirty || secondFormControls?.country?.touched)"
                             [showClear]="true" placeholder="{{'placeholder.country'|translate}}">
                           </p-dropdown>
@@ -210,9 +210,9 @@
                       <div class="mb-4">
                         <span class="p-input-icon-right select-loading d-block">
                           <p-dropdown [options]="cities" formControlName="city" optionLabel="name" [filter]="true"
-                            [virtualScroll]="true" [virtualScrollItemSize]="38" filterBy="name" appendTo="body"
-                            [readonly]="isLoadingCountry" scrollHeight="200px"
-                            emptyMessage="{{'general.no_result_found'|translate}}"
+                            [filterPlaceholder]="'placeholder.search'|translate" [virtualScroll]="true"
+                            [virtualScrollItemSize]="38" filterBy="name" appendTo="body" [readonly]="isLoadingCountry"
+                            scrollHeight="200px" emptyMessage="{{'general.no_result_found'|translate}}"
                             [class.ng-dirty]="secondFormControls?.city?.invalid && (secondFormControls?.city?.dirty || secondFormControls?.city?.touched)"
                             (onChange)="onChangeCountry($event)" [showClear]="true"
                             placeholder="{{'placeholder.city'|translate}}">

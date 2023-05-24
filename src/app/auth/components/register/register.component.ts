@@ -52,7 +52,6 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.step = 1;
-    this.getCountries();
     this.currentLanguage = window?.localStorage?.getItem(keys?.language);
   }
 
@@ -154,6 +153,7 @@ export class RegisterComponent implements OnInit {
   submitFirstForm(): void {
     if (this.firstRegisterForm?.valid) {
       this.step += 1;
+      this.getCountries();
     } else {
       this.checkValidityService?.validateAllFormFields(this.firstRegisterForm);
     }

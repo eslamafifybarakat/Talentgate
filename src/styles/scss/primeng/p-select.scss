@@ -59,7 +59,11 @@
   height: 2.8rem !important;
 }
 
-.p-treeselect-trigger-icon
-{
+.p-treeselect-trigger-icon {
   color: var(--bg-main-color) !important;
+}
+.p-dropdown-panel .p-dropdown-header .p-dropdown-filter {
+  height: 2.7rem !important;
+  padding: 24px;
+  border-radius: 8px;
 }
