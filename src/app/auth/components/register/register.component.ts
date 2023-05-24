@@ -84,7 +84,7 @@ export class RegisterComponent implements OnInit {
         {
           validators: [
             Validators.required,
-            Validators?.pattern(patterns?.password)
+            // Validators?.pattern(patterns?.password)
           ],
           updateOn: 'blur',
         },
@@ -94,7 +94,7 @@ export class RegisterComponent implements OnInit {
         {
           validators: [
             Validators.required,
-            Validators?.pattern(patterns?.password)
+            // Validators?.pattern(patterns?.password)
           ],
           updateOn: 'blur',
         },

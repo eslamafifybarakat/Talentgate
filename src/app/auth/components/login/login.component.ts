@@ -85,7 +85,7 @@ export class LoginComponent implements OnInit {
       window.localStorage.setItem(keys.logged, 'true');
       this.authUserService?.login(data)?.subscribe(
         (res: any) => {
-          if (res?.statusCode == 200) {
+          if (res?.status == 200) {
             this.router?.navigate(['/home']);
             window.localStorage.setItem(keys.token, res?.data?.token);
             window.localStorage.setItem(keys.userLoginData, JSON.stringify(res?.data?.user)
