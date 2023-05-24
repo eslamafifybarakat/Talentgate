@@ -1,0 +1,21 @@
+.fc-toolbar-chunk {
+  display: flex !important;
+  flex-direction: row-reverse !important;
+  gap: 10px !important;
+}
+
+.fc.fc-theme-standard .fc-toolbar .fc-button:disabled,
+.fc.fc-theme-standard .fc-toolbar .fc-button {
+  background-color: transparent !important;
+  color: var(--text-main-color) !important;
+  border: 1px solid #808080 !important;
+  border-radius: 5px !important;
+}
+.fc.fc-theme-standard .fc-toolbar .fc-button-group .fc-button:first-child,
+.fc.fc-theme-standard .fc-toolbar .fc-button-group .fc-button:last-child {
+  border: 0 !important;
+}
+.fc.fc-theme-standard .fc-toolbar .fc-button.fc-timeGridDay-button,
+.fc.fc-theme-standard .fc-toolbar .fc-button.fc-timeGridWeek-button {
+  display: none !important;
+}

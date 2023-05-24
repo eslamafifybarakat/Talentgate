@@ -1,3 +1,4 @@
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -36,7 +37,6 @@ import { DialogService } from 'primeng/dynamicdialog';
         deps: [HttpClient],
       },
     }),
-
   ],
   providers: [
     DatePipe,

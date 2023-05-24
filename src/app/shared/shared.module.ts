@@ -1,3 +1,4 @@
+import { FullCalendarModule } from '@fullcalendar/angular';
 import { LanguageSelectorComponent } from './components/header/components/language-selector/language-selector.component';
 import { UserInfoComponent } from './components/header/components/user-info/user-info.component';
 import { OverlayLoadingComponent } from './components/overlay-spinner/overlay-loading.component';
@@ -43,6 +44,7 @@ const allSharedComponents = [
   ThemeComponent
 ]
 const allSharedModule = [
+  FullCalendarModule,
   NgxIntlTelInputModule,
   BsDropdownModule,
   ReactiveFormsModule,
