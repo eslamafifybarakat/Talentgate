@@ -1,56 +1,30 @@
 <div>
-  <div class="tabs py-3 border-top">
+  <div class="tabs py-1 border-top">
     <div class="container">
-      <ul class="nav nav-pills gap-2" id="pills-tab" role="tablist">
-        <li class="nav-item" role="presentation">
-          <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home"
-            type="button" role="tab" aria-controls="pills-home" aria-selected="true">
-            <div class="dropdown">
-              <span class="dropdown-toggle d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Most relevant
-              </span>
-              <ul class="dropdown-menu mt-2 border-0 shadow-sm">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-              </ul>
-            </div>
-          </button>
+      <ul class="nav nav-pills gap-2 py-2" id="pills-tab" role="tablist">
+        <ng-container *ngFor="let item of links;let i=index">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" [class.active]="i==0" id="pills-{{item?.id}}-tab" data-bs-toggle="pill"
+              [attr.data-bs-target]="'#pills-'+item?.id" type="button" role="tab"
+              [attr.aria-controls]="'pills-'+item?.id" aria-selected="false">
+              <div class="dropdown">
+                <span class="dropdown-toggle d-flex align-items-center gap-1" type="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  <span>
+                    {{item?.name}}
+                  </span>
+                  <i class="pi pi-angle-down"></i>
+                </span>
+                <ul class="dropdown-menu mt-2 border-0 shadow-sm">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </div>
+            </button>
+          </li>
+        </ng-container>
 
-        </li>
-        <li class="nav-item" role="presentation">
-          <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
-            type="button" role="tab" aria-controls="pills-profile" aria-selected="false">
-            <div class="dropdown">
-              <span class="dropdown-toggle d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Most relevant
-              </span>
-              <ul class="dropdown-menu mt-2 border-0 shadow-sm">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-              </ul>
-            </div>
-          </button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact"
-            type="button" role="tab" aria-controls="pills-contact" aria-selected="false">
-            <div class="dropdown">
-              <span class="dropdown-toggle d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Most relevant
-              </span>
-              <ul class="dropdown-menu mt-2 border-0 shadow-sm">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-              </ul>
-            </div>
-          </button>
-        </li>
       </ul>
     </div>
   </div>

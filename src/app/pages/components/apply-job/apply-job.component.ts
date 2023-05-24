@@ -45,7 +45,19 @@ export class ApplyJobComponent implements OnInit {
   </div>`
   };
   rating3: any = 3;
-  skills: any = [{ title: 'User interface Design' }, { title: 'User Experience' }, { title: '88' }]
+  skills: any = [{ title: 'User interface Design' }, { title: 'User Experience' }, { title: '88' }];
+
+  links: any = [
+    { id: 1, name: 'Most relevant', dropdown: [] },
+    { id: 2, name: 'Experience level', dropdown: [] },
+    { id: 3, name: 'Experience levels', dropdown: [] },
+    { id: 4, name: 'Job type', dropdown: [] },
+    { id: 5, name: 'Onsite/remote', dropdown: [] },
+    { id: 6, name: 'Location', dropdown: [] },
+    { id: 7, name: 'Industry', dropdown: [] },
+    { id: 8, name: 'Job Function', dropdown: [] },
+    { id: 9, name: 'Title', dropdown: [] },
+  ]
   constructor() { }
 
   ngOnInit(): void {

@@ -38,13 +38,25 @@
     width: 100% !important;
   }
 
-  .navbar-nav {
+  .navbar-collapse {
     background-color: var(--bg-white-color) !important;
     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
     flex-direction: row !important;
     justify-content: center;
     flex-wrap: wrap;
     padding: 20px 5px;
+    border-radius: 0 0 10px 10px;
+    .navbar-nav {
+      margin-top: 20px !important;
+      flex-direction: row;
+      justify-content: center;
+      gap: 20px !important;
+      flex-wrap: wrap;
+    }
+    .search-inputs {
+      justify-content: center;
+      flex-wrap: wrap;
+    }
   }
   .p-dialog {
     min-width: 70% !important;

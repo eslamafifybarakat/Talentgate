@@ -7,7 +7,7 @@ import { ApplyJobComponent } from './components/apply-job/apply-job.component';
 import { CalenderComponent } from './components/calender/calender.component';
 
 const routes: Routes = [
-  { path: 'onboarding', component: OnboardingComponent, },
+  // { path: 'onboarding', component: OnboardingComponent, },
   {
     path: '', component: PagesComponent, children: [
       { path: 'home', component: HomeComponent },

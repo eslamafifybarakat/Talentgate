@@ -80,15 +80,17 @@ export class LoginComponent implements OnInit {
         email: this.loginForm?.value?.username,
         password: this.loginForm?.value?.password,
       };
+      this.router?.navigate(['/home']);
+
+      window.localStorage.setItem(keys.logged, 'true');
       this.authUserService?.login(data)?.subscribe(
         (res: any) => {
           if (res?.statusCode == 200) {
             this.router?.navigate(['/home']);
             window.localStorage.setItem(keys.token, res?.data?.token);
-            window.localStorage.setItem(
-              keys.userLoginData,
-              JSON.stringify(res?.data?.user)
+            window.localStorage.setItem(keys.userLoginData, JSON.stringify(res?.data?.user)
             );
+            window.localStorage.setItem(keys.logged, 'true');
             this.publicService?.show_loader?.next(false);
           } else {
             this.publicService?.show_loader?.next(false);

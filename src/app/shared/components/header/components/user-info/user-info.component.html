@@ -1,12 +1,13 @@
 <ng-container *ngIf="!isLoading">
   <div class="user-info position-relative general-dropdown" (clickOutside)="collapse == true ? (collapse = false) : ''">
     <div class="dropdown">
-      <button class="btn dropdown-toggle p-0" type="button" aria-expanded="false" [attr.aria-expanded]="!collapse"
-        (click)="collapse = !collapse">
+      <button class="btn dropdown-toggle d-flex align-items-center gap-2" type="button" aria-expanded="false"
+        [attr.aria-expanded]="!collapse" (click)="collapse = !collapse">
         <div class="user-img-parent">
-          <img [src]="userData?.image" onerror="src='assets/images/userprofile.jpg'"
+          <img [src]="userData?.image" onerror="src='assets/images/home/person.jpg'"
             class="user-img fit-object-cover rounded-circle w-100 h-100" alt="user-image" />
         </div>
+        <p>Ali</p>
       </button>
       <ul class="dropdown-menu border-0 shadow p-3 user-info-menu" aria-labelledby="dropdownMenuButton1"
         [class.show]="collapse">

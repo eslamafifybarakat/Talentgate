@@ -16,10 +16,10 @@
   }
 }
 .navbar-bg {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 1);
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
+  // backdrop-filter: blur(2px);
+  // -webkit-backdrop-filter: blur(2px);
   border-radius: 6px;
 }
 .search {
@@ -53,4 +53,12 @@
 }
 .p-input-icon-right > i:last-of-type {
   color: var(--text-main-color) !important;
+}
+.user-info::before {
+  content: "";
+  position: absolute;
+  left: -13px;
+  height: 100%;
+  width: 1px;
+  background-color: var(--bg-main-color);
 }

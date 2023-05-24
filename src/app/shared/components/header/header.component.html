@@ -12,8 +12,8 @@
         <i class="fas fa-bars text-main-color fs-4"></i>
       </button>
       <div class="collapse navbar-collapse justify-content-between gap-2" id="navbarSupportedContent">
-        <div class="d-flex gap-2">
-          <ng-container *ngIf="true">
+        <div class="d-flex gap-2 search-inputs">
+          <ng-container *ngIf="isLogged">
             <span class="p-input-icon-right ms-4">
               <ng-container *ngIf="search.value">
                 <i (click)="clearSearchValue(search)" class="pi pi-times text-danger cursor-pointer"></i>
@@ -22,20 +22,20 @@
               <input type="text" #search (keyup.enter)="searchHandlerEmit(search?.value)"
                 placeholder="{{'placeholder.search'|translate}}" class="form-control search" />
             </span>
-          </ng-container>
-          <ng-container>
-            <span class="p-input-icon-right">
-              <ng-container *ngIf="search.value">
-                <i (click)="clearSearchValue(search)" class="pi pi-times text-danger cursor-pointer"></i>
-              </ng-container>
-              <i class="fas fa-location-dot"></i>
-              <input type="text" #search (keyup.enter)="searchHandlerEmit(search?.value)"
-                placeholder="{{'placeholder.address'|translate}}" class="form-control search" />
-            </span>
+            <ng-container *ngIf="url=='/apply-job'">
+              <span class="p-input-icon-right">
+                <ng-container *ngIf="search.value">
+                  <i (click)="clearSearchValue(search)" class="pi pi-times text-danger cursor-pointer"></i>
+                </ng-container>
+                <i class="fas fa-location-dot"></i>
+                <input type="text" #search (keyup.enter)="searchHandlerEmit(search?.value)"
+                  placeholder="{{'placeholder.address'|translate}}" class="form-control search" />
+              </span>
+            </ng-container>
           </ng-container>
         </div>
-        <ul class="navbar-nav gap-3 align-items-center mb-2 mb-lg-0">
-          <ng-container *ngIf="true">
+        <ul class="navbar-nav gap-4 align-items-center mb-2 mb-lg-0">
+          <ng-container *ngIf="isLogged;else noLogged">
             <li class="nav-item ">
               <a class="nav-link text-main-color lh-0" routerLink="/home" routerLinkActive="active">
                 <i class="fas fa-home"></i>
@@ -60,14 +60,14 @@
             </li>
           </ng-container>
 
-          <ng-container *ngIf="false">
+          <ng-template #noLogged>
             <li class="nav-item ">
               <a class="nav-link text-main-color" routerLink="/auth/login">{{'form.login'|translate}}</a>
             </li>
             <li class="nav-item ">
               <button class="main-button" routerLink="/auth/register">{{'form.signUp'|translate}}</button>
             </li>
-          </ng-container>
+          </ng-template>
 
           <li class="nav-item ">
             <app-theme></app-theme>
@@ -75,6 +75,12 @@
           <li class="nav-item ">
             <app-language-selector></app-language-selector>
           </li>
+          <ng-container *ngIf="isLogged">
+            <li class="nav-item user-info position-relative">
+              <app-user-info></app-user-info>
+            </li>
+          </ng-container>
+
         </ul>
       </div>
     </div>

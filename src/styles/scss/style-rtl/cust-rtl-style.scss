@@ -61,6 +61,11 @@
   margin-right: 0.255em !important;
   margin-left: inherit;
 }
+.user-info::before {
+  right: -13px !important;
+  left: inherit !important;
+}
+
 // =====================END USER INFO ==========================
 
 // =====================START ASIDE MENU ==========================

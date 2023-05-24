@@ -10,7 +10,7 @@
     }
   }
   .dropdown-toggle::after {
-    display: block !important;
+    // display: block !important;
     // content: "\f107" !important;
     // font-family: "FontAwesome" !important;
   }
@@ -94,6 +94,18 @@
   &::-webkit-scrollbar {
     width: 0.5rem;
   }
+  &::-webkit-scrollbar-thumb {
+    // background: #b8b8b8;
+    background: var(--bg-main-color);
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+}
+.nav {
+  flex-wrap: nowrap;
+  overflow-x: auto;
   &::-webkit-scrollbar-thumb {
     // background: #b8b8b8;
     background: var(--bg-main-color);
