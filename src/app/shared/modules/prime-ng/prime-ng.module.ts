@@ -28,7 +28,6 @@ import { SliderModule } from 'primeng/slider';
 import { TooltipModule } from 'primeng/tooltip';
 import { RadioButtonModule } from 'primeng/radiobutton';
 
-
 const primeNgModules = [
   DynamicDialogModule,
   ConfirmDialogModule,

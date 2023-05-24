@@ -2,15 +2,18 @@
   top: 0.5rem !important;
 }
 
-.ng-select.ng-select-focused:not(.ng-select-opened)>.ng-select-container {
+.ng-select.ng-select-focused:not(.ng-select-opened) > .ng-select-container {
   box-shadow: none !important;
 }
 
-.ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-placeholder {
+.ng-select.ng-select-multiple
+  .ng-select-container
+  .ng-value-container
+  .ng-placeholder {
   padding-top: 10px;
 }
 
-.ng-select .ng-select-container .ng-value-container .ng-input>input {
+.ng-select .ng-select-container .ng-value-container .ng-input > input {
   padding: 1rem !important;
 }
 
@@ -20,7 +23,7 @@
 
 .ng-dropdown-panel.ng-select-bottom,
 .ng-dropdown-panel.ng-select-top {
-  box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
   border: 0 !important;
   border-radius: 5px;
 }
@@ -45,7 +48,7 @@
     border: 0 !important;
   }
 
-  .ng-select .ng-select-container .ng-value-container .ng-input>input {
+  .ng-select .ng-select-container .ng-value-container .ng-input > input {
     padding: 0 !important;
   }
 
@@ -58,13 +61,18 @@
 }
 
 /*END HOME*/
-
-#patient-register {
-  .mat-form-field-appearance-outline .mat-form-field-wrapper {
-    padding-bottom: 0 !important;
-    margin-bottom: 0 !important;
-    height: 4.2rem !important;
-    background-color: #F2F7FA;
-    border-radius: 0.625rem !important;
-  }
+.mat-calendar-body-today.mat-calendar-body-selected,
+.mat-calendar-body-selected {
+  background-color: #56d68c !important;
+  // box-shadow: none !important;
+}
+.mat-calendar-body-today:not(.mat-calendar-body-selected):not(
+    .mat-calendar-body-comparison-identical
+  ).mat-calendar-body-today:not(.mat-calendar-body-selected):not(
+    .mat-calendar-body-comparison-identical
+  ) {
+  // box-shadow: none !important;
+  // background-color: #56d68c !important;
+  // color: #fff;
+  border: 0 !important;
 }

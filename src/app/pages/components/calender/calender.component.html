@@ -1,1 +1,15 @@
-<p>calender works!</p>
+<div id="calender">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9">
+        <div class="global-card"></div>
+      </div>
+      <div class="col-lg-3">
+        <div class="calendar global-card p-1">
+          <mat-calendar [selected]="selectedDate" (selectedChange)="onDateChange($event)"
+            [minDate]="minDate"></mat-calendar>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
