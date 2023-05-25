@@ -39,9 +39,11 @@ export class HttpInterceptorService implements HttpInterceptor {
       }
 
 
-      let userLoginData = JSON.parse(window.localStorage.getItem(keys.userLoginData) || "{}");
-      if (userLoginData) {
-        header["Authorization"] = `Bearer ${userLoginData?.token}`;
+      let token = window.localStorage.getItem(keys?.token);
+      console.log(token);
+
+      if (token) {
+        header["Authorization"] = `${token}`;
       }
 
       request = request.clone({

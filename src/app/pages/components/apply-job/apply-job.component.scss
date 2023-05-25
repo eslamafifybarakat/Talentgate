@@ -18,7 +18,7 @@
 }
 .recent-content {
   color: #3d4c57;
-  height: calc(100vh - 290px);
+  min-height: calc(100vh - 290px);
   overflow-y: auto;
   overflow-x: hidden;
 

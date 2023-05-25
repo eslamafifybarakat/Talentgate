@@ -1,8 +1,11 @@
 .auth-form {
   padding-top: 5.5rem;
+  .form-content {
+    min-height: calc(100vh - 120px);
+  }
   .firstdiv {
     background-repeat: no-repeat;
-    // background-size: cover;
+    background-size: contain;
     // background-position: center;
     border-radius: var(--border-radius-card);
     background-image: url(../../../../assets/images/auth/image.png);

@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
   recommendedResults: any = [2, 5, 5, 4, 9, 8];
   isLoadingRecommendedResults: boolean = false;
   rating3: any = 3;
-  count: any;
+  count: any = 6;
   userData: any;
   constructor(
     private publicService: PublicService,
@@ -38,8 +38,8 @@ export class HomeComponent implements OnInit {
         this.getSearchResults(res?.searchValue);
       }
     });
-    // this.getHiring();
-    // this.getJobRecommended();
+    this.getHiring();
+    this.getJobRecommended(0);
   }
   getSearchResults(value: any): any {
     this.isLoadingSearchResults = true;
@@ -80,18 +80,19 @@ export class HomeComponent implements OnInit {
   }
   getHiring(): any {
     this.isLoadingHiringAreas = true;
-    this.homeService?.getHiring(10000)?.subscribe(
+    this.homeService?.getHiring(0)?.subscribe(
       (res: any) => {
         if (res?.status == 200) {
-          let arr: any = [];
-          res?.data ? res?.data?.coupons?.forEach((item: any) => {
-            arr?.push({
-              coupon_name: item?.coupon_name ? item?.coupon_name : '',
-              coupon_picture: item?.coupon_picture ? item?.coupon_picture : '',
-              description: item?.description ? item?.description : '',
-            })
-          }) : '';
-          this.hiringAreas = arr;
+          // let arr: any = [];
+          this.hiringAreas = res?.data ? res?.data?.companies : []
+          // res?.data ? res?.data?.companies?.forEach((item: any) => {
+          //   arr?.push({
+          //     coupon_name: item?.coupon_name ? item?.coupon_name : '',
+          //     coupon_picture: item?.coupon_picture ? item?.coupon_picture : '',
+          //     description: item?.description ? item?.description : '',
+          //   })
+          // }) : '';
+          // this.hiringAreas = arr;
           this.isLoadingHiringAreas = false;
         } else {
           res?.message ? this.alertsService?.openSweetAlert('info', res?.message) : '';
@@ -115,9 +116,9 @@ export class HomeComponent implements OnInit {
       { coupon_name: 'User Experience(Ux) Designer' },
     ]
   }
-  getJobRecommended(): any {
+  getJobRecommended(count: any): any {
     this.isLoadingRecommendedResults = true;
-    this.homeService?.getJobRecommended(10000)?.subscribe(
+    this.homeService?.getJobRecommended(count)?.subscribe(
       (res: any) => {
         if (res?.status == 200) {
           let arr: any = [];
@@ -154,10 +155,11 @@ export class HomeComponent implements OnInit {
   }
   seeMore(): void {
     this.count += 6;
-    this.allRecommendedResults?.forEach((item: any, index: any) => {
-      if (index > this.recommendedResults?.length && index <= this.count) {
-        this.recommendedResults?.push(item);
-      }
-    });
+    this.getJobRecommended(this.count);
+    // this.allRecommendedResults?.forEach((item: any, index: any) => {
+    //   if (index > this.recommendedResults?.length && index <= this.count) {
+    //     this.recommendedResults?.push(item);
+    //   }
+    // });
   }
 }

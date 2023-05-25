@@ -219,10 +219,14 @@ export class RegisterComponent implements OnInit {
     fileReader.onload = this._handleReaderLoadedImage.bind(this);
   }
   _handleReaderLoadedImage(e: any): void {
-    var reader = e.target;
+    var reader: any = null;
+    reader = e.target;
     let formData = new FormData();
-    let image = this.publicService?.base64ToImageFile(reader.result, "image");
-    formData.append("image", image);
+    // let image = this.publicService?.base64ToImageFile(reader.result, "image");
+    let img: any = this.secondRegisterForm?.value?.image;
+    formData.append("image", img);
+    console.log('kkk');
+
     this.authUserService?.uploadImage(formData)?.subscribe(
       (res: any) => {
         if (res?.status == 200) {
@@ -239,8 +243,9 @@ export class RegisterComponent implements OnInit {
   }
   removeImage(): void {
     this.imgFilePath = null;
-    this.imgFileSrc = null;
-    this.secondRegisterForm?.get('cv')?.reset();
+    this.imgFileSrc = '';
+    this.secondRegisterForm?.get('image')?.reset();
+    this.cdr?.detectChanges();
   }
   getCountries(): any {
     this.isLoadingCountry = true;
@@ -289,6 +294,7 @@ export class RegisterComponent implements OnInit {
     let formData = new FormData();
     let file = this.publicService?.base64ToImageFile(reader.result, "file");
     formData.append("name_cv", file);
+
     this.authUserService?.uploadcv(formData)?.subscribe(
       (res: any) => {
         if (res?.status == 200) {
@@ -306,7 +312,8 @@ export class RegisterComponent implements OnInit {
   clearCvFile(): void {
     this.cvFileName = null;
     this.cvFilePath = null;
-    this.secondRegisterForm?.get('image')?.reset();
+    this.secondRegisterForm?.get('cv')?.reset();
+    this.cdr?.detectChanges();
   }
 
   ngOnDestroy(): void {

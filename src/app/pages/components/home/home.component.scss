@@ -47,7 +47,7 @@
     --bs-gutter-y: 0.7rem;
   }
   .recommended-content {
-    height: calc(100vh - 250px);
+    max-height: calc(100vh - 250px);
     overflow-y: auto;
     overflow-x: hidden;
     &::-webkit-scrollbar-track {

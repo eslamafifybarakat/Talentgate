@@ -1,11 +1,15 @@
 .auth-form {
   padding-top: 5.5rem;
+  .form-content {
+    min-height: calc(100vh - 120px);
+  }
   .firstdiv {
     width: 100%;
     background-image: url(../../../../assets/images/auth/login.jfif);
     background-repeat: no-repeat;
-    // background-size: cover;
+    background-size: cover;
     background-position: center;
+    background-position: left;
     border-radius: var(--border-radius-card);
   }
   .content {

@@ -92,36 +92,48 @@
             </ng-container>
             <ng-template #noLoadingJobs>
               <div class="row recommended">
-                <ng-container *ngFor="let item of recommendedResults">
-                  <div class="col-xl-6 col-lg-12 col-md-6">
-                    <div class="recomended-content p-3">
-                      <div class="d-flex justify-content-between  gap-2">
-                        <div class="d-flex align-items-center gap-2">
-                          <img class="recommended-img rounded-circle" src="../../../../assets/images/home/product.jfif"
-                            alt="product">
-                          <div>
-                            <h5 class="fs-5-1 text-main-color fw-bold mb-1">Product Designer</h5>
-                            <div class="d-flex gap-1 flex-wrap">
-                              <p class="fw-600">Google</p>
-                              <ngx-star-rating [(ngModel)]="rating3" [id]="'rating3'"
-                                [disabled]="true"></ngx-star-rating>
+                <ng-container *ngIf="recommendedResults?.length>0; else noRecommendedResults">
+                  <ng-container *ngFor="let item of recommendedResults">
+                    <div class="col-xl-6 col-lg-12 col-md-6">
+                      <div class="recomended-content p-3">
+                        <div class="d-flex justify-content-between  gap-2">
+                          <div class="d-flex align-items-center gap-2">
+                            <img class="recommended-img rounded-circle"
+                              src="../../../../assets/images/home/product.jfif" alt="product">
+                            <div>
+                              <h5 class="fs-5-1 text-main-color fw-bold mb-1">Product Designer</h5>
+                              <div class="d-flex gap-1 flex-wrap">
+                                <p class="fw-600">Google</p>
+                                <ngx-star-rating [(ngModel)]="rating3" [id]="'rating3'"
+                                  [disabled]="true"></ngx-star-rating>
+                              </div>
+                              <p class="fw-600">Tunis,Tunisia</p>
                             </div>
-                            <p class="fw-600">Tunis,Tunisia</p>
                           </div>
+                          <i class="pi pi-th-large"></i>
                         </div>
-                        <i class="pi pi-th-large"></i>
+                        <p class="mt-2">Posted 5hours ago</p>
                       </div>
-                      <p class="mt-2">Posted 5hours ago</p>
                     </div>
-                  </div>
+                  </ng-container>
                 </ng-container>
+                <ng-template #noRecommendedResults>
+                  <div class="h-100 d-flex align-items-center justify-content-center flex-column">
+                    <img class="no-data" src="assets/images/not-found/no-data.svg" alt="no-data">
+                    <p>{{'general.no_search_result'|translate}}</p>
+                  </div>
+                </ng-template>
+
               </div>
             </ng-template>
           </div>
-          <div class="d-flex justify-content-center mt-4">
-            <button class="btn btn-solid-main rounded-pill px-5"
-              (click)="seeMore()">{{'general.see_more'|translate}}</button>
-          </div>
+          <ng-container *ngIf="recommendedResults?.length>0">
+            <div class="d-flex justify-content-center mt-4">
+              <button class="btn btn-solid-main rounded-pill px-5"
+                (click)="seeMore()">{{'general.see_more'|translate}}</button>
+            </div>
+          </ng-container>
+
         </div>
 
       </div>

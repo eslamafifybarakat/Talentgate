@@ -48,7 +48,7 @@ export class AuthUserService {
     // const formData = new FormData();
     // formData.append('image', file);
     // return this.http.post<any>('api/upload', formData).toPromise();
-    return this.http?.post<any>(this.apiUrl + roots?.auth?.upLoadImage, data);
+    return this.http?.post<any>(this.apiUrl + roots?.auth?.upLoadImage + '?timestamp=${new Date().getTime()', data);
   }
   signOut(): any {
     window?.localStorage?.removeItem(keys?.logged);
