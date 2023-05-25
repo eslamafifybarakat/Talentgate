@@ -27,6 +27,7 @@ export class UserInfoComponent implements OnInit {
 
   ngOnInit(): void {
     this.userData = JSON.parse(window.localStorage.getItem(keys?.userLoginData) || '{}');
+    // endStringTime?.split(':')[0]
     this.userInfoList = userInfoMenu;
   }
 

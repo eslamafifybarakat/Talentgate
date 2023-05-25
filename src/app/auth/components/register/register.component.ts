@@ -32,6 +32,7 @@ export class RegisterComponent implements OnInit {
   cvFilePath: any;
   imgFilePath: any;
   imgFileSrc: any;
+  isLoadingImage: boolean = false;
 
   SearchCountryField = SearchCountryField;
   CountryISO = CountryISO;
@@ -225,19 +226,21 @@ export class RegisterComponent implements OnInit {
     // let image = this.publicService?.base64ToImageFile(reader.result, "image");
     let img: any = this.secondRegisterForm?.value?.image;
     formData.append("image", img);
-    console.log('kkk');
-
+    this.isLoadingImage = true;
     this.authUserService?.uploadImage(formData)?.subscribe(
       (res: any) => {
         if (res?.status == 200) {
           this.imgFilePath = res?.data?.file_path;
           this.imgFileSrc = reader.result;
+          this.isLoadingImage = false;
         } else {
           res?.message ? this.alertsService?.openSweetAlert('info', res?.message) : '';
+          this.isLoadingImage = false;
         }
       },
       (err: any) => {
         err?.message ? this.alertsService?.openSweetAlert('error', err?.message) : '';
+        this.isLoadingImage = false;
       });
     this.cdr?.detectChanges();
   }

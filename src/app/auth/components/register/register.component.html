@@ -147,32 +147,35 @@
                 <form [formGroup]="secondRegisterForm" (ngSubmit)="submitSecondRegForm()" class="pt-3 sign_up">
                   <div class="d-flex justify-content-center mb-4">
                     <input type="file" id="profilePicture" accept="image/*" (change)="selectImage($event)" hidden>
-                    <!-- <label for="profilePicture">
-                      <img class="photo pointer" src="../../../../assets/images/auth/picture.png" alt="">
-                    </label> -->
                     <div class="w-auto position-relative">
-                      <ng-container *ngIf="imgFilePath">
-                        <div (click)="removeImage()"
-                          class="d-flex justify-content-center align-items-center remove-img rounded-circle bg-white-color shadow pointer">
-                          <i class="pi pi-times text-danger"></i>
-                        </div>
+                      <ng-container *ngIf="isLoadingImage; else loadingImage">
+                        <app-skeleton [type]="'image'"></app-skeleton>
                       </ng-container>
-
-                      <div
-                        class="profile-img rounded-circle d-flex justify-content-center align-items-center position-relative">
-                        <ng-container *ngIf="imgFilePath; else noImg">
-                          <img [src]="imgFileSrc" class="img-src" alt="">
+                      <ng-template #loadingImage>
+                        <ng-container *ngIf="imgFilePath">
+                          <div (click)="removeImage()"
+                            class="d-flex justify-content-center align-items-center remove-img rounded-circle bg-white-color shadow pointer">
+                            <i class="pi pi-times text-danger"></i>
+                          </div>
                         </ng-container>
-                        <ng-template #noImg>
-                          <i class="pi pi-camera fs-2"></i>
-                        </ng-template>
+                        <div
+                          class="profile-img rounded-circle d-flex justify-content-center align-items-center position-relative">
+                          <ng-container *ngIf="imgFilePath; else noImg">
+                            <img [src]="imgFileSrc" class="img-src" alt="">
+                          </ng-container>
+                          <ng-template #noImg>
+                            <i class="pi pi-camera fs-2"></i>
+                          </ng-template>
 
-                        <label for="profilePicture" class="add-photo d-flex justify-content-center align-items-center">
-                          <!-- <div > -->
-                          <a class="fs-6-1 text-center text-white-color">Add Photo</a>
-                          <!-- </div> -->
-                        </label>
-                      </div>
+                          <label for="profilePicture"
+                            class="add-photo d-flex justify-content-center align-items-center">
+                            <!-- <div > -->
+                            <a class="fs-6-1 text-center text-white-color">Add Photo</a>
+                            <!-- </div> -->
+                          </label>
+                        </div>
+                      </ng-template>
+
                     </div>
                   </div>
                   <div class="mb-4">
