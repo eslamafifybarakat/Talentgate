@@ -67,16 +67,16 @@ export class HomeComponent implements OnInit {
       });
     this.cdr?.detectChanges();
 
-    this.searchResults = [
-      { coupon_name: 'User Experience(Ux) Designer' },
-      { coupon_name: 'User Experience(Ux) Designer' },
-      { coupon_name: 'User Experience(Ux) Designer' },
-      { coupon_name: 'User Experience(Ux) Designer' },
-      { coupon_name: 'User Experience(Ux) Designer' },
-      { coupon_name: 'User Experience(Ux) Designer' },
-      { coupon_name: 'User Experience(Ux) Designer' },
-      { coupon_name: 'User Experience(Ux) Designer' },
-    ]
+    // this.searchResults = [
+    //   { coupon_name: 'User Experience(Ux) Designer' },
+    //   { coupon_name: 'User Experience(Ux) Designer' },
+    //   { coupon_name: 'User Experience(Ux) Designer' },
+    //   { coupon_name: 'User Experience(Ux) Designer' },
+    //   { coupon_name: 'User Experience(Ux) Designer' },
+    //   { coupon_name: 'User Experience(Ux) Designer' },
+    //   { coupon_name: 'User Experience(Ux) Designer' },
+    //   { coupon_name: 'User Experience(Ux) Designer' },
+    // ]
   }
   getHiring(): any {
     this.isLoadingHiringAreas = true;
@@ -105,16 +105,16 @@ export class HomeComponent implements OnInit {
       });
     this.cdr?.detectChanges();
 
-    this.searchResults = [
-      { coupon_name: 'User Experience(Ux) Designer' },
-      { coupon_name: 'User Experience(Ux) Designer' },
-      { coupon_name: 'User Experience(Ux) Designer' },
-      { coupon_name: 'User Experience(Ux) Designer' },
-      { coupon_name: 'User Experience(Ux) Designer' },
-      { coupon_name: 'User Experience(Ux) Designer' },
-      { coupon_name: 'User Experience(Ux) Designer' },
-      { coupon_name: 'User Experience(Ux) Designer' },
-    ]
+    // this.searchResults = [
+    //   { coupon_name: 'User Experience(Ux) Designer' },
+    //   { coupon_name: 'User Experience(Ux) Designer' },
+    //   { coupon_name: 'User Experience(Ux) Designer' },
+    //   { coupon_name: 'User Experience(Ux) Designer' },
+    //   { coupon_name: 'User Experience(Ux) Designer' },
+    //   { coupon_name: 'User Experience(Ux) Designer' },
+    //   { coupon_name: 'User Experience(Ux) Designer' },
+    //   { coupon_name: 'User Experience(Ux) Designer' },
+    // ]
   }
   getJobRecommended(count: any): any {
     this.isLoadingRecommendedResults = true;
@@ -142,16 +142,16 @@ export class HomeComponent implements OnInit {
       });
     this.cdr?.detectChanges();
 
-    this.searchResults = [
-      { coupon_name: 'User Experience(Ux) Designer' },
-      { coupon_name: 'User Experience(Ux) Designer' },
-      { coupon_name: 'User Experience(Ux) Designer' },
-      { coupon_name: 'User Experience(Ux) Designer' },
-      { coupon_name: 'User Experience(Ux) Designer' },
-      { coupon_name: 'User Experience(Ux) Designer' },
-      { coupon_name: 'User Experience(Ux) Designer' },
-      { coupon_name: 'User Experience(Ux) Designer' },
-    ]
+    // this.searchResults = [
+    //   { coupon_name: 'User Experience(Ux) Designer' },
+    //   { coupon_name: 'User Experience(Ux) Designer' },
+    //   { coupon_name: 'User Experience(Ux) Designer' },
+    //   { coupon_name: 'User Experience(Ux) Designer' },
+    //   { coupon_name: 'User Experience(Ux) Designer' },
+    //   { coupon_name: 'User Experience(Ux) Designer' },
+    //   { coupon_name: 'User Experience(Ux) Designer' },
+    //   { coupon_name: 'User Experience(Ux) Designer' },
+    // ]
   }
   seeMore(): void {
     this.count += 6;

@@ -1,17 +1,18 @@
 <ng-container *ngIf="true">
   <nav [class.navbar-bg]="scrollDown" class="navbar navbar-expand-lg bg-white-color  position-fixed w-100 px-4"
     [class.shadow-none]="moduleType=='dashboard' && !toggleSideMenu"
-    [class.dash]="moduleType=='dashboard' && !toggleSideMenu">
+    [class.dash]="moduleType=='dashboard' && !toggleSideMenu" (clickOutside)="toggle == true ? toggle = false :''">
     <div class="container">
       <a class="navbar-brand d-flex align-items-center m-0">
         <img src="../../../../assets/images/logo/logo.jfif" alt="logo" class="logo">
       </a>
       <button class="navbar-toggler border-0 gap-2" type="button" data-bs-toggle="collapse"
-        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-        aria-label="Toggle navigation">
+        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-label="Toggle navigation"
+        [attr.aria-expanded]="!toggle" (click)="toggle = !toggle">
         <i class="fas fa-bars text-main-color fs-4"></i>
       </button>
-      <div class="collapse navbar-collapse justify-content-between gap-2" id="navbarSupportedContent">
+      <div class="collapse navbar-collapse justify-content-between gap-2" id="navbarSupportedContent"
+        [class.show]="toggle">
         <div class="d-flex gap-2 search-inputs">
           <ng-container *ngIf="isLogged">
             <span class="p-input-icon-right ms-4">

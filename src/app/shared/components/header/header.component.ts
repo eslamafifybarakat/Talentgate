@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   toggleSideMenu: boolean = false;
+  toggle: boolean = false;
+
   moduleType: string = '';
   @Input() collapsed: boolean = false;
   @Input() screenWidth: any = 0;

@@ -1,3 +1,4 @@
+import { AuthGuard } from './core/guards/auth.guard';
 import { NoInternetComponent } from './core/componenets/no-internet/no-internet.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -11,7 +12,10 @@ const routes: Routes = [
     path: '', component: LayoutComponent,
     loadChildren: () => import('./pages/pages.module').then((m) => m.PagesModule),
   },
-  { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
+  {
+    // canActivate: [AuthGuard],
+    path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
+  },
   { path: 'no-internet', component: NoInternetComponent },
   // {path: '',redirectTo: 'auth', pathMatch: 'full', },
 
