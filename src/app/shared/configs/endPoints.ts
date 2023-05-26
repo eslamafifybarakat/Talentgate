@@ -13,5 +13,6 @@ export const roots = {
     hiring_by_area: '/companys/hiring_by_area',
     job_recommended_for_you: '/job_offers/job_recommended_for_you',
     job_offers: '/job_offers',
+    job_offers_search: '/job_offers/search',
   }
 }

@@ -153,7 +153,7 @@ export class ApplyJobComponent implements OnInit {
   }
   getSearchResults(value: any): any {
     this.isLoadingSearchResults = true;
-    this.homeService?.getSearchResults(value)?.subscribe(
+    this.homeService?.getJobOfferSearchResults(value)?.subscribe(
       (res: any) => {
         if (res?.status == 200) {
           let arr: any = [];
