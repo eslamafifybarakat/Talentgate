@@ -44,7 +44,7 @@ export class ApplyJobComponent implements OnInit {
   </div>`
   };
   isLoadingDetails: boolean = false;
-
+  jobId: any;
   rating3: any = 3;
   skills: any = [{ title: 'User interface Design' }, { title: 'User Experience' }, { title: '88' }];
   links: any = [
@@ -68,9 +68,10 @@ export class ApplyJobComponent implements OnInit {
   ngOnInit(): void {
     this.getJobRecommended(0);
     this.changeData(this.recommendedResults[0]?._id);
+    this.jobId = this.recommendedResults[0]?._id;
     this.publicService?.recallSearchResults?.subscribe((res: any) => {
       if (res?.recall == true) {
-        this.getSearchResults(res?.searchValue);
+        this.getSearchResults(this.jobId, res?.searchValue);
       }
     });
   }
@@ -121,6 +122,7 @@ export class ApplyJobComponent implements OnInit {
       }
     });
     this.getJobOffersDetails(id);
+    this.jobId = id;
     // this.jobDetails = {
     //   id: 1,
     //   title: 'Product Designer 2', address: 'tunisia,tunisia', timeAgo: '5hours', applicationsNumber: 200, time: 'Part-time', position: 'Mid-Senior level', skills: [{ title: 'User interface Design' }, { title: 'User Experience' }], jobDescription: `<div>
@@ -151,13 +153,13 @@ export class ApplyJobComponent implements OnInit {
     // </div>`
     // };
   }
-  getSearchResults(value: any): any {
+  getSearchResults(id?: any, value?: any): any {
     this.isLoadingSearchResults = true;
-    this.homeService?.getJobOfferSearchResults(value)?.subscribe(
+    this.homeService?.getJobOfferSearchResults(id, value)?.subscribe(
       (res: any) => {
         if (res?.status == 200) {
           let arr: any = [];
-          res?.data ? res?.data?.search_result?.forEach((item: any) => {
+          res?.data ? res?.data?.offers?.forEach((item: any) => {
             arr?.push({
               coupon_name: item?.coupon_name ? item?.coupon_name : '',
               coupon_picture: item?.coupon_picture ? item?.coupon_picture : '',

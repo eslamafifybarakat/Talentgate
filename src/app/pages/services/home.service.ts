@@ -18,8 +18,8 @@ export class HomeService {
   getSearchResults(value: any): Observable<any> {
     return this.http?.post<any>(this.apiUrl + roots?.home?.globalBarSearch + '/' + this.langKey, value);
   }
-  getJobOfferSearchResults(value: any): Observable<any> {
-    return this.http?.post<any>(this.apiUrl + roots?.home?.globalBarSearch + '/' + this.langKey, value);
+  getJobOfferSearchResults(id?: any, value?: any): Observable<any> {
+    return this.http?.post<any>(this.apiUrl + roots?.home?.job_offers_search + '/' + this.langKey + '/' + id, value);
   }
   getHiring(page_nbr: any): Observable<any> {
     return this.http?.get<any>(this.apiUrl + roots?.home?.hiring_by_area + '/' + this.langKey + '/' + page_nbr);
