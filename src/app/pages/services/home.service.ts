@@ -16,8 +16,11 @@ export class HomeService {
 
 
   getSearchResults(value: any): Observable<any> {
-    return this.http?.get<any>(this.apiUrl + roots?.home?.globalBarSearch + '/' + value);
+    return this.http?.post<any>(this.apiUrl + roots?.home?.globalBarSearch + '/' + this.langKey, value);
   }
+  // getSearchResults(value: any): Observable<any> {
+  //   return this.http?.post<any>(this.apiUrl + roots?.home?.globalBarSearch + '/' + this.langKey, value);
+  // }
   getHiring(page_nbr: any): Observable<any> {
     return this.http?.get<any>(this.apiUrl + roots?.home?.hiring_by_area + '/' + this.langKey + '/' + page_nbr);
   }

@@ -5,12 +5,17 @@
   }
   .firstdiv {
     width: 100%;
-    background-image: url(../../../../assets/images/auth/login.jfif);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     background-position: left;
     border-radius: var(--border-radius-card);
+  }
+  .en-bg {
+    background-image: url(../../../../assets/images/auth/login.jfif);
+  }
+  .ar-bg {
+    background-image: url(../../../../assets/images/auth/login.jfif);
   }
   .content {
     h2 {

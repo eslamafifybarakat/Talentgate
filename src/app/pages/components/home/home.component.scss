@@ -14,11 +14,24 @@
   .number {
     color: #a6c9eb;
   }
+  .hiringAreas {
+    max-height: 250px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    &::-webkit-scrollbar-track {
+      border-radius: 0.5rem;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--bg-main-color);
+      border-radius: 0.5rem;
+    }
+  }
   .hiring-img {
     border: 1px solid var(--bg-main-color);
     padding: 10px;
     .hiring-img-w {
-      width: 35px;
+      min-width: 35px;
     }
   }
   .visit-btn {

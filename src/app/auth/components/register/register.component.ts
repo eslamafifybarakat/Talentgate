@@ -20,7 +20,7 @@ import { Subscription } from 'rxjs';
 export class RegisterComponent implements OnInit {
   private unsubscribe: Subscription[] = [];
   showNextContent: boolean = false;
-  currentLanguage: any;
+  currentLang: any;
 
   step: any;
 
@@ -54,7 +54,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.step = 1;
-    this.currentLanguage = window?.localStorage?.getItem(keys?.language);
+    this.currentLang = window?.localStorage?.getItem(keys?.language);
   }
 
   firstRegisterForm = this.fb?.group(

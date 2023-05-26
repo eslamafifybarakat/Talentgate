@@ -51,7 +51,6 @@ export class LoginComponent implements OnInit {
       {
         validators: [
           Validators.required,
-          // Validators?.pattern(patterns?.password)
         ],
         updateOn: 'blur',
       },

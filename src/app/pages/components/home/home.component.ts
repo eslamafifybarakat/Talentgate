@@ -15,10 +15,7 @@ export class HomeComponent implements OnInit {
   hiringAreas: any = [8, 9, 8];
   isLoadingHiringAreas: boolean = false;
 
-  allRecommendedResults: any = [4, 5, 55, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 222, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2
-    // { id: 1, image: '', title: '', name: '', rate: 0, address: '', time: '' }
-  ];
-  recommendedResults: any = [2, 5, 5, 4, 9, 8];
+  recommendedResults: any = [];
   isLoadingRecommendedResults: boolean = false;
   rating3: any = 3;
   count: any = 6;
@@ -40,6 +37,7 @@ export class HomeComponent implements OnInit {
     });
     this.getHiring();
     this.getJobRecommended(0);
+
   }
   getSearchResults(value: any): any {
     this.isLoadingSearchResults = true;
@@ -47,7 +45,7 @@ export class HomeComponent implements OnInit {
       (res: any) => {
         if (res?.status == 200) {
           let arr: any = [];
-          res?.data ? res?.data?.coupons?.forEach((item: any) => {
+          res?.data ? res?.data?.search_result?.forEach((item: any) => {
             arr?.push({
               coupon_name: item?.coupon_name ? item?.coupon_name : '',
               coupon_picture: item?.coupon_picture ? item?.coupon_picture : '',
@@ -83,16 +81,7 @@ export class HomeComponent implements OnInit {
     this.homeService?.getHiring(0)?.subscribe(
       (res: any) => {
         if (res?.status == 200) {
-          // let arr: any = [];
-          this.hiringAreas = res?.data ? res?.data?.companies : []
-          // res?.data ? res?.data?.companies?.forEach((item: any) => {
-          //   arr?.push({
-          //     coupon_name: item?.coupon_name ? item?.coupon_name : '',
-          //     coupon_picture: item?.coupon_picture ? item?.coupon_picture : '',
-          //     description: item?.description ? item?.description : '',
-          //   })
-          // }) : '';
-          // this.hiringAreas = arr;
+          this.hiringAreas = res?.data ? res?.data?.companies : [];
           this.isLoadingHiringAreas = false;
         } else {
           res?.message ? this.alertsService?.openSweetAlert('info', res?.message) : '';
@@ -104,17 +93,6 @@ export class HomeComponent implements OnInit {
         this.isLoadingHiringAreas = false;
       });
     this.cdr?.detectChanges();
-
-    // this.searchResults = [
-    //   { coupon_name: 'User Experience(Ux) Designer' },
-    //   { coupon_name: 'User Experience(Ux) Designer' },
-    //   { coupon_name: 'User Experience(Ux) Designer' },
-    //   { coupon_name: 'User Experience(Ux) Designer' },
-    //   { coupon_name: 'User Experience(Ux) Designer' },
-    //   { coupon_name: 'User Experience(Ux) Designer' },
-    //   { coupon_name: 'User Experience(Ux) Designer' },
-    //   { coupon_name: 'User Experience(Ux) Designer' },
-    // ]
   }
   getJobRecommended(count: any): any {
     this.isLoadingRecommendedResults = true;
@@ -122,14 +100,7 @@ export class HomeComponent implements OnInit {
       (res: any) => {
         if (res?.status == 200) {
           let arr: any = [];
-          res?.data ? res?.data?.coupons?.forEach((item: any) => {
-            arr?.push({
-              coupon_name: item?.coupon_name ? item?.coupon_name : '',
-              coupon_picture: item?.coupon_picture ? item?.coupon_picture : '',
-              description: item?.description ? item?.description : '',
-            })
-          }) : '';
-          this.recommendedResults = arr;
+          res?.data ? this.recommendedResults = res?.data?.job_offers : [];
           this.isLoadingRecommendedResults = false;
         } else {
           res?.message ? this.alertsService?.openSweetAlert('info', res?.message) : '';
@@ -141,17 +112,6 @@ export class HomeComponent implements OnInit {
         this.isLoadingRecommendedResults = false;
       });
     this.cdr?.detectChanges();
-
-    // this.searchResults = [
-    //   { coupon_name: 'User Experience(Ux) Designer' },
-    //   { coupon_name: 'User Experience(Ux) Designer' },
-    //   { coupon_name: 'User Experience(Ux) Designer' },
-    //   { coupon_name: 'User Experience(Ux) Designer' },
-    //   { coupon_name: 'User Experience(Ux) Designer' },
-    //   { coupon_name: 'User Experience(Ux) Designer' },
-    //   { coupon_name: 'User Experience(Ux) Designer' },
-    //   { coupon_name: 'User Experience(Ux) Designer' },
-    // ]
   }
   seeMore(): void {
     this.count += 6;

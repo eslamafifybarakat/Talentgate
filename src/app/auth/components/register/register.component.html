@@ -1,6 +1,7 @@
 <div class="auth-form  min-vh-100" id="registration">
   <div class="container  d-flex justify-content-center align-items-center h-100 form-content">
-    <div class="firstdiv w-100">
+    <div class="firstdiv w-100"
+      ngClass="{{currentLang=='en'&&step==1?'en-step1-bg':currentLang=='en'&&step==2?'en-step2-bg':currentLang=='ar'&&step==1?'ar-step1-bg':'ar-step2-bg'}}">
       <div class="row justify-content-end align-items-center">
         <div class="col-lg-7 col-md-12 ">
           <div class="global-card p-sm-5 p-4 align-items-end  ">
