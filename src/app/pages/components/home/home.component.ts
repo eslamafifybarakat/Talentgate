@@ -12,7 +12,7 @@ import { HomeService } from '../../services/home.service';
 export class HomeComponent implements OnInit {
   searchResults: any = [];
   isLoadingSearchResults: boolean = false;
-  hiringAreas: any = [8, 9, 8];
+  hiringAreas: any = [];
   isLoadingHiringAreas: boolean = false;
 
   recommendedResults: any = [];
