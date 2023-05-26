@@ -4,6 +4,7 @@
     "arabic": "Arabic"
   },
   "general": {
+    "addPhoto":"Add Photo",
     "uploadImageHint":"Please upload image",
     "notifications":"Notifications",
     "visit":"Visit",

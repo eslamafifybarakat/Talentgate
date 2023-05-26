@@ -3,7 +3,8 @@
     "arabic": "Arabic"
   },
   "general": {
-    "uploadImageHint":"Please upload image",
+    "addPhoto":"اضف صورة",
+    "uploadImageHint":"من فضلك قم بتحميل صورة",
     "notifications":"الاشعارات",
     "visit":"زيارة",
     "filter": "التصفية",
