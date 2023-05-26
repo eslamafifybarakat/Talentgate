@@ -102,13 +102,13 @@
                             <img class="recommended-img rounded-circle"
                               src="../../../../assets/images/home/product.jfif" alt="product">
                             <div>
-                              <h5 class="fs-5-1 text-main-color fw-bold mb-1">Product Designer</h5>
+                              <h5 class="fs-5-1 text-main-color fw-bold mb-1"> {{item?.title}}</h5>
                               <div class="d-flex gap-1 flex-wrap">
                                 <p class="fw-600">Google</p>
                                 <ngx-star-rating [(ngModel)]="rating3" [id]="'rating3'"
                                   [disabled]="true"></ngx-star-rating>
                               </div>
-                              <p class="fw-600">Tunis,Tunisia</p>
+                              <p class="fw-600">{{item?.address}}</p>
                             </div>
                           </div>
                           <i class="pi pi-th-large"></i>

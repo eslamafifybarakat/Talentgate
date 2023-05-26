@@ -18,7 +18,7 @@
 }
 .recent-content {
   color: #3d4c57;
-  min-height: calc(100vh - 290px);
+  max-height: calc(100vh - 290px);
   overflow-y: auto;
   overflow-x: hidden;
 
@@ -55,8 +55,8 @@
     width: 0.5rem;
   }
   &::-webkit-scrollbar-thumb {
-    // background: #b8b8b8;
-    background: var(--bg-main-color);
+    background: #b8b8b8;
+    // background: var(--bg-main-color);
   }
 }
 

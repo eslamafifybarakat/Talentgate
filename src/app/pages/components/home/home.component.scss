@@ -92,5 +92,9 @@
   label.star {
     padding: 3px !important;
     font-size: 14px !important;
+    color: #f8b84e !important;
+  }
+  input.star:checked ~ label.star:before {
+    color: #f8b84e !important;
   }
 }

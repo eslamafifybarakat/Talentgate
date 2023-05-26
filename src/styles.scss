@@ -75,6 +75,9 @@ body {
   position: relative !important;
 }
 .nav {
+  .p-dropdown-panel {
+    min-width: 13rem !important;
+  }
   .p-dropdown {
     height: 2rem !important;
     padding: 0 !important;
@@ -84,13 +87,19 @@ body {
       color: var(--text-main-color) !important;
     }
   }
+  .p-dropdown .p-dropdown-label {
+    // line-height: 2 !important;
+    padding: 5px 14px !important;
+    color: var(--text-main-color) !important;
+  }
   .p-dropdown .p-dropdown-label.p-placeholder {
     color: var(--text-main-color) !important;
     padding: 15px 7px !important;
   }
   .active {
     .p-dropdown .p-dropdown-label.p-placeholder,
-    .pi {
+    .pi,
+    .p-dropdown .p-dropdown-label {
       color: var(--text-white-color) !important;
     }
   }

@@ -26,6 +26,7 @@ export class HeaderComponent implements OnInit {
     if (window.pageYOffset > 20) {
       element.classList.add("headerScroll");
       this.scrollDown = true;
+
     } else {
       element.classList.remove("headerScroll");
       this.scrollDown = false;

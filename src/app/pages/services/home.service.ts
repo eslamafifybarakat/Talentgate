@@ -27,4 +27,7 @@ export class HomeService {
   getJobRecommended(page_nbr: any): Observable<any> {
     return this.http?.get<any>(this.apiUrl + roots?.home?.job_recommended_for_you + '/' + this.langKey + '/' + page_nbr);
   }
+  getJobOffersDetails(id: any): Observable<any> {
+    return this.http?.get<any>(this.apiUrl + roots?.home?.job_offers + '/' + id + '/' + this.langKey);
+  }
 }

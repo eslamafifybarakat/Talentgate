@@ -65,3 +65,29 @@
 <ng-container *ngIf="type=='image'">
   <p-skeleton size="8rem" shape="circle"></p-skeleton>
 </ng-container>
+
+<ng-container *ngIf="type=='jobOffers'">
+  <div class="row recommended">
+    <ng-container *ngFor="let item of [9,8,6]">
+      <div class="col-xl-12 col-lg-12 col-md-6">
+        <div class="recomended-content p-3 mx-3 mt-2">
+          <div class="d-flex justify-content-between  gap-2">
+            <div class="d-flex align-items-center flex-wrap gap-2">
+              <p-skeleton size="4rem" shape="circle"></p-skeleton>
+              <div>
+                <p-skeleton width="5rem" borderRadius="6px" height="1.1rem" styleClass="mb-2"></p-skeleton>
+                <div class="d-flex gap-1 flex-wrap">
+                  <p-skeleton width="2rem" borderRadius="6px" height=".9rem" styleClass="mb-1"></p-skeleton>
+                  <p-skeleton width="6rem" borderRadius="6px" height=".9rem" styleClass="mb-1"></p-skeleton>
+                </div>
+                <p-skeleton width="6rem" borderRadius="6px" height=".9rem"></p-skeleton>
+              </div>
+            </div>
+            <p-skeleton size="1rem" borderRadius="6px"></p-skeleton>
+          </div>
+          <p-skeleton width="8rem" borderRadius="6px" styleClass="mt-2"></p-skeleton>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</ng-container>
