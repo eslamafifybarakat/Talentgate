@@ -97,18 +97,21 @@
                   <div>
                     <div class="d-flex gap-2 align-items-center mt-3">
                       <i class="fas fa-briefcase fs-5 gray-500"></i>
-                      <p class="fs-6-1 gray-500">{{jobDetails?.time}}</p>
+                      <p class="fs-6-1 gray-500">{{jobDetails?.time||'dummy time'}}</p>
                       <p class="fs-6-1 gray-500 d-flex align-items-center gap-2">
                         <span class="dot"></span>
-                        <span>{{jobDetails?.position}}</span>
+                        <span>{{jobDetails?.position||'dummy position'}}</span>
                       </p>
                     </div>
                     <div class="d-flex gap-2 align-items-center mt-3">
                       <i class="pi pi-building fs-5 gray-500"></i>
-                      <p class="fs-6-1 gray-500">51-200 Employees</p>
+                      <p class="fs-6-1 gray-500 d-flex gap-1"><span>
+                          {{jobDetails?.employeesNumber||'dummy number'}}</span>
+                        <span>{{'general.employees'|translate}}</span>
+                      </p>
                       <p class="fs-6-1 gray-500 d-flex align-items-center gap-2">
                         <span class="dot"></span>
-                        <span>IT Services and IT Consulting</span>
+                        <span> dummy company</span>
                       </p>
                     </div>
                     <div class="d-flex gap-2 align-items-center mt-3">
@@ -126,7 +129,7 @@
                           </ng-container>
                           <ng-template #moreSkills>
                             <span>,
-                              +{{skills?.length-2}}
+                              +{{jobDetails?.skills?.length-2}}
                               <span>more</span>
                             </span>
                           </ng-template>

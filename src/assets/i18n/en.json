@@ -4,6 +4,7 @@
     "arabic": "Arabic"
   },
   "general": {
+    "employees":"Employees",
     "addPhoto":"Add Photo",
     "uploadImageHint":"Please upload image",
     "notifications":"Notifications",

@@ -48,8 +48,6 @@ export class ApplyJobComponent implements OnInit {
   };
   isLoadingDetails: boolean = false;
   jobId: any;
-  rating3: any = 3;
-  skills: any = [{ title: 'User interface Design' }, { title: 'User Experience' }, { title: '88' }];
   links: any = [
     { id: 1, name: 'Most relevant', dropdown: [{ id: 1, name: 'Most relevant1' }, { id: 2, name: 'Most relevant2' }, { id: 3, name: 'Most relevant3' }, { id: 4, name: 'Most relevant4' }], value: 'mostRelevant' },
     { id: 2, name: 'Experience level', dropdown: [{ id: 1, name: 'Most relevant1' }, { id: 2, name: 'Most relevant2' }, { id: 3, name: 'Most relevant3' }, { id: 4, name: 'Most relevant4' }], value: 'experienceLevel' },
@@ -67,6 +65,7 @@ export class ApplyJobComponent implements OnInit {
     experienceLevel: ['', []],
     experienceLevels: ['', []],
     jobType: ['', []],
+    jobFunction: ['', []],
     onSite: ['', []],
     location: ['', []],
     industry: ['', []],
@@ -207,6 +206,16 @@ export class ApplyJobComponent implements OnInit {
         this.isLoadingSearchResults = false;
       });
     this.cdr?.detectChanges();
+    this.searchResults = [
+      { coupon_name: 'User Experience(Ux) Designer' },
+      { coupon_name: 'User Experience(Ux) Designer' },
+      { coupon_name: 'User Experience(Ux) Designer' },
+      { coupon_name: 'User Experience(Ux) Designer' },
+      { coupon_name: 'User Experience(Ux) Designer' },
+      { coupon_name: 'User Experience(Ux) Designer' },
+      { coupon_name: 'User Experience(Ux) Designer' },
+      { coupon_name: 'User Experience(Ux) Designer' },
+    ]
   }
   applyForJob(): any {
     console.log(this.form?.value);
@@ -220,10 +229,10 @@ export class ApplyJobComponent implements OnInit {
         email: this.userData?.email,
         phone_number: "string",
         country_code: this.userData?.country_code,
-        country: this.userData?.country,
-        city: this.userData?.city
+        country: this.userData?.country?._id,
+        city: this.userData?.city?._id
       },
-      cv: this.userData?.cv,
+      cv: this.userData?.cv?.name_cv,
       cover_letter: "string",
       message: "string",
       questions_responses: [
