@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
   toggleSideMenu: boolean = false;
   toggle: boolean = false;
+  enableSearch: boolean = false;
+  enableLocation: boolean = false;
 
   moduleType: string = '';
   @Input() collapsed: boolean = false;
@@ -47,9 +49,14 @@ export class HeaderComponent implements OnInit {
     console.log(this.url);
 
     this.sharedService?.urlData?.subscribe((res: any) => {
-      this.moduleType = res?.moduleType;
-      console.log(this.moduleType);
+      this.moduleType = res?.type;
+      this.enableSearch = res?.enableHeaderSearch;
+      this.enableLocation = res?.enableLocation;
+      this.cdr.detectChanges();
+      console.log(res);
+
     })
+    console.log(this.moduleType);
 
     // if (window?.innerWidth < 700) {
     //   this.toggleSideMenu = true;
@@ -78,11 +85,11 @@ export class HeaderComponent implements OnInit {
         searchValue: event
       }
     );
-    this.cdr.detectChanges();
+    this.cdr?.detectChanges();
   }
   clearSearchValue(search: any): void {
     search.value = '';
-    this.searchHandler.emit('');
+    this.searchHandler?.emit('');
   }
 }
 

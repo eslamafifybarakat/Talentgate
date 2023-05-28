@@ -7,10 +7,10 @@
           <img [src]="userData?.image" onerror="src='assets/images/not-found/no-user.svg'"
             class="user-img fit-object-cover rounded-circle w-100 h-100" alt="user-image" />
         </div>
-        <p>Ali</p>
+        <p>{{userData?.full_name.split(' ')[0]}}</p>
       </button>
-      <ul class="dropdown-menu border-0 shadow p-3 user-info-menu" aria-labelledby="dropdownMenuButton1"
-        [class.show]="collapse">
+      <ul class="dropdown-menu border-0 shadow p-3 user-info-menu position-absolute"
+        aria-labelledby="dropdownMenuButton1" [class.show]="collapse">
         <ng-container *ngFor="let item of userInfoList">
           <li class="nav-item">
             <!-- <ng-container *ngIf="item?.routerLink == '/dashboard'; else elseRouterLink">

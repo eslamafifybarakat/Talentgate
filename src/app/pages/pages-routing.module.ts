@@ -10,9 +10,26 @@ const routes: Routes = [
   // { path: 'onboarding', component: OnboardingComponent, },
   {
     path: '', component: PagesComponent, children: [
-      { path: 'home', component: HomeComponent },
-      { path: 'apply-job', component: ApplyJobComponent },
-      { path: 'calender', component: CalenderComponent },
+      {
+        path: 'home', component: HomeComponent,
+        data: {
+          enableHeaderSearch: true,
+          type: 'pages'
+        }
+      },
+      {
+        path: 'apply-job', component: ApplyJobComponent, data: {
+          enableHeaderSearch: true,
+          enableLocation: true,
+          type: 'pages'
+        }
+      },
+      {
+        path: 'calender', component: CalenderComponent, data: {
+          enableHeaderSearch: true,
+          type: 'pages'
+        }
+      },
     ]
   }
 ];

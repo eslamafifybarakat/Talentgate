@@ -3,6 +3,7 @@ import { PublicService } from './../../../shared/services/public.service';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { keys } from 'src/app/shared/configs/localstorage-key';
 import { HomeService } from './../../services/home.service';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-apply-job',
@@ -50,21 +51,33 @@ export class ApplyJobComponent implements OnInit {
   rating3: any = 3;
   skills: any = [{ title: 'User interface Design' }, { title: 'User Experience' }, { title: '88' }];
   links: any = [
-    { id: 1, name: 'Most relevant', dropdown: [{ id: 1, name: 'Most relevant1' }, { id: 2, name: 'Most relevant2' }, { id: 3, name: 'Most relevant3' }, { id: 4, name: 'Most relevant4' }] },
-    { id: 2, name: 'Experience level', dropdown: [{ id: 1, name: 'Most relevant1' }, { id: 2, name: 'Most relevant2' }, { id: 3, name: 'Most relevant3' }, { id: 4, name: 'Most relevant4' }] },
-    { id: 3, name: 'Experience levels', dropdown: [{ id: 1, name: 'Most relevant1' }, { id: 2, name: 'Most relevant2' }, { id: 3, name: 'Most relevant3' }, { id: 4, name: 'Most relevant4' }] },
-    { id: 4, name: 'Job type', dropdown: [{ id: 1, name: 'Most relevant1' }, { id: 2, name: 'Most relevant2' }, { id: 3, name: 'Most relevant3' }, { id: 4, name: 'Most relevant4' }] },
-    { id: 5, name: 'Onsite/remote', dropdown: [{ id: 1, name: 'Most relevant1' }, { id: 2, name: 'Most relevant2' }, { id: 3, name: 'Most relevant3' }, { id: 4, name: 'Most relevant4' }] },
-    { id: 6, name: 'Location', dropdown: [{ id: 1, name: 'Most relevant1' }, { id: 2, name: 'Most relevant2' }, { id: 3, name: 'Most relevant3' }, { id: 4, name: 'Most relevant4' }] },
-    { id: 7, name: 'Industry', dropdown: [{ id: 1, name: 'Most relevant1' }, { id: 2, name: 'Most relevant2' }, { id: 3, name: 'Most relevant3' }, { id: 4, name: 'Most relevant4' }] },
-    { id: 8, name: 'Job Function', dropdown: [{ id: 1, name: 'Most relevant1' }, { id: 2, name: 'Most relevant2' }, { id: 3, name: 'Most relevant3' }, { id: 4, name: 'Most relevant4' }] },
-    { id: 9, name: 'Title', dropdown: [] },
-  ]
+    { id: 1, name: 'Most relevant', dropdown: [{ id: 1, name: 'Most relevant1' }, { id: 2, name: 'Most relevant2' }, { id: 3, name: 'Most relevant3' }, { id: 4, name: 'Most relevant4' }], value: 'mostRelevant' },
+    { id: 2, name: 'Experience level', dropdown: [{ id: 1, name: 'Most relevant1' }, { id: 2, name: 'Most relevant2' }, { id: 3, name: 'Most relevant3' }, { id: 4, name: 'Most relevant4' }], value: 'experienceLevel' },
+    { id: 3, name: 'Experience levels', dropdown: [{ id: 1, name: 'Most relevant1' }, { id: 2, name: 'Most relevant2' }, { id: 3, name: 'Most relevant3' }, { id: 4, name: 'Most relevant4' }], value: 'experienceLevels' },
+    { id: 4, name: 'Job type', dropdown: [{ id: 1, name: 'Most relevant1' }, { id: 2, name: 'Most relevant2' }, { id: 3, name: 'Most relevant3' }, { id: 4, name: 'Most relevant4' }], value: 'jobType' },
+    { id: 5, name: 'Onsite/remote', dropdown: [{ id: 1, name: 'Most relevant1' }, { id: 2, name: 'Most relevant2' }, { id: 3, name: 'Most relevant3' }, { id: 4, name: 'Most relevant4' }], value: 'onSite' },
+    { id: 6, name: 'Location', dropdown: [{ id: 1, name: 'Most relevant1' }, { id: 2, name: 'Most relevant2' }, { id: 3, name: 'Most relevant3' }, { id: 4, name: 'Most relevant4' }], value: 'location' },
+    { id: 7, name: 'Industry', dropdown: [{ id: 1, name: 'Most relevant1' }, { id: 2, name: 'Most relevant2' }, { id: 3, name: 'Most relevant3' }, { id: 4, name: 'Most relevant4' }], value: 'industry' },
+    { id: 8, name: 'Job Function', dropdown: [{ id: 1, name: 'Most relevant1' }, { id: 2, name: 'Most relevant2' }, { id: 3, name: 'Most relevant3' }, { id: 4, name: 'Most relevant4' }], value: 'jobFunction' },
+    { id: 9, name: 'Title', dropdown: [], value: 'title' },
+  ];
+
+  form = this.fb?.group({
+    mostRelevant: ['', []],
+    experienceLevel: ['', []],
+    experienceLevels: ['', []],
+    jobType: ['', []],
+    onSite: ['', []],
+    location: ['', []],
+    industry: ['', []],
+    title: ['', []]
+  })
   constructor(
     private alertsService: AlertsService,
     private publicService: PublicService,
     private homeService: HomeService,
     private cdr: ChangeDetectorRef,
+    private fb: FormBuilder
   ) { }
 
   ngOnInit(): void {
@@ -85,7 +98,18 @@ export class ApplyJobComponent implements OnInit {
     this.homeService?.getJobRecommended(count)?.subscribe(
       (res: any) => {
         if (res?.status == 200) {
-          res?.data ? this.recommendedResults = res?.data?.job_offers : [];
+          let arr: any = [];
+          res?.data ? res?.data?.job_offers?.forEach((item: any) => {
+            arr?.push({
+              _id: item?._id,
+              title: item?.title ? item?.title : 'dummy',
+              address: item?.address ? item?.address : 'dummy',
+              name: item?.name ? item?.name : 'dummy',
+              rate: item?.rate ? item?.rate : 0,
+              time: item?.time ? item?.time : 'dummy'
+            })
+          }) : '';
+          this.recommendedResults = arr;
           this.recommendedResults['isActive'] = false;
           this.isLoadingRecommendedResults = false;
           this.changeData(this.recommendedResults[0]?._id);
@@ -185,6 +209,8 @@ export class ApplyJobComponent implements OnInit {
     this.cdr?.detectChanges();
   }
   applyForJob(): any {
+    console.log(this.form?.value);
+
     this.publicService?.show_loader?.next(true);
     let data: any;
     data = {

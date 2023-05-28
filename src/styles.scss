@@ -75,6 +75,10 @@ body {
   position: relative !important;
 }
 .nav {
+  .p-overlay {
+    margin-top: 20px !important;
+  }
+
   .p-dropdown-panel {
     min-width: 13rem !important;
   }

@@ -18,8 +18,8 @@
         </ng-template>
       </span>
     </button>
-    <ul class="dropdown-menu shadow border-0 rounded-25 p-0 overflow-hidden" aria-labelledby="dropdownMenuButton1"
-      [class.show]="collapse">
+    <ul class="dropdown-menu shadow border-0 rounded-25 p-0 overflow-hidden position-absolute"
+      aria-labelledby="dropdownMenuButton1" [class.show]="collapse">
       <div class="d-flex justify-content-between align-items-center bg-main-color p-3 text-white-color">
         <h5 class="mb-0 fs-5-1">{{'general.notifications'|translate}}</h5>
         <i class="fas fa-gear"></i>
@@ -37,7 +37,7 @@
           </a>
         </li>
       </ul> -->
-      <div class="notification-content">
+      <div class="notification-content ">
         <div class="mb-2" *ngFor="let item of allNotifications">
           <div class="p-3 px-4 position-relative d-flex align-items-center gap-2"
             [class.active-notification]="item.seen=='unread'">

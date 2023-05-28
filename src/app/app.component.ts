@@ -80,7 +80,7 @@ export class AppComponent {
       )
       .subscribe((data: any) => {
         if (data) {
-          this.sharedService.urlData.next(data)
+          this.sharedService.urlData.next(data);
           this.url = data;
           console.log(this.url);
         }

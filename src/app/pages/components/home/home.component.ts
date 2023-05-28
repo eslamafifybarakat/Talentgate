@@ -1,7 +1,7 @@
 import { AlertsService } from 'src/app/core/services/alerts/alerts.service';
 import { PublicService } from './../../../shared/services/public.service';
-import { keys } from './../../../shared/configs/localstorage-key';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { keys } from './../../../shared/configs/localstorage-key';
 import { HomeService } from '../../services/home.service';
 
 @Component({
@@ -100,7 +100,17 @@ export class HomeComponent implements OnInit {
       (res: any) => {
         if (res?.status == 200) {
           let arr: any = [];
-          res?.data ? this.recommendedResults = res?.data?.job_offers : [];
+          res?.data ? res?.data?.job_offers?.forEach((item: any) => {
+            arr?.push({
+              _id: item?._id,
+              title: item?.title ? item?.title : 'dummy',
+              address: item?.address ? item?.address : 'dummy',
+              name: item?.name ? item?.name : 'dummy',
+              rate: item?.rate ? item?.rate : 0,
+              time: item?.time ? item?.time : 'dummy'
+            })
+          }) : '';
+          this.recommendedResults = arr;
           this.isLoadingRecommendedResults = false;
         } else {
           res?.message ? this.alertsService?.openSweetAlert('info', res?.message) : '';
