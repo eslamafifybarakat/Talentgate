@@ -40,7 +40,6 @@ export class HttpInterceptorService implements HttpInterceptor {
 
 
       let token = window.localStorage.getItem(keys?.token);
-      console.log(token);
 
       if (token) {
         header["Authorization"] = `${token}`;

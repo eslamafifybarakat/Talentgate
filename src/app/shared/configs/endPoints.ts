@@ -14,5 +14,6 @@ export const roots = {
     job_recommended_for_you: '/job_offers/job_recommended_for_you',
     job_offers: '/job_offers',
     job_offers_search: '/job_offers/search',
+    apply_for_job: '/job_applications/apply_for_job'
   }
 }

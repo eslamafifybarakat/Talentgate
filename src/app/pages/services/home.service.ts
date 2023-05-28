@@ -30,4 +30,8 @@ export class HomeService {
   getJobOffersDetails(id: any): Observable<any> {
     return this.http?.get<any>(this.apiUrl + roots?.home?.job_offers + '/' + id + '/' + this.langKey);
   }
+
+  applyForJob(data: any): Observable<any> {
+    return this.http?.post<any>(this.apiUrl + roots?.home?.apply_for_job, data);
+  }
 }

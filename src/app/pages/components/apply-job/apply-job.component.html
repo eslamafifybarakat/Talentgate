@@ -51,34 +51,43 @@
                 <app-skeleton [type]="'jobOffers'"></app-skeleton>
               </ng-container>
               <ng-template #noLoadingJobs>
-                <div class="row g-0 content">
-                  <ng-container *ngFor="let item of recommendedResults;let i=index">
-                    <div class="col-xl-12 col-lg-12 col-md-6">
-                      <div class="recommended-content p-3 mx-3 mt-3 pointer" [class.active]="item?.isActive"
-                        (click)="changeData(item?._id)">
-                        <div class="d-flex justify-content-between  gap-2">
-                          <div class="d-flex align-items-center flex-wrap gap-2">
-                            <img class="recommended-img rounded-circle"
-                              src="../../../../assets/images/home/product.jfif" alt="product">
-                            <div>
-                              <h5 class="fs-5-1 text-main-color fw-bold mb-1">
-                                {{item?.title}}
-                              </h5>
-                              <div class="d-flex gap-1 flex-wrap">
-                                <p class="fw-600">{{item?.name}}</p>
-                                <ngx-star-rating [(ngModel)]="item.rate" [id]="'item?.rate'"
-                                  [disabled]="true"></ngx-star-rating>
+                <ng-container *ngIf="recommendedResults?.length>0;else noRecommendedResults">
+                  <div class="row g-0 content">
+                    <ng-container *ngFor="let item of recommendedResults;let i=index">
+                      <div class="col-xl-12 col-lg-12 col-md-6">
+                        <div class="recommended-content p-3 mx-3 mt-3 pointer" [class.active]="item?.isActive"
+                          (click)="changeData(item?._id)">
+                          <div class="d-flex justify-content-between  gap-2">
+                            <div class="d-flex align-items-center flex-wrap gap-2">
+                              <img class="recommended-img rounded-circle"
+                                src="../../../../assets/images/home/product.jfif" alt="product">
+                              <div>
+                                <h5 class="fs-5-1 text-main-color fw-bold mb-1">
+                                  {{item?.title}}
+                                </h5>
+                                <div class="d-flex gap-1 flex-wrap">
+                                  <p class="fw-600">{{item?.name}}</p>
+                                  <ngx-star-rating [(ngModel)]="item.rate" [id]="'item?.rate'"
+                                    [disabled]="true"></ngx-star-rating>
+                                </div>
+                                <p class="fw-600">{{item?.address}}</p>
                               </div>
-                              <p class="fw-600">{{item?.address}}</p>
                             </div>
+                            <i class="pi pi-th-large"></i>
                           </div>
-                          <i class="pi pi-th-large"></i>
+                          <p class="mt-2">Posted 5hours ago</p>
                         </div>
-                        <p class="mt-2">Posted 5hours ago</p>
                       </div>
-                    </div>
-                  </ng-container>
-                </div>
+                    </ng-container>
+                  </div>
+                </ng-container>
+
+                <ng-template #noRecommendedResults>
+                  <div class="h-100 d-flex align-items-center justify-content-center flex-column">
+                    <img class="no-data" src="assets/images/not-found/no-data.svg" alt="no-data">
+                    <p>{{'general.no_result_found'|translate}}</p>
+                  </div>
+                </ng-template>
               </ng-template>
             </div>
             <div class="col-lg-8 pe-1 pt-1">
@@ -145,8 +154,9 @@
                       </p>
                     </div>
                     <div class="mt-4 d-flex gap-3">
-                      <button class="btn btn-solid-main rounded-0 w-50">Apply</button>
-                      <button class="btn btn-outline-main rounded-0"><i class="pi pi-bookmark fs-5 px-3"></i></button>
+                      <button class="btn btn-solid-main rounded-0 w-50" (click)="applyForJob()">Apply</button>
+                      <button class="btn btn-outline-main rounded-0 apply-icon"><i
+                          class="pi pi-bookmark fs-5 px-3"></i></button>
                     </div>
 
                     <div class="mt-4">

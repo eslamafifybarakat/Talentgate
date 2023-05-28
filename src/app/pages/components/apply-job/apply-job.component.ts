@@ -1,7 +1,8 @@
-import { PublicService } from './../../../shared/services/public.service';
 import { AlertsService } from './../../../core/services/alerts/alerts.service';
-import { HomeService } from './../../services/home.service';
+import { PublicService } from './../../../shared/services/public.service';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { keys } from 'src/app/shared/configs/localstorage-key';
+import { HomeService } from './../../services/home.service';
 
 @Component({
   selector: 'app-apply-job',
@@ -9,6 +10,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
   styleUrls: ['./apply-job.component.scss']
 })
 export class ApplyJobComponent implements OnInit {
+  userData: any;
   searchResults: any = [];
   isLoadingSearchResults: boolean = false;
 
@@ -74,6 +76,9 @@ export class ApplyJobComponent implements OnInit {
         this.getSearchResults(this.jobId, res?.searchValue);
       }
     });
+    this.userData = JSON?.parse(window?.localStorage?.getItem(keys?.userLoginData) || "{}");
+    console.log(this.userData);
+
   }
   getJobRecommended(count: any): any {
     this.isLoadingRecommendedResults = true;
@@ -176,6 +181,44 @@ export class ApplyJobComponent implements OnInit {
       (err: any) => {
         err?.message ? this.alertsService?.openSweetAlert('error', err?.message) : '';
         this.isLoadingSearchResults = false;
+      });
+    this.cdr?.detectChanges();
+  }
+  applyForJob(): any {
+    this.publicService?.show_loader?.next(true);
+    let data: any;
+    data = {
+      job_offer: "string",
+      candidate_information: {
+        user_name: this.userData?.full_name,
+        email: this.userData?.email,
+        phone_number: "string",
+        country_code: this.userData?.country_code,
+        country: this.userData?.country,
+        city: this.userData?.city
+      },
+      cv: this.userData?.cv,
+      cover_letter: "string",
+      message: "string",
+      questions_responses: [
+        {
+          _id: "string",
+          response: "string"
+        }
+      ]
+    }
+    this.homeService?.applyForJob(data)?.subscribe(
+      (res: any) => {
+        if (res?.status == 200) {
+          this.publicService?.show_loader?.next(false);
+        } else {
+          res?.message ? this.alertsService?.openSweetAlert('info', res?.message) : '';
+          this.publicService?.show_loader?.next(false);
+        }
+      },
+      (err: any) => {
+        err?.message ? this.alertsService?.openSweetAlert('error', err?.message) : '';
+        this.publicService?.show_loader?.next(false);
       });
     this.cdr?.detectChanges();
   }
