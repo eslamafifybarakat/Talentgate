@@ -26,6 +26,7 @@ import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxStarRatingModule } from 'ngx-star-rating';
+import { SchedulerModule } from '@progress/kendo-angular-scheduler';
 
 const allSharedComponents = [
   LanguageSelectorComponent,
@@ -47,6 +48,7 @@ const allSharedModule = [
   FullCalendarModule,
   NgxIntlTelInputModule,
   BsDropdownModule,
+  SchedulerModule,
   ReactiveFormsModule,
   NgxStarRatingModule,
   ClickOutsideModule,

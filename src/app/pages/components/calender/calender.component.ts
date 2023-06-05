@@ -4,16 +4,45 @@ import * as moment from 'moment';
 // import { FullCalendarComponent } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
+
+import { SchedulerEvent } from "@progress/kendo-angular-scheduler";
+import { sampleData, displayDate } from "./events-utc";
 @Component({
   selector: 'app-calender',
   templateUrl: './calender.component.html',
   styleUrls: ['./calender.component.scss']
 })
 export class CalenderComponent implements OnInit {
+  public selectedDate: Date = displayDate;
+  public events: any[] = sampleData;
+
   @ViewChild('fullcalendar') fullcalendar!: any;
   minDate: any = new Date();
-  selectedDate: any;
-
+  // selectedDate: any;
+  showDetailss = false;
+  resources: any[] = [
+    {
+      name: "Rooms",
+      data: [
+        { text: "Meeting Room 101", value: 1, color: "#6eb3fa" },
+        { text: "Meeting Room 201", value: 2, color: "#f58a8a" },
+      ],
+      field: "roomId",
+      valueField: "value",
+      textField: "text",
+      colorField: "color",
+    },
+  ];
+  // public events: SchedulerEvent[] = [
+  //   {
+  //     id: 1,
+  //     title: 'Event 1',
+  //     start: new Date('2023-06-04T10:00:00'),
+  //     end: new Date('2023-06-04T11:30:00'),
+  //     description: 'Event 1 details...'
+  //   },
+  //   // Add more events as needed
+  // ];
   Events: any[] = [
     {
       title: 'event 1', start: '2023-05-24T11:30:00',
@@ -82,4 +111,51 @@ export class CalenderComponent implements OnInit {
     formateDate = moment(new Date(event))?.format("YYYY-MM-DD");
 
   }
+  showDetails(dataItem: any) {
+    dataItem.showDetails = true;
+    console.log(dataItem);
+
+  }
+
+  hideDetails(dataItem: any) {
+    dataItem.showDetails = false;
+  }
+
+
+
+  onCellClick(e: any): void {
+    console.log('Cell clicked:', e); // Handle cell click event
+    this.showDetailss = true
+  }
+
+  onEventMouseEnter(e: any): void {
+    console.log('Event mouse enter:', e); // Handle event mouse enter event
+  }
+
+  onEventMouseLeave(e: any): void {
+    console.log('Event mouse leave:', e); // Handle event mouse leave event
+  }
+
+  public hoveredEvent: any = null;
+  public clickedEvent: any = null;
+
+  isEventHovered(eventData: any): boolean {
+    return this.hoveredEvent === eventData;
+  }
+
+  isEventClicked(eventData: any): boolean {
+    return this.clickedEvent === eventData;
+  }
+
+  // onEventMouseEnter(eventData: any): void {
+  //   this.hoveredEvent = eventData;
+  // }
+
+  // onEventMouseLeave(eventData: any): void {
+  //   this.hoveredEvent = null;
+  // }
+
+  // onCellClick(eventData: any): void {
+  //   this.clickedEvent = eventData;
+  // }
 }
