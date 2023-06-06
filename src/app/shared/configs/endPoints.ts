@@ -15,5 +15,8 @@ export const roots = {
     job_offers: '/job_offers',
     job_offers_search: '/job_offers/search',
     apply_for_job: '/job_applications/apply_for_job'
+  },
+  scheduler: {
+    events: '/events'
   }
 }

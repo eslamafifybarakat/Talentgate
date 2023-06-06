@@ -1,161 +1,240 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AlertsService } from './../../../core/services/alerts/alerts.service';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { HomeService } from '../../services/home.service';
 import * as moment from 'moment';
-// import { FullCalendarComponent } from '@fullcalendar/angular';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import interactionPlugin from '@fullcalendar/interaction';
-
-import { SchedulerEvent } from "@progress/kendo-angular-scheduler";
-import { sampleData, displayDate } from "./events-utc";
 @Component({
   selector: 'app-calender',
   templateUrl: './calender.component.html',
   styleUrls: ['./calender.component.scss']
 })
 export class CalenderComponent implements OnInit {
-  public selectedDate: Date = displayDate;
-  public events: any[] = sampleData;
+  selectedDate: Date = new Date();
+  schedulerEvents: any = [];
+  isLoadingEvents: boolean = false;
 
-  @ViewChild('fullcalendar') fullcalendar!: any;
-  minDate: any = new Date();
-  // selectedDate: any;
+  // minDate: any = new Date();
   showDetailss = false;
-  resources: any[] = [
-    {
-      name: "Rooms",
-      data: [
-        { text: "Meeting Room 101", value: 1, color: "#6eb3fa" },
-        { text: "Meeting Room 201", value: 2, color: "#f58a8a" },
-      ],
-      field: "roomId",
-      valueField: "value",
-      textField: "text",
-      colorField: "color",
-    },
-  ];
-  // public events: SchedulerEvent[] = [
-  //   {
-  //     id: 1,
-  //     title: 'Event 1',
-  //     start: new Date('2023-06-04T10:00:00'),
-  //     end: new Date('2023-06-04T11:30:00'),
-  //     description: 'Event 1 details...'
-  //   },
-  //   // Add more events as needed
-  // ];
-  Events: any[] = [
-    {
-      title: 'event 1', start: '2023-05-24T11:30:00',
-      end: '2023-05-26T11:30:00', color: '#ef305e', classNames: ['event-style']
-    },
-    {
-      title: 'event 2', start: '2022-11-09T10:30:00',
-      end: '2022-11-11T11:30:00', color: '#ef305e'
-    },
-    {
-      title: 'event 2', start: '2022-11-25T10:30:00',
-      end: '2022-11-26T11:30:00', color: '#ef305e'
-    },
-  ];
-  anys: any[] = [
-    {
-      title: 'event 1', start: '2023-05-24T11:30:00',
-      end: '2023-05-24T11:30:00', color: '#ef305e'
-    },
-    {
-      title: 'event 2', start: '2022-11-09T10:30:00',
-      end: '2022-11-11T11:30:00', color: '#ef305e'
-    },
-    {
-      title: 'event 2', start: '2022-11-25T10:30:00',
-      end: '2022-11-26T11:30:00', color: '#ef305e'
-    },
-  ];
-  calendarOptions: any = {
-    plugins: [dayGridPlugin, interactionPlugin],
-    headerToolbar: {
-      left: 'prev,next today',
-      center: 'title',
-      right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-    },
-    initialView: 'dayGridMonth',
-    weekends: true,
-    editable: true,
-    selectable: true,
-    selectMirror: true,
-    dayMaxEvents: true,
-    events: this.Events
-  };
-  constructor(private httpClient: HttpClient) { }
-  onDateClick(res: any) {
-    alert('Clicked on date : ' + res.dateStr);
-  }
-  ngOnInit() {
-    // this.fullcalendar.plugins  = [dayGridPlugin];
-    console.log(this.fullcalendar);
 
-    setTimeout(() => {
-      this.calendarOptions = {
-        plugins: [dayGridPlugin],
-        initialView: 'dayGridMonth',
-        dateClick: this.onDateClick.bind(this),
-        events: this.Events,
-      };
-    }, 2500);
+  constructor(
+    private alertsService: AlertsService,
+    private homeService: HomeService,
+    private cdr: ChangeDetectorRef,
+  ) { }
+
+  ngOnInit() {
+    this.getSchedularEvents();
   }
+
   onDateChange(event: any): void {
     let formateDate: any;
     this.selectedDate = event;
-    // this.appointmentForm?.get('day')?.patchValue(event);
-    // this.appointmentForm?.get('day')?.patchValue(moment(event)?.format('dddd, D MMM yy'))
     formateDate = moment(new Date(event))?.format("YYYY-MM-DD");
-
+    this.getSchedularEvents();
   }
-  showDetails(dataItem: any) {
-    dataItem.showDetails = true;
-    console.log(dataItem);
-
-  }
-
-  hideDetails(dataItem: any) {
-    dataItem.showDetails = false;
-  }
-
-
 
   onCellClick(e: any): void {
-    console.log('Cell clicked:', e); // Handle cell click event
+    console.log('Cell clicked:', e);
     this.showDetailss = true
   }
 
-  onEventMouseEnter(e: any): void {
-    console.log('Event mouse enter:', e); // Handle event mouse enter event
+  getSchedularEvents(): any {
+    this.isLoadingEvents = true;
+    this.homeService?.getSchedularEvents()?.subscribe(
+      (res: any) => {
+        if (res?.status == 200) {
+          this.schedulerEvents = res?.data ? res?.data : [];
+          this.isLoadingEvents = false;
+        } else {
+          res?.message ? this.alertsService?.openSweetAlert('info', res?.message) : '';
+          this.isLoadingEvents = false;
+        }
+      },
+      (err: any) => {
+        err?.message ? this.alertsService?.openSweetAlert('error', err?.message) : '';
+        this.isLoadingEvents = false;
+      });
+    this.cdr?.detectChanges();
+    let arr: any = [
+      {
+        "TaskID": 90,
+        "OwnerID": 3,
+        "Title": "Website upload",
+        "Description": "",
+        "StartTimezone": null,
+        "Start": "2023-06-06T08:00:00.000Z",
+        "End": "2023-06-06T09:00:00.000Z",
+        "EndTimezone": null,
+        "RecurrenceRule": null,
+        "RecurrenceID": null,
+        "RecurrenceException": null,
+        "IsAllDay": false
+      },
+      {
+        "TaskID": 91,
+        "OwnerID": 2,
+        "Title": "Meeting with marketing guys",
+        "Description": "",
+        "StartTimezone": null,
+        "Start": "2023-06-06T05:00:00.000Z",
+        "End": "2023-06-06T06:00:00.000Z",
+        "EndTimezone": null,
+        "RecurrenceRule": null,
+        "RecurrenceID": null,
+        "RecurrenceException": null,
+        "IsAllDay": false
+      },
+      {
+        "TaskID": 92,
+        "OwnerID": 3,
+        "Title": "Meeting with Internet provider",
+        "Description": "",
+        "StartTimezone": null,
+        "Start": "2023-06-07T07:30:00.000Z",
+        "End": "2023-06-07T08:30:00.000Z",
+        "EndTimezone": null,
+        "RecurrenceRule": null,
+        "RecurrenceID": null,
+        "RecurrenceException": null,
+        "IsAllDay": false
+      },
+      {
+        "TaskID": 93,
+        "OwnerID": 3,
+        "Title": "Bob's Birthday Party",
+        "Description": "",
+        "StartTimezone": null,
+        "Start": "2023-06-08T10:00:00.000Z",
+        "End": "2023-06-08T13:30:00.000Z",
+        "EndTimezone": null,
+        "RecurrenceRule": null,
+        "RecurrenceID": null,
+        "RecurrenceException": null,
+        "IsAllDay": false
+      },
+      {
+        "TaskID": 95,
+        "OwnerID": 2,
+        "Title": "Dance Practice",
+        "Description": "",
+        "StartTimezone": null,
+        "Start": "2023-06-03T18:30:00.000Z",
+        "End": "2023-06-03T20:00:00.000Z",
+        "EndTimezone": null,
+        "RecurrenceRule": "FREQ=WEEKLY;BYDAY=MO,WE",
+        "RecurrenceID": null,
+        "RecurrenceException": null,
+        "IsAllDay": false
+      },
+      {
+        "TaskID": 114,
+        "OwnerID": 3,
+        "Title": "Software updates",
+        "Description": "",
+        "StartTimezone": null,
+        "Start": "2023-06-04T09:00:00.000Z",
+        "End": "2023-06-04T12:00:00.000Z",
+        "EndTimezone": null,
+        "RecurrenceRule": "",
+        "RecurrenceID": null,
+        "RecurrenceException": null,
+        "IsAllDay": false
+      },
+      {
+        "TaskID": 115,
+        "OwnerID": 1,
+        "Title": "Breakfast at Starbucks",
+        "Description": "",
+        "StartTimezone": null,
+        "Start": "2023-06-04T08:00:00.000Z",
+        "End": "2023-06-04T09:30:00.000Z",
+        "EndTimezone": null,
+        "RecurrenceRule": "",
+        "RecurrenceID": null,
+        "RecurrenceException": null,
+        "IsAllDay": false
+      },
+      {
+        "TaskID": 116,
+        "OwnerID": 2,
+        "Title": "Performance review",
+        "Description": "",
+        "StartTimezone": null,
+        "Start": "2023-06-04T14:00:00.000Z",
+        "End": "2023-06-04T17:00:00.000Z",
+        "EndTimezone": null,
+        "RecurrenceRule": "",
+        "RecurrenceID": null,
+        "RecurrenceException": null,
+        "IsAllDay": false
+      },
+      {
+        "TaskID": 118,
+        "OwnerID": 1,
+        "Title": "HR seminar preparation",
+        "Description": "",
+        "StartTimezone": null,
+        "Start": "2023-06-05T10:00:00.000Z",
+        "End": "2023-06-05T12:00:00.000Z",
+        "EndTimezone": null,
+        "RecurrenceRule": "",
+        "RecurrenceID": null,
+        "RecurrenceException": null,
+        "IsAllDay": false
+      },
+      {
+        "TaskID": 119,
+        "OwnerID": 3,
+        "Title": "Helpdesk weekly meeting",
+        "Description": "",
+        "StartTimezone": null,
+        "Start": "2023-06-05T15:00:00.000Z",
+        "End": "2023-06-05T16:00:00.000Z",
+        "EndTimezone": null,
+        "RecurrenceRule": "FREQ=WEEKLY;BYDAY=WE",
+        "RecurrenceID": null,
+        "RecurrenceException": null,
+        "IsAllDay": false
+      },
+      {
+        "TaskID": 120,
+        "OwnerID": 3,
+        "Title": "Website upload",
+        "Description": "",
+        "StartTimezone": null,
+        "Start": "2023-06-07T07:00:00.000Z",
+        "End": "2023-06-07T08:30:00.000Z",
+        "EndTimezone": null,
+        "RecurrenceRule": "",
+        "RecurrenceID": null,
+        "RecurrenceException": null,
+        "IsAllDay": false
+      }
+    ];
+    const parseAdjust = (eventDate: string): Date => {
+      const currentYear = new Date(eventDate).getFullYear();
+      const date = new Date(eventDate);
+      date.setFullYear(currentYear);
+      return date;
+    };
+
+    this.schedulerEvents = arr.map((dataItem: any) => (
+      <any>{
+        id: dataItem.TaskID,
+        start: parseAdjust(dataItem.Start),
+        startTimezone: dataItem.startTimezone,
+        end: parseAdjust(dataItem.End),
+        endTimezone: dataItem.endTimezone,
+        isAllDay: dataItem.IsAllDay,
+        title: dataItem.Title,
+        description: dataItem.Description,
+        recurrenceRule: dataItem.RecurrenceRule,
+        recurrenceId: dataItem.RecurrenceID,
+        recurrenceException: dataItem.RecurrenceException,
+
+        roomId: dataItem.RoomID,
+        ownerID: dataItem.OwnerID
+      }
+    ));
+
   }
-
-  onEventMouseLeave(e: any): void {
-    console.log('Event mouse leave:', e); // Handle event mouse leave event
-  }
-
-  public hoveredEvent: any = null;
-  public clickedEvent: any = null;
-
-  isEventHovered(eventData: any): boolean {
-    return this.hoveredEvent === eventData;
-  }
-
-  isEventClicked(eventData: any): boolean {
-    return this.clickedEvent === eventData;
-  }
-
-  // onEventMouseEnter(eventData: any): void {
-  //   this.hoveredEvent = eventData;
-  // }
-
-  // onEventMouseLeave(eventData: any): void {
-  //   this.hoveredEvent = null;
-  // }
-
-  // onCellClick(eventData: any): void {
-  //   this.clickedEvent = eventData;
-  // }
 }

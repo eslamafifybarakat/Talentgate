@@ -34,4 +34,8 @@ export class HomeService {
   applyForJob(data: any): Observable<any> {
     return this.http?.post<any>(this.apiUrl + roots?.home?.apply_for_job, data);
   }
+
+  getSchedularEvents(): Observable<any> {
+    return this.http?.get<any>(this.apiUrl + roots?.scheduler?.events);
+  }
 }

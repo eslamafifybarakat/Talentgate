@@ -3,64 +3,18 @@
     <div class="row">
       <div class="col-xl-9 col-lg-8 order-lg-1 order-2 mt-lg-0 mt-3">
         <div class="global-card">
-          <!-- <kendo-scheduler [events]="events" (cellClick)="onCellClick($event)"
-            (eventMouseEnter)="onEventMouseEnter($event)" (eventMouseLeave)="onEventMouseLeave($event)">
-            <ng-template kendoSchedulerEventTemplate let-eventData>
-              <div [ngClass]="{'event-details': isEventHovered(eventData)}"
-                *ngIf="isEventClicked(eventData) || isEventHovered(eventData)">
-                <h4>{{eventData.title}}</h4>
-                <p>{{eventData.description}}</p>
-                <p>Start: {{eventData.start | date:'medium'}}</p>
-                <p>End: {{eventData.end | date:'medium'}}</p>
-              </div>
-            </ng-template>
-          </kendo-scheduler> -->
-
-
-
-
-          <kendo-scheduler [events]="events" [selectedDate]="selectedDate" [showWorkHours]="true"
-            style="height:  calc(100vh - 131px)" (eventClick)="onCellClick($event)" [resources]="events">
+          <kendo-scheduler [events]="schedulerEvents" [selectedDate]="selectedDate" [showWorkHours]="true"
+            style="height:  calc(100vh - 131px)" (eventClick)="onCellClick($event)" [resources]="schedulerEvents">
             <kendo-scheduler-day-view> </kendo-scheduler-day-view>
             <kendo-scheduler-week-view> </kendo-scheduler-week-view>
             <kendo-scheduler-month-view> </kendo-scheduler-month-view>
             <kendo-scheduler-timeline-view> </kendo-scheduler-timeline-view>
           </kendo-scheduler>
-
-          <!-- <ng-container *ngIf="showDetailss">
-            <div class="event-details">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, vel accusamus eum ipsum quia est nihil
-              perferendis ab tempora quasi aliquid ratione deserunt vero praesentium fugit quis odit voluptatem nemo.
-            </div>
-            <ng-template kendoSchedulerEventTemplate let-eventData>
-              <div [ngClass]="{'event-details': isEventHovered(eventData)}"
-                *ngIf="isEventClicked(eventData) || isEventHovered(eventData)">
-                <h4>{{eventData.title}}</h4>
-                <p>{{eventData.description}}</p>
-                <p>Start: {{eventData.start | date:'medium'}}</p>
-                <p>End: {{eventData.end | date:'medium'}}</p>
-              </div>
-            </ng-template>
-          </ng-container> -->
-
-
-          <!-- <ng-template #eventTemplate let-dataItem>
-            <div class="event-container" [title]="dataItem.title">
-              <div class="event-data" *ngIf="dataItem.description">{{ dataItem.description }}</div>
-              <div class="event-day">{{ dataItem.start | date:'EEE' }}</div>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam dicta est iure. Nobis ex cupiditate,
-                voluptatem nisi aspernatur aliquid alias placeat facilis nam a earum fuga beatae dolorum nostrum
-                accusantium!</p>
-            </div>
-          </ng-template> -->
-
-          <!-- <full-calendar [options]="calendarOptions"></full-calendar> -->
         </div>
       </div>
       <div class="col-xl-3 col-lg-4 order-lg-2 order-1">
         <div class="calendar global-card p-1">
-          <mat-calendar [selected]="selectedDate" (selectedChange)="onDateChange($event)"
-            [minDate]="minDate"></mat-calendar>
+          <mat-calendar [selected]="selectedDate" (selectedChange)="onDateChange($event)"></mat-calendar>
         </div>
       </div>
     </div>
