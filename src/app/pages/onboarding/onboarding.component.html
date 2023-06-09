@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-lg-7 order-lg-1 order-2">
         <div class="content">
-          <h2 class="title-lg">Your <span>dream job</span><br> is waiting here</h2>
+          <h2 class="title-lg text-dark-color">Your <span>dream job</span><br> is waiting here</h2>
           <p class="mt-3 fs-decs w-md-85">{{'general.personality'|translate}}</p>
           <!-- form -->
           <form>
@@ -27,11 +27,11 @@
       </div>
       <div class="col-lg-5 order-lg-2 order-1 mb-lg-0 mb-5">
         <div class="img-wrppear position-relative">
-          <img src="../../../assets/images/welcome/welcome.jfif" class="w-md-90 w-sm-100" alt="">
+          <img src="../../../assets/images/welcome/welcome.png" class="w-md-90 w-sm-100" alt="">
 
           <div class="upload-file position-absolute text-center">
             <input type="file" #uploadCV id="uploadCV" hidden (change)="selectFile($event)" accept="application/pdf">
-            <div class="upload-icon bg-white-color d-flex justify-content-center align-items-center m-auto">
+            <div class="upload-icon  d-flex justify-content-center align-items-center m-auto">
               <div class="icon d-flex justify-content-center align-items-center pointer" (click)="uploadCV?.click()">
                 <i class="pi pi-upload fs-5"></i>
               </div>
@@ -58,12 +58,12 @@
       <div class="col-md-5 mb-md-0 mb-4">
         <div class="row baged mx-0">
           <div class="col-sm-6 countries">
-            <p class="number">12k</p>
-            <p class="dic text-uppercase">{{'general.countries'|translate}}</p>
+            <p class="number text-dark-color">12k</p>
+            <p class="dic text-uppercase text-dark-color">{{'general.countries'|translate}}</p>
           </div>
           <div class="col-sm-6 countries">
-            <p class="number"> 11K</p>
-            <p class="dic text-uppercase">{{'general.participants'|translate}}</p>
+            <p class="number text-dark-color"> 11K</p>
+            <p class="dic text-uppercase text-dark-color">{{'general.participants'|translate}}</p>
           </div>
         </div>
       </div>

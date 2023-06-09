@@ -93,6 +93,12 @@ export class HomeComponent implements OnInit {
         this.isLoadingHiringAreas = false;
       });
     this.cdr?.detectChanges();
+
+    this.hiringAreas = [
+      { image_company: '../../../../assets/images/home/Microsoft.png', name_company: 'Microsoft', address_company: 'Tunis,Tunisia' },
+      { image_company: '../../../../assets/images/home/Microsoft.png', name_company: 'Microsoft', address_company: 'Tunis,Tunisia' },
+      { image_company: '../../../../assets/images/home/Microsoft.png', name_company: 'Microsoft', address_company: 'Tunis,Tunisia' }
+    ]
   }
   getJobRecommended(count: any): any {
     this.isLoadingRecommendedResults = true;
@@ -122,6 +128,65 @@ export class HomeComponent implements OnInit {
         this.isLoadingRecommendedResults = false;
       });
     this.cdr?.detectChanges();
+
+    this.recommendedResults = [
+      {
+        _id: 'jkdjd9892',
+        title: 'Product Designer',
+        address: 'Sousse,tunisia',
+        name: 'Google',
+        rate: 4,
+        time: 'Posted 5hours ago'
+      },
+      {
+        _id: 'jkdjd9892',
+        title: 'Product Designer',
+        address: 'Sousse,tunisia',
+        name: 'Google',
+        rate: 4,
+        time: 'Posted 5hours ago'
+      },
+      {
+        _id: 'jkdjd9892',
+        title: 'Product Designer',
+        address: 'Sousse,tunisia',
+        name: 'Google',
+        rate: 4,
+        time: 'Posted 5hours ago'
+      },
+      {
+        _id: 'jkdjd9892',
+        title: 'Product Designer',
+        address: 'Sousse,tunisia',
+        name: 'Google',
+        rate: 4,
+        time: 'Posted 5hours ago'
+      },
+      {
+        _id: 'jkdjd9892',
+        title: 'Product Designer',
+        address: 'Sousse,tunisia',
+        name: 'Google',
+        rate: 4,
+        time: 'Posted 5hours ago'
+      },
+      {
+        _id: 'jkdjd9892',
+        title: 'Product Designer',
+        address: 'Sousse,tunisia',
+        name: 'Google',
+        rate: 4,
+        time: 'Posted 5hours ago'
+      },
+      {
+        _id: 'jkdjd9892',
+        title: 'Product Designer',
+        address: 'Sousse,tunisia',
+        name: 'Google',
+        rate: 4,
+        time: 'Posted 5hours ago'
+      }
+    ];
   }
   seeMore(): void {
     this.count += 6;

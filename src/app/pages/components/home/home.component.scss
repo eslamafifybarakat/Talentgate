@@ -15,7 +15,7 @@
     color: #a6c9eb;
   }
   .hiringAreas {
-    max-height: 250px;
+    max-height: 225px;
     overflow-y: auto;
     overflow-x: hidden;
     &::-webkit-scrollbar-track {
@@ -32,6 +32,7 @@
     padding: 10px;
     .hiring-img-w {
       min-width: 35px;
+      width: 35px;
     }
   }
   .visit-btn {

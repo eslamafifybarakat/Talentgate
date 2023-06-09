@@ -160,20 +160,21 @@
                 <h5 class="text-main-color fs-5 fw-bold mb-0">{{'profile.skills'|translate}}</h5>
                 <a><i class="fas fa-pen-to-square text-main-color"></i></a>
               </div>
-              <div class="mt-4">
-                <ng-container *ngFor="let item of [9,8,7,6,8,9,7]">
-                  <div class="mb-3">
-                    <h6 class="text-main-color fw-600 fs-6-1 mb-1">User Interface Design <span
-                        class="ps-1">(7.5/10)</span>
-                    </h6>
-                    <div class="text-main-color d-flex gap-2 align-items-center">
-                      <i class="fas fa-users"></i>
-                      <p class="fs-6-1">2 Assessments</p>
+              <div class="mt-4 d-flex justify-content-between flex-column">
+                <div>
+                  <ng-container *ngFor="let item of [9,8,7,6,8,9,7]">
+                    <div class="mb-3">
+                      <h6 class="text-main-color fw-600 fs-6-1 mb-1">User Interface Design <span
+                          class="ps-1">(7.5/10)</span>
+                      </h6>
+                      <div class="text-main-color d-flex gap-2 align-items-center">
+                        <i class="fas fa-users"></i>
+                        <p class="fs-6-1">2 Assessments</p>
+                      </div>
                     </div>
-                  </div>
-                </ng-container>
-
-                <a class="text-center text-desc-color fs-5-1 mt-2 d-block">Show all 23 skills</a>
+                  </ng-container>
+                </div>
+                <a class="text-center text-desc-color fs-5-1 mt-3 d-block">Show all 23 skills</a>
               </div>
             </div>
 

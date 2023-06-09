@@ -14,6 +14,7 @@ export class HeaderComponent implements OnInit {
   toggle: boolean = false;
   enableSearch: boolean = false;
   enableLocation: boolean = false;
+  userData: any;
 
   moduleType: string = '';
   @Input() collapsed: boolean = false;
@@ -36,6 +37,7 @@ export class HeaderComponent implements OnInit {
   }
   searchValue: any;
   @ViewChild('search') search: any;
+  @ViewChild('locationSearch') locationSearch: any;
 
   constructor(
     private sharedService: SharedService,
@@ -45,16 +47,14 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.userData = JSON.parse(window.localStorage.getItem(keys?.userLoginData) || '{}');
 
     this.sharedService?.urlData?.subscribe((res: any) => {
       this.moduleType = res?.type;
       this.enableSearch = res?.enableHeaderSearch;
       this.enableLocation = res?.enableLocation;
       this.cdr.detectChanges();
-      console.log(res);
-
     })
-    console.log(this.moduleType);
 
     // if (window?.innerWidth < 700) {
     //   this.toggleSideMenu = true;
@@ -72,6 +72,20 @@ export class HeaderComponent implements OnInit {
     this.cdr?.detectChanges();
   }
   clearSearchValue(search: any): void {
+    search.value = '';
+    this.searchHandler?.emit('');
+  }
+
+  locationSearchHandlerEmit(event: any): void {
+    this.publicService?.recallLocationSearchResults?.next(
+      {
+        recall: true,
+        searchValue: event
+      }
+    );
+    this.cdr?.detectChanges();
+  }
+  clearLocationSearchValue(search: any): void {
     search.value = '';
     this.searchHandler?.emit('');
   }

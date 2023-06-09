@@ -28,6 +28,7 @@ export class PublicService {
 
   article_Tab = new BehaviorSubject<{}>({});
   recallSearchResults = new BehaviorSubject<{}>({});
+  recallLocationSearchResults = new BehaviorSubject<{}>({});
   recallNotificationsAlerts = new BehaviorSubject<{}>({});
   recallSettingsBank = new BehaviorSubject<{}>({});
   show_loader = new Subject<boolean>();

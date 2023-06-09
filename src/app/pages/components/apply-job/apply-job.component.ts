@@ -85,12 +85,16 @@ export class ApplyJobComponent implements OnInit {
     this.jobId = this.recommendedResults[0]?._id;
     this.publicService?.recallSearchResults?.subscribe((res: any) => {
       if (res?.recall == true) {
-        this.getSearchResults(this.jobId, res?.searchValue);
+        this.getSearchResults(res?.searchValue);
+      }
+    });
+    this.publicService?.recallLocationSearchResults?.subscribe((res: any) => {
+      if (res?.recall == true) {
+        this.getSearchLocationResults(this.jobId, res?.searchValue);
       }
     });
     this.userData = JSON?.parse(window?.localStorage?.getItem(keys?.userLoginData) || "{}");
     console.log(this.userData);
-
   }
   getJobRecommended(count: any): any {
     this.isLoadingRecommendedResults = true;
@@ -101,11 +105,11 @@ export class ApplyJobComponent implements OnInit {
           res?.data ? res?.data?.job_offers?.forEach((item: any) => {
             arr?.push({
               _id: item?._id,
-              title: item?.title ? item?.title : 'dummy',
-              address: item?.address ? item?.address : 'dummy',
-              name: item?.name ? item?.name : 'dummy',
+              title: item?.title ? item?.title : '',
+              address: item?.address ? item?.address : '',
+              name: item?.name ? item?.name : '',
               rate: item?.rate ? item?.rate : 0,
-              time: item?.time ? item?.time : 'dummy'
+              time: item?.time ? item?.time : ''
             })
           }) : '';
           this.recommendedResults = arr;
@@ -181,7 +185,44 @@ export class ApplyJobComponent implements OnInit {
     // </div>`
     // };
   }
-  getSearchResults(id?: any, value?: any): any {
+  getSearchResults(value: any): any {
+    this.isLoadingSearchResults = true;
+    this.homeService?.getSearchResults(value)?.subscribe(
+      (res: any) => {
+        if (res?.status == 200) {
+          let arr: any = [];
+          res?.data ? res?.data?.search_result?.forEach((item: any) => {
+            arr?.push({
+              coupon_name: item?.coupon_name ? item?.coupon_name : '',
+              coupon_picture: item?.coupon_picture ? item?.coupon_picture : '',
+              description: item?.description ? item?.description : '',
+            })
+          }) : '';
+          this.searchResults = arr;
+          this.isLoadingSearchResults = false;
+        } else {
+          res?.message ? this.alertsService?.openSweetAlert('info', res?.message) : '';
+          this.isLoadingSearchResults = false;
+        }
+      },
+      (err: any) => {
+        err?.message ? this.alertsService?.openSweetAlert('error', err?.message) : '';
+        this.isLoadingSearchResults = false;
+      });
+    this.cdr?.detectChanges();
+
+    this.searchResults = [
+      { coupon_name: 'User Experience(Ux) Designer' },
+      { coupon_name: 'User Experience(Ux) Designer' },
+      { coupon_name: 'User Experience(Ux) Designer' },
+      { coupon_name: 'User Experience(Ux) Designer' },
+      { coupon_name: 'User Experience(Ux) Designer' },
+      { coupon_name: 'User Experience(Ux) Designer' },
+      { coupon_name: 'User Experience(Ux) Designer' },
+      { coupon_name: 'User Experience(Ux) Designer' },
+    ]
+  }
+  getSearchLocationResults(id?: any, value?: any): any {
     this.isLoadingSearchResults = true;
     this.homeService?.getJobOfferSearchResults(id, value)?.subscribe(
       (res: any) => {

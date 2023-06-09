@@ -1,7 +1,8 @@
 .onbording-page {
-  padding-top: 120px;
-  background: #f7f7f7;
+  padding-top: 100px;
+  background: var(--bg-white-color);
   vertical-align: middle;
+  min-height: 100vh;
   .content {
     h2 {
       // font-size: 90px;
@@ -111,6 +112,7 @@
   .findJob {
     border: 3px solid var(--bg-main-color);
     border-radius: 10px;
+    background-color: var(--bg-input-color);
   }
   .search {
     font-size: 1.5rem;
@@ -132,6 +134,7 @@
       border-radius: 14px;
     }
     .upload-icon {
+      background-color: #fff;
       box-shadow: 0px 3px 6px #00000029;
       border-radius: 7px;
       width: 60px;

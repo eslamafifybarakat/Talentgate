@@ -16,7 +16,7 @@
   }
 }
 .navbar-bg {
-  background: rgba(255, 255, 255, 1);
+  background: var(--bg-white-color);
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   // backdrop-filter: blur(2px);
   // -webkit-backdrop-filter: blur(2px);
