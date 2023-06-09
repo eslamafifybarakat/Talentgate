@@ -2,7 +2,7 @@ export const userInfoMenu: any = [
   {
     text: 'user_info.my_profile',
     icon: 'fa-user',
-    routerLink: 'profile'
+    routerLink: '/profile'
   },
 
   {

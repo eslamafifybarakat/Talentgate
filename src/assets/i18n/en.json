@@ -3,7 +3,14 @@
     "english": "English",
     "arabic": "Arabic"
   },
+  "titles":{
+"home":"Home",
+"applyJob":"Apply Job",
+"calender":"Calender",
+"profile":"Profile"
+  },
   "general": {
+    "showAll":"Show All",
     "employees":"Employees",
     "addPhoto":"Add Photo",
     "uploadImageHint":"Please upload image",
@@ -166,9 +173,7 @@
     "driverArrivedToCustomer": "Driver Arrived To Customer",
     "driverArrivedToStation": "Driver Arrived To Station"
   },
-  "labels": {
 
-  },
   "placeholder": {
     "address":"Address",
     "email": "Email address",
@@ -217,12 +222,8 @@
     "findJob":"Find Job",
     "registration": "Create An Account",
     "signUpWithlinkedIn": "Signup With LinkedIn",
-
-
-
     "signUp": "Sign up",
     "next": "Next",
-
     "logOut": "Logout",
     "terms": "I have read,understand,accept and agree to be bound by the following",
     "terms-conditions": "terms and conditions",
@@ -267,7 +268,19 @@
     "change_bank": "Change Bank",
     "logout": "Log Out"
   },
-
+"profile":{
+  "analytics":"Analytics",
+  "appliedJobs":"Applied Jobs",
+  "matchingJobs":"Matching Jobs",
+  "profileView":"Profile View",
+  "searchApearance":"Search Apearance",
+  "about":"About",
+  "experience":"Experience",
+  "skills":"Skills",
+  "languages":"Languages",
+  "certifications":"Certifications",
+  "showCredentials":"Show Credentials"
+},
   "primeng": {
     "startsWith": "Starts with",
     "contains": "Contains",

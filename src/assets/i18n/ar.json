@@ -2,7 +2,14 @@
     "english": "English",
     "arabic": "Arabic"
   },
+  "titles":{
+    "home":"الرئيسية",
+    "applyJob":"التقدم لوظيفة",
+    "calender":"جدول المواعيد",
+    "profile":"الصفحة الشخصية"
+      },
   "general": {
+    "showAll":"عرض الكل",
     "employees":"الموظفين",
     "addPhoto":"اضف صورة",
     "uploadImageHint":"من فضلك قم بتحميل صورة",
@@ -401,6 +408,19 @@
     "summary": "الملخص",
     "PercentageOfCourses": "نسبة الدورات",
     "CoursesViewers": "مشاهدين الدورات"
+  },
+  "profile":{
+  "analytics":"تحليلات",
+    "appliedJobs":"الوظائف التطبيقية",
+    "matchingJobs":"وظائف مطابقة",
+    "profileView":"مشاهدة الملف الشخصي",
+    "searchApearance":"الظهور في البحث",
+  "about":"معلومات عنا",
+  "experience":"خبرة",
+  "skills":"مهارات",
+  "languages":"اللغات",
+  "certifications":"الشهادات",
+  "showCredentials":"إظهار أوراق الاعتماد"
   },
   "primeng": {
     "startsWith": "إبدا ب",

@@ -45,8 +45,6 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.url = this.router?.url;
-    console.log(this.url);
 
     this.sharedService?.urlData?.subscribe((res: any) => {
       this.moduleType = res?.type;
@@ -64,20 +62,6 @@ export class HeaderComponent implements OnInit {
     // }
   }
 
-  getDashClass(): string {
-    let styleClass = '';
-    if (this.collapsed && this.screenWidth > 768 && !this.toggleSideMenu) {
-      styleClass = 'dash-trimmed';
-    } else if (this.collapsed && this.screenWidth <= 768 && this.screenWidth > 0 && !this.toggleSideMenu) {
-      styleClass = 'dash-md-screen';
-    }
-    return styleClass;
-  }
-
-  toggleSide(): void {
-    this.toggleSideMenu = !this.toggleSideMenu;
-    this.sharedService?.showSideMenu?.next(this.toggleSideMenu);
-  }
   searchHandlerEmit(event: any): void {
     this.publicService?.recallSearchResults?.next(
       {

@@ -8,13 +8,13 @@ import { AsyncPipe } from "../../node_modules/@angular/common";
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { OnlineStatusModule } from 'ngx-online-status';
+import { DialogService } from 'primeng/dynamicdialog';
 import { LayoutModule } from './layout/layout.module';
 import { SharedModule } from './shared/shared.module';
 import { HttpClient } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { DatePipe } from "@angular/common";
-import { DialogService } from 'primeng/dynamicdialog';
 
 @NgModule({
   declarations: [

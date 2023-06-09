@@ -1,0 +1,388 @@
+<div id="profile" class="mb-4">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-9">
+        <div class="global-card p-0 position-relative">
+          <input type="file" id="profileBg" accept="image/*" (change)="selectBgImage($event)" hidden #profileBgInput>
+          <label
+            class="camera position-absolute d-flex justify-content-center align-items-center rounded-circle pointer"
+            for="profileBg">
+            <i class="pi pi-camera fs-5"></i>
+          </label>
+          <img [src]="imgBgFileSrc" class="w-100 profile-bg" alt="user">
+          <div class="px-3 d-flex justify-content-between align-items-center">
+            <div class="d-flex">
+              <div class="profile-img rounded-circle position-relative">
+                <img [src]="imgProfileFileSrc" onerror="src='assets/images/not-found/noUser.svg'"
+                  class="fit-object-cover rounded-circle w-100 h-100 shadow-sm" alt="user">
+                <input type="file" id="profilePicture" accept="image/*" (change)="selectImage($event)" hidden
+                  #profilePictureInput>
+                <label
+                  class="plus position-absolute d-flex justify-content-center align-items-center rounded-circle pointer"
+                  for="profilePicture">
+                  <i class="pi pi-plus text-white-color"></i>
+                </label>
+              </div>
+              <div class="content-info p-2 d-flex gap-4">
+                <div>
+                  <h5 class="text-main-color mb-1 fw-bold mb-0">{{userData?.full_name ||
+                    'Catherine Longford'}}</h5>
+                  <p class="fs-6 text-main-color">{{userData?.position || 'Product Designer at Google'}}</p>
+                  <p class="fs-6-1 text-desc-color  address">{{userData?.description||'Sousse, Tunisia'}}
+                  </p>
+                </div>
+                <i class="fas fa-pen-to-square"></i>
+              </div>
+            </div>
+
+            <div class="d-flex flex-column">
+              <ngx-star-rating [(ngModel)]="rate" [id]="'item?.rate'" [disabled]="true"></ngx-star-rating>
+              <p class="fs-8 rate">Over 200 User Ratings</p>
+            </div>
+          </div>
+        </div>
+        <div class="global-card mt-3">
+          <div class="d-flex justify-content-between">
+            <h5 class="text-main-color fs-5 fw-bold mb-0">{{'profile.about'|translate}}</h5>
+            <ng-container *ngIf="!isEditAbout">
+              <a (click)="editAbout()"><i class="fas fa-pen-to-square text-main-color"></i></a>
+            </ng-container>
+            <ng-container *ngIf="isEditAbout">
+              <div class="d-flex gap-3">
+                <a (click)="saveEditText()"><i class="pi pi-check fs-5 text-main-color"></i></a>
+                <a (click)="isEditAbout=false"><i class="pi pi-times fs-5-1 text-danger"></i></a>
+              </div>
+            </ng-container>
+
+          </div>
+          <div class="mt-3 w-90">
+            <ng-container *ngIf="!isEditAbout">
+              <p class="text-main-color ">{{aboutText}}</p>
+            </ng-container>
+            <ng-container *ngIf="isEditAbout">
+              <textarea name="about" class="textarea p-3" [(ngModel)]="aboutTextarea">
+              </textarea>
+            </ng-container>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-6">
+            <div class="global-card h-100">
+              <div class="d-flex justify-content-between">
+                <h5 class="text-main-color fs-5 fw-bold mb-0">{{'profile.experience'|translate}}</h5>
+                <div class="d-flex gap-3">
+                  <a><i class="pi pi-plus fs-5-1 text-main-color fw-600"></i></a>
+                  <a><i class="fas fa-pen-to-square text-main-color"></i></a>
+                </div>
+              </div>
+              <div class="mt-4">
+                <div>
+                  <div class="d-flex align-items-center gap-2">
+                    <img src="../../../../assets/images/profile/be.jpg" class="experiance-img rounded-circle" alt="be"
+                      onerror="src='assets/images/not-found/no-user.svg'">
+                    <div>
+                      <h6 class="mb-0 text-main-color fw-600 fs-6-1">Behance Co</h6>
+                      <p class="text-main-color fs-6-1">Present (2 years)</p>
+                    </div>
+                  </div>
+                  <div class="d-flex align-items-start gap-2 mt-2">
+                    <div class="dot text-center">
+                      <i class="pi pi-circle-fill text-main-color"></i>
+                    </div>
+                    <div>
+                      <h6 class="mb-0 text-main-color fw-600 fs-6-1">Graphic Designer</h6>
+                      <p class="text-main-color fs-6-1">Part-Time</p>
+                      <p class="text-main-color fs-6-1">Sep 2020 - Nov 2022 (2 years 1 month)</p>
+                      <p class="text-main-color fs-6-1">Monastir, Tunisia</p>
+                    </div>
+                  </div>
+                  <div class="d-flex align-items-start gap-2 mt-3">
+                    <div class="dot text-center">
+                      <i class="pi pi-circle-fill text-main-color"></i>
+                    </div>
+                    <div>
+                      <h6 class="mb-0 text-main-color fw-600 fs-6-1">Graphic Designer</h6>
+                      <p class="text-main-color fs-6-1">Part-Time</p>
+                      <p class="text-main-color fs-6-1">Sep 2020 - Nov 2022 (2 years 1 month)</p>
+                      <p class="text-main-color fs-6-1">Monastir, Tunisia</p>
+                    </div>
+                  </div>
+                  <div class="d-flex align-items-start gap-2 mt-1">
+                    <div class="dot text-center">
+                    </div>
+                    <div>
+                      <p class="text-main-color fw-600 fs-6-1">Skills: User Centred Design , Motion Design , After
+                        Effects,
+                        Animation
+                        3D , 2D Animations</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-4">
+                  <div class="d-flex align-items-center gap-2">
+                    <img src="../../../../assets/images/profile/ltd.png" class="experiance-img rounded-circle" alt="ltd"
+                      onerror="src='assets/images/not-found/no-user.svg'">
+                    <div>
+                      <h6 class="mb-0 text-main-color fw-600 fs-6-1">Al-Foadia LTD</h6>
+                      <p class="text-main-color fs-6-1">2 Years 3 Months</p>
+                    </div>
+                  </div>
+
+                  <div class="d-flex align-items-start gap-2 mt-2">
+                    <div class="dot text-center">
+                      <i class="pi pi-circle-fill text-main-color"></i>
+                    </div>
+                    <div>
+                      <h6 class="mb-0 text-main-color fw-600 fs-6-1">Graphic Designer</h6>
+                      <p class="text-main-color fs-6-1">Part-Time</p>
+                      <p class="text-main-color fs-6-1">Sep 2020 - Nov 2022 (2 years 1 month)</p>
+                      <p class="text-main-color fs-6-1">Monastir, Tunisia</p>
+                    </div>
+                  </div>
+                  <div class="d-flex align-items-start gap-2 mt-1">
+                    <div class="dot text-center">
+                    </div>
+                    <div>
+                      <p class="text-main-color fw-600 fs-6-1">Skills: User Centred Design , Motion Design , After
+                        Effects,
+                        Animation
+                        3D , 2D Animations</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="global-card h-100">
+              <div class="d-flex justify-content-between">
+                <h5 class="text-main-color fs-5 fw-bold mb-0">{{'profile.skills'|translate}}</h5>
+                <a><i class="fas fa-pen-to-square text-main-color"></i></a>
+              </div>
+              <div class="mt-4">
+                <ng-container *ngFor="let item of [9,8,7,6,8,9,7]">
+                  <div class="mb-3">
+                    <h6 class="text-main-color fw-600 fs-6-1 mb-1">User Interface Design <span
+                        class="ps-1">(7.5/10)</span>
+                    </h6>
+                    <div class="text-main-color d-flex gap-2 align-items-center">
+                      <i class="fas fa-users"></i>
+                      <p class="fs-6-1">2 Assessments</p>
+                    </div>
+                  </div>
+                </ng-container>
+
+                <a class="text-center text-desc-color fs-5-1 mt-2 d-block">Show all 23 skills</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="global-card mt-3">
+          <div class="d-flex justify-content-between">
+            <h5 class="text-main-color fs-5 fw-bold mb-0">{{'profile.experience'|translate}}</h5>
+            <div class="d-flex gap-3">
+              <a><i class="pi pi-plus fs-5-1 text-main-color fw-600"></i></a>
+              <a><i class="fas fa-pen-to-square text-main-color"></i></a>
+            </div>
+          </div>
+          <div class="mt-4">
+            <div class="d-flex align-items-center gap-4 flex-wrap">
+              <ng-container *ngFor="let item of [9,8,7]">
+                <div class="d-flex align-items-start gap-2">
+                  <img src="../../../../assets/images/profile/school.jpg" class="experiance-img rounded-circle"
+                    alt="school" onerror="src='assets/images/not-found/no-user.svg'">
+                  <div>
+                    <h6 class="mb-0 text-main-color fw-600 fs-6-1">California College of The Arts</h6>
+                    <p class="text-main-color fs-6-1">2018-2021</p>
+                    <p class="text-main-color fs-6-1">Degree Of Art</p>
+                  </div>
+                </div>
+              </ng-container>
+
+            </div>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-6">
+            <div class="global-card h-100">
+              <div class="d-flex justify-content-between">
+                <h5 class="text-main-color fs-5 fw-bold mb-0">{{'profile.certifications'|translate}}</h5>
+                <div class="d-flex gap-3">
+                  <a><i class="pi pi-plus fs-5-1 text-main-color fw-600"></i></a>
+                  <a><i class="fas fa-pen-to-square text-main-color"></i></a>
+                </div>
+              </div>
+              <div class="mt-4">
+                <div class="d-flex align-items-start gap-2">
+                  <img src="../../../../assets/images/profile/ui.jfif" class="experiance-img rounded-circle" alt="be"
+                    onerror="src='assets/images/not-found/no-user.svg'">
+                  <div>
+                    <h6 class="mb-0 text-main-color fw-600 fs-6-1">Ui/Ux</h6>
+                    <p class="text-main-color fs-6-1">Udemy.com</p>
+                    <p class="text-main-color fs-6-1">Issued Apr 2022</p>
+                    <a class="text-main-color fs-6-1 showCredentials py-1 px-2 rounded-pill mt-1 d-flex gap-2">
+                      {{'profile.showCredentials'|translate}}
+                      <a><i class="fas fa-pen-to-square text-main-color fs-8"></i></a>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="global-card  h-100">
+              <div class="d-flex justify-content-between">
+                <h5 class="text-main-color fs-5 fw-bold mb-0">{{'profile.languages'|translate}}</h5>
+                <div class="d-flex gap-3">
+                  <a><i class="pi pi-plus fs-5-1 text-main-color fw-600"></i></a>
+                  <a><i class="fas fa-pen-to-square text-main-color"></i></a>
+                </div>
+              </div>
+              <div class="mt-4">
+                <div class="d-flex gap-3 flex-wrap">
+                  <ng-container *ngFor="let item of [9,8];let i=index">
+                    <div class="d-flex align-items-center gap-2">
+                      <div class="language d-flex align-items-center justify-content-center rounded-circle">
+                        <i class="fas fa-globe fs-5 text-main-color "></i>
+                      </div>
+                      <div>
+                        <h6 class="mb-0 text-main-color fw-600 fs-6-1">English</h6>
+                        <p class="text-main-color fs-6-1">Native</p>
+                      </div>
+                    </div>
+                  </ng-container>
+                </div>
+                <div class="d-flex gap-3 flex-wrap mt-3">
+                  <ng-container *ngFor="let item of [9,8];let i=index">
+                    <div class="d-flex align-items-center gap-2">
+                      <div class="language d-flex align-items-center justify-content-center rounded-circle">
+                        <i class="fas fa-globe fs-5 text-main-color "></i>
+                      </div>
+                      <div>
+                        <h6 class="mb-0 text-main-color fw-600 fs-6-1">English</h6>
+                        <p class="text-main-color fs-6-1">Native</p>
+                      </div>
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-lg-3 mt-lg-0 mt-3">
+        <div class="global-card">
+          <h5 class="text-main-color fs-5-1 mb-0">{{'profile.analytics'|translate}}</h5>
+          <div class="row g-3 mt-1">
+            <div class="col-lg-6 col-md-3 col-sm-6">
+              <div class="analysies text-center">
+                <h5 class="text-main-color mb-1 fw-600">455</h5>
+                <p class="title fw-600">{{'profile.appliedJobs'|translate}}</p>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-3 col-sm-6">
+              <div class="analysies text-center">
+                <h5 class="text-main-color mb-1 fw-600">455</h5>
+                <p class="title fw-600">{{'profile.matchingJobs'|translate}}</p>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-3 col-sm-6">
+              <div class="analysies text-center">
+                <h5 class="text-main-color mb-1 fw-600">455</h5>
+                <p class="title fw-600">{{'profile.profileView'|translate}}</p>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-3 col-sm-6">
+              <div class="analysies text-center">
+                <h5 class="text-main-color mb-1 fw-600">455</h5>
+                <p class="title fw-600">{{'profile.searchApearance'|translate}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="global-card mt-3">
+          <h5 class="text-main-color fs-5">{{'home.recommended'|translate}}</h5>
+          <ng-container *ngIf="isLoadingRecommendedResults; else noLoadingJobs">
+            <app-skeleton [type]="'jobOffers'"></app-skeleton>
+          </ng-container>
+          <ng-template #noLoadingJobs>
+            <ng-container *ngIf="recommendedResults?.length>0;else noRecommendedResults">
+              <div class="row content mt-3">
+                <ng-container *ngFor="let item of recommendedResults;let i=index">
+                  <div class="col-xl-12 col-lg-12 col-md-6">
+                    <div class="recommended-content p-3 pointer mb-3">
+                      <div class="d-flex justify-content-between  gap-2">
+                        <div class="d-flex align-items-center flex-wrap gap-2">
+                          <img class="recommended-img rounded-circle" src="../../../../assets/images/home/product.jfif"
+                            alt="product">
+                          <div>
+                            <h5 class="fs-5-1 text-main-color fw-bold mb-1">
+                              {{item?.title}}
+                            </h5>
+                            <div class="d-flex gap-1 flex-wrap">
+                              <p class="fw-600">{{item?.name}}</p>
+                              <ngx-star-rating [(ngModel)]="item.rate" [id]="'item?.rate'"
+                                [disabled]="true"></ngx-star-rating>
+                            </div>
+                            <p class="fw-600 fs-5-1">{{item?.address}}</p>
+                          </div>
+                        </div>
+                        <i class="pi pi-th-large fs-6-1"></i>
+                      </div>
+                      <p class="mt-2 fs-6-1 text-desc-color">{{item?.time}}</p>
+                    </div>
+                  </div>
+                </ng-container>
+              </div>
+
+              <a
+                class="text-center text-desc-color fs-5-1 mt-2 d-block d-flex justify-content-center align-items-center gap-2">
+                {{'general.showAll'|translate}}
+                <i class="pi pi-angle-right fs-5"></i>
+              </a>
+            </ng-container>
+
+            <ng-template #noRecommendedResults>
+              <div class="h-100 d-flex align-items-center justify-content-center flex-column">
+                <img class="no-data" src="assets/images/not-found/no-data.svg" alt="no-data">
+                <p>{{'general.no_result_found'|translate}}</p>
+              </div>
+            </ng-template>
+          </ng-template>
+        </div>
+        <div class="global-card mt-3">
+          <div class="d-flex justify-content-between align-items-center">
+            <h5 class="text-main-color fs-5 mb-0">{{'home.recent'|translate}}</h5>
+            <i class="fas fa-gear fs-5-1 text-desc-color"></i>
+          </div>
+          <div class="mt-4 recent-content">
+            <ng-container *ngIf="isLoadingSearchResults; else noSearchLoading">
+              <app-skeleton [type]="'searchResult'"></app-skeleton>
+            </ng-container>
+            <ng-template #noSearchLoading>
+              <ng-container *ngIf="searchResults?.length>0; else noResult">
+                <ng-container *ngFor="let item of searchResults">
+                  <div class="d-flex align-items-center gap-2  search-content">
+                    <i class="fas fa-users"></i>
+                    <p class="text-truncate">{{item?.coupon_name}}</p>
+                  </div>
+                </ng-container>
+              </ng-container>
+              <ng-template #noResult>
+                <div class="h-100 d-flex align-items-center justify-content-center flex-column">
+                  <img class="no-data" src="assets/images/not-found/no-data.svg" alt="no-data">
+                  <p>{{'general.no_search_result'|translate}}</p>
+                </div>
+              </ng-template>
+            </ng-template>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,3 +1,4 @@
+import { PublicService } from './shared/services/public.service';
 import { AlertsService } from './core/services/alerts/alerts.service';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { ThemeService } from './core/services/themes/theme.service';
@@ -9,6 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { PrimeNGConfig } from 'primeng/api';
 import { Component } from '@angular/core';
 import { filter, map } from 'rxjs';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -28,8 +30,10 @@ export class AppComponent {
     private activatedRoute: ActivatedRoute,
     private sharedService: SharedService,
     private alertsService: AlertsService,
+    private publicService: PublicService,
     private themeService: ThemeService,
     private config: PrimeNGConfig,
+    private titleService: Title,
     private router: Router,
 
   ) {
@@ -82,8 +86,14 @@ export class AppComponent {
         if (data) {
           this.sharedService.urlData.next(data);
           this.url = data;
-          console.log(this.url);
+          if (data["title"]) {
+            this.titleService.setTitle(
+              'Talent' + " | " + (this.publicService?.translateTextFromJson(data["title"])));
+          }
+        } else {
+          this.titleService.setTitle('Talent');
         }
+
       });
 
     this.currentTheme = window.localStorage.getItem(keys?.theme);
