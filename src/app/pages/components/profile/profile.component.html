@@ -281,25 +281,25 @@
             <div class="col-lg-6 col-md-3 col-sm-6">
               <div class="analysies text-center">
                 <h5 class="text-main-color mb-1 fw-600">455</h5>
-                <p class="title fw-600">{{'profile.appliedJobs'|translate}}</p>
+                <p class="title fw-600 text-dark-color">{{'profile.appliedJobs'|translate}}</p>
               </div>
             </div>
             <div class="col-lg-6 col-md-3 col-sm-6">
               <div class="analysies text-center">
                 <h5 class="text-main-color mb-1 fw-600">455</h5>
-                <p class="title fw-600">{{'profile.matchingJobs'|translate}}</p>
+                <p class="title fw-600 text-dark-color">{{'profile.matchingJobs'|translate}}</p>
               </div>
             </div>
             <div class="col-lg-6 col-md-3 col-sm-6">
               <div class="analysies text-center">
                 <h5 class="text-main-color mb-1 fw-600">455</h5>
-                <p class="title fw-600">{{'profile.profileView'|translate}}</p>
+                <p class="title fw-600 text-dark-color">{{'profile.profileView'|translate}}</p>
               </div>
             </div>
             <div class="col-lg-6 col-md-3 col-sm-6">
               <div class="analysies text-center">
                 <h5 class="text-main-color mb-1 fw-600">455</h5>
-                <p class="title fw-600">{{'profile.searchApearance'|translate}}</p>
+                <p class="title fw-600 text-dark-color">{{'profile.searchApearance'|translate}}</p>
               </div>
             </div>
           </div>
@@ -349,7 +349,7 @@
             <ng-template #noRecommendedResults>
               <div class="h-100 d-flex align-items-center justify-content-center flex-column">
                 <img class="no-data" src="assets/images/not-found/no-data.svg" alt="no-data">
-                <p>{{'general.no_result_found'|translate}}</p>
+                <p class="text-dark-color">{{'general.no_result_found'|translate}}</p>
               </div>
             </ng-template>
           </ng-template>
@@ -368,14 +368,14 @@
                 <ng-container *ngFor="let item of searchResults">
                   <div class="d-flex align-items-center gap-2  search-content">
                     <i class="fas fa-users"></i>
-                    <p class="text-truncate">{{item?.coupon_name}}</p>
+                    <p class="text-truncate text-dark-color">{{item?.coupon_name}}</p>
                   </div>
                 </ng-container>
               </ng-container>
               <ng-template #noResult>
                 <div class="h-100 d-flex align-items-center justify-content-center flex-column">
                   <img class="no-data" src="assets/images/not-found/no-data.svg" alt="no-data">
-                  <p>{{'general.no_search_result'|translate}}</p>
+                  <p class="text-dark-color">{{'general.no_search_result'|translate}}</p>
                 </div>
               </ng-template>
             </ng-template>

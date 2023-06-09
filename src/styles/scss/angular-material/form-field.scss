@@ -76,3 +76,15 @@
   // color: #fff;
   border: 0 !important;
 }
+.mat-calendar-body-cell-content.mat-focus-indicator,
+.mat-focus-indicator,
+.mat-calendar-arrow,
+.mat-button-wrapper {
+  color: var(--text-dark-color) !important;
+}
+.mat-calendar-table-header {
+  color: var(--grey-900) !important;
+}
+.mat-calendar-table-header-divider::after {
+  background-color: var(--grey-900) !important;
+}

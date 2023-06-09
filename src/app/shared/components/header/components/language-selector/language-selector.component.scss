@@ -18,5 +18,6 @@
   }
   .dropdown-toggle::after {
     display: block !important;
+    color: var(--text-dark-color) !important;
   }
 }

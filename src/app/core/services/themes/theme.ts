@@ -13,6 +13,9 @@ export const light: Theme = {
     '--bg-input-color': "#fff",
     '--text-dark-color': "#111",
     '--bg-dark-color': "#111",
+    '--bg-counterDot': "#cdd3df",
+    '--body-color': "#ebeef5",
+    '--grey-900': '#0000008a'
 
   },
 };
@@ -27,5 +30,9 @@ export const dark: Theme = {
     '--bg-input-color': "#1B2730",
     '--text-dark-color': "#fff",
     '--bg-dark-color': "#fff",
+    '--bg-counterDot': "#0F2656",
+    '--body-color': "#06141D",
+    '--grey-900': '#ffffff8a'
+
   }
 }
