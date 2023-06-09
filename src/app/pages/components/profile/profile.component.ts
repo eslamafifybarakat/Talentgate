@@ -40,7 +40,7 @@ export class ProfileComponent implements OnInit {
         this.getSearchResults(res?.searchValue);
       }
     });
-    this.getSearchResults('');
+    // this.getSearchResults('');
   }
 
   editAbout(): void {
