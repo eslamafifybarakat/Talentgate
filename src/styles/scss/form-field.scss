@@ -4,7 +4,7 @@ input[type]::-webkit-input-placeholder,
 textarea::-webkit-input-placeholder,
 select::-webkit-input-placeholder,
 select.form-control.has-value {
-  color: var(--bg-main-color) !important;
+  color: #576f93 !important;
   font-size: 1rem;
 }
 
@@ -63,22 +63,24 @@ select.form-control.has-value {
 .p-inputtext {
   box-shadow: none !important;
   outline: none !important;
-  border-color: var(--border-color);
   height: 3.4rem;
   border-radius: var(--border-radius);
   padding: 2rem;
-  background-color: var(--white);
-  border-color: var(--bg-main-color);
+  background-color: var(--bg-input-color);
+  border-color: var(--border-input-color);
+  color: #576f93 !important;
 }
 .p-dropdown {
   border-radius: var(--border-radius);
   background-color: var(--white);
   border-color: var(--bg-main-color);
   height: 4rem !important;
+  color: #576f93 !important;
 }
 .p-dropdown .p-dropdown-label.p-placeholder {
   padding: 2rem;
   line-height: 0 !important;
+  color: #576f93 !important;
 }
 .form-control-left {
   border-left: 0;
@@ -167,6 +169,7 @@ select.form-control.has-value {
     transform: translateY(-50%);
     font-size: 1.5rem;
     color: var(--bg-main-color);
+    color: #576f93 !important;
   }
 }
 
@@ -174,7 +177,7 @@ p-password .pi {
   // font-family: "FontAwesome";
   font-size: 1.5rem;
   right: 2rem !important;
-  color: var(--bg-main-color) !important;
+  color: #576f93 !important;
   transform: translate(0px, -50%);
   margin: 0 !important;
 }
@@ -234,7 +237,7 @@ p-checkbox {
   .form-control,
   .p-dropdown,
   p-password .p-inputtext {
-    background: #ebeef5;
+    background: var(--bg-register-input-color);
     // border: 1px solid #576f93;
   }
 }

@@ -7,7 +7,7 @@
           <div class="global-card p-sm-5 p-4 align-items-end  ">
             <ng-container *ngIf="step==1">
               <div>
-                <h2 class="text-main-color"> {{'form.create-account'|translate}}</h2>
+                <h2 class="text-main-color form-title"> {{'form.create-account'|translate}}</h2>
                 <form [formGroup]="firstRegisterForm" (ngSubmit)="submitFirstForm()" class="pt-3">
                   <div class="mb-4">
                     <div class="input-container">
@@ -144,7 +144,7 @@
             <ng-container *ngIf="step==2">
               <div>
                 <i class="pi pi-arrow-left fs-5 text-main-color mb-3" (click)="step=1"></i>
-                <h2 class="text-main-color"> {{'general.yourprofile'|translate}}</h2>
+                <h2 class="text-main-color form-title"> {{'general.yourprofile'|translate}}</h2>
                 <form [formGroup]="secondRegisterForm" (ngSubmit)="submitSecondRegForm()" class="pt-3 sign_up">
                   <div class="d-flex justify-content-center mb-4">
                     <input type="file" id="profilePicture" accept="image/*" (change)="selectImage($event)" hidden>

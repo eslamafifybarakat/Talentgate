@@ -1,4 +1,7 @@
 .auth-form {
+  .form-title {
+    color: var(--text-form-title-color);
+  }
   padding-top: 5.5rem;
   .form-content {
     min-height: calc(100vh - 120px);
@@ -20,8 +23,6 @@
   .content {
     h2 {
       font-size: 1.7rem;
-      // padding-bottom: 10px !important;
-      color: var(--text-main-color);
     }
     h3 {
       font-size: 18px;

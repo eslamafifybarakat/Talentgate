@@ -5,15 +5,15 @@
         <div class="col-lg-6 col-md-12">
           <div class="global-card p-sm-5 p-4 align-items-end">
             <div class="content">
-              <h2> {{'form.welcomeBack'|translate}}</h2>
+              <h2 class="form-title"> {{'form.welcomeBack'|translate}}</h2>
               <h3 class="text-desc-color">{{'form.enterDetails'|translate}}</h3>
             </div>
             <form [formGroup]="loginForm" (ngSubmit)="submit()" class="pt-3 ">
               <div class="mb-4">
                 <div class="input-container">
                   <i class="fa-regular fa-envelope"></i>
-                  <input type="text" class="form-control bg-transparent" formControlName="username"
-                    autocomplete="cc-name" (input)="publicService?.clearValidationErrors(formControls?.username)"
+                  <input type="text" class="form-control" formControlName="username" autocomplete="cc-name"
+                    (input)="publicService?.clearValidationErrors(formControls?.username)"
                     [class.is-invalid]="formControls?.username?.invalid && (formControls?.username?.dirty || formControls?.username?.touched)"
                     placeholder="{{'placeholder.email'|translate}}">
                 </div>
@@ -79,8 +79,8 @@
                 </a>
               </div>
 
-              <button type="submit" class=" w-100 btn-outline-main form-btn  mt-3">
-                <span> {{'form.login'|translate}}</span>
+              <button type="submit" class="w-100 btn-outline-main form-btn mt-3">
+                {{'form.login'|translate}}
               </button>
               <span class="or-span"> {{'general.or'|translate}}</span>
               <button (click)="authUserService?.loginWithLinkedIn()" type="button"
