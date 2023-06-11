@@ -9,6 +9,7 @@ import * as moment from 'moment';
 })
 export class CalenderComponent implements OnInit {
   selectedDate: Date = new Date();
+  formateDate: any;
   schedulerEvents: any = [];
   isLoadingEvents: boolean = false;
 
@@ -22,24 +23,25 @@ export class CalenderComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getSchedularEvents();
+    this.onDateChange(new Date())
   }
 
   onDateChange(event: any): void {
-    let formateDate: any;
     this.selectedDate = event;
-    formateDate = moment(new Date(event))?.format("YYYY-MM-DD");
-    this.getSchedularEvents();
+    this.formateDate = moment(new Date(event))?.format("YYYY-MM-DD");
+    this.getSchedularEvents(event);
   }
-
+  handleNavigation(event: any): void {
+    this.selectedDate = event?.sender?._selectedDate;
+  }
   onCellClick(e: any): void {
     console.log('Cell clicked:', e);
     this.showDetailss = true
   }
 
-  getSchedularEvents(): any {
+  getSchedularEvents(date: any): any {
     this.isLoadingEvents = true;
-    this.homeService?.getSchedularEvents()?.subscribe(
+    this.homeService?.getSchedularEvents(date)?.subscribe(
       (res: any) => {
         if (res?.status == 200) {
           this.schedulerEvents = res?.data ? res?.data : [];
@@ -61,8 +63,8 @@ export class CalenderComponent implements OnInit {
         "Title": "Website upload",
         "Description": "",
         "StartTimezone": null,
-        "Start": "2023-06-06T08:00:00.000Z",
-        "End": "2023-06-06T09:00:00.000Z",
+        "Start": "00:00:00",
+        "End": "01:00:00",
         "EndTimezone": null,
         "RecurrenceRule": null,
         "RecurrenceID": null,
@@ -75,140 +77,15 @@ export class CalenderComponent implements OnInit {
         "Title": "Meeting with marketing guys",
         "Description": "",
         "StartTimezone": null,
-        "Start": "2023-06-06T05:00:00.000Z",
-        "End": "2023-06-06T06:00:00.000Z",
+        "Start": "02:00:00",
+        "End": "03:00:00",
         "EndTimezone": null,
         "RecurrenceRule": null,
         "RecurrenceID": null,
         "RecurrenceException": null,
         "IsAllDay": false
       },
-      {
-        "TaskID": 92,
-        "OwnerID": 3,
-        "Title": "Meeting with Internet provider",
-        "Description": "",
-        "StartTimezone": null,
-        "Start": "2023-06-07T07:30:00.000Z",
-        "End": "2023-06-07T08:30:00.000Z",
-        "EndTimezone": null,
-        "RecurrenceRule": null,
-        "RecurrenceID": null,
-        "RecurrenceException": null,
-        "IsAllDay": false
-      },
-      {
-        "TaskID": 93,
-        "OwnerID": 3,
-        "Title": "Bob's Birthday Party",
-        "Description": "",
-        "StartTimezone": null,
-        "Start": "2023-06-08T10:00:00.000Z",
-        "End": "2023-06-08T13:30:00.000Z",
-        "EndTimezone": null,
-        "RecurrenceRule": null,
-        "RecurrenceID": null,
-        "RecurrenceException": null,
-        "IsAllDay": false
-      },
-      {
-        "TaskID": 95,
-        "OwnerID": 2,
-        "Title": "Dance Practice",
-        "Description": "",
-        "StartTimezone": null,
-        "Start": "2023-06-03T18:30:00.000Z",
-        "End": "2023-06-03T20:00:00.000Z",
-        "EndTimezone": null,
-        "RecurrenceRule": "FREQ=WEEKLY;BYDAY=MO,WE",
-        "RecurrenceID": null,
-        "RecurrenceException": null,
-        "IsAllDay": false
-      },
-      {
-        "TaskID": 114,
-        "OwnerID": 3,
-        "Title": "Software updates",
-        "Description": "",
-        "StartTimezone": null,
-        "Start": "2023-06-04T09:00:00.000Z",
-        "End": "2023-06-04T12:00:00.000Z",
-        "EndTimezone": null,
-        "RecurrenceRule": "",
-        "RecurrenceID": null,
-        "RecurrenceException": null,
-        "IsAllDay": false
-      },
-      {
-        "TaskID": 115,
-        "OwnerID": 1,
-        "Title": "Breakfast at Starbucks",
-        "Description": "",
-        "StartTimezone": null,
-        "Start": "2023-06-04T08:00:00.000Z",
-        "End": "2023-06-04T09:30:00.000Z",
-        "EndTimezone": null,
-        "RecurrenceRule": "",
-        "RecurrenceID": null,
-        "RecurrenceException": null,
-        "IsAllDay": false
-      },
-      {
-        "TaskID": 116,
-        "OwnerID": 2,
-        "Title": "Performance review",
-        "Description": "",
-        "StartTimezone": null,
-        "Start": "2023-06-04T14:00:00.000Z",
-        "End": "2023-06-04T17:00:00.000Z",
-        "EndTimezone": null,
-        "RecurrenceRule": "",
-        "RecurrenceID": null,
-        "RecurrenceException": null,
-        "IsAllDay": false
-      },
-      {
-        "TaskID": 118,
-        "OwnerID": 1,
-        "Title": "HR seminar preparation",
-        "Description": "",
-        "StartTimezone": null,
-        "Start": "2023-06-05T10:00:00.000Z",
-        "End": "2023-06-05T12:00:00.000Z",
-        "EndTimezone": null,
-        "RecurrenceRule": "",
-        "RecurrenceID": null,
-        "RecurrenceException": null,
-        "IsAllDay": false
-      },
-      {
-        "TaskID": 119,
-        "OwnerID": 3,
-        "Title": "Helpdesk weekly meeting",
-        "Description": "",
-        "StartTimezone": null,
-        "Start": "2023-06-05T15:00:00.000Z",
-        "End": "2023-06-05T16:00:00.000Z",
-        "EndTimezone": null,
-        "RecurrenceRule": "FREQ=WEEKLY;BYDAY=WE",
-        "RecurrenceID": null,
-        "RecurrenceException": null,
-        "IsAllDay": false
-      },
-      {
-        "TaskID": 120,
-        "OwnerID": 3,
-        "Title": "Website upload",
-        "Description": "",
-        "StartTimezone": null,
-        "Start": "2023-06-07T07:00:00.000Z",
-        "End": "2023-06-07T08:30:00.000Z",
-        "EndTimezone": null,
-        "RecurrenceRule": "",
-        "RecurrenceID": null,
-        "RecurrenceException": null,
-        "IsAllDay": false
-      }
+
     ];
     const parseAdjust = (eventDate: string): Date => {
       const currentYear = new Date(eventDate).getFullYear();
@@ -220,9 +97,9 @@ export class CalenderComponent implements OnInit {
     this.schedulerEvents = arr.map((dataItem: any) => (
       <any>{
         id: dataItem.TaskID,
-        start: parseAdjust(dataItem.Start),
+        start: parseAdjust(this.formateDate + 'T' + dataItem.Start + '.000Z'),
         startTimezone: dataItem.startTimezone,
-        end: parseAdjust(dataItem.End),
+        end: parseAdjust(this.formateDate + 'T' + dataItem.End + '.000Z'),
         endTimezone: dataItem.endTimezone,
         isAllDay: dataItem.IsAllDay,
         title: dataItem.Title,
@@ -235,6 +112,7 @@ export class CalenderComponent implements OnInit {
         ownerID: dataItem.OwnerID
       }
     ));
+    console.log(this.schedulerEvents);
 
   }
 }

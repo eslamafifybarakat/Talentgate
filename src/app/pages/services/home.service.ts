@@ -1,7 +1,7 @@
 import { roots } from './../../shared/configs/endPoints';
 import { environment } from './../../../environments/environment';
 import { keys } from './../../shared/configs/localstorage-key';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -35,7 +35,9 @@ export class HomeService {
     return this.http?.post<any>(this.apiUrl + roots?.home?.apply_for_job, data);
   }
 
-  getSchedularEvents(): Observable<any> {
-    return this.http?.get<any>(this.apiUrl + roots?.scheduler?.events);
+  getSchedularEvents(date: any): Observable<any> {
+    let params = new HttpParams();
+    params = params.append("date", date);
+    return this.http?.get<any>(this.apiUrl + roots?.scheduler?.events, { params: params });
   }
 }
