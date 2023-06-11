@@ -86,6 +86,20 @@ export class CalenderComponent implements OnInit {
         "IsAllDay": false
       },
 
+      {
+        "TaskID": 92,
+        "OwnerID": 3,
+        "Title": "Meeting with Internet provider",
+        "Description": "",
+        "StartTimezone": null,
+        "Start": "07:00:00",
+        "End": "08:00:00",
+        "EndTimezone": null,
+        "RecurrenceRule": null,
+        "RecurrenceID": null,
+        "RecurrenceException": null,
+        "IsAllDay": false
+      },
     ];
     const parseAdjust = (eventDate: string): Date => {
       const currentYear = new Date(eventDate).getFullYear();
