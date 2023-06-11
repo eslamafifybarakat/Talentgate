@@ -2,6 +2,9 @@
   .container-fluid {
     --bs-gutter-x: 3.5rem !important;
   }
+  .card-title {
+    opacity: 0.7;
+  }
   .person-img {
     width: 75px;
     height: 75px;
@@ -11,10 +14,7 @@
   .applied-jobs {
     border-right: 1px solid var(--user-border-color);
   }
-  .hr {
-    background-color: var(--user-border-color) !important;
-    border-width: 1px !important;
-  }
+
   .number {
     color: #a6c9eb;
   }
@@ -101,5 +101,9 @@
   }
   input.star:checked ~ label.star:before {
     color: #f8b84e !important;
+  }
+  hr {
+    border-top: 1px solid var(--user-border-color) !important;
+    opacity: 1 !important;
   }
 }

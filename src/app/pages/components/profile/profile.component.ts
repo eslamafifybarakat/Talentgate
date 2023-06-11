@@ -26,6 +26,8 @@ export class ProfileComponent implements OnInit {
   imgBgFileSrc: any = 'assets/images/home/bg.jfif';
   @ViewChild('profilePictureInput') profilePictureInput: any;
 
+  skills: any = [9, 8, 7, 6, 8, 9, 7];
+  experiences: any = [4, 6, 8];
   constructor(
     private alertsService: AlertsService,
     private publicService: PublicService,

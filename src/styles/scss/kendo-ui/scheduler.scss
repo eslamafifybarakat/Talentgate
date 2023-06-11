@@ -37,6 +37,7 @@ kendo-scheduler .k-event,
   justify-content: end !important;
   // margin-top: 4px !important;
   .k-button-solid-base {
+    display: none;
     color: #fff !important;
     background-color: var(--bg-main-color) !important;
     border-color: var(--bg-main-color) !important;
@@ -130,4 +131,12 @@ kendo-scheduler.k-scheduler {
 }
 .k-i-caret-alt-right::before {
   content: "\f105";
+}
+
+.k-scheduler,
+.k-scheduler-header-wrap {
+  background-color: var(--bg-white-color) !important;
+}
+.k-scheduler-header {
+  background-color: transparent !important;
 }

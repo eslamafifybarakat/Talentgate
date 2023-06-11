@@ -72,6 +72,10 @@
   // padding: 20px;
   line-height: 0 !important;
 }
+.p-dropdown-panel .p-dropdown-header {
+  background-color: var(--bg-dropdown-header-color) !important;
+}
 .p-dropdown-panel {
   padding: 0 !important;
+  background-color: var(--bg-white-color) !important;
 }

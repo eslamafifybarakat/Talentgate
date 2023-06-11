@@ -23,8 +23,8 @@ export const light: Theme = {
     '--small-card-shadow': '0px 3px 6px #3a53804d',
     '--grey-800': '#1B2730',
     '--card-title-color': '#3a5380',
-    '--user-border-color': '#00000029'
-
+    '--user-border-color': '#00000029',
+    '--bg-dropdown-header-color': '#f8f9fa'
   },
 };
 
@@ -48,6 +48,8 @@ export const dark: Theme = {
     '--small-card-shadow': '0px 0px 0px #3a53804d',
     '--grey-800': '#E3E3E3',
     '--card-title-color': '#E3E3E3',
-    '--user-border-color': '#28343E'
+    '--user-border-color': '#28343E',
+    '--bg-dropdown-header-color': ' #1B2730'
+
   }
 }

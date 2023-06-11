@@ -81,7 +81,6 @@ export class ApplyJobComponent implements OnInit {
 
   ngOnInit(): void {
     this.getJobRecommended(0);
-    this.changeData(this.recommendedResults[0]?._id);
     this.jobId = this.recommendedResults[0]?._id;
     this.publicService?.recallSearchResults?.subscribe((res: any) => {
       if (res?.recall == true) {

@@ -88,3 +88,7 @@
 .mat-calendar-table-header-divider::after {
   background-color: var(--grey-900) !important;
 }
+.mat-calendar-table-header,
+.mat-calendar-body-label {
+  color: var(--text-dark-color) !important;
+}

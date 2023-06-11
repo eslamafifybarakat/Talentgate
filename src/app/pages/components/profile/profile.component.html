@@ -7,7 +7,7 @@
           <label
             class="camera position-absolute d-flex justify-content-center align-items-center rounded-circle pointer"
             for="profileBg">
-            <i class="pi pi-camera fs-5"></i>
+            <i class="pi pi-camera fs-5 card-title-color"></i>
           </label>
           <img [src]="imgBgFileSrc" class="w-100 profile-bg" alt="user">
           <div class="px-3 d-flex justify-content-between align-items-center">
@@ -43,7 +43,7 @@
         </div>
         <div class="global-card mt-3">
           <div class="d-flex justify-content-between">
-            <h5 class="text-main-color fs-5 fw-bold mb-0">{{'profile.about'|translate}}</h5>
+            <h5 class="card-title-color fs-5 fw-bold mb-0">{{'profile.about'|translate}}</h5>
             <ng-container *ngIf="!isEditAbout">
               <a (click)="editAbout()"><i class="fas fa-pen-to-square text-main-color"></i></a>
             </ng-container>
@@ -67,114 +67,134 @@
         </div>
         <div class="row mt-3">
           <div class="col-md-6">
-            <div class="global-card h-100">
+            <div class="global-card h-100 ">
               <div class="d-flex justify-content-between">
-                <h5 class="text-main-color fs-5 fw-bold mb-0">{{'profile.experience'|translate}}</h5>
+                <h5 class="card-title-color fs-5 fw-bold mb-0">{{'profile.experience'|translate}}</h5>
                 <div class="d-flex gap-3">
                   <a><i class="pi pi-plus fs-5-1 text-main-color fw-600"></i></a>
                   <a><i class="fas fa-pen-to-square text-main-color"></i></a>
                 </div>
               </div>
-              <div class="mt-4">
-                <div>
-                  <div class="d-flex align-items-center gap-2">
-                    <img src="../../../../assets/images/profile/be.jpg" class="experiance-img rounded-circle" alt="be"
-                      onerror="src='assets/images/not-found/no-user.svg'">
+              <div class="mt-4 content-info">
+                <ng-container *ngIf="experiences?.length>0; else noExperiences">
+                  <div class="pe-2">
                     <div>
-                      <h6 class="mb-0 text-main-color fw-600 fs-6-1">Behance Co</h6>
-                      <p class="text-main-color fs-6-1">Present (2 years)</p>
+                      <div class="d-flex align-items-center gap-2">
+                        <img src="../../../../assets/images/profile/be.jpg" class="experiance-img rounded-circle"
+                          alt="be" onerror="src='assets/images/not-found/no-user.svg'">
+                        <div>
+                          <h6 class="mb-0 text-main-color fw-600 fs-6-1">Behance Co</h6>
+                          <p class="text-main-color fs-6-1">Present (2 years)</p>
+                        </div>
+                      </div>
+                      <div class="d-flex align-items-start gap-2 mt-2">
+                        <div class="dot text-center">
+                          <i class="pi pi-circle-fill text-main-color"></i>
+                        </div>
+                        <div>
+                          <h6 class="mb-0 text-main-color fw-600 fs-6-1">Graphic Designer</h6>
+                          <p class="text-main-color fs-6-1">Part-Time</p>
+                          <p class="text-main-color fs-6-1">Sep 2020 - Nov 2022 (2 years 1 month)</p>
+                          <p class="text-main-color fs-6-1">Monastir, Tunisia</p>
+                        </div>
+                      </div>
+                      <div class="d-flex align-items-start gap-2 mt-3">
+                        <div class="dot text-center">
+                          <i class="pi pi-circle-fill text-main-color"></i>
+                        </div>
+                        <div>
+                          <h6 class="mb-0 text-main-color fw-600 fs-6-1">Graphic Designer</h6>
+                          <p class="text-main-color fs-6-1">Part-Time</p>
+                          <p class="text-main-color fs-6-1">Sep 2020 - Nov 2022 (2 years 1 month)</p>
+                          <p class="text-main-color fs-6-1">Monastir, Tunisia</p>
+                        </div>
+                      </div>
+                      <div class="d-flex align-items-start gap-2 mt-1">
+                        <div class="dot text-center">
+                        </div>
+                        <div>
+                          <p class="text-main-color fw-600 fs-6-1">Skills: User Centred Design , Motion Design , After
+                            Effects,
+                            Animation
+                            3D , 2D Animations</p>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                  <div class="d-flex align-items-start gap-2 mt-2">
-                    <div class="dot text-center">
-                      <i class="pi pi-circle-fill text-main-color"></i>
-                    </div>
-                    <div>
-                      <h6 class="mb-0 text-main-color fw-600 fs-6-1">Graphic Designer</h6>
-                      <p class="text-main-color fs-6-1">Part-Time</p>
-                      <p class="text-main-color fs-6-1">Sep 2020 - Nov 2022 (2 years 1 month)</p>
-                      <p class="text-main-color fs-6-1">Monastir, Tunisia</p>
-                    </div>
-                  </div>
-                  <div class="d-flex align-items-start gap-2 mt-3">
-                    <div class="dot text-center">
-                      <i class="pi pi-circle-fill text-main-color"></i>
-                    </div>
-                    <div>
-                      <h6 class="mb-0 text-main-color fw-600 fs-6-1">Graphic Designer</h6>
-                      <p class="text-main-color fs-6-1">Part-Time</p>
-                      <p class="text-main-color fs-6-1">Sep 2020 - Nov 2022 (2 years 1 month)</p>
-                      <p class="text-main-color fs-6-1">Monastir, Tunisia</p>
-                    </div>
-                  </div>
-                  <div class="d-flex align-items-start gap-2 mt-1">
-                    <div class="dot text-center">
-                    </div>
-                    <div>
-                      <p class="text-main-color fw-600 fs-6-1">Skills: User Centred Design , Motion Design , After
-                        Effects,
-                        Animation
-                        3D , 2D Animations</p>
-                    </div>
-                  </div>
-                </div>
 
-                <div class="mt-4">
-                  <div class="d-flex align-items-center gap-2">
-                    <img src="../../../../assets/images/profile/ltd.png" class="experiance-img rounded-circle" alt="ltd"
-                      onerror="src='assets/images/not-found/no-user.svg'">
-                    <div>
-                      <h6 class="mb-0 text-main-color fw-600 fs-6-1">Al-Foadia LTD</h6>
-                      <p class="text-main-color fs-6-1">2 Years 3 Months</p>
-                    </div>
-                  </div>
+                    <div class="mt-4">
+                      <div class="d-flex align-items-center gap-2">
+                        <img src="../../../../assets/images/profile/ltd.png" class="experiance-img rounded-circle"
+                          alt="ltd" onerror="src='assets/images/not-found/no-user.svg'">
+                        <div>
+                          <h6 class="mb-0 text-main-color fw-600 fs-6-1">Al-Foadia LTD</h6>
+                          <p class="text-main-color fs-6-1">2 Years 3 Months</p>
+                        </div>
+                      </div>
 
-                  <div class="d-flex align-items-start gap-2 mt-2">
-                    <div class="dot text-center">
-                      <i class="pi pi-circle-fill text-main-color"></i>
-                    </div>
-                    <div>
-                      <h6 class="mb-0 text-main-color fw-600 fs-6-1">Graphic Designer</h6>
-                      <p class="text-main-color fs-6-1">Part-Time</p>
-                      <p class="text-main-color fs-6-1">Sep 2020 - Nov 2022 (2 years 1 month)</p>
-                      <p class="text-main-color fs-6-1">Monastir, Tunisia</p>
+                      <div class="d-flex align-items-start gap-2 mt-2">
+                        <div class="dot text-center">
+                          <i class="pi pi-circle-fill text-main-color"></i>
+                        </div>
+                        <div>
+                          <h6 class="mb-0 text-main-color fw-600 fs-6-1">Graphic Designer</h6>
+                          <p class="text-main-color fs-6-1">Part-Time</p>
+                          <p class="text-main-color fs-6-1">Sep 2020 - Nov 2022 (2 years 1 month)</p>
+                          <p class="text-main-color fs-6-1">Monastir, Tunisia</p>
+                        </div>
+                      </div>
+                      <div class="d-flex align-items-start gap-2 mt-1">
+                        <div class="dot text-center">
+                        </div>
+                        <div>
+                          <p class="text-main-color fw-600 fs-6-1">Skills: User Centred Design , Motion Design , After
+                            Effects,
+                            Animation
+                            3D , 2D Animations</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div class="d-flex align-items-start gap-2 mt-1">
-                    <div class="dot text-center">
-                    </div>
-                    <div>
-                      <p class="text-main-color fw-600 fs-6-1">Skills: User Centred Design , Motion Design , After
-                        Effects,
-                        Animation
-                        3D , 2D Animations</p>
-                    </div>
+                </ng-container>
+                <ng-template #noExperiences>
+                  <div class="h-100 d-flex align-items-center justify-content-center flex-column">
+                    <img class="no-data" src="assets/images/not-found/no-data.svg" alt="no-data">
+                    <p class="text-dark-color">{{'general.no_search_result'|translate}}</p>
                   </div>
-                </div>
+                </ng-template>
+
               </div>
             </div>
           </div>
           <div class="col-md-6">
             <div class="global-card h-100">
               <div class="d-flex justify-content-between">
-                <h5 class="text-main-color fs-5 fw-bold mb-0">{{'profile.skills'|translate}}</h5>
+                <h5 class="card-title-color fs-5 fw-bold mb-0">{{'profile.skills'|translate}}</h5>
                 <a><i class="fas fa-pen-to-square text-main-color"></i></a>
               </div>
               <div class="mt-4 d-flex justify-content-between flex-column">
-                <div>
-                  <ng-container *ngFor="let item of [9,8,7,6,8,9,7]">
-                    <div class="mb-3">
-                      <h6 class="text-main-color fw-600 fs-6-1 mb-1">User Interface Design <span
-                          class="ps-1">(7.5/10)</span>
-                      </h6>
-                      <div class="text-main-color d-flex gap-2 align-items-center">
-                        <i class="fas fa-users"></i>
-                        <p class="fs-6-1">2 Assessments</p>
+                <ng-container *ngIf="skills?.length>0; else noSkills">
+                  <div class="content-info">
+                    <ng-container *ngFor="let item of skills">
+                      <div class="mb-3">
+                        <h6 class="text-main-color fw-600 fs-6-1 mb-1">User Interface Design <span
+                            class="ps-1">(7.5/10)</span>
+                        </h6>
+                        <div class="text-main-color d-flex gap-2 align-items-center">
+                          <i class="fas fa-users"></i>
+                          <p class="fs-6-1">2 Assessments</p>
+                        </div>
                       </div>
-                    </div>
-                  </ng-container>
-                </div>
-                <a class="text-center text-desc-color fs-5-1 mt-3 d-block">Show all 23 skills</a>
+                    </ng-container>
+                  </div>
+                  <a class="text-center text-desc-color fs-5-1 mt-3 d-block">Show all 23 skills</a>
+                </ng-container>
+                <ng-template #noSkills>
+                  <div class="h-100 d-flex align-items-center justify-content-center flex-column">
+                    <img class="no-data" src="assets/images/not-found/no-data.svg" alt="no-data">
+                    <p class="text-dark-color">{{'general.no_search_result'|translate}}</p>
+                  </div>
+                </ng-template>
+
               </div>
             </div>
 
@@ -182,7 +202,7 @@
         </div>
         <div class="global-card mt-3">
           <div class="d-flex justify-content-between">
-            <h5 class="text-main-color fs-5 fw-bold mb-0">{{'profile.experience'|translate}}</h5>
+            <h5 class="card-title-color fs-5 fw-bold mb-0">{{'profile.education'|translate}}</h5>
             <div class="d-flex gap-3">
               <a><i class="pi pi-plus fs-5-1 text-main-color fw-600"></i></a>
               <a><i class="fas fa-pen-to-square text-main-color"></i></a>
@@ -209,7 +229,7 @@
           <div class="col-md-6">
             <div class="global-card h-100">
               <div class="d-flex justify-content-between">
-                <h5 class="text-main-color fs-5 fw-bold mb-0">{{'profile.certifications'|translate}}</h5>
+                <h5 class="card-title-color fs-5 fw-bold mb-0">{{'profile.certifications'|translate}}</h5>
                 <div class="d-flex gap-3">
                   <a><i class="pi pi-plus fs-5-1 text-main-color fw-600"></i></a>
                   <a><i class="fas fa-pen-to-square text-main-color"></i></a>
@@ -235,7 +255,7 @@
           <div class="col-md-6">
             <div class="global-card  h-100">
               <div class="d-flex justify-content-between">
-                <h5 class="text-main-color fs-5 fw-bold mb-0">{{'profile.languages'|translate}}</h5>
+                <h5 class="card-title-color fs-5 fw-bold mb-0">{{'profile.languages'|translate}}</h5>
                 <div class="d-flex gap-3">
                   <a><i class="pi pi-plus fs-5-1 text-main-color fw-600"></i></a>
                   <a><i class="fas fa-pen-to-square text-main-color"></i></a>
@@ -276,7 +296,7 @@
       </div>
       <div class="col-lg-3 mt-lg-0 mt-3">
         <div class="global-card">
-          <h5 class="text-main-color fs-5-1 mb-0">{{'profile.analytics'|translate}}</h5>
+          <h5 class="card-title-color fs-5-1 mb-0">{{'profile.analytics'|translate}}</h5>
           <div class="row g-3 mt-1">
             <div class="col-lg-6 col-md-3 col-sm-6">
               <div class="analysies text-center">
@@ -305,7 +325,7 @@
           </div>
         </div>
         <div class="global-card mt-3">
-          <h5 class="text-main-color fs-5">{{'home.recommended'|translate}}</h5>
+          <h5 class="text-main-color fs-5 card-title-color">{{'home.recommended'|translate}}</h5>
           <ng-container *ngIf="isLoadingRecommendedResults; else noLoadingJobs">
             <app-skeleton [type]="'jobOffers'"></app-skeleton>
           </ng-container>
@@ -320,20 +340,20 @@
                           <img class="recommended-img rounded-circle" src="../../../../assets/images/home/product.jfif"
                             alt="product">
                           <div>
-                            <h5 class="fs-5-1 text-main-color fw-bold mb-1">
+                            <h5 class="fs-5-1  card-title-color  fw-bold mb-1">
                               {{item?.title}}
                             </h5>
                             <div class="d-flex gap-1 flex-wrap">
-                              <p class="fw-600">{{item?.name}}</p>
+                              <p class="fw-600 text-grey-800">{{item?.name}}</p>
                               <ngx-star-rating [(ngModel)]="item.rate" [id]="'item?.rate'"
                                 [disabled]="true"></ngx-star-rating>
                             </div>
-                            <p class="fw-600 fs-5-1">{{item?.address}}</p>
+                            <p class="fw-600 fs-5-1 text-grey-800">{{item?.address}}</p>
                           </div>
                         </div>
-                        <i class="pi pi-th-large fs-6-1"></i>
+                        <i class="pi pi-th-large fs-6-1 text-grey-800"></i>
                       </div>
-                      <p class="mt-2 fs-6-1 text-desc-color">{{item?.time}}</p>
+                      <p class="mt-2 fs-6-1 text-gray ">{{item?.time}}</p>
                     </div>
                   </div>
                 </ng-container>
@@ -356,7 +376,7 @@
         </div>
         <div class="global-card mt-3">
           <div class="d-flex justify-content-between align-items-center">
-            <h5 class="text-main-color fs-5 mb-0">{{'home.recent'|translate}}</h5>
+            <h5 class="card-title-color fs-5 mb-0">{{'home.recent'|translate}}</h5>
             <i class="fas fa-gear fs-5-1 text-desc-color"></i>
           </div>
           <div class="mt-4 recent-content">
