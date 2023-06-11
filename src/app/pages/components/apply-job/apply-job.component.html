@@ -43,20 +43,20 @@
                               <img class="recommended-img rounded-circle"
                                 src="../../../../assets/images/home/product.jfif" alt="product">
                               <div>
-                                <h5 class="fs-5-1 text-main-color fw-bold mb-1">
+                                <h5 class="fs-5-1 card-title-color fw-bold mb-1">
                                   {{item?.title}}
                                 </h5>
                                 <div class="d-flex gap-1 flex-wrap">
-                                  <p class="fw-600">{{item?.name}}</p>
+                                  <p class="fw-600 text-grey-800">{{item?.name}}</p>
                                   <ngx-star-rating [(ngModel)]="item.rate" [id]="'item?.rate'"
                                     [disabled]="true"></ngx-star-rating>
                                 </div>
-                                <p class="fw-600">{{item?.address}}</p>
+                                <p class="fw-600 text-grey-800">{{item?.address}}</p>
                               </div>
                             </div>
-                            <i class="pi pi-th-large"></i>
+                            <i class="pi pi-th-large text-grey-100"></i>
                           </div>
-                          <p class="mt-2">{{item?.time}}</p>
+                          <p class="mt-2 text-gray">{{item?.time}}</p>
                         </div>
                       </div>
                     </ng-container>

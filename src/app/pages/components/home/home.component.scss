@@ -9,7 +9,11 @@
     border: 1px solid #fff;
   }
   .applied-jobs {
-    border-right: 1px solid #00000029;
+    border-right: 1px solid var(--user-border-color);
+  }
+  .hr {
+    background-color: var(--user-border-color) !important;
+    border-width: 1px !important;
   }
   .number {
     color: #a6c9eb;
@@ -74,8 +78,8 @@
     }
   }
   .recomended-content {
-    background-color: #ebeef5;
-    box-shadow: 0px 3px 6px #3a53804d;
+    background-color: var(--bg-small-card-color);
+    box-shadow: var(--small-card-shadow);
     border-radius: 8px;
     .recommended-img {
       width: 70px;

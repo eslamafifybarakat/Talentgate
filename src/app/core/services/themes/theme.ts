@@ -18,7 +18,12 @@ export const light: Theme = {
     '--grey-900': '#0000008a',
     '--text-form-title-color': '#3A5380',
     '--bg-register-input-color': '#576f9333',
-    '--register-photo-color': '#9aa8be'
+    '--register-photo-color': '#9aa8be',
+    '--bg-small-card-color': '#EBEEF5',
+    '--small-card-shadow': '0px 3px 6px #3a53804d',
+    '--grey-800': '#1B2730',
+    '--card-title-color': '#3a5380',
+    '--user-border-color': '#00000029'
 
   },
 };
@@ -38,6 +43,11 @@ export const dark: Theme = {
     '--grey-900': '#ffffff8a',
     '--text-form-title-color': '#FFFFFF',
     '--bg-register-input-color': '#576F9333',
-    '--register-photo-color': '#3e526b'
+    '--register-photo-color': '#3e526b',
+    '--bg-small-card-color': '#28343e',
+    '--small-card-shadow': '0px 0px 0px #3a53804d',
+    '--grey-800': '#E3E3E3',
+    '--card-title-color': '#E3E3E3',
+    '--user-border-color': '#28343E'
   }
 }

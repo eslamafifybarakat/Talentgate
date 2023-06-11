@@ -45,6 +45,9 @@
 .text-grey-900 {
   color: var(--grey-900) !important;
 }
+.text-grey-800 {
+  color: var(--grey-800) !important;
+}
 
 .bg-grey-900 {
   background-color: var(--grey-900);
@@ -103,4 +106,10 @@
 .badge-info {
   background-color: var(--light-blue);
   color: var(--text-main-color);
+}
+.text-gray {
+  color: var(--text-gray);
+}
+.card-title-color {
+  color: var(--card-title-color);
 }
