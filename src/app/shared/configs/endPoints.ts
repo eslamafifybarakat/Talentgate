@@ -1,6 +1,6 @@
 export const roots = {
   auth: {
-    login: '/candidates/sign_in',
+    login: '/users/sign_in',
     signup: '/candidates/signup',
     uploadcv: '/candidates/uploadcv',
     upLoadImage: '/candidates/uploadimage',
@@ -14,7 +14,14 @@ export const roots = {
     job_recommended_for_you: '/job_offers/job_recommended_for_you',
     job_offers: '/job_offers',
     job_offers_search: '/job_offers/search',
-    apply_for_job: '/job_applications/apply_for_job'
+    apply_for_job: '/job_applications/apply_for_job',
+    profile:'/candidates/profile',
+    resume:'/resumes/add_resume',
+    edit_resume:'/resumes/update_resume',
+    getResume:'/resumes/get_resume_by_candidate',
+    interview:'/interviews/filter_interviews_by_candidate',
+    detailsInterView:'/interviews/interview_detail',
+    notification:'/notifications/mobile'
   },
   scheduler: {
     events: '/events'

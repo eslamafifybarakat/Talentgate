@@ -35,6 +35,31 @@ export class HomeService {
     return this.http?.post<any>(this.apiUrl + roots?.home?.apply_for_job, data);
   }
 
+  getProfileDetails(): Observable<any> {
+    return this.http?.get<any>(this.apiUrl + roots?.home?.profile + '/' + this.langKey);
+  }
+
+  addResume(data: any): Observable<any> {
+    return this.http?.post<any>(this.apiUrl + roots?.home?.resume, data);
+  }
+  editResume(data:any, id:number)
+  {
+    return this.http?.put<any>(this.apiUrl + roots?.home?.resume + '/' + id, data);
+  }
+  getResume(): Observable<any> {
+    return this.http?.get<any>(this.apiUrl + roots?.home?.getResume);
+  }
+  getInterviews(date:any, page_nbr:any): Observable<any> {
+    return this.http?.get<any>(this.apiUrl + roots?.home?.interview + '/' + date + '/' + page_nbr + '/' + this.langKey);
+  }
+  getInterviewDetails(id:number)
+  {
+    return this.http?.get<any>(this.apiUrl + roots?.home?.detailsInterView + '/' + id + '/' + this.langKey)
+  }
+  getNotification(page_nbr:any)
+  {
+    return this.http?.get<any>(this.apiUrl + roots?.home?.notification + '/' + this.langKey + '/' + page_nbr);
+  }
   getSchedularEvents(date: any): Observable<any> {
     let params = new HttpParams();
     params = params.append("date", date);

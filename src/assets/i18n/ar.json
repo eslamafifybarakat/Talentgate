@@ -9,6 +9,7 @@
     "profile":"الصفحة الشخصية"
       },
   "general": {
+    "UploadYourCV": "حمل سيرتك الذاتية",
     "showAll":"عرض الكل",
     "employees":"الموظفين",
     "addPhoto":"اضف صورة",
@@ -22,9 +23,12 @@
     "trustUs": "الناس الذين يثقون بنا",
     "countries": "بلدان",
     "participants": "مشاركون",
-    "uploadYourCV": "حمل سيرتك الذاتية",
+    "Itonlytakesafewseconds":"يستغرق سوى بضع ثوان",
+    "your":"",
+    "dreamjob":"وظيفه احلامك تنتظر هنا",
+    "iswaitinghere":" تنتظر هنا",
     "uploadCV": "يستغرق  بضع ثوان",
-    "dreamjob": "وظيفة أحلامك تنتظر هنا",
+    "Findjob":"بحث",
     "personality": "دع مواهبك وشخصيتك وإمكانياتك تقوم بالحديث. نمنحك الفرصة لمشاركة قصتك من خلال.",
     "yourprofile": "أكمل ملفك الشخصي",
     "notificationExam": "اختبار الإشعار",

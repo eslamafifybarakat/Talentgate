@@ -1,5 +1,5 @@
 import { AlertsService } from './../../../core/services/alerts/alerts.service';
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
 import { HomeService } from '../../services/home.service';
 import * as moment from 'moment';
 @Component({
@@ -12,9 +12,12 @@ export class CalenderComponent implements OnInit {
   formateDate: any;
   schedulerEvents: any = [];
   isLoadingEvents: boolean = false;
-
+mousePostion:{x:any, y:any} = {x:0,y:0}
+@ViewChild("boxdetails") boxDetails:ElementRef<HTMLDivElement> = {} as ElementRef<HTMLDivElement>
   // minDate: any = new Date();
   showDetailss = false;
+  showTargetId: any;
+  interviewDetails: any;
 
   constructor(
     private alertsService: AlertsService,
@@ -23,7 +26,12 @@ export class CalenderComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.onDateChange(new Date())
+    this.onDateChange(new Date());
+    window.addEventListener("mousedown", (event:MouseEvent)=>{
+
+      this.mousePostion.x = event.clientX;
+      this.mousePostion.y = event.clientY;
+    })
   }
 
   onDateChange(event: any): void {
@@ -36,15 +44,50 @@ export class CalenderComponent implements OnInit {
   }
   onCellClick(e: any): void {
     console.log('Cell clicked:', e);
+    this.showTargetId= e.event.id;
+    this.homeService.getInterviewDetails(this.showTargetId).subscribe((res:any)=>{
+      this.interviewDetails = res.data;
+      console.log(this.interviewDetails)
+    })
+    console.log(this.showTargetId)
     this.showDetailss = true
+    this.boxDetails.nativeElement.style.top = this.mousePostion.y + "px";
+              this.boxDetails.nativeElement.style.left = this.mousePostion.x + "px";
+              this.boxDetails.nativeElement.style.display = "block";
   }
 
   getSchedularEvents(date: any): any {
     this.isLoadingEvents = true;
-    this.homeService?.getSchedularEvents(date)?.subscribe(
+    this.homeService?.getInterviews(date,0)?.subscribe(
       (res: any) => {
         if (res?.status == 200) {
-          this.schedulerEvents = res?.data ? res?.data : [];
+          this.schedulerEvents = res?.data.interviews.map((dataItem: any) => (
+            <any>{
+              id: dataItem._id,
+              start: new Date(dataItem.interview_date),
+              // startTimezone: null,
+              end:new Date(),
+              // endTimezone: new Date(),
+              isAllDay: false,
+              title: dataItem.title_interview,
+              // description: dataItem.Description,
+              // recurrenceRule: dataItem.RecurrenceRule,
+              // recurrenceId: dataItem.RecurrenceID,
+              // recurrenceException: dataItem.RecurrenceException,
+      
+              // roomId: dataItem.RoomID,
+              // ownerID: dataItem.OwnerID
+            }
+          ));;
+          console.log(this.schedulerEvents)
+          // this.schedulerEvents.forEach((element:any) => {
+          //   console.log(element.id)
+          //   document.getElementById(element.id)?.addEventListener("click",()=>{
+          //     window.alert(element.id)
+              
+              
+          //   })
+          // });
           this.isLoadingEvents = false;
         } else {
           res?.message ? this.alertsService?.openSweetAlert('info', res?.message) : '';
@@ -108,24 +151,24 @@ export class CalenderComponent implements OnInit {
       return date;
     };
 
-    this.schedulerEvents = arr.map((dataItem: any) => (
-      <any>{
-        id: dataItem.TaskID,
-        start: parseAdjust(this.formateDate + 'T' + dataItem.Start + '.000Z'),
-        startTimezone: dataItem.startTimezone,
-        end: parseAdjust(this.formateDate + 'T' + dataItem.End + '.000Z'),
-        endTimezone: dataItem.endTimezone,
-        isAllDay: dataItem.IsAllDay,
-        title: dataItem.Title,
-        description: dataItem.Description,
-        recurrenceRule: dataItem.RecurrenceRule,
-        recurrenceId: dataItem.RecurrenceID,
-        recurrenceException: dataItem.RecurrenceException,
+    // this.schedulerEvents = arr.map((dataItem: any) => (
+    //   <any>{
+    //     id: dataItem.id,
+    //     start: parseAdjust(this.formateDate + 'T' + dataItem.start_date + '.000Z'),
+    //     // startTimezone: dataItem.startTimezone,
+    //     // end: parseAdjust(this.formateDate + 'T' + dataItem.End + '.000Z'),
+    //     // endTimezone: dataItem.endTimezone,
+    //     // isAllDay: dataItem.IsAllDay,
+    //     title: dataItem.title_interview,
+    //     // description: dataItem.Description,
+    //     // recurrenceRule: dataItem.RecurrenceRule,
+    //     // recurrenceId: dataItem.RecurrenceID,
+    //     // recurrenceException: dataItem.RecurrenceException,
 
-        roomId: dataItem.RoomID,
-        ownerID: dataItem.OwnerID
-      }
-    ));
+    //     // roomId: dataItem.RoomID,
+    //     // ownerID: dataItem.OwnerID
+    //   }
+    // ));
     console.log(this.schedulerEvents);
 
   }

@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit {
   rating3: any = 3;
   count: any = 6;
   userData: any;
+  userProfileDetails: any;
   constructor(
     private publicService: PublicService,
     private alertsService: AlertsService,
@@ -29,30 +30,43 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.userData = JSON.parse(window.localStorage.getItem(keys.userLoginData) || '{}');
+    console.log(this.userData )
     this.count = this.recommendedResults?.length;
     this.publicService?.recallSearchResults?.subscribe((res: any) => {
+      console.log(res)
       if (res?.recall == true) {
         this.getSearchResults(res?.searchValue);
       }
     });
     this.getHiring();
     this.getJobRecommended(0);
+    this.getProfileDetails();
+  }
 
+  getProfileDetails()
+  {
+    this.homeService.getProfileDetails().subscribe((res)=>{
+      console.log(res)
+      this.userProfileDetails = res.data.user;
+      console.log(this.userProfileDetails);
+      
+    })
   }
   getSearchResults(value: any): any {
     this.isLoadingSearchResults = true;
     this.homeService?.getSearchResults(value)?.subscribe(
       (res: any) => {
         if (res?.status == 200) {
-          let arr: any = [];
-          res?.data ? res?.data?.search_result?.forEach((item: any) => {
-            arr?.push({
-              coupon_name: item?.coupon_name ? item?.coupon_name : '',
-              coupon_picture: item?.coupon_picture ? item?.coupon_picture : '',
-              description: item?.description ? item?.description : '',
-            })
-          }) : '';
-          this.searchResults = arr;
+          // let arr: any = [];
+          // res?.data ? res?.data?.search_result?.forEach((item: any) => {
+          //   arr?.push({
+          //     coupon_name: item?.coupon_name ? item?.coupon_name : '',
+          //     coupon_picture: item?.coupon_picture ? item?.coupon_picture : '',
+          //     description: item?.description ? item?.description : '',
+          //   })
+          // }) : '';
+          this.searchResults = res;
+          console.log(this.searchResults)
           this.isLoadingSearchResults = false;
         } else {
           res?.message ? this.alertsService?.openSweetAlert('info', res?.message) : '';
@@ -82,6 +96,7 @@ export class HomeComponent implements OnInit {
       (res: any) => {
         if (res?.status == 200) {
           this.hiringAreas = res?.data ? res?.data?.companies : [];
+          console.log(this.hiringAreas)
           this.isLoadingHiringAreas = false;
         } else {
           res?.message ? this.alertsService?.openSweetAlert('info', res?.message) : '';
@@ -94,29 +109,30 @@ export class HomeComponent implements OnInit {
       });
     this.cdr?.detectChanges();
 
-    this.hiringAreas = [
-      { image_company: '../../../../assets/images/home/Microsoft.png', name_company: 'Microsoft', address_company: 'Tunis,Tunisia' },
-      { image_company: '../../../../assets/images/home/Microsoft.png', name_company: 'Microsoft', address_company: 'Tunis,Tunisia' },
-      { image_company: '../../../../assets/images/home/Microsoft.png', name_company: 'Microsoft', address_company: 'Tunis,Tunisia' }
-    ]
+    // this.hiringAreas = [
+    //   { image_company: '../../../../assets/images/home/Microsoft.png', name_company: 'Microsoft', address_company: 'Tunis,Tunisia' },
+    //   { image_company: '../../../../assets/images/home/Microsoft.png', name_company: 'Microsoft', address_company: 'Tunis,Tunisia' },
+    //   { image_company: '../../../../assets/images/home/Microsoft.png', name_company: 'Microsoft', address_company: 'Tunis,Tunisia' }
+    // ]
   }
   getJobRecommended(count: any): any {
     this.isLoadingRecommendedResults = true;
     this.homeService?.getJobRecommended(count)?.subscribe(
       (res: any) => {
         if (res?.status == 200) {
-          let arr: any = [];
-          res?.data ? res?.data?.job_offers?.forEach((item: any) => {
-            arr?.push({
-              _id: item?._id,
-              title: item?.title ? item?.title : 'dummy',
-              address: item?.address ? item?.address : 'dummy',
-              name: item?.name ? item?.name : 'dummy',
-              rate: item?.rate ? item?.rate : 0,
-              time: item?.time ? item?.time : 'dummy'
-            })
-          }) : '';
-          this.recommendedResults = arr;
+          // let arr: any = [];
+          // res?.data ? res?.data?.job_offers?.forEach((item: any) => {
+          //   arr?.push({
+          //     _id: item?._id,
+          //     title: item?.title ? item?.title : 'dummy',
+          //     address: item?.address ? item?.address : 'dummy',
+          //     name: item?.name ? item?.name : 'dummy',
+          //     rate: item?.rate ? item?.rate : 0,
+          //     time: item?.time ? item?.time : 'dummy'
+          //   })
+          // }) : '';
+          this.recommendedResults = res.data.job_offers;
+          console.log(this.recommendedResults)
           this.isLoadingRecommendedResults = false;
         } else {
           res?.message ? this.alertsService?.openSweetAlert('info', res?.message) : '';
@@ -129,64 +145,64 @@ export class HomeComponent implements OnInit {
       });
     this.cdr?.detectChanges();
 
-    this.recommendedResults = [
-      {
-        _id: 'jkdjd9892',
-        title: 'Product Designer',
-        address: 'Sousse,tunisia',
-        name: 'Google',
-        rate: 4,
-        time: 'Posted 5hours ago'
-      },
-      {
-        _id: 'jkdjd9892',
-        title: 'Product Designer',
-        address: 'Sousse,tunisia',
-        name: 'Google',
-        rate: 4,
-        time: 'Posted 5hours ago'
-      },
-      {
-        _id: 'jkdjd9892',
-        title: 'Product Designer',
-        address: 'Sousse,tunisia',
-        name: 'Google',
-        rate: 4,
-        time: 'Posted 5hours ago'
-      },
-      {
-        _id: 'jkdjd9892',
-        title: 'Product Designer',
-        address: 'Sousse,tunisia',
-        name: 'Google',
-        rate: 4,
-        time: 'Posted 5hours ago'
-      },
-      {
-        _id: 'jkdjd9892',
-        title: 'Product Designer',
-        address: 'Sousse,tunisia',
-        name: 'Google',
-        rate: 4,
-        time: 'Posted 5hours ago'
-      },
-      {
-        _id: 'jkdjd9892',
-        title: 'Product Designer',
-        address: 'Sousse,tunisia',
-        name: 'Google',
-        rate: 4,
-        time: 'Posted 5hours ago'
-      },
-      {
-        _id: 'jkdjd9892',
-        title: 'Product Designer',
-        address: 'Sousse,tunisia',
-        name: 'Google',
-        rate: 4,
-        time: 'Posted 5hours ago'
-      }
-    ];
+    // this.recommendedResults = [
+    //   {
+    //     _id: 'jkdjd9892',
+    //     title: 'Product Designer',
+    //     address: 'Sousse,tunisia',
+    //     name: 'Google',
+    //     rate: 4,
+    //     time: 'Posted 5hours ago'
+    //   },
+    //   {
+    //     _id: 'jkdjd9892',
+    //     title: 'Product Designer',
+    //     address: 'Sousse,tunisia',
+    //     name: 'Google',
+    //     rate: 4,
+    //     time: 'Posted 5hours ago'
+    //   },
+    //   {
+    //     _id: 'jkdjd9892',
+    //     title: 'Product Designer',
+    //     address: 'Sousse,tunisia',
+    //     name: 'Google',
+    //     rate: 4,
+    //     time: 'Posted 5hours ago'
+    //   },
+    //   {
+    //     _id: 'jkdjd9892',
+    //     title: 'Product Designer',
+    //     address: 'Sousse,tunisia',
+    //     name: 'Google',
+    //     rate: 4,
+    //     time: 'Posted 5hours ago'
+    //   },
+    //   {
+    //     _id: 'jkdjd9892',
+    //     title: 'Product Designer',
+    //     address: 'Sousse,tunisia',
+    //     name: 'Google',
+    //     rate: 4,
+    //     time: 'Posted 5hours ago'
+    //   },
+    //   {
+    //     _id: 'jkdjd9892',
+    //     title: 'Product Designer',
+    //     address: 'Sousse,tunisia',
+    //     name: 'Google',
+    //     rate: 4,
+    //     time: 'Posted 5hours ago'
+    //   },
+    //   {
+    //     _id: 'jkdjd9892',
+    //     title: 'Product Designer',
+    //     address: 'Sousse,tunisia',
+    //     name: 'Google',
+    //     rate: 4,
+    //     time: 'Posted 5hours ago'
+    //   }
+    // ];
   }
   seeMore(): void {
     this.count += 6;

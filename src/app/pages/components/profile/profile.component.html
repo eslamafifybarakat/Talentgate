@@ -1,4 +1,4 @@
-<div id="profile" class="mb-4">
+<div id="profile" class="mb-4 text-capitalize">
   <div class="container-fluid">
     <div class="row">
       <div class="col-lg-9">
@@ -9,11 +9,11 @@
             for="profileBg">
             <i class="pi pi-camera fs-5 card-title-color"></i>
           </label>
-          <img [src]="imgBgFileSrc" class="w-100 profile-bg" alt="user">
+          <img [src]="imgSrc+userProfileDetails?.cover_picture" class="w-100 profile-bg" onerror="src='assets/images/home/bg.jfif'" alt="user">
           <div class="px-3 d-flex justify-content-between align-items-center">
             <div class="d-flex">
               <div class="profile-img rounded-circle position-relative">
-                <img [src]="imgProfileFileSrc" onerror="src='assets/images/not-found/noUser.svg'"
+                <img [src]="imgSrc+userProfileDetails?.image" onerror="src='assets/images/not-found/noUser.svg'"
                   class="fit-object-cover rounded-circle w-100 h-100 shadow-sm" alt="user">
                 <input type="file" id="profilePicture" accept="image/*" (change)="selectImage($event)" hidden
                   #profilePictureInput>
@@ -25,10 +25,10 @@
               </div>
               <div class="content-info p-2 d-flex gap-4">
                 <div>
-                  <h5 class="text-main-color mb-1 fw-bold mb-0">{{userData?.full_name ||
+                  <h5 class="text-main-color mb-1 fw-bold mb-0 text-capitalize">{{userProfileDetails?.full_name ||
                     'Catherine Longford'}}</h5>
-                  <p class="fs-6 text-main-color">{{userData?.position || 'Product Designer at Google'}}</p>
-                  <p class="fs-6-1 text-desc-color  address">{{userData?.description||'Sousse, Tunisia'}}
+                  <p class="fs-6 text-main-color">{{userProfileDetails?.profession}}</p>
+                  <p class="fs-6-1 text-desc-color  address">{{userProfileDetails?.city?.name}} , {{userProfileDetails?.country?.name}}
                   </p>
                 </div>
                 <i class="fas fa-pen-to-square"></i>
@@ -36,11 +36,12 @@
             </div>
 
             <div class="d-flex flex-column">
-              <ngx-star-rating [(ngModel)]="rate" [id]="'item?.rate'" [disabled]="true"></ngx-star-rating>
-              <p class="fs-8 rate">Over 200 User Ratings</p>
+              <ngx-star-rating [(ngModel)]="rate" [id]="'item?.rate'" [disabled]="false"></ngx-star-rating>
+              <p class="fs-8 rate">Over {{userProfileDetails?.rates_number}} User Ratings</p>
             </div>
           </div>
         </div>
+        <!-- ======================about=============== -->
         <div class="global-card mt-3">
           <div class="d-flex justify-content-between">
             <h5 class="card-title-color fs-5 fw-bold mb-0">{{'profile.about'|translate}}</h5>
@@ -55,16 +56,18 @@
             </ng-container>
 
           </div>
+          
           <div class="mt-3 w-90">
             <ng-container *ngIf="!isEditAbout">
               <p class="text-main-color ">{{aboutText}}</p>
             </ng-container>
             <ng-container *ngIf="isEditAbout">
-              <textarea name="about" class="textarea p-3" [(ngModel)]="aboutTextarea">
+              <textarea name="about" class="textarea p-3" [(ngModel)]="aboutMe">
               </textarea>
             </ng-container>
           </div>
         </div>
+        <!-- ========================experience====================== -->
         <div class="row mt-3">
           <div class="col-md-6">
             <div class="global-card h-100 ">
@@ -77,14 +80,14 @@
               </div>
               <div class="mt-4 content-info">
                 <ng-container *ngIf="experiences?.length>0; else noExperiences">
-                  <div class="pe-2">
+                  <div class="pe-2 mb-4" *ngFor="let item of userProfileDetails?.professional_experiences">
                     <div>
                       <div class="d-flex align-items-center gap-2">
-                        <img src="../../../../assets/images/profile/be.jpg" class="experiance-img rounded-circle"
+                        <img [src]="imgSrc+item?.image" class="experiance-img rounded-circle"
                           alt="be" onerror="src='assets/images/not-found/no-user.svg'">
                         <div>
-                          <h6 class="mb-0 text-main-color fw-600 fs-6-1">Behance Co</h6>
-                          <p class="text-main-color fs-6-1">Present (2 years)</p>
+                          <h6 class="mb-0 text-main-color fw-600 fs-6-1">{{item?.company?.name_company}}</h6>
+                          <p class="text-main-color fs-6-1">Present ({{totalYears}} years)</p>
                         </div>
                       </div>
                       <div class="d-flex align-items-start gap-2 mt-2">
@@ -92,36 +95,28 @@
                           <i class="pi pi-circle-fill text-main-color"></i>
                         </div>
                         <div>
-                          <h6 class="mb-0 text-main-color fw-600 fs-6-1">Graphic Designer</h6>
-                          <p class="text-main-color fs-6-1">Part-Time</p>
-                          <p class="text-main-color fs-6-1">Sep 2020 - Nov 2022 (2 years 1 month)</p>
-                          <p class="text-main-color fs-6-1">Monastir, Tunisia</p>
-                        </div>
-                      </div>
-                      <div class="d-flex align-items-start gap-2 mt-3">
-                        <div class="dot text-center">
-                          <i class="pi pi-circle-fill text-main-color"></i>
-                        </div>
-                        <div>
-                          <h6 class="mb-0 text-main-color fw-600 fs-6-1">Graphic Designer</h6>
-                          <p class="text-main-color fs-6-1">Part-Time</p>
-                          <p class="text-main-color fs-6-1">Sep 2020 - Nov 2022 (2 years 1 month)</p>
-                          <p class="text-main-color fs-6-1">Monastir, Tunisia</p>
-                        </div>
-                      </div>
-                      <div class="d-flex align-items-start gap-2 mt-1">
-                        <div class="dot text-center">
-                        </div>
-                        <div>
-                          <p class="text-main-color fw-600 fs-6-1">Skills: User Centred Design , Motion Design , After
-                            Effects,
-                            Animation
-                            3D , 2D Animations</p>
+                          <h6 class="mb-0 text-main-color fw-600 fs-6-1">{{item?.job_title}}</h6>
+                          <p class="text-main-color fs-6-1">{{item?.job_type}}</p>
+                          <p class="text-main-color fs-6-1">{{item?.start_date | date:'MMM yyyy'}} - {{item?.end_date | date:'MMM yyyy'}}
+                           ( {{getYearsDiffernce(item?.start_date,item?.end_date)}} years) 
+
+                          </p>
+                          <p class="text-main-color fs-6-1">{{item?.city?.name}} , {{item?.country?.name}}</p>
+                          <p class="fw-600 skills"><span>skills</span>:
+                            <ng-container *ngIf="item?.skills?.length > 0; else noSkills">
+                              <ng-container *ngFor="let skill of item?.skills">
+                                {{ skill.name }}{{ !isLast ? ', ' : '' }}
+                              </ng-container>
+                            </ng-container>
+                          </p>
+                          <ng-template #noSkills>
+                            No skills available
+                          </ng-template>
                         </div>
                       </div>
                     </div>
 
-                    <div class="mt-4">
+                    <!-- <div class="mt-4">
                       <div class="d-flex align-items-center gap-2">
                         <img src="../../../../assets/images/profile/ltd.png" class="experiance-img rounded-circle"
                           alt="ltd" onerror="src='assets/images/not-found/no-user.svg'">
@@ -152,7 +147,7 @@
                             3D , 2D Animations</p>
                         </div>
                       </div>
-                    </div>
+                    </div> -->
                   </div>
                 </ng-container>
                 <ng-template #noExperiences>
@@ -172,9 +167,9 @@
                 <a><i class="fas fa-pen-to-square text-main-color"></i></a>
               </div>
               <div class="mt-4 d-flex justify-content-between flex-column">
-                <ng-container *ngIf="skills?.length>0; else noSkills">
+                <ng-container *ngIf="userProfileDetails?.skills.length>0; else noSkills">
                   <div class="content-info">
-                    <ng-container *ngFor="let item of skills">
+                    <ng-container *ngFor="let item of userProfileDetails?.skills">
                       <div class="mb-3">
                         <h6 class="text-main-color fw-600 fs-6-1 mb-1">User Interface Design <span
                             class="ps-1">(7.5/10)</span>
@@ -200,6 +195,8 @@
 
           </div>
         </div>
+
+        <!-- ======================education================= -->
         <div class="global-card mt-3">
           <div class="d-flex justify-content-between">
             <h5 class="card-title-color fs-5 fw-bold mb-0">{{'profile.education'|translate}}</h5>
@@ -210,14 +207,15 @@
           </div>
           <div class="mt-4">
             <div class="d-flex align-items-center gap-4 flex-wrap">
-              <ng-container *ngFor="let item of [9,8,7]">
+              <ng-container *ngFor="let item of userProfileDetails?.educations">
                 <div class="d-flex align-items-start gap-2">
                   <img src="../../../../assets/images/profile/school.jpg" class="experiance-img rounded-circle"
                     alt="school" onerror="src='assets/images/not-found/no-user.svg'">
                   <div>
-                    <h6 class="mb-0 text-main-color fw-600 fs-6-1">California College of The Arts</h6>
-                    <p class="text-main-color fs-6-1">2018-2021</p>
-                    <p class="text-main-color fs-6-1">Degree Of Art</p>
+                    <h6 class="mb-0 text-main-color fw-600 fs-6-1">{{item?.institute_name}}</h6>
+                    <p class="text-main-color fs-6-1">{{item?.start_date |date : 'yyy'}}-{{item?.end_date |date : 'yyy'}}</p>
+                    <p class="text-main-color fs-6-1">{{item?.degree_name?.name}}</p>
+                    <p class="text-main-color fs-6-1">{{item?.major_name?.name}}</p>
                   </div>
                 </div>
               </ng-container>
@@ -225,6 +223,7 @@
             </div>
           </div>
         </div>
+        <!-- ======================certificate=========== -->
         <div class="row mt-3">
           <div class="col-md-6">
             <div class="global-card h-100">
@@ -235,14 +234,15 @@
                   <a><i class="fas fa-pen-to-square text-main-color"></i></a>
                 </div>
               </div>
-              <div class="mt-4">
+              <!-- ======================certificate=========== -->
+              <div class="mt-4" *ngFor="let item of userProfileDetails?.certificates">
                 <div class="d-flex align-items-start gap-2">
                   <img src="../../../../assets/images/profile/ui.jfif" class="experiance-img rounded-circle" alt="be"
                     onerror="src='assets/images/not-found/no-user.svg'">
                   <div>
-                    <h6 class="mb-0 text-main-color fw-600 fs-6-1">Ui/Ux</h6>
-                    <p class="text-main-color fs-6-1">Udemy.com</p>
-                    <p class="text-main-color fs-6-1">Issued Apr 2022</p>
+                    <h6 class="mb-0 text-main-color fw-600 fs-6-1">{{item?.certification_title}}</h6>
+                    <p class="text-main-color fs-6-1">{{item?.provider_website}}</p>
+                    <p class="text-main-color fs-6-1">{{item?.obtain_date |date : "dd-MMM-yyyy"}}</p>
                     <a class="text-main-color fs-6-1 showCredentials py-1 px-2 rounded-pill mt-1 d-flex gap-2">
                       {{'profile.showCredentials'|translate}}
                       <a><i class="fas fa-pen-to-square text-main-color fs-8"></i></a>
@@ -252,6 +252,7 @@
               </div>
             </div>
           </div>
+          <!-- ==========language============ -->
           <div class="col-md-6">
             <div class="global-card  h-100">
               <div class="d-flex justify-content-between">
@@ -261,8 +262,22 @@
                   <a><i class="fas fa-pen-to-square text-main-color"></i></a>
                 </div>
               </div>
+
               <div class="mt-4">
                 <div class="d-flex gap-3 flex-wrap">
+                  <ng-container *ngFor="let item of userProfileDetails?.languages;let i=index">
+                    <div class="d-flex align-items-center gap-2">
+                      <div class="language d-flex align-items-center justify-content-center rounded-circle">
+                        <i class="fas fa-globe fs-5 text-main-color "></i>
+                      </div>
+                      <div class="text-capitalize">
+                        <h6 class="mb-0 text-main-color fw-600 fs-6-1">{{item?.language?.name}}</h6>
+                        <p class="text-main-color fs-6-1">{{getProficiencyText(item.proficiency_Levels)}}</p>
+                      </div>
+                    </div>
+                  </ng-container>
+                </div>
+                <!-- <div class="d-flex gap-3 flex-wrap mt-3">
                   <ng-container *ngFor="let item of [9,8];let i=index">
                     <div class="d-flex align-items-center gap-2">
                       <div class="language d-flex align-items-center justify-content-center rounded-circle">
@@ -274,39 +289,27 @@
                       </div>
                     </div>
                   </ng-container>
-                </div>
-                <div class="d-flex gap-3 flex-wrap mt-3">
-                  <ng-container *ngFor="let item of [9,8];let i=index">
-                    <div class="d-flex align-items-center gap-2">
-                      <div class="language d-flex align-items-center justify-content-center rounded-circle">
-                        <i class="fas fa-globe fs-5 text-main-color "></i>
-                      </div>
-                      <div>
-                        <h6 class="mb-0 text-main-color fw-600 fs-6-1">English</h6>
-                        <p class="text-main-color fs-6-1">Native</p>
-                      </div>
-                    </div>
-                  </ng-container>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
         </div>
 
       </div>
+      <!-- =====================right side================= -->
       <div class="col-lg-3 mt-lg-0 mt-3">
         <div class="global-card">
           <h5 class="card-title-color fs-5-1 mb-0">{{'profile.analytics'|translate}}</h5>
           <div class="row g-3 mt-1">
             <div class="col-lg-6 col-md-3 col-sm-6">
               <div class="analysies text-center">
-                <h5 class="text-main-color mb-1 fw-600">455</h5>
+                <h5 class="text-main-color mb-1 fw-600">{{userProfileDetails?.number_jobs_applied}}</h5>
                 <p class="title fw-600 text-dark-color">{{'profile.appliedJobs'|translate}}</p>
               </div>
             </div>
             <div class="col-lg-6 col-md-3 col-sm-6">
               <div class="analysies text-center">
-                <h5 class="text-main-color mb-1 fw-600">455</h5>
+                <h5 class="text-main-color mb-1 fw-600">{{userProfileDetails?.number_jobs_matched}}</h5>
                 <p class="title fw-600 text-dark-color">{{'profile.matchingJobs'|translate}}</p>
               </div>
             </div>
@@ -344,11 +347,11 @@
                               {{item?.title}}
                             </h5>
                             <div class="d-flex gap-1 flex-wrap">
-                              <p class="fw-600 text-grey-800">{{item?.name}}</p>
+                              <p class="fw-600 text-grey-800">{{item?.company?.name_company}}</p>
                               <ngx-star-rating [(ngModel)]="item.rate" [id]="'item?.rate'"
-                                [disabled]="true"></ngx-star-rating>
+                                [disabled]="true" (rateChange)="onRateChange($event)"></ngx-star-rating>
                             </div>
-                            <p class="fw-600 fs-5-1 text-grey-800">{{item?.address}}</p>
+                            <p class="fw-600 fs-5-1 text-grey-800">{{item?.city?.name}},{{item?.country?.name}}</p>
                           </div>
                         </div>
                         <i class="pi pi-th-large fs-6-1 text-grey-800"></i>

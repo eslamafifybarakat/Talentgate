@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
+import { HomeService } from 'src/app/pages/services/home.service';
 
 @Component({
   selector: 'app-notification',
@@ -23,11 +24,32 @@ export class NotificationComponent implements OnInit {
   ];
   count = 0;
   activeCategory: any;
+  notifications: any;
+  hoursDiff: number= 0;
+  hoursDiffArray: any;
 
-  constructor() { }
+  constructor(private homeService: HomeService) { }
 
   ngOnInit(): void {
-    this.numberOfUnreadnot()
+    this.numberOfUnreadnot();
+    this.getNotification()
+  }
+
+  getNotification()
+  {
+    this.homeService.getNotification(0).subscribe((res)=>{
+      console.log(res);
+      this.notifications= res.data.notifications;
+      let now = new Date();
+      this.hoursDiffArray = [];
+      for (let i = 0; i < this.notifications.length; i++) {
+        let apiTime = new Date(this.notifications[i].time);
+        let diff = Math.abs(now.getTime() - apiTime.getTime());
+        this.hoursDiff = Math.floor(diff / (1000 * 60 * 60));
+        this.hoursDiffArray.push(this.hoursDiff);
+        console.log("فرق التوقيت:", this.hoursDiff, "ساعة");
+      }
+    })
   }
   numberOfUnreadnot() {
     this.allNotifications.forEach((e) => {

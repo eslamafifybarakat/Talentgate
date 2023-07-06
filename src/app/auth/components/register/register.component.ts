@@ -189,7 +189,7 @@ export class RegisterComponent implements OnInit {
       this.authUserService?.signup(data)?.subscribe(
         (res: any) => {
           if (res?.status == 200) {
-            this.router?.navigate(['/auth/login']);
+            this.router?.navigate(['/home']);
             window.localStorage.setItem(keys.token, res?.data?.token);
             window.localStorage.setItem(keys.userLoginData, JSON.stringify(res?.data?.user)
             );

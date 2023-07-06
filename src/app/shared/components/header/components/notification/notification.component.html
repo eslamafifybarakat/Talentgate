@@ -38,18 +38,18 @@
         </li>
       </ul> -->
       <div class="notification-content ">
-        <div class="mb-2" *ngFor="let item of allNotifications">
-          <div class="p-3 px-4 position-relative d-flex align-items-center gap-2"
-            [class.active-notification]="item.seen=='unread'">
-            <div class="d-flex align-items-center gap-2">
-              <img [src]="item.img" class="rounded-circle not-img shadow-sm" alt="">
+        <div class="mb-2" *ngFor="let item of notifications;let i = index">
+          <div class="p-3 px-4 position-relative d-flex align-items-center gap-2 justify-content-between"
+            [class.active-notification]="item.seen">
+            <div class="d-flex align-items-center  gap-2">
+              <img [src]="'https://dev-api.talentsgates.website/getimage/'+item.image" class="rounded-circle not-img shadow-sm" alt="">
               <div>
-                <p class="fs-6 lh-1">{{item.text}}</p>
+                <p class="fs-6 lh-1">{{item.content}}</p>
               </div>
             </div>
             <div>
               <!-- <small class="mt-1 d-block d-flex justify-content-end">{{item.createdAt | timeago}}</small> -->
-              <small class="text-desc-color fs-8">1h</small>
+              <small class="text-desc-color fs-8">{{hoursDiffArray[i]}}</small>
               <i class="fas fa-ellipsis-vertical fs-5"></i>
             </div>
           </div>

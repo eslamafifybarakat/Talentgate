@@ -49,11 +49,11 @@ export class ApplyJobComponent implements OnInit {
   isLoadingDetails: boolean = false;
   jobId: any;
   links: any = [
-    { id: 1, name: 'Most relevant', dropdown: [{ id: 1, name: 'Most relevant1' }, { id: 2, name: 'Most relevant2' }, { id: 3, name: 'Most relevant3' }, { id: 4, name: 'Most relevant4' }], value: 'mostRelevant' },
-    { id: 2, name: 'Experience level', dropdown: [{ id: 1, name: 'Most relevant1' }, { id: 2, name: 'Most relevant2' }, { id: 3, name: 'Most relevant3' }, { id: 4, name: 'Most relevant4' }], value: 'experienceLevel' },
+    { id: 1, name: 'Most relevant', dropdown: [{ id: 0, name: 'most_recent' }, { id: 1, name: 'most_relevant' }], value: 'mostRelevant' },
+    { id: 2, name: 'Experience level', dropdown: [{ id: 0, name: 'Intern ' }, { id: 1, name: 'Entry_level' }, { id: 2, name: 'Junior ' }, { id: 3, name: 'Intermediate' }, { id: 4, name: 'Mid-level' }, { id: 5, name: 'Senior ' }, { id: 6, name: 'Manage' }], value: 'experienceLevel' },
     { id: 3, name: 'Experience levels', dropdown: [{ id: 1, name: 'Most relevant1' }, { id: 2, name: 'Most relevant2' }, { id: 3, name: 'Most relevant3' }, { id: 4, name: 'Most relevant4' }], value: 'experienceLevels' },
-    { id: 4, name: 'Job type', dropdown: [{ id: 1, name: 'Most relevant1' }, { id: 2, name: 'Most relevant2' }, { id: 3, name: 'Most relevant3' }, { id: 4, name: 'Most relevant4' }], value: 'jobType' },
-    { id: 5, name: 'Onsite/remote', dropdown: [{ id: 1, name: 'Most relevant1' }, { id: 2, name: 'Most relevant2' }, { id: 3, name: 'Most relevant3' }, { id: 4, name: 'Most relevant4' }], value: 'onSite' },
+    { id: 4, name: 'Job type', dropdown: [{ id: 0, name: 'Full time' }, { id: 1, name: 'part_time' }, { id: 2, name: 'other' }], value: 'jobType' },
+    { id: 5, name: 'Onsite/remote', dropdown: [{ id: 0, name: 'on-site' }, { id: 1, name: 'remote' }], value: 'onSite' },
     { id: 6, name: 'Location', dropdown: [{ id: 1, name: 'Most relevant1' }, { id: 2, name: 'Most relevant2' }, { id: 3, name: 'Most relevant3' }, { id: 4, name: 'Most relevant4' }], value: 'location' },
     { id: 7, name: 'Industry', dropdown: [{ id: 1, name: 'Most relevant1' }, { id: 2, name: 'Most relevant2' }, { id: 3, name: 'Most relevant3' }, { id: 4, name: 'Most relevant4' }], value: 'industry' },
     { id: 8, name: 'Job Function', dropdown: [{ id: 1, name: 'Most relevant1' }, { id: 2, name: 'Most relevant2' }, { id: 3, name: 'Most relevant3' }, { id: 4, name: 'Most relevant4' }], value: 'jobFunction' },
@@ -100,18 +100,19 @@ export class ApplyJobComponent implements OnInit {
     this.homeService?.getJobRecommended(count)?.subscribe(
       (res: any) => {
         if (res?.status == 200) {
-          let arr: any = [];
-          res?.data ? res?.data?.job_offers?.forEach((item: any) => {
-            arr?.push({
-              _id: item?._id,
-              title: item?.title ? item?.title : '',
-              address: item?.address ? item?.address : '',
-              name: item?.name ? item?.name : '',
-              rate: item?.rate ? item?.rate : 0,
-              time: item?.time ? item?.time : ''
-            })
-          }) : '';
-          this.recommendedResults = arr;
+          // let arr: any = [];
+          // res?.data ? res?.data?.job_offers?.forEach((item: any) => {
+          //   arr?.push({
+          //     _id: item?._id,
+          //     title: item?.title ? item?.title : '',
+          //     address: item?.address ? item?.address : '',
+          //     name: item?.name ? item?.name : '',
+          //     rate: item?.rate ? item?.rate : 0,
+          //     time: item?.time ? item?.time : ''
+          //   })
+          // }) : '';
+          this.recommendedResults = res.data.job_offers;
+          console.log(this.recommendedResults)
           this.recommendedResults['isActive'] = false;
           this.isLoadingRecommendedResults = false;
           this.changeData(this.recommendedResults[0]?._id);
@@ -126,10 +127,17 @@ export class ApplyJobComponent implements OnInit {
       });
     this.cdr?.detectChanges();
   }
+  filterRecommendedData(event:any)
+  {
+    const selectedValue = event.value.name;
+    console.log(event);
+    this.recommendedResults = this.recommendedResults.filter((item:any)=>item.value === selectedValue);
+  }
   getJobOffersDetails(id: any): any {
     this.isLoadingDetails = true;
     this.homeService?.getJobOffersDetails(id)?.subscribe(
       (res: any) => {
+        console.log(res)
         if (res?.status == 200) {
           res?.data ? this.jobDetails = res?.data : '';
           this.isLoadingDetails = false;

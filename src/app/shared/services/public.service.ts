@@ -108,32 +108,5 @@ export class PublicService {
     });
   }
 
-  getDriverStatus(): any {
-    let arr = [
-      { id: 1, value: 'available', name: this.translateTextFromJson('general.available') },
-      { id: 2, value: 'busy', name: this.translateTextFromJson('general.busy') },
-      { id: 3, value: 'far', name: this.translateTextFromJson('general.far') },
-    ];
-    return arr;
-  }
-  getIsWorking(): any {
-    let arr = [
-      { id: 1, value: 'available', name: this.translateTextFromJson('general.available') },
-      { id: 2, value: 'busy', name: this.translateTextFromJson('general.busy') }
-    ];
-    return arr;
-  }
-  getOrderStatus(): any {
-    let arr = [
-      { id: 1, value: 'pending', name: this.translateTextFromJson('general.pending') },
-      { id: 2, value: 'assignedToDriver', name: this.translateTextFromJson('general.assignedToDriver') },
-      { id: 3, value: 'driverOnWayToCustomer', name: this.translateTextFromJson('general.driverOnWayToCustomer') },
-      { id: 4, value: 'driverArrivedToCustomer', name: this.translateTextFromJson('general.driverArrivedToCustomer') },
-      { id: 5, value: 'driverArrivedToStation', name: this.translateTextFromJson('general.driverArrivedToStation') },
-      { id: 6, value: 'completed', name: this.translateTextFromJson('general.completed') },
-      { id: 7, value: 'cancelled', name: this.translateTextFromJson('general.cancelled') },
 
-    ];
-    return arr;
-  }
 }
