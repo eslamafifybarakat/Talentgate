@@ -21,26 +21,30 @@
   </div>
 </div>
 
-<div #boxdetails class="box-details px-4 py-2" style="background-color: #F3FDFF;
+<div #boxdetails class="box-details py-3 px-4" style="background-color: #F3FDFF;
 width: 393px;height: 213px; position: absolute; display: none;
 z-index: 9999;border-radius: 10px;">
 
-<!-- ==========================icons====================== -->
+  <!-- ==========================icons====================== -->
+  <div class="d-flex justify-content-end">
+    <a (click)="onClose()" class="close d-flex justify-content-center align-items-center rounded-circle">
+      <i class="pi pi-times"></i>
+    </a>
+  </div>
   <div class="icons d-flex justify-content-end" style="color:#5E5E5E;">
+
     <i class="bi bi-bell-fill me-3"></i>
     <i class="bi bi-clipboard2-x-fill me-3"></i>
     <i class="bi bi-three-dots-vertical me-3"></i>
     <i class="bi bi-x-lg "></i>
   </div>
-  <p class="color-254472">{{interviewDetails?.title_interview  }}</p>
+  <p class="color-254472">{{interviewDetails?.title_interview }}</p>
 
   <p class="mb-0" style="font-size: 16" style="color: #1B2730;">
     {{interviewDetails?.company?.name_company}}
-    <span style="font-size: 13px"
-      ><i style="color: #f8b84e" class="fa fa-star"></i>
-      <i style="color: #f8b84e" class="fa fa-star"></i
-      ><i style="color: #f8b84e" class="fa fa-star"></i
-      ><i style="color: #f8b84e" class="fa fa-star"></i>
+    <span style="font-size: 13px"><i style="color: #f8b84e" class="fa fa-star"></i>
+      <i style="color: #f8b84e" class="fa fa-star"></i><i style="color: #f8b84e" class="fa fa-star"></i><i
+        style="color: #f8b84e" class="fa fa-star"></i>
       <i style="color: #f8b84e" class="fa fa-star"></i>
     </span>
   </p>
@@ -57,15 +61,18 @@ z-index: 9999;border-radius: 10px;">
   <!-- ==========================image people================== -->
   <div class="d-flex  align-items-center mt-4">
     <div class="d-flex align-items-center me-2">
-      <img src="../../../assets//img/profile.jpeg" style="width: 20px;height: 20px;margin-right: 7px;border-radius: 50%;">
+      <img src="../../../assets//img/profile.jpeg"
+        style="width: 20px;height: 20px;margin-right: 7px;border-radius: 50%;">
       <span style="font-size: 10px; color: #1B2730;">Monica maw</span>
     </div>
     <div class="d-flex align-items-center me-2">
-      <img src="../../../assets//img/profile.jpeg" style="width: 20px;height: 20px;margin-right: 7px;border-radius: 50%">
+      <img src="../../../assets//img/profile.jpeg"
+        style="width: 20px;height: 20px;margin-right: 7px;border-radius: 50%">
       <span style="font-size: 10px; color: #1B2730;">Kalub Max</span>
     </div>
     <div class="d-flex align-items-center me-2">
-      <img src="../../../assets//img/profile.jpeg" style="width: 20px;height: 20px;margin-right: 7px;border-radius: 50%">
+      <img src="../../../assets//img/profile.jpeg"
+        style="width: 20px;height: 20px;margin-right: 7px;border-radius: 50%">
       <span style="font-size: 10px; color: #1B2730;">Kalub Max</span>
     </div>
   </div>

@@ -2,6 +2,7 @@ import { AlertsService } from './../../../core/services/alerts/alerts.service';
 import { Component, OnInit, ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
 import { HomeService } from '../../services/home.service';
 import * as moment from 'moment';
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-calender',
   templateUrl: './calender.component.html',
@@ -12,8 +13,8 @@ export class CalenderComponent implements OnInit {
   formateDate: any;
   schedulerEvents: any = [];
   isLoadingEvents: boolean = false;
-mousePostion:{x:any, y:any} = {x:0,y:0}
-@ViewChild("boxdetails") boxDetails:ElementRef<HTMLDivElement> = {} as ElementRef<HTMLDivElement>
+  mousePostion: { x: any, y: any } = { x: 0, y: 0 }
+  @ViewChild("boxdetails") boxDetails: ElementRef<HTMLDivElement> = {} as ElementRef<HTMLDivElement>
   // minDate: any = new Date();
   showDetailss = false;
   showTargetId: any;
@@ -23,11 +24,12 @@ mousePostion:{x:any, y:any} = {x:0,y:0}
     private alertsService: AlertsService,
     private homeService: HomeService,
     private cdr: ChangeDetectorRef,
+    private datePipe: DatePipe
   ) { }
 
   ngOnInit() {
     this.onDateChange(new Date());
-    window.addEventListener("mousedown", (event:MouseEvent)=>{
+    window.addEventListener("mousedown", (event: MouseEvent) => {
 
       this.mousePostion.x = event.clientX;
       this.mousePostion.y = event.clientY;
@@ -44,29 +46,31 @@ mousePostion:{x:any, y:any} = {x:0,y:0}
   }
   onCellClick(e: any): void {
     console.log('Cell clicked:', e);
-    this.showTargetId= e.event.id;
-    this.homeService.getInterviewDetails(this.showTargetId).subscribe((res:any)=>{
+    this.showTargetId = e.event.id;
+    this.homeService.getInterviewDetails(this.showTargetId).subscribe((res: any) => {
       this.interviewDetails = res.data;
       console.log(this.interviewDetails)
     })
     console.log(this.showTargetId)
     this.showDetailss = true
     this.boxDetails.nativeElement.style.top = this.mousePostion.y + "px";
-              this.boxDetails.nativeElement.style.left = this.mousePostion.x + "px";
-              this.boxDetails.nativeElement.style.display = "block";
+    this.boxDetails.nativeElement.style.left = this.mousePostion.x + "px";
+    this.boxDetails.nativeElement.style.display = "block";
   }
-
+  onClose(): void {
+    this.boxDetails.nativeElement.style.display = "none";
+  }
   getSchedularEvents(date: any): any {
     this.isLoadingEvents = true;
-    this.homeService?.getInterviews(date,0)?.subscribe(
+    this.homeService?.getInterviews(date, 0)?.subscribe(
       (res: any) => {
         if (res?.status == 200) {
           this.schedulerEvents = res?.data.interviews.map((dataItem: any) => (
             <any>{
               id: dataItem._id,
-              start: new Date(dataItem.interview_date),
+              start: new Date(this.subtracTHour(dataItem?.interview_date)),
               // startTimezone: null,
-              end:new Date(),
+              end: dataItem?.interview_endDate ? new Date(this.subtracTHour(dataItem?.interview_endDate)) : new Date(this.subtracTHour(dataItem?.interview_date)),
               // endTimezone: new Date(),
               isAllDay: false,
               title: dataItem.title_interview,
@@ -74,7 +78,7 @@ mousePostion:{x:any, y:any} = {x:0,y:0}
               // recurrenceRule: dataItem.RecurrenceRule,
               // recurrenceId: dataItem.RecurrenceID,
               // recurrenceException: dataItem.RecurrenceException,
-      
+
               // roomId: dataItem.RoomID,
               // ownerID: dataItem.OwnerID
             }
@@ -84,8 +88,8 @@ mousePostion:{x:any, y:any} = {x:0,y:0}
           //   console.log(element.id)
           //   document.getElementById(element.id)?.addEventListener("click",()=>{
           //     window.alert(element.id)
-              
-              
+
+
           //   })
           // });
           this.isLoadingEvents = false;
@@ -171,5 +175,12 @@ mousePostion:{x:any, y:any} = {x:0,y:0}
     // ));
     console.log(this.schedulerEvents);
 
+  }
+  subtracTHour(date: any): any {
+    const originalDate = new Date(date);
+    originalDate?.setHours(originalDate?.getHours() - 2);
+    const formattedDate: any = originalDate?.toISOString();
+
+    return formattedDate;
   }
 }

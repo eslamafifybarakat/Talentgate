@@ -10,6 +10,8 @@
 "profile":"Profile"
   },
   "general": {
+    "contactInfo":"Contact Info",
+    "applyTo":"Apply to",
     "showAll":"Show All",
     "employees":"Employees",
     "addPhoto":"Add Photo",

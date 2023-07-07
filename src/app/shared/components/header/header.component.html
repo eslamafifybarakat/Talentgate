@@ -20,7 +20,7 @@
                 <i (click)="clearSearchValue(search)" class="pi pi-times text-danger pointer"></i>
               </ng-container>
               <i class="pi pi-search"></i>
-              <input type="text" #search (keyup.enter)="searchHandlerEmit(search?.value)"
+              <input type="text" #search [(ngModel)]="searchInputValue" (keyup.enter)="searchHandlerEmit(search?.value)"
                 placeholder="{{'placeholder.search'|translate}}" class="form-control search" />
             </span>
             <ng-container *ngIf="enableLocation">
@@ -38,22 +38,23 @@
         <ul class="navbar-nav gap-4 align-items-center mb-2 mb-lg-0">
           <ng-container *ngIf="moduleType=='pages';else noLogged">
             <li class="nav-item ">
-              <a class="nav-link text-main-color lh-0" routerLink="/home" routerLinkActive="active">
+              <a class="nav-link text-main-color lh-0" routerLink="/home" routerLinkActive="active"
+                (click)="clearSearch()">
                 <i class="fas fa-home"></i>
               </a>
             </li>
             <li class="nav-item ">
-              <a class="nav-link lh-0" routerLink="/apply-job" routerLinkActive="active">
+              <a class="nav-link lh-0" routerLink="/apply-job" routerLinkActive="active" (click)="clearSearch()">
                 <i class="fas fa-briefcase"></i>
                 <!-- <i class="pi pi-shopping-bag"></i> -->
               </a>
             </li>
             <li class="nav-item ">
-              <a class="nav-link lh-0" routerLink="/calender" routerLinkActive="active">
+              <a class="nav-link lh-0" routerLink="/calender" routerLinkActive="active" (click)="clearSearch()">
                 <i class="fas fa-calendar-o"></i>
               </a>
             </li>
-            <li class="nav-item ">
+            <li class="nav-item">
               <!-- <a class="nav-link lh-0">
                 <i class="fas fa-bell"></i>
               </a> -->
@@ -70,10 +71,10 @@
             </li>
           </ng-template>
 
-          <li class="nav-item ">
+          <li class="nav-item">
             <app-theme></app-theme>
           </li>
-          <li class="nav-item ">
+          <li class="nav-item">
             <app-language-selector></app-language-selector>
           </li>
           <ng-container *ngIf="isLogged">

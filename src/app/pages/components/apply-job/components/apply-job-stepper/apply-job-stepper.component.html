@@ -1,0 +1,99 @@
+<div>
+  <div class="d-flex align-items-center gap-2 mb-3">
+    <p-progressBar class="w-100" [value]="currentStep/4*100" [showValue]="false"></p-progressBar>
+    <p class="text-nowrap ">{{currentStep/4*100}} %</p>
+  </div>
+  <ng-container *ngIf="currentStep==0">
+    <div>
+      <h5 class="fw-bold fs-5 text-main-color mb-3">{{'general.contactInfo'|translate}}</h5>
+      <div class="d-flex">
+        <div class="profile-img rounded-circle position-relative">
+          <img [src]="imgPath+userProfileDetails?.image" onerror="src='assets/images/not-found/noUser.svg'"
+            class="fit-object-cover rounded-circle w-100 h-100 shadow-sm" alt="user">
+        </div>
+        <div class="content-info p-2 d-flex gap-4">
+          <div>
+            <h5 class="text-main-color fw-bold mb-0 fs-5-1 text-capitalize">{{userProfileDetails?.full_name ||
+              'Catherine Longford'}}</h5>
+            <p class="fs-6 text-main-color">{{userProfileDetails?.profession}}</p>
+            <!-- <p class="fs-6-1 text-desc-color  address">{{userProfileDetails?.city?.name}} ,
+              {{userProfileDetails?.country?.name}}
+            </p> -->
+          </div>
+        </div>
+      </div>
+      <form [formGroup]="firstRegisterForm" class="pt-3">
+        <div class="mb-3">
+          <div class="input-container">
+            <label for="email" class="mb-1 text-main-color">
+              {{'placeholder.fullname'|translate}}
+            </label>
+            <input type="text" class="form-control" formControlName="username" autocomplete="cc-name"
+              (input)="publicService.clearValidationErrors(firstFormControls?.username)"
+              [class.is-invalid]="firstFormControls?.username?.invalid && (firstFormControls?.username?.dirty || firstFormControls?.username?.touched)"
+              placeholder="{{'placeholder.fullname'|translate}}">
+          </div>
+          <ng-container
+            *ngIf="firstFormControls?.username?.invalid && (firstFormControls?.username?.dirty || firstFormControls?.username?.touched)">
+            <div class="mt-2">
+              <ng-container *ngIf="firstFormControls?.username?.errors?.['required']">
+                <span class="text-danger fs-8 ps-3">
+                  {{'validations.requiredName'|translate}}
+                </span>
+              </ng-container>
+              <ng-container *ngIf="firstFormControls?.username?.errors?.['pattern']">
+                <span class="text-danger fs-8 d-block ps-3">
+                  {{'validations.name_length'|translate}}
+                </span>
+              </ng-container>
+              <ng-container *ngIf="firstFormControls?.username?.errors?.['minlength']">
+                <span class="text-danger fs-8 d-block ps-3">
+                  {{'validations.length'|translate}}
+                </span>
+              </ng-container>
+            </div>
+          </ng-container>
+        </div>
+        <div class="mb-3">
+          <div class="input-container">
+            <label for="email" class="mb-1 text-main-color">
+              {{'placeholder.email'|translate}}
+            </label>
+            <input type="email" class="form-control" formControlName="email" autocomplete="cc-name"
+              (input)="publicService.clearValidationErrors(firstFormControls?.email)"
+              [class.is-invalid]="firstFormControls?.email?.invalid && (firstFormControls?.email?.dirty || firstFormControls?.email?.touched)"
+              placeholder="{{'placeholder.email'|translate}}">
+          </div>
+          <div class="mt-2">
+            <ng-container
+              *ngIf="firstFormControls?.email?.invalid && (firstFormControls?.email?.dirty || firstFormControls?.email?.touched)">
+              <ng-container *ngIf="firstFormControls?.email?.errors?.['required']">
+                <span class="text-danger fs-8 ps-3">
+                  {{'validations.requiredEmail'|translate}}
+                </span>
+              </ng-container>
+              <ng-container *ngIf="firstFormControls?.email?.errors?.['pattern']">
+                <span class="text-danger fs-8 d-block ps-3">
+                  {{'validations.not_valid'|translate}}
+                </span>
+              </ng-container>
+              <ng-container *ngIf="firstFormControls?.email?.errors?.['minlength']">
+                <span class="text-danger fs-8 d-block ps-3">
+                  {{'validations.emailNotCorrect'|translate}}
+                </span>
+              </ng-container>
+            </ng-container>
+          </div>
+        </div>
+      </form>
+      <hr>
+      <div class="d-flex justify-content-end" (click)="next(0)">
+        <button class="btn btn-solid-main">{{'general.next'|translate}}</button>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="currentStep==1">
+    currentStep1
+  </ng-container>
+</div>

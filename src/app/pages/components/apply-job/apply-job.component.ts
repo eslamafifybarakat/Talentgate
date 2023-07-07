@@ -4,6 +4,8 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { keys } from 'src/app/shared/configs/localstorage-key';
 import { HomeService } from './../../services/home.service';
 import { FormBuilder } from '@angular/forms';
+import { DialogService } from 'primeng/dynamicdialog';
+import { ApplyJobStepperComponent } from './components/apply-job-stepper/apply-job-stepper.component';
 
 @Component({
   selector: 'app-apply-job',
@@ -71,15 +73,18 @@ export class ApplyJobComponent implements OnInit {
     industry: ['', []],
     title: ['', []]
   })
+
   constructor(
     private alertsService: AlertsService,
     private publicService: PublicService,
+    private dialogService: DialogService,
     private homeService: HomeService,
     private cdr: ChangeDetectorRef,
     private fb: FormBuilder
   ) { }
 
   ngOnInit(): void {
+    this.searchResults = [];
     this.getJobRecommended(0);
     this.jobId = this.recommendedResults[0]?._id;
     this.publicService?.recallSearchResults?.subscribe((res: any) => {
@@ -127,11 +132,10 @@ export class ApplyJobComponent implements OnInit {
       });
     this.cdr?.detectChanges();
   }
-  filterRecommendedData(event:any)
-  {
+  filterRecommendedData(event: any) {
     const selectedValue = event.value.name;
     console.log(event);
-    this.recommendedResults = this.recommendedResults.filter((item:any)=>item.value === selectedValue);
+    this.recommendedResults = this.recommendedResults.filter((item: any) => item.value === selectedValue);
   }
   getJobOffersDetails(id: any): any {
     this.isLoadingDetails = true;
@@ -198,13 +202,14 @@ export class ApplyJobComponent implements OnInit {
       (res: any) => {
         if (res?.status == 200) {
           let arr: any = [];
-          res?.data ? res?.data?.search_result?.forEach((item: any) => {
-            arr?.push({
-              coupon_name: item?.coupon_name ? item?.coupon_name : '',
-              coupon_picture: item?.coupon_picture ? item?.coupon_picture : '',
-              description: item?.description ? item?.description : '',
-            })
-          }) : '';
+          arr = res?.data?.search_result ? res?.data?.search_result : [];
+          // res?.data ? res?.data?.search_result?.forEach((item: any) => {
+          //   arr?.push({
+          //     coupon_name: item?.coupon_name ? item?.coupon_name : '',
+          //     coupon_picture: item?.coupon_picture ? item?.coupon_picture : '',
+          //     description: item?.description ? item?.description : '',
+          //   })
+          // }) : '';
           this.searchResults = arr;
           this.isLoadingSearchResults = false;
         } else {
@@ -217,17 +222,6 @@ export class ApplyJobComponent implements OnInit {
         this.isLoadingSearchResults = false;
       });
     this.cdr?.detectChanges();
-
-    this.searchResults = [
-      { coupon_name: 'User Experience(Ux) Designer' },
-      { coupon_name: 'User Experience(Ux) Designer' },
-      { coupon_name: 'User Experience(Ux) Designer' },
-      { coupon_name: 'User Experience(Ux) Designer' },
-      { coupon_name: 'User Experience(Ux) Designer' },
-      { coupon_name: 'User Experience(Ux) Designer' },
-      { coupon_name: 'User Experience(Ux) Designer' },
-      { coupon_name: 'User Experience(Ux) Designer' },
-    ]
   }
   getSearchLocationResults(id?: any, value?: any): any {
     this.isLoadingSearchResults = true;
@@ -254,21 +248,20 @@ export class ApplyJobComponent implements OnInit {
         this.isLoadingSearchResults = false;
       });
     this.cdr?.detectChanges();
-    this.searchResults = [
-      { coupon_name: 'User Experience(Ux) Designer' },
-      { coupon_name: 'User Experience(Ux) Designer' },
-      { coupon_name: 'User Experience(Ux) Designer' },
-      { coupon_name: 'User Experience(Ux) Designer' },
-      { coupon_name: 'User Experience(Ux) Designer' },
-      { coupon_name: 'User Experience(Ux) Designer' },
-      { coupon_name: 'User Experience(Ux) Designer' },
-      { coupon_name: 'User Experience(Ux) Designer' },
-    ]
   }
   applyForJob(): any {
-    console.log(this.form?.value);
+    const ref = this.dialogService.open(ApplyJobStepperComponent, {
+      header: this.publicService?.translateTextFromJson('general.applyTo') + ' Google',
+      width: '60%',
+      styleClass: 'apply-job-dialog'
+    });
 
-    this.publicService?.show_loader?.next(true);
+    ref.onClose.subscribe((res: any) => {
+      if (res) {
+
+      }
+    });
+    // this.publicService?.show_loader?.next(true);
     let data: any;
     data = {
       job_offer: "string",
@@ -290,19 +283,19 @@ export class ApplyJobComponent implements OnInit {
         }
       ]
     }
-    this.homeService?.applyForJob(data)?.subscribe(
-      (res: any) => {
-        if (res?.status == 200) {
-          this.publicService?.show_loader?.next(false);
-        } else {
-          res?.message ? this.alertsService?.openSweetAlert('info', res?.message) : '';
-          this.publicService?.show_loader?.next(false);
-        }
-      },
-      (err: any) => {
-        err?.message ? this.alertsService?.openSweetAlert('error', err?.message) : '';
-        this.publicService?.show_loader?.next(false);
-      });
+    // this.homeService?.applyForJob(data)?.subscribe(
+    //   (res: any) => {
+    //     if (res?.status == 200) {
+    //       this.publicService?.show_loader?.next(false);
+    //     } else {
+    //       res?.message ? this.alertsService?.openSweetAlert('info', res?.message) : '';
+    //       this.publicService?.show_loader?.next(false);
+    //     }
+    //   },
+    //   (err: any) => {
+    //     err?.message ? this.alertsService?.openSweetAlert('error', err?.message) : '';
+    //     this.publicService?.show_loader?.next(false);
+    //   });
     this.cdr?.detectChanges();
   }
 }

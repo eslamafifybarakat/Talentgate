@@ -95,7 +95,7 @@
                 <ng-container *ngIf="recommendedResults?.length>0; else noRecommendedResults">
                   <ng-container *ngFor="let item of recommendedResults">
                     <div class="col-xl-6 col-lg-12 col-md-6">
-                      <div class="recomended-content p-3">
+                      <div class="recomended-content p-3 h-100">
                         <div class="d-flex justify-content-between  gap-2">
                           <div class="d-flex align-items-center gap-2">
                             <img class="recommended-img rounded-circle"
@@ -152,7 +152,7 @@
                 <ng-container *ngFor="let item of searchResults">
                   <div class="d-flex align-items-center gap-2  search-content">
                     <i class="fas fa-users"></i>
-                    <p class="text-truncate">{{item?.coupon_name}}</p>
+                    <p class="text-truncate">{{item?.description}}</p>
                   </div>
                 </ng-container>
               </ng-container>

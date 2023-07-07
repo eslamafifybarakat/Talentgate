@@ -11,6 +11,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ApplyJobComponent } from './components/apply-job/apply-job.component';
 import { CalenderComponent } from './components/calender/calender.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { ApplyJobStepperComponent } from './components/apply-job/components/apply-job-stepper/apply-job-stepper.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     HomeComponent,
     ApplyJobComponent,
     CalenderComponent,
-    ProfileComponent
+    ProfileComponent,
+    ApplyJobStepperComponent
   ],
   imports: [
     ReactiveFormsModule,

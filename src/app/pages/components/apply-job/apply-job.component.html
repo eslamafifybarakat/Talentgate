@@ -11,7 +11,8 @@
                 <p-dropdown [options]="item?.dropdown" optionLabel="name" [filter]="true" [virtualScroll]="true"
                   formControlName="{{item?.value}}" [filterPlaceholder]="'placeholder.search'|translate"
                   [virtualScrollItemSize]="40" filterBy="label" appendTo="body" scrollHeight="200px"
-                  [emptyMessage]="'No results found'" [showClear]="false" placeholder="{{item?.name}}" (onChange)="filterRecommendedData($event)">
+                  [emptyMessage]="'No results found'" [showClear]="false" placeholder="{{item?.name}}"
+                  (onChange)="filterRecommendedData($event)">
                 </p-dropdown>
               </button>
             </li>
@@ -37,7 +38,7 @@
                     <div class="row g-0 content">
                       <ng-container *ngFor="let item of recommendedResults;let i=index">
                         <div class="col-xl-12 col-lg-12 col-md-6">
-                          <div class="recommended-content p-3 mx-3 mt-3 pointer" [class.active]="item?.isActive"
+                          <div class="recommended-content  p-3 mx-3 mt-3 pointer" [class.active]="item?.isActive"
                             (click)="changeData(item?._id)">
                             <div class="d-flex justify-content-between  gap-2">
                               <div class="d-flex align-items-center flex-wrap gap-2">
@@ -151,31 +152,31 @@
                         <div class="mt-3 gray-500">
                           <div [innerHTML]="jobDetails?.description"></div>
                           <div>
-                          <p class="mb-1 fw-600">Eligiblity</p>
-                          <p>{{jobDetails?.eligibility}}</p>
-                        </div>
-                        <div>
-                          <p class="mb-1 fw-600">Missions</p>
-                          <p>- Lorem ipsum dolor sit amet</p>
-                          <p>- consectetur adipisicing elit.</p>
-                          <p>- Excepturi amet odio ex error libero, dicta nam, corporis inventore, qui ipsa sit. Velit
-                            veritatis reiciendis facere, suscipit id beatae tenetur sint?</p>
-                          <p>- ex error libero, dicta nam, corporis inventore, qui ipsa sit. Velit
-                            veritatis reiciendis facere, suscipit id beatae tenetur sint?</p>
-                          <p>- Excepturi amet odio ex error libero, dicta nam, corporis inventor suscipit id beatae
-                            tenetur sint?</p>
-                        </div>
-                        <div>
-                          <p class="mb-1 fw-600">Profile type</p>
-                          <p>- Lorem ipsum dolor sit amet</p>
-                          <p>- consectetur adipisicing elit.</p>
-                          <p>- Excepturi amet odio ex error libero, dicta nam, corporis inventore, qui ipsa sit. Velit
-                            veritatis reiciendis facere, suscipit id beatae tenetur sint?</p>
-                          <p>- ex error libero, dicta nam, corporis inventore, qui ipsa sit. Velit
-                            veritatis reiciendis facere, suscipit id beatae tenetur sint?</p>
-                          <p>- Excepturi amet odio ex error libero, dicta nam, corporis inventor suscipit id beatae
-                            tenetur sint?</p>
-                        </div>
+                            <p class="mb-1 fw-600">Eligiblity</p>
+                            <p>{{jobDetails?.eligibility}}</p>
+                          </div>
+                          <div>
+                            <p class="mb-1 fw-600">Missions</p>
+                            <p>- Lorem ipsum dolor sit amet</p>
+                            <p>- consectetur adipisicing elit.</p>
+                            <p>- Excepturi amet odio ex error libero, dicta nam, corporis inventore, qui ipsa sit. Velit
+                              veritatis reiciendis facere, suscipit id beatae tenetur sint?</p>
+                            <p>- ex error libero, dicta nam, corporis inventore, qui ipsa sit. Velit
+                              veritatis reiciendis facere, suscipit id beatae tenetur sint?</p>
+                            <p>- Excepturi amet odio ex error libero, dicta nam, corporis inventor suscipit id beatae
+                              tenetur sint?</p>
+                          </div>
+                          <div>
+                            <p class="mb-1 fw-600">Profile type</p>
+                            <p>- Lorem ipsum dolor sit amet</p>
+                            <p>- consectetur adipisicing elit.</p>
+                            <p>- Excepturi amet odio ex error libero, dicta nam, corporis inventore, qui ipsa sit. Velit
+                              veritatis reiciendis facere, suscipit id beatae tenetur sint?</p>
+                            <p>- ex error libero, dicta nam, corporis inventore, qui ipsa sit. Velit
+                              veritatis reiciendis facere, suscipit id beatae tenetur sint?</p>
+                            <p>- Excepturi amet odio ex error libero, dicta nam, corporis inventor suscipit id beatae
+                              tenetur sint?</p>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -208,7 +209,7 @@
                 <ng-container *ngFor="let item of searchResults">
                   <div class="d-flex align-items-center gap-2  search-content">
                     <i class="fas fa-users"></i>
-                    <p class="text-truncate">{{item?.coupon_name}}</p>
+                    <p class="text-truncate">{{item?.description}}</p>
                   </div>
                 </ng-container>
               </ng-container>

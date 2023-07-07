@@ -16,7 +16,11 @@ export class HomeService {
 
 
   getSearchResults(value: any): Observable<any> {
-    return this.http?.post<any>(this.apiUrl + roots?.home?.globalBarSearch + '/' + this.langKey, value);
+    let data: any = {};
+    if (value != null) {
+      data['value'] = value;
+    }
+    return this.http?.post<any>(this.apiUrl + roots?.home?.globalBarSearch + '/' + this.langKey, data);
   }
   getJobOfferSearchResults(id?: any, value?: any): Observable<any> {
     return this.http?.post<any>(this.apiUrl + roots?.home?.job_offers_search + '/' + this.langKey + '/' + id, value);
@@ -42,22 +46,19 @@ export class HomeService {
   addResume(data: any): Observable<any> {
     return this.http?.post<any>(this.apiUrl + roots?.home?.resume, data);
   }
-  editResume(data:any, id:number)
-  {
+  editResume(data: any, id: number) {
     return this.http?.put<any>(this.apiUrl + roots?.home?.resume + '/' + id, data);
   }
   getResume(): Observable<any> {
     return this.http?.get<any>(this.apiUrl + roots?.home?.getResume);
   }
-  getInterviews(date:any, page_nbr:any): Observable<any> {
+  getInterviews(date: any, page_nbr: any): Observable<any> {
     return this.http?.get<any>(this.apiUrl + roots?.home?.interview + '/' + date + '/' + page_nbr + '/' + this.langKey);
   }
-  getInterviewDetails(id:number)
-  {
+  getInterviewDetails(id: number) {
     return this.http?.get<any>(this.apiUrl + roots?.home?.detailsInterView + '/' + id + '/' + this.langKey)
   }
-  getNotification(page_nbr:any)
-  {
+  getNotification(page_nbr: any) {
     return this.http?.get<any>(this.apiUrl + roots?.home?.notification + '/' + this.langKey + '/' + page_nbr);
   }
   getSchedularEvents(date: any): Observable<any> {

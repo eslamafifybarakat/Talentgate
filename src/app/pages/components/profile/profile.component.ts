@@ -11,24 +11,24 @@ import { Component, OnInit, ChangeDetectorRef, ViewChild, ElementRef } from '@an
 })
 export class ProfileComponent implements OnInit {
   userData: any = {};
-  imgSrc:string = 'https://dev-api.talentsgates.website/getimage/';
-  rate: any ;
+  imgSrc: string = 'https://dev-api.talentsgates.website/getimage/';
+  rate: any;
   recommendedResults: any = [];
   isLoadingRecommendedResults: boolean = false;
 
   searchResults: any = [];
-  userProfileDetails:any
+  userProfileDetails: any
   isLoadingSearchResults: boolean = false;
 
   isEditAbout: boolean = false;
   aboutText: any = 'UI refers to the screens, buttons, toggles, icons, and other visual elements that you interact with when using a website, app, or other electronic device.';
   // aboutTextarea: any = 'UI refers to the screens, buttons, toggles, icons, and other visual elements that you interact with when using a website, app, or other electronic device.';
-  isLast:boolean = false
+  isLast: boolean = false
   imgProfileFileSrc: any = this.userData?.image;
   imgBgFileSrc: any = 'assets/images/home/bg.jfif';
   @ViewChild('profilePictureInput') profilePictureInput: any;
 
-  
+
   experiences: any = [4, 6, 8];
   startDate: any;
   end_date: any;
@@ -58,16 +58,13 @@ export class ProfileComponent implements OnInit {
     this.getResume();
   }
 
-  getProfileDetails()
-  {
-    this.homeService.getProfileDetails().subscribe((res)=>{
+  getProfileDetails() {
+    this.homeService.getProfileDetails().subscribe((res) => {
       console.log(res)
       this.userProfileDetails = res.data.user;
-      
     })
   }
-  getYearsDiffernce(d1:Date,d2:Date)
-  {
+  getYearsDiffernce(d1: Date, d2: Date) {
     let startDate = new Date(d1).getFullYear();
     let endDate = new Date(d2).getFullYear();
     const yearsDiff = endDate - startDate;
@@ -75,48 +72,39 @@ export class ProfileComponent implements OnInit {
     this.totalYears += yearsDiff;
     return yearsDiff;
   }
-  getProficiencyText(num:number)
-  {
-    if(num == 0)
-    {
+  getProficiencyText(num: number) {
+    if (num == 0) {
       return 'No Proficiency'
     }
-    else if(num == 1)
-    {
+    else if (num == 1) {
       return 'Elementary Proficiency'
     }
-    else if(num == 2)
-    {
+    else if (num == 2) {
       return 'Limited Working Proficiency'
     }
-    else if(num == 3)
-    {
+    else if (num == 3) {
       return 'Professional Working Proficiency'
     }
-    else if(num == 4)
-    {
+    else if (num == 4) {
       return 'Full Professional Proficiency'
     }
-    else if(num == 5)
-    {
+    else if (num == 5) {
       return 'Native'
     }
-    else{
+    else {
       return 'No Proficiency'
     }
   }
 
-  onRateChange(event:any)
-  {
+  onRateChange(event: any) {
     console.log(event)
     this.rate = event
   }
-  getResume()
-  {
-    this.homeService.getResume().subscribe((res)=>{
+  getResume() {
+    this.homeService.getResume().subscribe((res) => {
       console.log(res);
       this.aboutMe = (res.data)[0].about_me;
-      this.aboutMeId= (res.data)[0]._id
+      this.aboutMeId = (res.data)[0]._id
       console.log(this.aboutMe);
       this.isEditAbout = true;
       // this.aboutTextArea.nativeElement.textContent = this.aboutMe;
@@ -128,9 +116,9 @@ export class ProfileComponent implements OnInit {
   }
   saveEditText(): void {
     // this.aboutText = this.aboutTextarea;
-    this.homeService.editResume(this.aboutMe,this.aboutMeId).subscribe((res)=>{
+    this.homeService.editResume(this.aboutMe, this.aboutMeId).subscribe((res) => {
       console.log(res);
-      
+
     })
     // this.isEditAbout = false;
   }
@@ -229,13 +217,13 @@ export class ProfileComponent implements OnInit {
     ]
   }
 
-// getResume()
-// {
-//   this.homeService.getResume().subscribe((res)=>{
-//     console.log(res);
-    
-//   })
-// }
+  // getResume()
+  // {
+  //   this.homeService.getResume().subscribe((res)=>{
+  //     console.log(res);
+
+  //   })
+  // }
   selectImage(event: any): void {
     let fileReader = new FileReader();
     fileReader.readAsDataURL(event?.target?.files[0]);

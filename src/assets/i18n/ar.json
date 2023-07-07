@@ -9,6 +9,8 @@
     "profile":"الصفحة الشخصية"
       },
   "general": {
+    "contactInfo":"معلومات الإتصال",
+    "applyTo":"التقديم في",
     "UploadYourCV": "حمل سيرتك الذاتية",
     "showAll":"عرض الكل",
     "employees":"الموظفين",

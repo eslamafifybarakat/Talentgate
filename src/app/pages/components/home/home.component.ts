@@ -29,8 +29,9 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.searchResults = [];
     this.userData = JSON.parse(window.localStorage.getItem(keys.userLoginData) || '{}');
-    console.log(this.userData )
+    console.log(this.userData)
     this.count = this.recommendedResults?.length;
     this.publicService?.recallSearchResults?.subscribe((res: any) => {
       console.log(res)
@@ -43,13 +44,12 @@ export class HomeComponent implements OnInit {
     this.getProfileDetails();
   }
 
-  getProfileDetails()
-  {
-    this.homeService.getProfileDetails().subscribe((res)=>{
+  getProfileDetails() {
+    this.homeService.getProfileDetails().subscribe((res) => {
       console.log(res)
       this.userProfileDetails = res.data.user;
       console.log(this.userProfileDetails);
-      
+
     })
   }
   getSearchResults(value: any): any {
@@ -57,7 +57,8 @@ export class HomeComponent implements OnInit {
     this.homeService?.getSearchResults(value)?.subscribe(
       (res: any) => {
         if (res?.status == 200) {
-          // let arr: any = [];
+          let arr: any = [];
+          arr = res?.data?.search_result ? res?.data?.search_result : [];
           // res?.data ? res?.data?.search_result?.forEach((item: any) => {
           //   arr?.push({
           //     coupon_name: item?.coupon_name ? item?.coupon_name : '',
@@ -65,7 +66,7 @@ export class HomeComponent implements OnInit {
           //     description: item?.description ? item?.description : '',
           //   })
           // }) : '';
-          this.searchResults = res;
+          this.searchResults = arr;
           console.log(this.searchResults)
           this.isLoadingSearchResults = false;
         } else {
@@ -78,17 +79,6 @@ export class HomeComponent implements OnInit {
         this.isLoadingSearchResults = false;
       });
     this.cdr?.detectChanges();
-
-    this.searchResults = [
-      { coupon_name: 'User Experience(Ux) Designer' },
-      { coupon_name: 'User Experience(Ux) Designer' },
-      { coupon_name: 'User Experience(Ux) Designer' },
-      { coupon_name: 'User Experience(Ux) Designer' },
-      { coupon_name: 'User Experience(Ux) Designer' },
-      { coupon_name: 'User Experience(Ux) Designer' },
-      { coupon_name: 'User Experience(Ux) Designer' },
-      { coupon_name: 'User Experience(Ux) Designer' },
-    ]
   }
   getHiring(): any {
     this.isLoadingHiringAreas = true;

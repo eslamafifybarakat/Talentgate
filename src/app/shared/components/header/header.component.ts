@@ -23,6 +23,8 @@ export class HeaderComponent implements OnInit {
   isLogged: any = window.localStorage.getItem(keys?.logged);
   url: any;
   scrollDown: boolean = false;
+  searchInputValue: any;
+
   @HostListener("window:scroll", ["$event"])
   handleKeyDown() {
     let element = document.querySelector(".navbar") as HTMLElement;
@@ -35,7 +37,6 @@ export class HeaderComponent implements OnInit {
       this.scrollDown = false;
     }
   }
-  searchValue: any;
   @ViewChild('search') search: any;
   @ViewChild('locationSearch') locationSearch: any;
 
@@ -71,9 +72,19 @@ export class HeaderComponent implements OnInit {
     );
     this.cdr?.detectChanges();
   }
-  clearSearchValue(search: any): void {
+  clearSearchValue(search?: any): void {
     search.value = '';
     this.searchHandler?.emit('');
+  }
+  clearSearch(): void {
+    this.searchInputValue = null;
+    this.publicService?.recallSearchResults?.next(
+      {
+        recall: true,
+        searchValue: null
+      }
+    );
+    this.cdr?.detectChanges();
   }
 
   locationSearchHandlerEmit(event: any): void {

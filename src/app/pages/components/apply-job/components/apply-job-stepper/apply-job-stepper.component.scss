@@ -1,0 +1,28 @@
+:host::ng-deep {
+  .p-progressbar {
+    border: 0 none;
+    height: 0.4rem !important;
+    background: rgba(37, 68, 114, 0.2) !important;
+  }
+  .p-progressbar .p-progressbar-value {
+    background: #254472 !important;
+  }
+}
+.form-control,
+.form-control:focus,
+.form-control:focus-visible,
+.form-select,
+.form-select:focus,
+.form-select:focus-visible,
+.ng-select.ng-select-single .ng-select-container,
+.p-inputtext {
+  height: 2.4rem !important;
+  border-radius: 6px;
+  padding: 1rem;
+}
+.profile-img {
+  width: 60px !important;
+  height: 60px !important;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+}
