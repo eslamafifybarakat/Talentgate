@@ -18,9 +18,9 @@
               [class.is-invalid]="formControls?.fullName?.invalid && (formControls?.fullName?.dirty || formControls?.fullName?.touched)"
               placeholder="{{'placeholder.fullname'|translate}}">
           </div>
-          <div class="mt-2">
-            <ng-container
-              *ngIf="formControls?.fullName?.invalid && (formControls?.fullName?.dirty || formControls?.fullName?.touched)">
+          <ng-container
+            *ngIf="formControls?.fullName?.invalid && (formControls?.fullName?.dirty || formControls?.fullName?.touched)">
+            <div class="mt-1">
               <ng-container *ngIf="formControls?.fullName?.errors?.['required']">
                 <span class="text-danger fs-8">
                   {{'validations.required_field'|translate}}
@@ -31,8 +31,8 @@
                   {{'validations.length'|translate}}
                 </span>
               </ng-container>
-            </ng-container>
-          </div>
+            </div>
+          </ng-container>
         </div>
         <div class="mb-2">
           <div class="input-container">
@@ -44,9 +44,9 @@
               [class.is-invalid]="formControls?.email?.invalid && (formControls?.email?.dirty || formControls?.email?.touched)"
               placeholder="{{'placeholder.email'|translate}}">
           </div>
-          <div class="mt-2">
-            <ng-container
-              *ngIf="formControls?.email?.invalid && (formControls?.email?.dirty || formControls?.email?.touched)">
+          <ng-container
+            *ngIf="formControls?.email?.invalid && (formControls?.email?.dirty || formControls?.email?.touched)">
+            <div class="mt-1">
               <ng-container *ngIf="formControls?.email?.errors?.['required']">
                 <span class="text-danger fs-8">
                   {{'validations.requiredEmail'|translate}}
@@ -62,8 +62,8 @@
                   {{'validations.emailNotCorrect'|translate}}
                 </span>
               </ng-container>
-            </ng-container>
-          </div>
+            </div>
+          </ng-container>
         </div>
         <div class="mb-2">
           <label for="mobilePhone" class="mb-1 text-main-color label required">
@@ -71,9 +71,9 @@
           </label>
           <div
             [class.border-red]="(formControls?.['phone_number']?.touched || formControls?.['phone_number']?.dirty) && formControls?.['phone_number']?.invalid">
-            <ngx-intl-tel-input class="px-1 intel-tel-input" [preferredCountries]="[
-            CountryISO.UnitedStates,
-            CountryISO.Egypt
+            <ngx-intl-tel-input class="intel-tel-input" [preferredCountries]="[
+            CountryISO.Egypt,
+            CountryISO.UnitedStates
           ]" [enableAutoCountrySelect]="false" [enablePlaceholder]="true" [searchCountryFlag]="true"
               [searchCountryField]="[
             SearchCountryField.Iso2,
@@ -86,7 +86,7 @@
           </div>
           <ng-container
             *ngIf="formControls?.phone_number?.invalid && (formControls?.phone_number?.dirty || formControls?.phone_number?.touched)">
-            <div class="mt-2">
+            <div class="mt-1">
               <ng-container *ngIf="formControls?.phone_number?.errors?.['required']">
                 <span class="text-danger fs-8">
                   {{'validations.required_field'|translate}}
@@ -116,16 +116,16 @@
               <i class="pi pi-spin pi-spinner"></i>
             </ng-container>
           </span>
-          <div class="mt-2">
-            <ng-container
-              *ngIf="formControls?.country?.invalid && (formControls?.country?.dirty || formControls?.country?.touched)">
+          <ng-container
+            *ngIf="formControls?.country?.invalid && (formControls?.country?.dirty || formControls?.country?.touched)">
+            <div class="mt-1">
               <ng-container *ngIf="formControls?.country?.errors?.['required']">
                 <span class="text-danger fs-8">
                   {{"validations.required_field"|translate}}
                 </span>
               </ng-container>
-            </ng-container>
-          </div>
+            </div>
+          </ng-container>
         </div>
         <div class="mb-2">
           <label for="mobilePhone" class="mb-1 text-main-color label required">
@@ -139,20 +139,17 @@
               [class.ng-dirty]="formControls?.city?.invalid && (formControls?.city?.dirty || formControls?.city?.touched)"
               [showClear]="true" placeholder="{{'placeholder.city'|translate}}">
             </p-dropdown>
-            <!-- <ng-container *ngIf="isLoadingCountry">
-                <i class="pi pi-spin pi-spinner"></i>
-              </ng-container> -->
           </span>
-          <div class="mt-2">
-            <ng-container
-              *ngIf="formControls?.city?.invalid && (formControls?.city?.dirty || formControls?.city?.touched)">
+          <ng-container
+            *ngIf="formControls?.city?.invalid && (formControls?.city?.dirty || formControls?.city?.touched)">
+            <div class="mt-1">
               <ng-container *ngIf="formControls?.city?.errors?.['required']">
                 <span class="text-danger fs-8">
                   {{"validations.required_field"|translate}}
                 </span>
               </ng-container>
-            </ng-container>
-          </div>
+            </div>
+          </ng-container>
         </div>
         <div class="profile-birthDate">
           <label for="mobilePhone" class="mb-1 text-main-color label required">
@@ -163,23 +160,23 @@
             <p-calendar formControlName="birthDate" [showIcon]="true" inputId="icon" placeholder="DD.MM.YY"
               [showButtonBar]="true" dateFormat="dd.mm.yy" hourFormat="12"></p-calendar>
           </div>
-          <div class=" my-2">
-            <ng-container
-              *ngIf="formControls?.birthDate?.invalid && (formControls?.birthDate?.dirty || formControls?.birthDate?.touched)">
+          <ng-container
+            *ngIf="formControls?.birthDate?.invalid && (formControls?.birthDate?.dirty || formControls?.birthDate?.touched)">
+            <div class=" mt-1">
               <ng-container *ngIf="formControls?.birthDate?.errors?.['required']">
                 <span class="text-danger fs-8">
                   {{"validations.required_field"|translate}}
                 </span>
               </ng-container>
-            </ng-container>
-          </div>
+            </div>
+          </ng-container>
         </div>
-        <small class="w-50 w-sm-100 mt-3 d-block">{{'general.submitApplication'|translate}} <span
+        <small class="w-50 w-sm-100 mt-4 d-block">{{'profile.submitApplication'|translate}} <span
             class="text-main-color">{{'general.helpCenter'|translate}}</span></small>
       </form>
     </div>
     <hr>
-    <div class="d-flex gap-3 align-items-center justify-content-end p-4 pt-2">
+    <div class="d-flex gap-3 align-items-center justify-content-end p-4 pt-2 flex-wrap">
       <a (click)="cancel()" class="text-main-color">{{'general.cancel'|translate}}</a>
       <button (click)="submit()" class="btn btn-solid-main rounded-pill py-1">{{'general.save'|translate}}</button>
     </div>

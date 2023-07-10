@@ -1,4 +1,7 @@
-import { EditEducationComponent } from './components/edit-education/edit-education.component';
+import { AddEditCertificationComponent } from './components/add-edit-certification/add-edit-certification.component';
+import { AddEditExperienceComponent } from './components/add-edit-experience/add-edit-experience.component';
+import { AddEditLanguageComponent } from './components/add-edit-language/add-edit-language.component';
+import { AddEditEducationComponent } from './components/add-edit-education/add-edit-education.component';
 import { EditProfileModalComponent } from './components/edit-profile-modal/edit-profile-modal.component';
 import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { AlertsService } from './../../../core/services/alerts/alerts.service';
@@ -109,7 +112,7 @@ export class ProfileComponent implements OnInit {
       this.aboutMe = (res.data)[0].about_me;
       this.aboutMeId = (res.data)[0]._id
       console.log(this.aboutMe);
-      this.isEditAbout = true;
+      // this.isEditAbout = true;
       // this.aboutTextArea.nativeElement.textContent = this.aboutMe;
     })
   }
@@ -255,7 +258,7 @@ export class ProfileComponent implements OnInit {
 
   editProfile(): any {
     const ref = this.dialogService.open(EditProfileModalComponent, {
-      header: this.publicService?.translateTextFromJson('general.editProfile'),
+      header: this.publicService?.translateTextFromJson('profile.editProfile'),
       width: '55%',
       styleClass: 'apply-job-dialog',
     });
@@ -266,13 +269,53 @@ export class ProfileComponent implements OnInit {
       }
     });
   }
-  editEducation(): any {
-    const ref = this.dialogService.open(EditEducationComponent, {
-      header: this.publicService?.translateTextFromJson('general.editEducation'),
+  addOrEditEducation(type?: any): any {
+    const ref = this.dialogService.open(AddEditEducationComponent, {
+      header: type == 'edit' ? this.publicService?.translateTextFromJson('profile.editEducation') : this.publicService?.translateTextFromJson('profile.addEducation'),
+      data: { type: type },
       width: '55%',
       styleClass: 'apply-job-dialog',
     });
 
+    ref.onClose.subscribe((res: any) => {
+      if (res?.listChanged) {
+        this.getProfileDetails();
+      }
+    });
+  }
+  addOrEditCertification(type?: any): any {
+    const ref = this.dialogService.open(AddEditCertificationComponent, {
+      header: type == 'edit' ? this.publicService?.translateTextFromJson('profile.editCertification') : this.publicService?.translateTextFromJson('profile.addCertification'),
+      data: { type: type },
+      width: '55%',
+      styleClass: 'apply-job-dialog',
+    });
+    ref.onClose.subscribe((res: any) => {
+      if (res?.listChanged) {
+        this.getProfileDetails();
+      }
+    });
+  }
+  addOrEditExperience(type?: any): any {
+    const ref = this.dialogService.open(AddEditExperienceComponent, {
+      header: type == 'edit' ? this.publicService?.translateTextFromJson('profile.editExperience') : this.publicService?.translateTextFromJson('profile.addExperience'),
+      data: { type: type },
+      width: '55%',
+      styleClass: 'apply-job-dialog',
+    });
+    ref.onClose.subscribe((res: any) => {
+      if (res?.listChanged) {
+        this.getProfileDetails();
+      }
+    });
+  }
+  addOrEditLanguage(type?: any): any {
+    const ref = this.dialogService.open(AddEditLanguageComponent, {
+      header: type == 'edit' ? this.publicService?.translateTextFromJson('profile.editLanguage') : this.publicService?.translateTextFromJson('profile.addLanguage'),
+      width: '55%',
+      data: { type: type },
+      styleClass: 'apply-job-dialog',
+    });
     ref.onClose.subscribe((res: any) => {
       if (res?.listChanged) {
         this.getProfileDetails();

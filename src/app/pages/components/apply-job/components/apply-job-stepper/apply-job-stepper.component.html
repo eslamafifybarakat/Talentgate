@@ -149,7 +149,7 @@
               </ng-container>
             </div>
           </div>
-          <small class="w-50 w-sm-100 mt-3 d-block">{{'general.submitApplication'|translate}} <span
+          <small class="w-50 w-sm-100 mt-3 d-block">{{'profile.submitApplication'|translate}} <span
               class="text-main-color">{{'general.helpCenter'|translate}}</span></small>
         </form>
       </div>
@@ -195,10 +195,12 @@
                 PDF
               </div>
               <div class="content">
-                <p class="text-main-color">{{userProfileDetails?.cv?.name_cv}}</p>
-                <p class="text-main-color label d-flex gap-1">{{'general.lastUsed'|translate}}
-                  {{userProfileDetails?.cv?.date | date:'d/M/yyyy'}}
-                </p>
+                <div>
+                  <p class="text-main-color">{{userProfileDetails?.cv?.name_cv}}</p>
+                  <p class="text-main-color label d-flex gap-1">{{'general.lastUsed'|translate}}
+                    {{userProfileDetails?.cv?.date | date:'d/M/yyyy'}}
+                  </p>
+                </div>
               </div>
             </div>
             <div class="d-flex gap-3 align-items-center px-3">
@@ -220,7 +222,7 @@
           </label>
           <p class="label fs-6 mt-1">DOC, DOCX, PDF (2MB)</p>
         </div>
-        <small class="w-50 w-sm-100 mt-4 d-block">{{'general.submitApplication'|translate}} <span
+        <small class="w-50 w-sm-100 mt-4 d-block">{{'profile.submitApplication'|translate}} <span
             class="text-main-color">{{'general.helpCenter'|translate}}</span></small>
       </div>
       <hr>
@@ -261,7 +263,7 @@
               </ng-container>
             </div>
           </div>
-          <small class="w-50 w-sm-100 mt-3 d-block">{{'general.submitApplication'|translate}} <span
+          <small class="w-50 w-sm-100 mt-3 d-block">{{'profile.submitApplication'|translate}} <span
               class="text-main-color">{{'general.helpCenter'|translate}}</span></small>
         </form>
       </div>
@@ -276,18 +278,18 @@
     <div>
       <div class="px-4">
         <h5 class="fw-bold fs-5 text-main-color mb-3 content-p">{{'general.questions'|translate}}</h5>
-        <ng-container *ngFor="let item of userProfileDetails?.questions">
+        <ng-container *ngFor="let item of questions">
           <div class="mb-2">
             <div class="input-container">
               <label for="message" class="mb-1 text-main-color label">
                 {{item?.question}}
               </label>
-              <input type="text" class="form-control" [(ngModel)]="item.answer" autocomplete="cc-name"
+              <input type="text" class="form-control" [required]="true" [(ngModel)]="item.answer" autocomplete="cc-name"
                 placeholder="{{'general.message'|translate}}">
             </div>
           </div>
         </ng-container>
-        <small class="w-50 w-sm-100 mt-4 d-block">{{'general.submitApplication'|translate}} <span
+        <small class="w-50 w-sm-100 mt-4 d-block">{{'profile.submitApplication'|translate}} <span
             class="text-main-color">{{'general.helpCenter'|translate}}</span></small>
       </div>
       <hr>
@@ -410,7 +412,7 @@
         </ng-template>
       </div>
 
-      <small class="w-50 w-sm-100 mt-4 d-block px-4">{{'general.submitApplication'|translate}} <span
+      <small class="w-50 w-sm-100 mt-4 d-block px-4">{{'profile.submitApplication'|translate}} <span
           class="text-main-color">{{'general.helpCenter'|translate}}</span></small>
       <hr>
       <div class="d-flex gap-3 align-items-center justify-content-end p-4 pt-2">

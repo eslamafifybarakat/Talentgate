@@ -128,6 +128,14 @@ p-inputnumber,
       border: 0 !important;
     }
   }
+  .textarea {
+    min-height: 4rem !important;
+  }
+  .p-multiselect.p-multiselect-chip .p-multiselect-token {
+    background: var(--bg-main-color) !important;
+    color: var(--text-white-color) !important;
+    border-radius: 29px !important;
+  }
 }
 .p-dropdown-trigger {
   justify-content: end !important;

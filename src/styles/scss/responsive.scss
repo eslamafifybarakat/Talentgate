@@ -108,6 +108,9 @@
 }
 
 @media (max-width: 425px) {
+  .p-dialog {
+    min-width: 100% !important;
+  }
   .title-lg {
     font-size: 3rem;
   }
@@ -133,7 +136,7 @@
 
 @media (max-width: 375px) {
   .p-dialog {
-    min-width: 95% !important;
+    min-width: 100% !important;
   }
   .auth-form {
     .p-sm-5 {

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditExperienceComponent } from './edit-experience.component';
+import { AddEditExperienceComponent } from './add-edit-experience.component';
 
 describe('EditExperienceComponent', () => {
-  let component: EditExperienceComponent;
-  let fixture: ComponentFixture<EditExperienceComponent>;
+  let component: AddEditExperienceComponent;
+  let fixture: ComponentFixture<AddEditExperienceComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EditExperienceComponent ]
+      declarations: [AddEditExperienceComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
-    fixture = TestBed.createComponent(EditExperienceComponent);
+    fixture = TestBed.createComponent(AddEditExperienceComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

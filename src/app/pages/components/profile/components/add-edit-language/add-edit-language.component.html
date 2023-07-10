@@ -1,0 +1,81 @@
+<div class="mt-3" id="profile-modal">
+  <ng-container *ngIf="isLoading; else noLoading">
+    <div class="px-4 pb-4">
+      <app-skeleton [type]="'profile-modal'"></app-skeleton>
+    </div>
+  </ng-container>
+  <ng-template #noLoading>
+    <div class="px-4">
+      <h5 class="fw-bold fs-5-1 text-main-color mb-3 content-p">{{'profile.languageDetails'|translate}}</h5>
+      <form [formGroup]="profileForm" class="pt-2">
+        <div class="mb-2">
+          <label for="language" class="mb-1 text-main-color label required">
+            {{'labels.language'|translate}}
+          </label>
+          <span class="p-input-icon-right select-loading d-block"
+            [class.border-red]="(formControls?.['language']?.touched || formControls?.['language']?.dirty) && formControls?.['language']?.invalid">
+            <p-dropdown [options]="languages" formControlName="language" optionLabel="name" [filter]="true"
+              [virtualScroll]="true" [virtualScrollItemSize]="38" filterBy="name" appendTo="body"
+              [filterPlaceholder]="'placeholder.search'|translate" [readonly]="false"
+              emptyMessage="{{'general.no_result_found'|translate}}" [showClear]="true"
+              placeholder="{{'placeholder.language'|translate}}">
+            </p-dropdown>
+            <ng-container *ngIf="false">
+              <i class="pi pi-spin pi-spinner"></i>
+            </ng-container>
+          </span>
+          <ng-container
+            *ngIf="formControls?.language?.invalid && (formControls?.language?.dirty || formControls?.language?.touched)">
+            <div class="mt-1">
+              <ng-container *ngIf="formControls?.language?.errors?.['required']">
+                <span class="text-danger fs-8">
+                  {{"validations.required_field"|translate}}
+                </span>
+              </ng-container>
+            </div>
+          </ng-container>
+        </div>
+        <div class="mb-2">
+          <label for="level" class="mb-1 text-main-color label required">
+            {{'labels.level'|translate}}
+          </label>
+          <span class="p-input-icon-right select-loading d-block"
+            [class.border-red]="(formControls?.['level']?.touched || formControls?.['level']?.dirty) && formControls?.['level']?.invalid">
+            <p-dropdown [options]="levels" formControlName="level" optionLabel="name" [filter]="true"
+              [virtualScroll]="true" [virtualScrollItemSize]="38" filterBy="name" appendTo="body"
+              [filterPlaceholder]="'placeholder.search'|translate" [readonly]="false"
+              emptyMessage="{{'general.no_result_found'|translate}}" [showClear]="true"
+              placeholder="{{'placeholder.level'|translate}}">
+            </p-dropdown>
+            <ng-container *ngIf="false">
+              <i class="pi pi-spin pi-spinner"></i>
+            </ng-container>
+          </span>
+          <ng-container
+            *ngIf="formControls?.level?.invalid && (formControls?.level?.dirty || formControls?.level?.touched)">
+            <div class="mt-1">
+              <ng-container *ngIf="formControls?.level?.errors?.['required']">
+                <span class="text-danger fs-8">
+                  {{"validations.required_field"|translate}}
+                </span>
+              </ng-container>
+            </div>
+          </ng-container>
+        </div>
+        <small class="w-50 w-sm-100 mt-4 d-block">{{'profile.submitApplication'|translate}} <span
+            class="text-main-color">{{'general.helpCenter'|translate}}</span></small>
+      </form>
+    </div>
+    <hr>
+    <div class="d-flex gap-3 align-items-center justify-content-between p-4 pt-2 flex-wrap">
+      <div>
+        <button (click)="remove()"
+          class="btn btn-outline-main rounded-pill py-1">{{'general.delete'|translate}}</button>
+      </div>
+      <div class="d-flex gap-3 align-items-center flex-wrap">
+        <a (click)="cancel()" class="text-main-color">{{'general.cancel'|translate}}</a>
+        <button (click)="submit()" class="btn btn-solid-main rounded-pill py-1">{{'general.save'|translate}}</button>
+      </div>
+    </div>
+  </ng-template>
+</div>

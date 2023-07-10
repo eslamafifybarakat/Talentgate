@@ -26,8 +26,14 @@ export const roots = {
   },
   profile: {
     editProfile: '/profile/edit',
-    editEducation: '/education/edit',
+    addEditEducation: '/add_edit_education',
     deleteEducation: '/delete_education',
+    addEditCertification: '/add_edit_certification',
+    deleteCertification: '/delete_certification',
+    addEditExperience: '/add_edit_experience',
+    deleteExperience: '/delete_experience',
+    addEditLanguage: '/add_edit_Language',
+    deleteLanguage: '/deleteLanguage'
   },
   scheduler: {
     events: '/events'

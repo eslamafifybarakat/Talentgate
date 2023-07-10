@@ -76,8 +76,8 @@
               <div class="d-flex justify-content-between">
                 <h5 class="card-title-color fs-5 fw-bold mb-0">{{'profile.experience'|translate}}</h5>
                 <div class="d-flex gap-3">
-                  <a><i class="pi pi-plus fs-5-1 text-main-color fw-600"></i></a>
-                  <a><i class="fas fa-pen-to-square text-main-color"></i></a>
+                  <a (click)="addOrEditExperience()"><i class="pi pi-plus fs-5-1 text-main-color fw-600"></i></a>
+                  <a (click)="addOrEditExperience('edit')"><i class="fas fa-pen-to-square text-main-color"></i></a>
                 </div>
               </div>
               <div class="mt-4 content-info">
@@ -204,8 +204,8 @@
           <div class="d-flex justify-content-between">
             <h5 class="card-title-color fs-5 fw-bold mb-0">{{'profile.education'|translate}}</h5>
             <div class="d-flex gap-3">
-              <a><i class="pi pi-plus fs-5-1 text-main-color fw-600"></i></a>
-              <a (click)="editEducation()"><i class="fas fa-pen-to-square text-main-color"></i></a>
+              <a (click)="addOrEditEducation()"><i class="pi pi-plus fs-5-1 text-main-color fw-600"></i></a>
+              <a (click)="addOrEditEducation('edit')"><i class="fas fa-pen-to-square text-main-color"></i></a>
             </div>
           </div>
           <div class="mt-4">
@@ -234,8 +234,8 @@
               <div class="d-flex justify-content-between">
                 <h5 class="card-title-color fs-5 fw-bold mb-0">{{'profile.certifications'|translate}}</h5>
                 <div class="d-flex gap-3">
-                  <a><i class="pi pi-plus fs-5-1 text-main-color fw-600"></i></a>
-                  <a><i class="fas fa-pen-to-square text-main-color"></i></a>
+                  <a (click)="addOrEditCertification()"><i class="pi pi-plus fs-5-1 text-main-color fw-600"></i></a>
+                  <a (click)="addOrEditCertification('edit')"><i class="fas fa-pen-to-square text-main-color"></i></a>
                 </div>
               </div>
               <!-- ======================certificate=========== -->
@@ -262,8 +262,8 @@
               <div class="d-flex justify-content-between">
                 <h5 class="card-title-color fs-5 fw-bold mb-0">{{'profile.languages'|translate}}</h5>
                 <div class="d-flex gap-3">
-                  <a><i class="pi pi-plus fs-5-1 text-main-color fw-600"></i></a>
-                  <a><i class="fas fa-pen-to-square text-main-color"></i></a>
+                  <a (click)="addOrEditLanguage()"><i class="pi pi-plus fs-5-1 text-main-color fw-600"></i></a>
+                  <a (click)="addOrEditLanguage('edit')"><i class="fas fa-pen-to-square text-main-color"></i></a>
                 </div>
               </div>
 

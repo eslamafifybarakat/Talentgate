@@ -1,40 +1,26 @@
-import { ProfileService } from './../../../../services/profile.service';
-import { CheckValidityService } from './../../../../../shared/services/check-validity/check-validity.service';
-import { AuthUserService } from './../../../../../auth/services/auth-user.service';
-import { PublicService } from './../../../../../shared/services/public.service';
+import { CheckValidityService } from '../../../../../shared/services/check-validity/check-validity.service';
+import { PublicService } from '../../../../../shared/services/public.service';
+import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { AlertsService } from 'src/app/core/services/alerts/alerts.service';
-import { environment } from './../../../../../../environments/environment';
+import { ProfileService } from '../../../../services/profile.service';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { patterns } from 'src/app/shared/configs/patternValidations';
-import { CountryISO, SearchCountryField } from 'ngx-intl-tel-input';
 import { HomeService } from 'src/app/pages/services/home.service';
 import { Validators, FormBuilder } from '@angular/forms';
-import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-edit-education',
-  templateUrl: './edit-education.component.html',
-  styleUrls: ['./edit-education.component.scss']
+  selector: 'app-add-edit-education',
+  templateUrl: './add-edit-education.component.html',
+  styleUrls: ['./add-edit-education.component.scss']
 })
-export class EditEducationComponent implements OnInit {
+export class AddEditEducationComponent implements OnInit {
   private unsubscribe: Subscription[] = [];
 
-  userProfileDetails: any
-  imgPath: any = environment?.imgPath;
-  currentStep: any;
+  userProfileDetails: any;
   isLoading: boolean = false;
+  modalData: any;
+  type: any;
 
-  SearchCountryField = SearchCountryField;
-  CountryISO = CountryISO;
-  preferredCountries: CountryISO[] = [
-    CountryISO.Egypt,
-    CountryISO.UnitedKingdom
-  ];
-
-  countries: any = [];
-  isLoadingCountry: boolean = false;
-  cities: any = [];
   degrees: any = [
     {
       "_id": "640f4f876a313a46e4a3c307",
@@ -109,10 +95,10 @@ export class EditEducationComponent implements OnInit {
   }
   constructor(
     private checkValidityService: CheckValidityService,
-    private authUserService: AuthUserService,
     private profileService: ProfileService,
     private alertsService: AlertsService,
     public publicService: PublicService,
+    private config: DynamicDialogConfig,
     private homeService: HomeService,
     private cdr: ChangeDetectorRef,
     private ref: DynamicDialogRef,
@@ -120,7 +106,11 @@ export class EditEducationComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getProfileDetails();
+    this.modalData = this.config?.data;
+    this.type = this.modalData?.type;
+    if (this.type == 'edit') {
+      this.getProfileDetails();
+    }
   }
   getProfileDetails() {
     this.isLoading = true;
@@ -128,7 +118,6 @@ export class EditEducationComponent implements OnInit {
       if (res) {
         this.userProfileDetails = res.data.user;
         this.patchValue();
-        console.log(this.userProfileDetails);
         this.isLoading = false;
       } else {
         this.isLoading = false;
@@ -160,6 +149,7 @@ export class EditEducationComponent implements OnInit {
     this.publicService?.removeValidators(this.profileForm, ['endDate']);
     this.profileForm?.get('endDate')?.reset();
   }
+
   submit(): void {
     if (this.profileForm?.valid) {
       this.publicService?.show_loader?.next(true);
@@ -172,7 +162,7 @@ export class EditEducationComponent implements OnInit {
         end_date: formInfo?.endDate,
         state: formInfo?.state == true ? 1 : 0
       };
-      this.profileService?.editEducation(data)?.subscribe(
+      this.profileService?.addEditEducation(data)?.subscribe(
         (res: any) => {
           if (res?.status == 200) {
             this.ref?.close({ listChanged: true });
@@ -215,10 +205,10 @@ export class EditEducationComponent implements OnInit {
     );
     this.cdr?.detectChanges();
   }
-
   cancel(): void {
     this.ref?.close();
   }
+
   ngOnDestroy(): void {
     this.unsubscribe?.forEach((sb) => sb?.unsubscribe());
   }

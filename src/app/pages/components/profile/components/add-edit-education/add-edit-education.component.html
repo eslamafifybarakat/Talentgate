@@ -6,7 +6,7 @@
   </ng-container>
   <ng-template #noLoading>
     <div class="px-4">
-      <h5 class="fw-bold fs-5-1 text-main-color mb-3 content-p">{{'general.degreeDetails'|translate}}</h5>
+      <h5 class="fw-bold fs-5-1 text-main-color mb-3 content-p">{{'profile.degreeDetails'|translate}}</h5>
       <form [formGroup]="profileForm" class="pt-2">
         <div class="mb-2">
           <label for="degreeName" class="mb-1 text-main-color label required">
@@ -17,9 +17,8 @@
             <p-dropdown [options]="degrees" formControlName="degreeName" optionLabel="name" [filter]="true"
               [virtualScroll]="true" [virtualScrollItemSize]="38" filterBy="name" appendTo="body"
               [filterPlaceholder]="'placeholder.search'|translate" [readonly]="false"
-              emptyMessage="{{'general.no_result_found'|translate}}"
-              [class.ng-dirty]="formControls?.majorName?.invalid && (formControls?.majorName?.dirty || formControls?.majorName?.touched)"
-              [showClear]="true" placeholder="{{'placeholder.majorName'|translate}}">
+              emptyMessage="{{'general.no_result_found'|translate}}" [showClear]="true"
+              placeholder="{{'placeholder.degreeName'|translate}}">
             </p-dropdown>
             <ng-container *ngIf="false">
               <i class="pi pi-spin pi-spinner"></i>
@@ -112,7 +111,7 @@
               </ng-container>
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6  mt-md-0 mt-2">
             <div class="profile-birthDate">
               <label for="endDate" class="mb-1 text-main-color label required">
                 {{'labels.endDate'|translate}}
@@ -144,17 +143,17 @@
             translate}}</label>
         </div>
 
-        <small class="w-50 w-sm-100 mt-4 d-block">{{'general.submitApplication'|translate}} <span
+        <small class="w-50 w-sm-100 mt-4 d-block">{{'profile.submitApplication'|translate}} <span
             class="text-main-color">{{'general.helpCenter'|translate}}</span></small>
       </form>
     </div>
     <hr>
-    <div class="d-flex gap-3 align-items-center justify-content-between p-4 pt-2">
+    <div class="d-flex gap-3 align-items-center justify-content-between p-4 pt-2 flex-wrap">
       <div>
         <button (click)="remove()"
           class="btn btn-outline-main rounded-pill py-1">{{'general.delete'|translate}}</button>
       </div>
-      <div class="d-flex gap-3 align-items-center">
+      <div class="d-flex gap-3 align-items-center flex-wrap">
         <a (click)="cancel()" class="text-main-color">{{'general.cancel'|translate}}</a>
         <button (click)="submit()" class="btn btn-solid-main rounded-pill py-1">{{'general.save'|translate}}</button>
       </div>

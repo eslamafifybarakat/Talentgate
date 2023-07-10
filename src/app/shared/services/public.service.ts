@@ -108,5 +108,24 @@ export class PublicService {
     });
   }
 
+  getLanguages(): void {
+    let langs: any = [
+      { _id: 1, name: 'Arabic' },
+      { _id: 2, name: 'English' },
+      { _id: 3, name: 'French' },
+      { _id: 4, name: 'Italy' },
+      { _id: 5, name: 'Chine' },
+    ];
+    return langs;
+  }
 
+  getLevels(): void {
+    let levels: any = [
+      { _id: 1, name: 'Native' },
+      { _id: 2, name: 'Good' },
+      { _id: 3, name: 'Very Good' },
+      { _id: 4, name: 'Excellent' }
+    ];
+    return levels;
+  }
 }

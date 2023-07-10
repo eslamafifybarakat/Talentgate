@@ -38,6 +38,7 @@ export class ApplyJobStepperComponent implements OnInit {
   cvFile: any;
   cvFileName: any;
   cvLink: any;
+  questions: any = [];
 
   firstForm: any = this.fb?.group(
     {
@@ -129,6 +130,7 @@ export class ApplyJobStepperComponent implements OnInit {
           { question: 'Lorem ipsum dolor sit amet ?', answer: 'Lorem ipsum dolor sit amet' },
           { question: 'Lorem ipsum dolor sit amet ?', answer: 'Lorem ipsum dolor sit amet' },
         ]
+        this.questions = this.userProfileDetails?.questions;
         this.isLoading = false;
       } else {
         this.isLoading = false;
@@ -137,7 +139,15 @@ export class ApplyJobStepperComponent implements OnInit {
   }
   patchValue(): void {
     this.firstForm?.patchValue({
-      email: this.userProfileDetails?.email
+      email: this.userProfileDetails?.email,
+      phone_number: {
+        "number": "21644533463",
+        "internationalNumber": "+216 44 533 463",
+        "nationalNumber": "44 533 463",
+        "e164Number": "+21644533463",
+        "countryCode": "TN",
+        "dialCode": "+216",
+      }
     });
     this.getCountries();
   }
@@ -216,7 +226,6 @@ export class ApplyJobStepperComponent implements OnInit {
       }
     });
   }
-  uploadResume(): void { }
   downloadPdf(url: any): void {
     this.homeService?.downloadPDF(url);
   }
@@ -252,12 +261,25 @@ export class ApplyJobStepperComponent implements OnInit {
   confirm(): void {
     this.publicService?.show_loader?.next(true);
     let formInfo: any = this.firstForm?.value;
+    let cv: any;
+    if (this.cvFile != null) {
+      cv = {
+        name_cv: this.cvFileName,
+        date_upload_cv: this.cvFile?.date_upload_cv,
+        link: this.cvFile?.link
+      }
+    } else {
+      cv = this.userProfileDetails?.cv;
+    }
     let data = {
       email: formInfo?.email,
       phone_number: formInfo.phone_number?.number,
       country_code: formInfo.phone_number?.countryCode,
       country: formInfo?.country?._id,
       city: formInfo.city?._id,
+      cv: cv,
+      questions: this.questions,
+      message: this.secondForm?.value?.message
     };
     this.homeService?.applyJob(data)?.subscribe(
       (res: any) => {
