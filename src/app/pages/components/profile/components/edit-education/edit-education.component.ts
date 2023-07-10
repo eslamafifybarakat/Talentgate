@@ -79,8 +79,7 @@ export class EditEducationComponent implements OnInit {
         {
           validators: [
             Validators.required,
-          ],
-          updateOn: 'blur',
+          ]
         },
       ],
       startDate: [
@@ -99,7 +98,7 @@ export class EditEducationComponent implements OnInit {
           ],
         },
       ],
-      state: [null, [Validators.required]]
+      state: [null, []]
     }
   );
   get formControls(): any {

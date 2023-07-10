@@ -24,16 +24,16 @@
               <i class="pi pi-spin pi-spinner"></i>
             </ng-container>
           </span>
-          <div class="mt-2">
-            <ng-container
-              *ngIf="formControls?.majorName?.invalid && (formControls?.majorName?.dirty || formControls?.majorName?.touched)">
-              <ng-container *ngIf="formControls?.majorName?.errors?.['required']">
+          <ng-container
+            *ngIf="formControls?.degreeName?.invalid && (formControls?.degreeName?.dirty || formControls?.degreeName?.touched)">
+            <div class="mt-1">
+              <ng-container *ngIf="formControls?.degreeName?.errors?.['required']">
                 <span class="text-danger fs-8">
                   {{"validations.required_field"|translate}}
                 </span>
               </ng-container>
-            </ng-container>
-          </div>
+            </div>
+          </ng-container>
         </div>
         <div class="mb-2">
           <div class="input-container">
@@ -45,9 +45,9 @@
               [class.is-invalid]="formControls?.majorName?.invalid && (formControls?.majorName?.dirty || formControls?.majorName?.touched)"
               placeholder="{{'placeholder.majorName'|translate}}">
           </div>
-          <div class="mt-2">
-            <ng-container
-              *ngIf="formControls?.majorName?.invalid && (formControls?.majorName?.dirty || formControls?.majorName?.touched)">
+          <ng-container
+            *ngIf="formControls?.majorName?.invalid && (formControls?.majorName?.dirty || formControls?.majorName?.touched)">
+            <div class="mt-1">
               <ng-container *ngIf="formControls?.majorName?.errors?.['required']">
                 <span class="text-danger fs-8">
                   {{'validations.required_field'|translate}}
@@ -58,8 +58,8 @@
                   {{'validations.length'|translate}}
                 </span>
               </ng-container>
-            </ng-container>
-          </div>
+            </div>
+          </ng-container>
         </div>
         <div class="mb-2">
           <div class="input-container">
@@ -71,9 +71,9 @@
               [class.is-invalid]="formControls?.instituteName?.invalid && (formControls?.instituteName?.dirty || formControls?.instituteName?.touched)"
               placeholder="{{'placeholder.instituteName'|translate}}">
           </div>
-          <div class="mt-2">
-            <ng-container
-              *ngIf="formControls?.email?.invalid && (formControls?.instituteName?.dirty || formControls?.instituteName?.touched)">
+          <ng-container
+            *ngIf="formControls?.email?.invalid && (formControls?.instituteName?.dirty || formControls?.instituteName?.touched)">
+            <div class="mt-1">
               <ng-container *ngIf="formControls?.instituteName?.errors?.['required']">
                 <span class="text-danger fs-8">
                   {{'validations.required_field'|translate}}
@@ -84,8 +84,8 @@
                   {{'validations.length'|translate}}
                 </span>
               </ng-container>
-            </ng-container>
-          </div>
+            </div>
+          </ng-container>
         </div>
         <div class="row">
           <div class="col-md-6">
@@ -96,18 +96,18 @@
               <div
                 [class.border-red]="formControls?.startDate?.invalid && (formControls?.startDate?.dirty || formControls?.startDate?.touched)">
                 <p-calendar formControlName="startDate" [showIcon]="true" inputId="icon" placeholder="DD.MM.YY"
-                  [showButtonBar]="true" dateFormat="dd.mm.yy" hourFormat="12"></p-calendar>
+                  appendTo="body" [showButtonBar]="true" dateFormat="dd.mm.yy" hourFormat="12"></p-calendar>
               </div>
-              <div class=" my-2">
-                <ng-container
-                  *ngIf="formControls?.startDate?.invalid && (formControls?.startDate?.dirty || formControls?.startDate?.touched)">
+              <ng-container
+                *ngIf="formControls?.startDate?.invalid && (formControls?.startDate?.dirty || formControls?.startDate?.touched)">
+                <div class=" mt-1">
                   <ng-container *ngIf="formControls?.startDate?.errors?.['required']">
                     <span class="text-danger fs-8">
                       {{"validations.required_field"|translate}}
                     </span>
                   </ng-container>
-                </ng-container>
-              </div>
+                </div>
+              </ng-container>
             </div>
           </div>
           <div class="col-md-6">
@@ -118,22 +118,22 @@
               <div
                 [class.border-red]="formControls?.endDate?.invalid && (formControls?.endDate?.dirty || formControls?.endDate?.touched)">
                 <p-calendar formControlName="endDate" [showIcon]="true" inputId="icon" placeholder="DD.MM.YY"
-                  [showButtonBar]="true" dateFormat="dd.mm.yy" hourFormat="12"></p-calendar>
+                  appendTo="body" [showButtonBar]="true" dateFormat="dd.mm.yy" hourFormat="12"></p-calendar>
               </div>
-              <div class=" my-2">
-                <ng-container
-                  *ngIf="formControls?.endDate?.invalid && (formControls?.endDate?.dirty || formControls?.endDate?.touched)">
+              <ng-container
+                *ngIf="formControls?.endDate?.invalid && (formControls?.endDate?.dirty || formControls?.endDate?.touched)">
+                <div class=" mt-1">
                   <ng-container *ngIf="formControls?.endDate?.errors?.['required']">
                     <span class="text-danger fs-8">
                       {{"validations.required_field"|translate}}
                     </span>
                   </ng-container>
-                </ng-container>
-              </div>
+                </div>
+              </ng-container>
             </div>
           </div>
         </div>
-        <div class="field-checkbox d-flex align-items-center gap-2">
+        <div class="field-checkbox d-flex align-items-center gap-2 mt-2">
           <div class="d-flex justify-content-baseline">
             <p-checkbox [binary]="true" formControlName="state" inputId="flexCheckChecked"></p-checkbox>
           </div>
