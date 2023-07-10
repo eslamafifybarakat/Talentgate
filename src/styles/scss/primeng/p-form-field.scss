@@ -101,4 +101,16 @@ p-inputnumber,
     color: var(--text-main-color) !important;
     opacity: 75%;
   }
+  .pi-chevron-down:before {
+    content: "\f0dd" !important;
+    font-family: "FontAwesome" !important;
+    color: var(--text-main-color) !important;
+  }
+  .p-dropdown .p-dropdown-trigger {
+    position: relative !important;
+    top: -3px !important;
+  }
+}
+.p-dropdown-trigger {
+  justify-content: end !important;
 }
