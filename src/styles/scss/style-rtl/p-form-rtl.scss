@@ -107,3 +107,13 @@
   margin-right: 6px !important;
   margin-left: inherit !important;
 }
+#profile-modal {
+  .p-calendar-w-btn .p-inputtext {
+    border-left: 0 !important;
+    border-right: 1px solid var(--border-input-color) !important;
+    border-radius: 0px 6px 6px 0px !important;
+  }
+  .p-calendar-w-btn .p-datepicker-trigger {
+    border-left: 1px solid var(--border-input-color) !important;
+  }
+}

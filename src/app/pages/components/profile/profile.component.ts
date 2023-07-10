@@ -1,8 +1,10 @@
+import { EditEducationComponent } from './components/edit-education/edit-education.component';
+import { EditProfileModalComponent } from './components/edit-profile-modal/edit-profile-modal.component';
+import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { AlertsService } from './../../../core/services/alerts/alerts.service';
 import { PublicService } from './../../../shared/services/public.service';
 import { HomeService } from './../../services/home.service';
-
-import { Component, OnInit, ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
+import { DialogService } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-profile',
@@ -41,8 +43,9 @@ export class ProfileComponent implements OnInit {
   constructor(
     private alertsService: AlertsService,
     private publicService: PublicService,
+    private dialogService: DialogService,
     private homeService: HomeService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
   ) { }
 
   ngOnInit(): void {
@@ -248,6 +251,32 @@ export class ProfileComponent implements OnInit {
   }
   removeImage(): void {
     this.imgProfileFileSrc = '';
+  }
 
+  editProfile(): any {
+    const ref = this.dialogService.open(EditProfileModalComponent, {
+      header: this.publicService?.translateTextFromJson('general.editProfile'),
+      width: '55%',
+      styleClass: 'apply-job-dialog',
+    });
+
+    ref.onClose.subscribe((res: any) => {
+      if (res?.listChanged) {
+        this.getProfileDetails();
+      }
+    });
+  }
+  editEducation(): any {
+    const ref = this.dialogService.open(EditEducationComponent, {
+      header: this.publicService?.translateTextFromJson('general.editEducation'),
+      width: '55%',
+      styleClass: 'apply-job-dialog',
+    });
+
+    ref.onClose.subscribe((res: any) => {
+      if (res?.listChanged) {
+        this.getProfileDetails();
+      }
+    });
   }
 }

@@ -1,3 +1,4 @@
+import { ProfileService } from './../../../../services/profile.service';
 import { CheckValidityService } from './../../../../../shared/services/check-validity/check-validity.service';
 import { AuthUserService } from './../../../../../auth/services/auth-user.service';
 import { PublicService } from './../../../../../shared/services/public.service';
@@ -8,15 +9,15 @@ import { patterns } from 'src/app/shared/configs/patternValidations';
 import { CountryISO, SearchCountryField } from 'ngx-intl-tel-input';
 import { HomeService } from 'src/app/pages/services/home.service';
 import { Validators, FormBuilder } from '@angular/forms';
-import { Subscription } from 'rxjs';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-apply-job-stepper',
-  templateUrl: './apply-job-stepper.component.html',
-  styleUrls: ['./apply-job-stepper.component.scss']
+  selector: 'app-edit-profile-modal',
+  templateUrl: './edit-profile-modal.component.html',
+  styleUrls: ['./edit-profile-modal.component.scss']
 })
-export class ApplyJobStepperComponent implements OnInit {
+export class EditProfileModalComponent implements OnInit {
   private unsubscribe: Subscription[] = [];
 
   userProfileDetails: any
@@ -34,13 +35,19 @@ export class ApplyJobStepperComponent implements OnInit {
   countries: any = [];
   isLoadingCountry: boolean = false;
   cities: any = [];
-  resume: string = 'oldCv';
-  cvFile: any;
-  cvFileName: any;
-  cvLink: any;
 
-  firstForm: any = this.fb?.group(
+  profileForm = this.fb?.group(
     {
+      fullName: [
+        '',
+        {
+          validators: [
+            Validators.required,
+            Validators?.minLength(3),
+          ],
+          updateOn: 'blur',
+        },
+      ],
       email: [
         '',
         {
@@ -77,35 +84,25 @@ export class ApplyJobStepperComponent implements OnInit {
           ],
         },
       ],
-    }
-  );
-  get formControls(): any {
-    return this.firstForm?.controls;
-  }
-
-  secondForm = this.fb?.group(
-    {
-      message: [
+      birthDate: [
         '',
         {
           validators: [
-            // Validators.required,
-            Validators?.minLength(3),
+            Validators.required,
           ],
-          updateOn: 'blur',
         },
       ],
     }
   );
-  get secondFormControls(): any {
-    return this.secondForm?.controls;
+  get formControls(): any {
+    return this.profileForm?.controls;
   }
-
   constructor(
-    public checkValidityService: CheckValidityService,
+    private checkValidityService: CheckValidityService,
     private authUserService: AuthUserService,
-    public publicService: PublicService,
+    private profileService: ProfileService,
     private alertsService: AlertsService,
+    public publicService: PublicService,
     private homeService: HomeService,
     private cdr: ChangeDetectorRef,
     private ref: DynamicDialogRef,
@@ -113,7 +110,6 @@ export class ApplyJobStepperComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.currentStep = 0;
     this.getProfileDetails();
   }
   getProfileDetails() {
@@ -123,12 +119,6 @@ export class ApplyJobStepperComponent implements OnInit {
         this.userProfileDetails = res.data.user;
         this.patchValue();
         console.log(this.userProfileDetails);
-        this.userProfileDetails['questions'] = [
-          { question: 'Lorem ipsum dolor sit amet ?', answer: 'Lorem ipsum dolor sit amet' },
-          { question: 'Lorem ipsum dolor sit amet ?', answer: 'Lorem ipsum dolor sit amet' },
-          { question: 'Lorem ipsum dolor sit amet ?', answer: 'Lorem ipsum dolor sit amet' },
-          { question: 'Lorem ipsum dolor sit amet ?', answer: 'Lorem ipsum dolor sit amet' },
-        ]
         this.isLoading = false;
       } else {
         this.isLoading = false;
@@ -136,43 +126,16 @@ export class ApplyJobStepperComponent implements OnInit {
     })
   }
   patchValue(): void {
-    this.firstForm?.patchValue({
-      email: this.userProfileDetails?.email
+    let birthDate: any = new Date(this.userProfileDetails?.date_birth);
+    this.profileForm?.patchValue({
+      fullName: this.userProfileDetails?.full_name,
+      email: this.userProfileDetails?.email,
+      birthDate: birthDate
+
     });
     this.getCountries();
   }
-  next(step: any): void {
-    if (step == 0) {
-      if (this.firstForm?.valid) {
-        this.currentStep = 1;
-      } else {
-        this.checkValidityService?.validateAllFormFields(this.firstForm);
-      }
-    }
-    if (step == 1) {
-      this.currentStep = 2;
-    }
-    if (step == 2) {
-      this.currentStep = 3;
-    }
-    if (step == 3) {
-      this.currentStep = 4;
-    }
-  }
-  back(step: any): void {
-    if (step == 1) {
-      this.currentStep = 0;
-    }
-    if (step == 2) {
-      this.currentStep = 1;
-    }
-    if (step == 3) {
-      this.currentStep = 2;
-    }
-    if (step == 4) {
-      this.currentStep = 3;
-    }
-  }
+
   getCountries(): any {
     this.isLoadingCountry = true;
     this.authUserService?.getCountries()?.subscribe(
@@ -187,7 +150,7 @@ export class ApplyJobStepperComponent implements OnInit {
               this.cities = arr;
               this.cities?.forEach((city: any) => {
                 if (this.userProfileDetails?.city?._id == city?._id) {
-                  this.firstForm?.patchValue({
+                  this.profileForm?.patchValue({
                     country: item,
                     city: city
                   });
@@ -207,7 +170,7 @@ export class ApplyJobStepperComponent implements OnInit {
     this.cdr?.detectChanges();
   }
   onChangeCountry(event: any): void {
-    this.firstForm?.get('city')?.reset();
+    this.profileForm?.get('city')?.reset();
     let arr: any = [];
     this.countries?.forEach((item: any) => {
       if (item?._id == event?.value?._id) {
@@ -216,67 +179,45 @@ export class ApplyJobStepperComponent implements OnInit {
       }
     });
   }
-  uploadResume(): void { }
-  downloadPdf(url: any): void {
-    this.homeService?.downloadPDF(url);
-  }
 
-  selectFile(event: any): void {
-    this.cvFileName = event?.target?.files[0]?.name;
-    console.log(event?.target?.files[0]);
-    let fileReader = new FileReader();
-    fileReader.readAsDataURL(event?.target?.files[0]);
-    fileReader.onload = this._handleReaderLoaded.bind(this);
-  }
-  _handleReaderLoaded(e: any): void {
-    var reader = e.target;
-    let formData = new FormData();
-    let file = this.publicService?.base64ToImageFile(reader.result, "file");
-    formData.append("name_cv", file);
-
-    this.authUserService?.uploadcv(formData)?.subscribe(
-      (res: any) => {
-        if (res?.status == 200) {
-          this.resume = 'newCv';
-          this.cvFile = res?.data;
-        } else {
-          res?.message ? this.alertsService?.openSweetAlert('info', res?.message) : '';
+  submit(): void {
+    if (this.profileForm?.valid) {
+      this.publicService?.show_loader?.next(true);
+      let formInfo: any = this.profileForm?.value;
+      let data = {
+        full_name: formInfo?.username,
+        email: formInfo?.email,
+        phone_number: formInfo.phone_number?.number,
+        country_code: formInfo.phone_number?.countryCode,
+        country: formInfo?.country?._id,
+        city: formInfo.city?._id,
+      };
+      this.profileService?.editProfile(data)?.subscribe(
+        (res: any) => {
+          if (res?.status == 200) {
+            this.ref?.close({ listChanged: true });
+            this.publicService?.show_loader?.next(false);
+          } else {
+            this.publicService?.show_loader?.next(false);
+            res?.error?.message
+              ? this.alertsService?.openSweetAlert('error', res?.error?.message)
+              : '';
+          }
+        },
+        (err: any) => {
+          err ? this.alertsService?.openSweetAlert('error', err) : '';
+          this.publicService?.show_loader?.next(false);
         }
-      },
-      (err: any) => {
-        err?.message ? this.alertsService?.openSweetAlert('error', err?.message) : '';
-      });
+      );
+    } else {
+      this.publicService?.show_loader?.next(false);
+      this.checkValidityService?.validateAllFormFields(this.profileForm);
+    }
     this.cdr?.detectChanges();
   }
 
-  confirm(): void {
-    this.publicService?.show_loader?.next(true);
-    let formInfo: any = this.firstForm?.value;
-    let data = {
-      email: formInfo?.email,
-      phone_number: formInfo.phone_number?.number,
-      country_code: formInfo.phone_number?.countryCode,
-      country: formInfo?.country?._id,
-      city: formInfo.city?._id,
-    };
-    this.homeService?.applyJob(data)?.subscribe(
-      (res: any) => {
-        if (res?.status == 200) {
-          this.ref?.close({ listChanged: true });
-          this.publicService?.show_loader?.next(false);
-        } else {
-          this.publicService?.show_loader?.next(false);
-          res?.error?.message
-            ? this.alertsService?.openSweetAlert('error', res?.error?.message)
-            : '';
-        }
-      },
-      (err: any) => {
-        err ? this.alertsService?.openSweetAlert('error', err) : '';
-        this.publicService?.show_loader?.next(false);
-      }
-    );
-    this.cdr?.detectChanges();
+  cancel(): void {
+    this.ref?.close();
   }
 
   ngOnDestroy(): void {

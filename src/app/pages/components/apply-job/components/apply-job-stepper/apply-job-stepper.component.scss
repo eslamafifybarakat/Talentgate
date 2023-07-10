@@ -7,22 +7,85 @@
   .p-progressbar .p-progressbar-value {
     background: #254472 !important;
   }
-}
-.form-control,
-.form-control:focus,
-.form-control:focus-visible,
-.form-select,
-.form-select:focus,
-.form-select:focus-visible,
-.ng-select.ng-select-single .ng-select-container,
-.p-inputtext {
-  height: 2.4rem !important;
-  border-radius: 6px;
-  padding: 1rem;
+  .form-control,
+  .form-control:focus,
+  .form-control:focus-visible,
+  .form-select,
+  .form-select:focus,
+  .form-select:focus-visible,
+  .ng-select.ng-select-single .ng-select-container,
+  .p-inputtext,
+  .p-dropdown {
+    height: 2.4rem !important;
+    border-radius: 6px !important;
+    padding: 1rem !important;
+  }
+  .p-dropdown.p-dropdown-clearable .p-dropdown-label {
+    padding: 0 !important;
+    overflow: initial !important;
+  }
+  .iti--allow-dropdown input[type="tel"],
+  .iti--allow-dropdown input {
+    padding-left: 70px !important;
+  }
+  .p-radiobutton .p-radiobutton-box .p-radiobutton-icon {
+    width: 16px !important;
+    height: 16px !important;
+  }
+  .p-radiobutton .p-radiobutton-box.p-highlight {
+    border-color: #359100 !important;
+    background: #359100 !important;
+  }
+  .p-radiobutton .p-radiobutton-box:not(.p-disabled):not(.p-highlight):hover {
+    border-color: #ced4da !important;
+  }
+  .p-radiobutton .p-radiobutton-box:not(.p-disabled).p-focus {
+    box-shadow: none !important;
+  }
 }
 .profile-img {
   width: 60px !important;
   height: 60px !important;
   object-fit: cover;
   border-radius: 10px 10px 0 0;
+}
+.profile-img-review {
+  width: 45px !important;
+  height: 45px !important;
+  object-fit: cover;
+}
+.content-p {
+  // padding: 0 1.5rem;
+  // padding: 0 1.5rem 2rem 1.5rem;
+}
+.label {
+  opacity: 75%;
+}
+.applied-jobs {
+  border-right: 1px solid var(--user-border-color);
+}
+.required:after {
+  color: var(--text-main-color) !important;
+  opacity: 75%;
+  margin: 0 !important;
+}
+.resume {
+  border: 1px solid #254472;
+  border-radius: 10px;
+  min-height: 60px;
+}
+.type {
+  background-color: #d42626;
+  color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+}
+.pipe:after {
+  // background-color: var(--bg-main-color);
+  content: "";
+  position: absolute;
+  top: 5px;
+  background-color: var(--bg-main-color);
+  height: 80% !important;
+  width: 1.5px;
 }

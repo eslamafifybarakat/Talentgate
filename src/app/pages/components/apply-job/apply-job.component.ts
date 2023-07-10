@@ -61,6 +61,7 @@ export class ApplyJobComponent implements OnInit {
     { id: 8, name: 'Job Function', dropdown: [{ id: 1, name: 'Most relevant1' }, { id: 2, name: 'Most relevant2' }, { id: 3, name: 'Most relevant3' }, { id: 4, name: 'Most relevant4' }], value: 'jobFunction' },
     { id: 9, name: 'Title', dropdown: [], value: 'title' },
   ];
+  companyName: any;
 
   form = this.fb?.group({
     mostRelevant: ['', []],
@@ -87,6 +88,7 @@ export class ApplyJobComponent implements OnInit {
     this.searchResults = [];
     this.getJobRecommended(0);
     this.jobId = this.recommendedResults[0]?._id;
+    this.companyName = this.recommendedResults[0]?.company?.name_company;
     this.publicService?.recallSearchResults?.subscribe((res: any) => {
       if (res?.recall == true) {
         this.getSearchResults(res?.searchValue);
@@ -160,6 +162,7 @@ export class ApplyJobComponent implements OnInit {
     this.recommendedResults?.forEach((item: any) => {
       if (item?._id == id) {
         item.isActive = true;
+        this.companyName = item?.company?.name_company;
       } else {
         item.isActive = false;
       }
@@ -251,9 +254,9 @@ export class ApplyJobComponent implements OnInit {
   }
   applyForJob(): any {
     const ref = this.dialogService.open(ApplyJobStepperComponent, {
-      header: this.publicService?.translateTextFromJson('general.applyTo') + ' Google',
-      width: '60%',
-      styleClass: 'apply-job-dialog'
+      header: this.publicService?.translateTextFromJson('general.applyTo') + ' ' + this.companyName,
+      width: '55%',
+      styleClass: 'apply-job-dialog',
     });
 
     ref.onClose.subscribe((res: any) => {

@@ -10,6 +10,17 @@
 "profile":"Profile"
   },
   "general": {
+    "degreeDetails":"Degree Details",
+    "lastUsed":"Last used on",
+    "UploadResume": "Upload resume",
+    "resume":"Resume",
+    "editProfile":"Edit Profile",
+    "editEducation":"Edit Education",
+    "review":"Review",
+    "questions":"Questions",
+    "message":"Message",
+    "submitApplication":"Submitting this application won’t change your talentgate profile. Application powered by talentgate |",
+    "helpCenter":"Help Center",
     "contactInfo":"Contact Info",
     "applyTo":"Apply to",
     "showAll":"Show All",
@@ -175,8 +186,19 @@
     "driverArrivedToCustomer": "Driver Arrived To Customer",
     "driverArrivedToStation": "Driver Arrived To Station"
   },
-
+  "labels":{
+    "startDate": "Start Date",
+    "endDate": "End Date",
+    "instituteName":"Institute name",
+    "majorName":"Major Name",
+    "degreeName":"Degree Name",
+    "ICurrentStudent":"I am currently a student in this institute"
+  },
   "placeholder": {
+    "instituteName":"Enter institute name",
+    "majorName":"Select major name",
+    "degreeName":"Enter degree name",
+    "birthDate":"Date of Birth",
     "address":"Address",
     "email": "Email address",
     "password": "password",
@@ -189,7 +211,6 @@
     "state": "State",
     "search": "Search...",
     "UploadResume": "Upload your resume"
-
   },
   "validations": {
  "requiredEmail": "Email is required",
@@ -200,7 +221,7 @@
   "passwordPattern": "Your password must be 8 or more characters, contains upper & lower case letters, numbers, at least one special character (!%*?&|...)",
  "oneLowercase": "At least one lowercase",
     "oneUppercase": "At least one uppercase",
-"required_field": "This field is reuired",
+"required_field": "This field is required",
     "notValidLink": "This link is not vaild",
     "name_length": "Name min length must be 3",
     "length": "  Length must be larger than 2",
@@ -215,7 +236,8 @@
     "MinimumCharacters": "Minimum 5 characters",
     "startDate": "Start date is required",
     "endDate": "End date is required",
-    "orderStatus": "Order status is required"
+    "orderStatus": "Order status is required",
+    "phoneNotCorrect":"This Phone not correct"
   },
   "form": {
     "welcomeBack": "Welcome to Talentgate",

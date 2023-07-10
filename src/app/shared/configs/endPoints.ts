@@ -15,13 +15,17 @@ export const roots = {
     job_offers: '/job_offers',
     job_offers_search: '/job_offers/search',
     apply_for_job: '/job_applications/apply_for_job',
-    profile:'/candidates/profile',
-    resume:'/resumes/add_resume',
-    edit_resume:'/resumes/update_resume',
-    getResume:'/resumes/get_resume_by_candidate',
-    interview:'/interviews/filter_interviews_by_candidate',
-    detailsInterView:'/interviews/interview_detail',
-    notification:'/notifications/mobile'
+    profile: '/candidates/profile',
+    resume: '/resumes/add_resume',
+    edit_resume: '/resumes/update_resume',
+    getResume: '/resumes/get_resume_by_candidate',
+    interview: '/interviews/filter_interviews_by_candidate',
+    detailsInterView: '/interviews/interview_detail',
+    notification: '/notifications/mobile',
+    applyJob: "/applyJob"
+  },
+  profile: {
+    editProfile: '/profile/edit'
   },
   scheduler: {
     events: '/events'

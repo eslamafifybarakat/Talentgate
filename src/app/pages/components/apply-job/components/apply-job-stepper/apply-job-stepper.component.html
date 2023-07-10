@@ -1,99 +1,422 @@
 <div>
-  <div class="d-flex align-items-center gap-2 mb-3">
+  <div class="d-flex align-items-center gap-2 mb-3 px-4 pt-3">
     <p-progressBar class="w-100" [value]="currentStep/4*100" [showValue]="false"></p-progressBar>
     <p class="text-nowrap ">{{currentStep/4*100}} %</p>
   </div>
   <ng-container *ngIf="currentStep==0">
-    <div>
-      <h5 class="fw-bold fs-5 text-main-color mb-3">{{'general.contactInfo'|translate}}</h5>
-      <div class="d-flex">
-        <div class="profile-img rounded-circle position-relative">
-          <img [src]="imgPath+userProfileDetails?.image" onerror="src='assets/images/not-found/noUser.svg'"
-            class="fit-object-cover rounded-circle w-100 h-100 shadow-sm" alt="user">
-        </div>
-        <div class="content-info p-2 d-flex gap-4">
-          <div>
-            <h5 class="text-main-color fw-bold mb-0 fs-5-1 text-capitalize">{{userProfileDetails?.full_name ||
-              'Catherine Longford'}}</h5>
-            <p class="fs-6 text-main-color">{{userProfileDetails?.profession}}</p>
-            <!-- <p class="fs-6-1 text-desc-color  address">{{userProfileDetails?.city?.name}} ,
-              {{userProfileDetails?.country?.name}}
-            </p> -->
-          </div>
-        </div>
+    <ng-container *ngIf="isLoading; else noLoading">
+      <div class="p-4">
+        <app-skeleton [type]="'applyJob'"></app-skeleton>
       </div>
-      <form [formGroup]="firstRegisterForm" class="pt-3">
-        <div class="mb-3">
-          <div class="input-container">
-            <label for="email" class="mb-1 text-main-color">
-              {{'placeholder.fullname'|translate}}
-            </label>
-            <input type="text" class="form-control" formControlName="username" autocomplete="cc-name"
-              (input)="publicService.clearValidationErrors(firstFormControls?.username)"
-              [class.is-invalid]="firstFormControls?.username?.invalid && (firstFormControls?.username?.dirty || firstFormControls?.username?.touched)"
-              placeholder="{{'placeholder.fullname'|translate}}">
+    </ng-container>
+    <ng-template #noLoading>
+      <div class="px-4">
+        <h5 class="fw-bold fs-5 text-main-color mb-3 content-p">{{'general.contactInfo'|translate}}</h5>
+        <div class="d-flex">
+          <div class="profile-img rounded-circle position-relative">
+            <img [src]="imgPath+userProfileDetails?.image" onerror="src='assets/images/not-found/noUser.svg'"
+              class="fit-object-cover rounded-circle w-100 h-100 shadow-sm" alt="user">
           </div>
-          <ng-container
-            *ngIf="firstFormControls?.username?.invalid && (firstFormControls?.username?.dirty || firstFormControls?.username?.touched)">
+          <div class="content-info p-2 d-flex gap-4">
+            <div>
+              <h5 class="text-main-color fw-bold mb-0 fs-5-1 text-capitalize">{{userProfileDetails?.full_name ||
+                'Catherine Longford'}}</h5>
+              <p class="fs-6 text-main-color">{{userProfileDetails?.profession}}</p>
+              <!-- <p class="fs-6-1 text-desc-color  address">{{userProfileDetails?.city?.name}} ,
+                {{userProfileDetails?.country?.name}}
+              </p> -->
+            </div>
+          </div>
+        </div>
+        <form [formGroup]="firstForm" class="pt-3">
+          <div class="mb-2">
+            <div class="input-container">
+              <label for="email" class="mb-1 text-main-color label required">
+                {{'placeholder.email'|translate}}
+              </label>
+              <input type="email" class="form-control" formControlName="email" autocomplete="cc-name"
+                (input)="publicService.clearValidationErrors(formControls?.email)"
+                [class.is-invalid]="formControls?.email?.invalid && (formControls?.email?.dirty || formControls?.email?.touched)"
+                placeholder="{{'placeholder.email'|translate}}">
+            </div>
             <div class="mt-2">
-              <ng-container *ngIf="firstFormControls?.username?.errors?.['required']">
-                <span class="text-danger fs-8 ps-3">
-                  {{'validations.requiredName'|translate}}
-                </span>
-              </ng-container>
-              <ng-container *ngIf="firstFormControls?.username?.errors?.['pattern']">
-                <span class="text-danger fs-8 d-block ps-3">
-                  {{'validations.name_length'|translate}}
-                </span>
-              </ng-container>
-              <ng-container *ngIf="firstFormControls?.username?.errors?.['minlength']">
-                <span class="text-danger fs-8 d-block ps-3">
-                  {{'validations.length'|translate}}
-                </span>
+              <ng-container
+                *ngIf="formControls?.email?.invalid && (formControls?.email?.dirty || formControls?.email?.touched)">
+                <ng-container *ngIf="formControls?.email?.errors?.['required']">
+                  <span class="text-danger fs-8">
+                    {{'validations.requiredEmail'|translate}}
+                  </span>
+                </ng-container>
+                <ng-container *ngIf="formControls?.email?.errors?.['pattern']">
+                  <span class="text-danger fs-8 d-block">
+                    {{'validations.not_valid'|translate}}
+                  </span>
+                </ng-container>
+                <ng-container *ngIf="formControls?.email?.errors?.['minlength']">
+                  <span class="text-danger fs-8 d-block">
+                    {{'validations.emailNotCorrect'|translate}}
+                  </span>
+                </ng-container>
               </ng-container>
             </div>
-          </ng-container>
-        </div>
-        <div class="mb-3">
-          <div class="input-container">
-            <label for="email" class="mb-1 text-main-color">
-              {{'placeholder.email'|translate}}
-            </label>
-            <input type="email" class="form-control" formControlName="email" autocomplete="cc-name"
-              (input)="publicService.clearValidationErrors(firstFormControls?.email)"
-              [class.is-invalid]="firstFormControls?.email?.invalid && (firstFormControls?.email?.dirty || firstFormControls?.email?.touched)"
-              placeholder="{{'placeholder.email'|translate}}">
           </div>
-          <div class="mt-2">
+          <div class="mb-2">
+            <label for="mobilePhone" class="mb-1 text-main-color label required">
+              {{'placeholder.mobilePhone'|translate}}
+            </label>
+            <div
+              [class.border-red]="(formControls?.['phone_number']?.touched || formControls?.['phone_number']?.dirty) && formControls?.['phone_number']?.invalid">
+              <ngx-intl-tel-input class="px-1 intel-tel-input" [preferredCountries]="[
+              CountryISO.Egypt,
+              CountryISO.UnitedStates,
+            ]" [enableAutoCountrySelect]="false" [enablePlaceholder]="true" [searchCountryFlag]="true"
+                [searchCountryField]="[
+              SearchCountryField.Iso2,
+              SearchCountryField.Name
+            ]" [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.Egypt" [maxLength]="15"
+                [phoneValidation]="true" name="phone_number" formControlName="phone_number"
+                (input)="publicService?.clearValidationErrors(formControls?.phone_number)"
+                (countryChange)="formControls?.phone_number?.reset()">
+              </ngx-intl-tel-input>
+            </div>
             <ng-container
-              *ngIf="firstFormControls?.email?.invalid && (firstFormControls?.email?.dirty || firstFormControls?.email?.touched)">
-              <ng-container *ngIf="firstFormControls?.email?.errors?.['required']">
-                <span class="text-danger fs-8 ps-3">
-                  {{'validations.requiredEmail'|translate}}
-                </span>
-              </ng-container>
-              <ng-container *ngIf="firstFormControls?.email?.errors?.['pattern']">
-                <span class="text-danger fs-8 d-block ps-3">
-                  {{'validations.not_valid'|translate}}
-                </span>
-              </ng-container>
-              <ng-container *ngIf="firstFormControls?.email?.errors?.['minlength']">
-                <span class="text-danger fs-8 d-block ps-3">
-                  {{'validations.emailNotCorrect'|translate}}
-                </span>
-              </ng-container>
+              *ngIf="formControls?.phone_number?.invalid && (formControls?.phone_number?.dirty || formControls?.phone_number?.touched)">
+              <div class="mt-2">
+                <ng-container *ngIf="formControls?.phone_number?.errors?.['required']">
+                  <span class="text-danger fs-8">
+                    {{'validations.required_field'|translate}}
+                  </span>
+                </ng-container>
+                <ng-container *ngIf="formControls?.phone_number?.errors?.['validatePhoneNumber']">
+                  <span class="text-danger fs-8">
+                    {{'validations.phoneNotCorrect'|translate}}
+                  </span>
+                </ng-container>
+              </div>
             </ng-container>
           </div>
-        </div>
-      </form>
+          <div class="mb-2">
+            <label for="mobilePhone" class="mb-1 text-main-color label required">
+              {{'placeholder.country'|translate}}
+            </label>
+            <span class="p-input-icon-right select-loading d-block">
+              <p-dropdown [options]="countries" formControlName="country" optionLabel="name" [filter]="true"
+                [virtualScroll]="true" [virtualScrollItemSize]="38" filterBy="name" appendTo="body"
+                [filterPlaceholder]="'placeholder.search'|translate" [readonly]="isLoadingCountry"
+                (onChange)="onChangeCountry($event)" emptyMessage="{{'general.no_result_found'|translate}}"
+                [class.ng-dirty]="formControls?.country?.invalid && (formControls?.country?.dirty || formControls?.country?.touched)"
+                [showClear]="true" placeholder="{{'placeholder.country'|translate}}">
+              </p-dropdown>
+              <ng-container *ngIf="isLoadingCountry">
+                <i class="pi pi-spin pi-spinner"></i>
+              </ng-container>
+            </span>
+            <div class="mt-2">
+              <ng-container
+                *ngIf="formControls?.country?.invalid && (formControls?.country?.dirty || formControls?.country?.touched)">
+                <ng-container *ngIf="formControls?.country?.errors?.['required']">
+                  <span class="text-danger fs-8">
+                    {{"validations.required_field"|translate}}
+                  </span>
+                </ng-container>
+              </ng-container>
+            </div>
+          </div>
+          <div class="mb-2">
+            <label for="mobilePhone" class="mb-1 text-main-color label required">
+              {{'placeholder.city'|translate}}
+            </label>
+            <span class="p-input-icon-right select-loading d-block">
+              <p-dropdown [options]="cities" formControlName="city" optionLabel="name" [filter]="true"
+                [filterPlaceholder]="'placeholder.search'|translate" [virtualScroll]="true" [virtualScrollItemSize]="38"
+                filterBy="name" appendTo="body" [readonly]="isLoadingCountry"
+                emptyMessage="{{'general.no_result_found'|translate}}"
+                [class.ng-dirty]="formControls?.city?.invalid && (formControls?.city?.dirty || formControls?.city?.touched)"
+                [showClear]="true" placeholder="{{'placeholder.city'|translate}}">
+              </p-dropdown>
+              <!-- <ng-container *ngIf="isLoadingCountry">
+                  <i class="pi pi-spin pi-spinner"></i>
+                </ng-container> -->
+            </span>
+            <div class="mt-2">
+              <ng-container
+                *ngIf="formControls?.city?.invalid && (formControls?.city?.dirty || formControls?.city?.touched)">
+                <ng-container *ngIf="formControls?.city?.errors?.['required']">
+                  <span class="text-danger fs-8">
+                    {{"validations.required_field"|translate}}
+                  </span>
+                </ng-container>
+              </ng-container>
+            </div>
+          </div>
+          <small class="w-50 w-sm-100 mt-3 d-block">{{'general.submitApplication'|translate}} <span
+              class="text-main-color">{{'general.helpCenter'|translate}}</span></small>
+        </form>
+      </div>
       <hr>
-      <div class="d-flex justify-content-end" (click)="next(0)">
-        <button class="btn btn-solid-main">{{'general.next'|translate}}</button>
+      <div class="d-flex justify-content-end p-4 pt-2" (click)="next(0)">
+        <button class="btn btn-solid-main rounded-pill">{{'general.next'|translate}}</button>
+      </div>
+    </ng-template>
+  </ng-container>
+  <ng-container *ngIf="currentStep==1">
+    <div>
+      <div class="px-4">
+        <h5 class="fw-bold fs-5 text-main-color mb-3 content-p">{{'general.resume'|translate}}</h5>
+        <div>
+          <ng-container *ngIf="cvFile!=null">
+            <div class="resume d-flex justify-content-between mb-4">
+              <div class="d-flex gap-3 align-items-center">
+                <div class="type h-100 d-flex justify-content-center align-items-center">
+                  PDF
+                </div>
+                <div class="content">
+                  <p class="text-main-color">{{cvFileName}}</p>
+                  <p class="text-main-color label d-flex gap-1">{{'general.lastUsed'|translate}}
+                    {{cvFile?.date_upload_cv | date:'d/M/yyyy'}}
+                  </p>
+                </div>
+              </div>
+              <div class="d-flex gap-3 align-items-center px-3">
+                <a (click)="downloadPdf(cvFile?.link)"><i class="pi pi-upload fs-4"></i></a>
+                <div class="h-100 pipe position-relative"></div>
+                <div>
+                  <div class="field-radiobutton">
+                    <p-radioButton name="cv" value="newCv" [(ngModel)]="resume" inputId="cv"></p-radioButton>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+
+          <div class="resume d-flex justify-content-between mb-4">
+            <div class="d-flex gap-3 align-items-center">
+              <div class="type h-100 d-flex justify-content-center align-items-center">
+                PDF
+              </div>
+              <div class="content">
+                <p class="text-main-color">{{userProfileDetails?.cv?.name_cv}}</p>
+                <p class="text-main-color label d-flex gap-1">{{'general.lastUsed'|translate}}
+                  {{userProfileDetails?.cv?.date | date:'d/M/yyyy'}}
+                </p>
+              </div>
+            </div>
+            <div class="d-flex gap-3 align-items-center px-3">
+              <a (click)="downloadPdf(userProfileDetails?.cv?.link)"><i class="pi pi-upload fs-4"></i></a>
+              <div class="h-100 pipe position-relative"></div>
+              <div>
+                <div class="field-radiobutton">
+                  <p-radioButton name="cv" value="oldCv" [(ngModel)]="resume" inputId="cv"></p-radioButton>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <input type="file" #uploadCV id="uploadCV" hidden (change)="selectFile($event)"
+            accept=".pdf,.doc,.docx,application/pdf">
+          <label for="uploadCV" class="btn btn-outline-main rounded-pill px-3 py-1">
+            {{'general.UploadResume'|translate}}
+          </label>
+          <p class="label fs-6 mt-1">DOC, DOCX, PDF (2MB)</p>
+        </div>
+        <small class="w-50 w-sm-100 mt-4 d-block">{{'general.submitApplication'|translate}} <span
+            class="text-main-color">{{'general.helpCenter'|translate}}</span></small>
+      </div>
+      <hr>
+      <div class="d-flex gap-3 align-items-center justify-content-end p-4 pt-2">
+        <a (click)="back(1)" class="text-main-color">{{'general.back'|translate}}</a>
+        <button (click)="next(1)" class="btn btn-solid-main rounded-pill p-2">{{'general.next'|translate}}</button>
       </div>
     </div>
   </ng-container>
+  <ng-container *ngIf="currentStep==2">
+    <div>
+      <div class="px-4">
+        <h5 class="fw-bold fs-5 text-main-color mb-3 content-p">{{'general.message'|translate}}</h5>
+        <form [formGroup]="secondForm">
+          <div class="mb-2">
+            <div class="input-container">
+              <label for="message" class="mb-1 text-main-color label">
+                {{'general.message'|translate}}
+              </label>
+              <input type="text" class="form-control" formControlName="message" autocomplete="cc-name"
+                (input)="publicService.clearValidationErrors(secondFormControls?.message)"
+                [class.is-invalid]="secondFormControls?.message?.invalid && (secondFormControls?.message?.dirty || secondFormControls?.message?.touched)"
+                placeholder="{{'general.message'|translate}}">
+            </div>
+            <div class="mt-2">
+              <ng-container
+                *ngIf="secondFormControls?.message?.invalid && (secondFormControls?.message?.dirty || secondFormControls?.message?.touched)">
+                <ng-container *ngIf="secondFormControls?.message?.errors?.['required']">
+                  <span class="text-danger fs-8">
+                    {{'validations.required_field'|translate}}
+                  </span>
+                </ng-container>
+                <ng-container *ngIf="secondFormControls?.message?.errors?.['minlength']">
+                  <span class="text-danger fs-8 d-block">
+                    {{'validations.length'|translate}}
+                  </span>
+                </ng-container>
+              </ng-container>
+            </div>
+          </div>
+          <small class="w-50 w-sm-100 mt-3 d-block">{{'general.submitApplication'|translate}} <span
+              class="text-main-color">{{'general.helpCenter'|translate}}</span></small>
+        </form>
+      </div>
+      <hr>
+      <div class="d-flex gap-3 align-items-center justify-content-end p-4 pt-2">
+        <a (click)="back(2)" class="text-main-color">{{'general.back'|translate}}</a>
+        <button (click)="next(2)" class="btn btn-solid-main rounded-pill p-2">{{'general.next'|translate}}</button>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="currentStep==3">
+    <div>
+      <div class="px-4">
+        <h5 class="fw-bold fs-5 text-main-color mb-3 content-p">{{'general.questions'|translate}}</h5>
+        <ng-container *ngFor="let item of userProfileDetails?.questions">
+          <div class="mb-2">
+            <div class="input-container">
+              <label for="message" class="mb-1 text-main-color label">
+                {{item?.question}}
+              </label>
+              <input type="text" class="form-control" [(ngModel)]="item.answer" autocomplete="cc-name"
+                placeholder="{{'general.message'|translate}}">
+            </div>
+          </div>
+        </ng-container>
+        <small class="w-50 w-sm-100 mt-4 d-block">{{'general.submitApplication'|translate}} <span
+            class="text-main-color">{{'general.helpCenter'|translate}}</span></small>
+      </div>
+      <hr>
+      <div class="d-flex gap-3 align-items-center justify-content-end p-4 pt-2">
+        <a (click)="back(3)" class="text-main-color">{{'general.back'|translate}}</a>
+        <button (click)="next(3)" class="btn btn-solid-main rounded-pill p-2">{{'general.review'|translate}}</button>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="currentStep==4">
+    <div>
+      <div class="row g-0 border-bottom">
+        <div class="col-md-6 applied-jobs px-4 pb-4">
+          <h6 class="fw-bold fs-6 text-main-color mb-2 content-p">{{'general.contactInfo'|translate}}</h6>
+          <div class="d-flex">
+            <div class="profile-img-review rounded-circle position-relative">
+              <img [src]="imgPath+userProfileDetails?.image" onerror="src='assets/images/not-found/noUser.svg'"
+                class="fit-object-cover rounded-circle w-100 h-100 shadow-sm" alt="user">
+            </div>
+            <div class="content-info p-2 d-flex gap-4">
+              <div>
+                <h5 class="text-main-color fw-bold mb-0 fs-6 text-capitalize">{{userProfileDetails?.full_name ||
+                  'Catherine Longford'}}</h5>
+                <p class="fs-6-1 text-main-color">{{userProfileDetails?.profession}}</p>
+                <!-- <p class="fs-6-1 text-desc-color  address">{{userProfileDetails?.city?.name}} ,
+                  {{userProfileDetails?.country?.name}}
+                </p> -->
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="d-flex gap-1 mb-2 flex-wrap">
+              <label class="text-main-color fs-6-1 label">
+                {{'placeholder.email'|translate}}:
+              </label>
+              <p class="mb-0 text-main-color fs-6-1">{{firstForm?.value?.email||''}}</p>
+            </div>
+            <div class="d-flex gap-1 mb-2 flex-wrap">
+              <label class="text-main-color fs-6-1 label">
+                {{'placeholder.mobilePhone'|translate}}:
+              </label>
+              <p class="mb-0 text-main-color fs-6-1">{{firstForm?.value?.phone_number.internationalNumber||null}}</p>
+            </div>
+            <div class="d-flex gap-1 mb-2 flex-wrap">
+              <label class="text-main-color fs-6-1 label">
+                {{'placeholder.address'|translate}}:
+              </label>
+              <p class="mb-0 text-main-color fs-6-1">{{userProfileDetails?.city?.name}} ,
+                {{userProfileDetails?.country?.name}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="px-4 pb-4">
+            <h6 class="fw-bold fs-6 text-main-color mb-2 content-p">{{'general.questions'|translate}}</h6>
+            <ng-container *ngFor="let item of userProfileDetails?.questions">
+              <div>
+                <div class="input-container">
+                  <p for="message" class="text-main-color label fs-6-1">
+                    {{item?.question}}
+                  </p>
+                  <p for="message" class="text-main-color fs-6-1">
+                    {{item?.answer}}
+                  </p>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+      <div class="px-4 mt-3">
+        <h5 class="fw-bold fs-6 text-main-color mb-3 content-p">{{'general.resume'|translate}}</h5>
+        <ng-container *ngIf="cvFile!=null;else oldCv">
+          <div class="resume d-flex justify-content-between mb-4">
+            <div class="d-flex gap-3 align-items-center">
+              <div class="type h-100 d-flex justify-content-center align-items-center">
+                PDF
+              </div>
+              <div class="content">
+                <p class="text-main-color">{{cvFileName}}</p>
+                <p class="text-main-color label d-flex gap-1">{{'general.lastUsed'|translate}}
+                  {{cvFile?.date_upload_cv | date:'d/M/yyyy'}}
+                </p>
+              </div>
+            </div>
+            <div class="d-flex gap-3 align-items-center px-3">
+              <a (click)="downloadPdf(cvFile?.link)"><i class="pi pi-upload fs-4"></i></a>
+              <div class="h-100 pipe position-relative"></div>
+              <div>
+                <div class="field-radiobutton">
+                  <p-radioButton name="cv" value="newCv" [(ngModel)]="resume" inputId="cv"></p-radioButton>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+        <ng-template #oldCv>
+          <div class="resume d-flex justify-content-between mb-4">
+            <div class="d-flex gap-3 align-items-center">
+              <div class="type h-100 d-flex justify-content-center align-items-center">
+                PDF
+              </div>
+              <div class="content">
+                <p class="text-main-color">{{userProfileDetails?.cv?.name_cv}}</p>
+                <p class="text-main-color label d-flex gap-1">{{'general.lastUsed'|translate}}
+                  {{userProfileDetails?.cv?.date | date:'d/M/yyyy'}}
+                </p>
+              </div>
+            </div>
+            <div class="d-flex gap-3 align-items-center px-3">
+              <a (click)="downloadPdf(userProfileDetails?.cv?.link)"><i class="pi pi-upload fs-4"></i></a>
+              <div class="h-100 pipe position-relative"></div>
+              <div>
+                <div class="field-radiobutton">
+                  <p-radioButton name="cv" value="oldCv" [(ngModel)]="resume" inputId="cv"></p-radioButton>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </div>
 
-  <ng-container *ngIf="currentStep==1">
-    currentStep1
+      <small class="w-50 w-sm-100 mt-4 d-block px-4">{{'general.submitApplication'|translate}} <span
+          class="text-main-color">{{'general.helpCenter'|translate}}</span></small>
+      <hr>
+      <div class="d-flex gap-3 align-items-center justify-content-end p-4 pt-2">
+        <a (click)="back(4)" class="text-main-color">{{'general.back'|translate}}</a>
+        <button (click)="confirm()" class="btn btn-solid-main rounded-pill p-2">{{'general.confirm'|translate}}</button>
+      </div>
+    </div>
   </ng-container>
 </div>

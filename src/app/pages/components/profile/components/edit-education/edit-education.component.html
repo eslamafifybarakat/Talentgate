@@ -1,0 +1,160 @@
+<div class="mt-3" id="profile-modal">
+  <ng-container *ngIf="isLoading; else noLoading">
+    <div class="p-4">
+      <app-skeleton [type]="'profile-modal'"></app-skeleton>
+    </div>
+  </ng-container>
+  <ng-template #noLoading>
+    <div class="px-4">
+      <h5 class="fw-bold fs-5-1 text-main-color mb-3 content-p">{{'general.degreeDetails'|translate}}</h5>
+      <form [formGroup]="profileForm" class="pt-2">
+        <div class="mb-2">
+          <label for="degreeName" class="mb-1 text-main-color label required">
+            {{'labels.degreeName'|translate}}
+          </label>
+          <span class="p-input-icon-right select-loading d-block">
+            <p-dropdown [options]="degrees" formControlName="degreeName" optionLabel="name" [filter]="true"
+              [virtualScroll]="true" [virtualScrollItemSize]="38" filterBy="name" appendTo="body"
+              [filterPlaceholder]="'placeholder.search'|translate" [readonly]="false"
+              emptyMessage="{{'general.no_result_found'|translate}}"
+              [class.ng-dirty]="formControls?.majorName?.invalid && (formControls?.majorName?.dirty || formControls?.majorName?.touched)"
+              [showClear]="true" placeholder="{{'placeholder.majorName'|translate}}">
+            </p-dropdown>
+            <ng-container *ngIf="false">
+              <i class="pi pi-spin pi-spinner"></i>
+            </ng-container>
+          </span>
+          <div class="mt-2">
+            <ng-container
+              *ngIf="formControls?.majorName?.invalid && (formControls?.majorName?.dirty || formControls?.majorName?.touched)">
+              <ng-container *ngIf="formControls?.majorName?.errors?.['required']">
+                <span class="text-danger fs-8">
+                  {{"validations.required_field"|translate}}
+                </span>
+              </ng-container>
+            </ng-container>
+          </div>
+        </div>
+        <div class="mb-2">
+          <div class="input-container">
+            <label for="majorName" class="mb-1 text-main-color  label required">
+              {{'labels.majorName'|translate}}
+            </label>
+            <input type="text" class="form-control" formControlName="majorName" autocomplete="cc-name"
+              (input)="publicService.clearValidationErrors(formControls?.majorName)"
+              [class.is-invalid]="formControls?.majorName?.invalid && (formControls?.majorName?.dirty || formControls?.majorName?.touched)"
+              placeholder="{{'placeholder.majorName'|translate}}">
+          </div>
+          <div class="mt-2">
+            <ng-container
+              *ngIf="formControls?.majorName?.invalid && (formControls?.majorName?.dirty || formControls?.majorName?.touched)">
+              <ng-container *ngIf="formControls?.majorName?.errors?.['required']">
+                <span class="text-danger fs-8">
+                  {{'validations.required_field'|translate}}
+                </span>
+              </ng-container>
+              <ng-container *ngIf="formControls?.majorName?.errors?.['minlength']">
+                <span class="text-danger fs-8 d-block">
+                  {{'validations.length'|translate}}
+                </span>
+              </ng-container>
+            </ng-container>
+          </div>
+        </div>
+        <div class="mb-2">
+          <div class="input-container">
+            <label for="instituteName" class="mb-1 text-main-color label required">
+              {{'labels.instituteName'|translate}}
+            </label>
+            <input type="instituteName" class="form-control" formControlName="instituteName" autocomplete="cc-name"
+              (input)="publicService.clearValidationErrors(formControls?.instituteName)"
+              [class.is-invalid]="formControls?.instituteName?.invalid && (formControls?.instituteName?.dirty || formControls?.instituteName?.touched)"
+              placeholder="{{'placeholder.instituteName'|translate}}">
+          </div>
+          <div class="mt-2">
+            <ng-container
+              *ngIf="formControls?.email?.invalid && (formControls?.instituteName?.dirty || formControls?.instituteName?.touched)">
+              <ng-container *ngIf="formControls?.instituteName?.errors?.['required']">
+                <span class="text-danger fs-8">
+                  {{'validations.required_field'|translate}}
+                </span>
+              </ng-container>
+              <ng-container *ngIf="formControls?.email?.errors?.['minlength']">
+                <span class="text-danger fs-8 d-block">
+                  {{'validations.length'|translate}}
+                </span>
+              </ng-container>
+            </ng-container>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="profile-birthDate">
+              <label for="startDate" class="mb-1 text-main-color label required">
+                {{'labels.startDate'|translate}}
+              </label>
+              <div
+                [class.border-red]="formControls?.startDate?.invalid && (formControls?.startDate?.dirty || formControls?.startDate?.touched)">
+                <p-calendar formControlName="startDate" [showIcon]="true" inputId="icon" placeholder="DD.MM.YY"
+                  [showButtonBar]="true" dateFormat="dd.mm.yy" hourFormat="12"></p-calendar>
+              </div>
+              <div class=" my-2">
+                <ng-container
+                  *ngIf="formControls?.startDate?.invalid && (formControls?.startDate?.dirty || formControls?.startDate?.touched)">
+                  <ng-container *ngIf="formControls?.startDate?.errors?.['required']">
+                    <span class="text-danger fs-8">
+                      {{"validations.required_field"|translate}}
+                    </span>
+                  </ng-container>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="profile-birthDate">
+              <label for="endDate" class="mb-1 text-main-color label required">
+                {{'labels.endDate'|translate}}
+              </label>
+              <div
+                [class.border-red]="formControls?.endDate?.invalid && (formControls?.endDate?.dirty || formControls?.endDate?.touched)">
+                <p-calendar formControlName="endDate" [showIcon]="true" inputId="icon" placeholder="DD.MM.YY"
+                  [showButtonBar]="true" dateFormat="dd.mm.yy" hourFormat="12"></p-calendar>
+              </div>
+              <div class=" my-2">
+                <ng-container
+                  *ngIf="formControls?.endDate?.invalid && (formControls?.endDate?.dirty || formControls?.endDate?.touched)">
+                  <ng-container *ngIf="formControls?.endDate?.errors?.['required']">
+                    <span class="text-danger fs-8">
+                      {{"validations.required_field"|translate}}
+                    </span>
+                  </ng-container>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="field-checkbox d-flex align-items-center gap-2">
+          <div class="d-flex justify-content-baseline">
+            <p-checkbox [binary]="true" formControlName="state" inputId="flexCheckChecked"></p-checkbox>
+          </div>
+          <label class="form-check-label label text-main-color" for="flexCheckChecked">{{'labels.ICurrentStudent' |
+            translate}}</label>
+        </div>
+
+        <small class="w-50 w-sm-100 mt-4 d-block">{{'general.submitApplication'|translate}} <span
+            class="text-main-color">{{'general.helpCenter'|translate}}</span></small>
+      </form>
+    </div>
+    <hr>
+    <div class="d-flex gap-3 align-items-center justify-content-between p-4 pt-2">
+      <div>
+        <button (click)="remove()"
+          class="btn btn-outline-main rounded-pill py-1">{{'general.delete'|translate}}</button>
+      </div>
+      <div class="d-flex gap-3 align-items-center">
+        <a (click)="cancel()" class="text-main-color">{{'general.cancel'|translate}}</a>
+        <button (click)="submit()" class="btn btn-solid-main rounded-pill py-1">{{'general.save'|translate}}</button>
+      </div>
+    </div>
+  </ng-template>
+</div>

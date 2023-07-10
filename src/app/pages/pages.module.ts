@@ -12,6 +12,11 @@ import { ApplyJobComponent } from './components/apply-job/apply-job.component';
 import { CalenderComponent } from './components/calender/calender.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ApplyJobStepperComponent } from './components/apply-job/components/apply-job-stepper/apply-job-stepper.component';
+import { EditProfileModalComponent } from './components/profile/components/edit-profile-modal/edit-profile-modal.component';
+import { EditExperienceComponent } from './components/profile/components/edit-experience/edit-experience.component';
+import { EditEducationComponent } from './components/profile/components/edit-education/edit-education.component';
+import { EditCertificationComponent } from './components/profile/components/edit-certification/edit-certification.component';
+import { EditLanguageComponent } from './components/profile/components/edit-language/edit-language.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +26,12 @@ import { ApplyJobStepperComponent } from './components/apply-job/components/appl
     ApplyJobComponent,
     CalenderComponent,
     ProfileComponent,
-    ApplyJobStepperComponent
+    ApplyJobStepperComponent,
+    EditProfileModalComponent,
+    EditExperienceComponent,
+    EditEducationComponent,
+    EditCertificationComponent,
+    EditLanguageComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -33,7 +43,7 @@ import { ApplyJobStepperComponent } from './components/apply-job/components/appl
     CoreModule
   ]
 
-  ,exports :[
+  , exports: [
     PagesComponent,
     OnboardingComponent
   ]

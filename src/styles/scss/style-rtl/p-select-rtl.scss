@@ -89,3 +89,8 @@ p-multiselect.p-multiselect-clearable .p-multiselect-clear-icon,
   margin-right: 0.5rem !important;
   margin-left: initial !important;
 }
+.profile-birthDate {
+  .p-calendar-w-btn .p-inputtext {
+    border-radius: 0 6px 6px 0 !important;
+  }
+}

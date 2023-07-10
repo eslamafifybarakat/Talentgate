@@ -91,3 +91,52 @@
     </ng-container>
   </div>
 </ng-container>
+
+<ng-container *ngIf="type=='applyJob'">
+  <div>
+    <p-skeleton width="9rem" borderRadius="6px" height=".9rem" styleClass="mb-3"></p-skeleton>
+    <div class="d-flex">
+      <p-skeleton size="4rem" shape="circle"></p-skeleton>
+      <div class="content-info p-2 d-flex gap-4">
+        <div>
+          <p-skeleton width="9rem" borderRadius="6px" height=".9rem" styleClass="mb-2"></p-skeleton>
+          <p-skeleton width="6rem" borderRadius="6px" height=".8rem"></p-skeleton>
+        </div>
+      </div>
+    </div>
+    <div class="pt-3">
+      <ng-container *ngFor="let item of [9,9,9,9]">
+        <div class="mb-3">
+          <div class="input-container">
+            <p-skeleton width="7rem" borderRadius="6px" height=".8rem" styleClass="mb-2"></p-skeleton>
+            <p-skeleton width="100%" borderRadius="6px" height="2.5rem"></p-skeleton>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+    <hr>
+    <div class="d-flex justify-content-end">
+      <p-skeleton width="7rem" borderRadius="6px" height="3rem"></p-skeleton>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="type=='profile-modal'">
+  <div>
+    <p-skeleton width="9rem" borderRadius="6px" height=".9rem" styleClass="mb-3"></p-skeleton>
+    <div>
+      <ng-container *ngFor="let item of [9,9,9,9,9]">
+        <div class="mb-3">
+          <div class="input-container">
+            <p-skeleton width="7rem" borderRadius="6px" height=".8rem" styleClass="mb-2"></p-skeleton>
+            <p-skeleton width="100%" borderRadius="6px" height="2.5rem"></p-skeleton>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+    <hr>
+    <div class="d-flex justify-content-end">
+      <p-skeleton width="7rem" borderRadius="6px" height="3rem"></p-skeleton>
+    </div>
+  </div>
+</ng-container>

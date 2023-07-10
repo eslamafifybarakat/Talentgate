@@ -269,17 +269,13 @@ export class RegisterComponent implements OnInit {
     this.cdr?.detectChanges();
   }
   onChangeCountry(event: any): void {
-    console.log(event);
-
     this.secondRegisterForm?.get('city')?.reset();
+    let arr: any = [];
     this.countries?.forEach((item: any) => {
-      if (item?.id == event?.id) {
-        this.cities = item?.cities ? item?.cities : [];
+      if (item?._id == event?.value?._id) {
+        arr = item?.cities ? item?.cities : [];
+        this.cities = arr;
       }
-      console.log(item);
-
-      console.log(this.cities);
-
     });
   }
 
@@ -290,7 +286,6 @@ export class RegisterComponent implements OnInit {
     let fileReader = new FileReader();
     fileReader.readAsDataURL(event?.target?.files[0]);
     fileReader.onload = this._handleReaderLoaded.bind(this);
-
   }
   _handleReaderLoaded(e: any): void {
     var reader = e.target;

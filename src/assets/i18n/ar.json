@@ -9,6 +9,17 @@
     "profile":"الصفحة الشخصية"
       },
   "general": {
+    "degreeDetails":"تفاصيل الدرجة",
+    "lastUsed":"آخر استخدام في",
+    "UploadResume":"تحميل السيرة الذاتية",
+    "resume":"السيرة الذاتية",
+    "editProfile":"تعديل الملف الشخصي",
+    "editEducation":"تعديل الدراسة",
+    "review":"مراجعة",
+    "questions":"الأسئلة",
+    "message":"رسالة",
+    "submitApplication":"لن يؤدي إرسال هذا الطلب إلى تغيير ملف تعريف Talentgate الخاص بك. التطبيق مدعوم من Talentgate |",
+    "helpCenter":"مركز المساعدة",
     "contactInfo":"معلومات الإتصال",
     "applyTo":"التقديم في",
     "UploadYourCV": "حمل سيرتك الذاتية",
@@ -180,6 +191,11 @@
 "driverArrivedToStation":"وصل السائق إلى المحطة"
   },
   "labels": {
+    "ICurrentStudent":"أنا حاليا طالب في هذا المعهد",
+    "instituteName":"اسم المعهد",
+    "majorName":"الاسم الرئيسي",
+    "degreeName":"الدرجه العلمية",
+    "birthDate":"تاريخ الميلاد",
     "isWorking": "متاح للتعين",
     "name": "الاسم",
     "active": "نشط",
@@ -207,6 +223,10 @@
     "palateNo": "رقم اللوحة"
   },
   "placeholder": {
+    "instituteName":"أدخل اسم المعهد",
+    "majorName":"أدخل الاسم الرئيسي",
+    "degreeName":"أختر الدرجه العلمية",
+    "birthDate":"تاريخ الميلاد",
     "address":"العنوان",
     "email": "أدخل البريد الإلكتروني",
     "password": "أدخل كلمة المرور",
@@ -221,6 +241,7 @@
     "city":"المدينة ",
     "state":"ولاية",
     "UploadResume":"تحميل السيرة الذاتية"
+
   },
   "validations": {
     "required_field": "هذا الحقل مطلوب",
@@ -245,7 +266,8 @@
     "MinimumCharacters": "5 أحرف على الأقل",
     "startDate": "تاريخ البدء مطلوب",
     "endDate": "تاريخ اإلانتهاء مطلوب",
-    "orderStatus": "حالة الطلب مطلوبة"
+    "orderStatus": "حالة الطلب مطلوبة",
+    "phoneNotCorrect":"رقم الهاتف غير صحيح"
   },
   "form": {
     "welcomeBack": "مرحبًا بك في Talentgate",

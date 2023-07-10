@@ -4,6 +4,7 @@ import { keys } from './../../shared/configs/localstorage-key';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { saveAs } from '@progress/kendo-drawing/dist/npm/pdf';
 
 @Injectable({
   providedIn: 'root'
@@ -65,5 +66,13 @@ export class HomeService {
     let params = new HttpParams();
     params = params.append("date", date);
     return this.http?.get<any>(this.apiUrl + roots?.scheduler?.events, { params: params });
+  }
+  downloadPDF(url: any): any {
+    // this.http?.get(url, { responseType: 'blob' }).subscribe((response: any) => {
+    //   saveAs(response, 'cv.pdf');
+    // });
+  }
+  applyJob(data: any): Observable<any> {
+    return this.http?.post<any>(this.apiUrl + roots?.home?.applyJob, data);
   }
 }
