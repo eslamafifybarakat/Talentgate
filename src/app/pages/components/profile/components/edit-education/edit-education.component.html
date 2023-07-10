@@ -12,7 +12,8 @@
           <label for="degreeName" class="mb-1 text-main-color label required">
             {{'labels.degreeName'|translate}}
           </label>
-          <span class="p-input-icon-right select-loading d-block">
+          <span class="p-input-icon-right select-loading d-block"
+            [class.border-red]="(formControls?.['degreeName']?.touched || formControls?.['degreeName']?.dirty) && formControls?.['degreeName']?.invalid">
             <p-dropdown [options]="degrees" formControlName="degreeName" optionLabel="name" [filter]="true"
               [virtualScroll]="true" [virtualScrollItemSize]="38" filterBy="name" appendTo="body"
               [filterPlaceholder]="'placeholder.search'|translate" [readonly]="false"
@@ -72,14 +73,14 @@
               placeholder="{{'placeholder.instituteName'|translate}}">
           </div>
           <ng-container
-            *ngIf="formControls?.email?.invalid && (formControls?.instituteName?.dirty || formControls?.instituteName?.touched)">
+            *ngIf="formControls?.instituteName?.invalid && (formControls?.instituteName?.dirty || formControls?.instituteName?.touched)">
             <div class="mt-1">
               <ng-container *ngIf="formControls?.instituteName?.errors?.['required']">
                 <span class="text-danger fs-8">
                   {{'validations.required_field'|translate}}
                 </span>
               </ng-container>
-              <ng-container *ngIf="formControls?.email?.errors?.['minlength']">
+              <ng-container *ngIf="formControls?.instituteName?.errors?.['minlength']">
                 <span class="text-danger fs-8 d-block">
                   {{'validations.length'|translate}}
                 </span>
@@ -96,7 +97,8 @@
               <div
                 [class.border-red]="formControls?.startDate?.invalid && (formControls?.startDate?.dirty || formControls?.startDate?.touched)">
                 <p-calendar formControlName="startDate" [showIcon]="true" inputId="icon" placeholder="DD.MM.YY"
-                  appendTo="body" [showButtonBar]="true" dateFormat="dd.mm.yy" hourFormat="12"></p-calendar>
+                  (onSelect)="selectStartDate($event)" (onClearClick)="clearStartDate()" appendTo="body"
+                  [showButtonBar]="true" dateFormat="dd.mm.yy" hourFormat="12"></p-calendar>
               </div>
               <ng-container
                 *ngIf="formControls?.startDate?.invalid && (formControls?.startDate?.dirty || formControls?.startDate?.touched)">
@@ -118,7 +120,8 @@
               <div
                 [class.border-red]="formControls?.endDate?.invalid && (formControls?.endDate?.dirty || formControls?.endDate?.touched)">
                 <p-calendar formControlName="endDate" [showIcon]="true" inputId="icon" placeholder="DD.MM.YY"
-                  appendTo="body" [showButtonBar]="true" dateFormat="dd.mm.yy" hourFormat="12"></p-calendar>
+                  appendTo="body" [showButtonBar]="true" dateFormat="dd.mm.yy" hourFormat="12" [minDate]="minEndDate"
+                  [disabled]="!isSelectStartDate"></p-calendar>
               </div>
               <ng-container
                 *ngIf="formControls?.endDate?.invalid && (formControls?.endDate?.dirty || formControls?.endDate?.touched)">

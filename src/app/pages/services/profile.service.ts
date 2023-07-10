@@ -17,4 +17,10 @@ export class ProfileService {
   editProfile(data: any): Observable<any> {
     return this.http?.post<any>(this.apiUrl + roots?.profile?.editProfile, data);
   }
+  editEducation(data: any): Observable<any> {
+    return this.http?.post<any>(this.apiUrl + roots?.profile?.editEducation, data);
+  }
+  deleteEducation(id: any): Observable<any> {
+    return this.http?.delete<any>(this.apiUrl + roots?.profile?.deleteEducation + '/' + id);
+  }
 }

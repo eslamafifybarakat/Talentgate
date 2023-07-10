@@ -110,7 +110,28 @@ p-inputnumber,
     position: relative !important;
     top: -3px !important;
   }
+  .p-checkbox .p-checkbox-box {
+    border: 2px solid var(--bg-main-color) !important;
+  }
+
+  .p-dropdown-panel .p-dropdown-header .p-dropdown-filter {
+    height: 1.7rem !important;
+    padding: 17px !important;
+  }
+  .border-red {
+    border: 1px solid #ec1a1a;
+    border-radius: 6px;
+    .p-dropdown,
+    .form-control,
+    .p-calendar-w-btn .p-inputtext,
+    .p-calendar-w-btn .p-datepicker-trigger {
+      border: 0 !important;
+    }
+  }
 }
 .p-dropdown-trigger {
   justify-content: end !important;
+}
+.p-datepicker .p-datepicker-buttonbar .p-button.p-button-text {
+  color: var(--text-main-color) !important;
 }

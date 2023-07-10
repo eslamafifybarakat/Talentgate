@@ -25,7 +25,9 @@ export const roots = {
     applyJob: "/applyJob"
   },
   profile: {
-    editProfile: '/profile/edit'
+    editProfile: '/profile/edit',
+    editEducation: '/education/edit',
+    deleteEducation: '/delete_education',
   },
   scheduler: {
     events: '/events'

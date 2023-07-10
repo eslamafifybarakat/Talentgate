@@ -51,7 +51,10 @@ export class EditEducationComponent implements OnInit {
       "name": "string2",
       "state": 0
     }
-  ]
+  ];
+  isSelectStartDate: boolean = false;
+  minEndDate: any;
+
   profileForm = this.fb?.group(
     {
       majorName: [
@@ -145,21 +148,31 @@ export class EditEducationComponent implements OnInit {
       state: state
     });
   }
-
+  selectStartDate(event: any): void {
+    if (event) {
+      this.minEndDate = event;
+      this.isSelectStartDate = true;
+    }
+    this.profileForm?.get('endDate')?.reset();
+  }
+  clearStartDate(): void {
+    this.isSelectStartDate = false;
+    this.publicService?.removeValidators(this.profileForm, ['endDate']);
+    this.profileForm?.get('endDate')?.reset();
+  }
   submit(): void {
     if (this.profileForm?.valid) {
       this.publicService?.show_loader?.next(true);
       let formInfo: any = this.profileForm?.value;
       let data = {
-        full_name: formInfo?.username,
-        email: formInfo?.email,
-        phone_number: formInfo.phone_number?.number,
-        country_code: formInfo.phone_number?.countryCode,
-        country: formInfo?.country?._id,
-        city: formInfo?.city?._id,
+        degreeId: formInfo?.degreeName?._id,
+        institute_name: formInfo?.instituteName,
+        major_name: formInfo?.majorName,
+        start_date: formInfo?.startDate,
+        end_date: formInfo?.endDate,
         state: formInfo?.state == true ? 1 : 0
       };
-      this.profileService?.editProfile(data)?.subscribe(
+      this.profileService?.editEducation(data)?.subscribe(
         (res: any) => {
           if (res?.status == 200) {
             this.ref?.close({ listChanged: true });
@@ -177,16 +190,35 @@ export class EditEducationComponent implements OnInit {
         }
       );
     } else {
-      this.publicService?.show_loader?.next(false);
       this.checkValidityService?.validateAllFormFields(this.profileForm);
     }
+    this.cdr?.detectChanges();
+  }
+  remove(): void {
+    this.publicService?.show_loader?.next(true);
+    this.profileService?.deleteEducation(this.userProfileDetails?.educations[0]?._id)?.subscribe(
+      (res: any) => {
+        if (res?.status == 200) {
+          this.ref?.close({ listChanged: true });
+          this.publicService?.show_loader?.next(false);
+        } else {
+          this.publicService?.show_loader?.next(false);
+          res?.error?.message
+            ? this.alertsService?.openSweetAlert('error', res?.error?.message)
+            : '';
+        }
+      },
+      (err: any) => {
+        err ? this.alertsService?.openSweetAlert('error', err) : '';
+        this.publicService?.show_loader?.next(false);
+      }
+    );
     this.cdr?.detectChanges();
   }
 
   cancel(): void {
     this.ref?.close();
   }
-  remove(): void { }
   ngOnDestroy(): void {
     this.unsubscribe?.forEach((sb) => sb?.unsubscribe());
   }
