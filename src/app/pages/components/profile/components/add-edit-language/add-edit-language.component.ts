@@ -22,6 +22,8 @@ export class AddEditLanguageComponent implements OnInit {
   levels: any = [];
   languages: any = [];
   type: any;
+  id: any;
+  data: any;
 
   profileForm = this.fb?.group(
     {
@@ -64,6 +66,7 @@ export class AddEditLanguageComponent implements OnInit {
     this.languages = this.publicService?.getLanguages();
     this.modalData = this.config?.data;
     this.type = this.modalData?.type;
+    this.id = this.modalData?.id;
     if (this.type == 'edit') {
       this.getProfileDetails();
     }
@@ -73,6 +76,12 @@ export class AddEditLanguageComponent implements OnInit {
     this.homeService.getProfileDetails().subscribe((res: any) => {
       if (res) {
         this.userProfileDetails = res.data.user;
+        this.userProfileDetails?.languages?.forEach((item: any) => {
+          if (item?._id == this.id) {
+            this.data = item;
+          }
+        });
+        // this.data = this.userProfileDetails?.languages[0];
         this.patchValue();
         this.isLoading = false;
       } else {
@@ -83,13 +92,13 @@ export class AddEditLanguageComponent implements OnInit {
   patchValue(): void {
     let level: any;
     this.levels?.forEach((item: any) => {
-      if (item?._id == this.userProfileDetails?.languages[0]?.proficiency_Levels) {
+      if (item?._id == this.data?.proficiency_Levels) {
         level = item;
       }
     });
     let language: any;
     this.levels?.forEach((item: any) => {
-      if (item?._id == this.userProfileDetails?.languages[0]?.language?._id) {
+      if (item?._id == this.data?.language?._id) {
         language = item;
       }
     });

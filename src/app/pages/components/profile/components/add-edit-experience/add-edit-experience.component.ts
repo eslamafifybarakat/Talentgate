@@ -21,6 +21,8 @@ export class AddEditExperienceComponent implements OnInit {
   isLoading: boolean = false;
   modalData: any;
   type: any;
+  id: any;
+  data: any;
 
   SearchCountryField = SearchCountryField;
   CountryISO = CountryISO;
@@ -153,6 +155,7 @@ export class AddEditExperienceComponent implements OnInit {
   ngOnInit(): void {
     this.modalData = this.config?.data;
     this.type = this.modalData?.type;
+    this.id = this.modalData?.id;
     if (this.type == 'edit') {
       this.getProfileDetails();
     } else {
@@ -165,6 +168,11 @@ export class AddEditExperienceComponent implements OnInit {
     this.homeService.getProfileDetails().subscribe((res: any) => {
       if (res) {
         this.userProfileDetails = res.data.user;
+        this.userProfileDetails?.professional_experiences?.forEach((item: any) => {
+          if (item?._id == this.id) {
+            this.data = item;
+          }
+        });
         this.patchValue();
         this.isLoading = false;
       } else {
@@ -173,9 +181,9 @@ export class AddEditExperienceComponent implements OnInit {
     })
   }
   patchValue(): void {
-    let endDate: any = new Date(this.userProfileDetails?.professional_experiences[0]?.end_date);
-    let startDate: any = new Date(this.userProfileDetails?.professional_experiences[0]?.start_date);
-    let isCurrentJob: any = this.userProfileDetails?.professional_experiences[0]?.is_current_job == 1 ? true : false;
+    let endDate: any = new Date(this.data?.end_date);
+    let startDate: any = new Date(this.data?.start_date);
+    let isCurrentJob: any = this.data?.is_current_job == 1 ? true : false;
     let skills: any = [{
       "_id": "648b013c81bb6660b05cb2b7",
       "name": "javascript",
@@ -185,9 +193,9 @@ export class AddEditExperienceComponent implements OnInit {
       "rates_number": 1,
     }]
     this.profileForm?.patchValue({
-      jobTitle: this.userProfileDetails?.professional_experiences[0]?.job_title,
-      companyName: this.userProfileDetails?.professional_experiences[0]?.company?.name_company,
-      description: this.userProfileDetails?.professional_experiences[0]?.description,
+      jobTitle: this.data?.job_title,
+      companyName: this.data?.company?.name_company,
+      description: this.data?.description,
       endDate: endDate,
       startDate: startDate,
       isCurrentJob: isCurrentJob,
@@ -206,11 +214,11 @@ export class AddEditExperienceComponent implements OnInit {
           let arr: any = [];
           console.log(this.userProfileDetails);
           this.countries?.forEach((item: any) => {
-            if (this.userProfileDetails?.professional_experiences[0]?.country?._id == item?._id) {
+            if (this.data?.country?._id == item?._id) {
               arr = item?.cities ? item?.cities : [];
               this.cities = arr;
               this.cities?.forEach((city: any) => {
-                if (this.userProfileDetails?.professional_experiences[0]?.city?._id == city?._id) {
+                if (this.data?.city?._id == city?._id) {
                   this.profileForm?.patchValue({
                     country: item,
                     city: city
@@ -297,7 +305,7 @@ export class AddEditExperienceComponent implements OnInit {
   }
   remove(): void {
     this.publicService?.show_loader?.next(true);
-    this.profileService?.deleteExperience(this.userProfileDetails?.professional_experiences[0]?._id)?.subscribe(
+    this.profileService?.deleteExperience(this.data?._id)?.subscribe(
       (res: any) => {
         if (res?.status == 200) {
           this.ref?.close({ listChanged: true });

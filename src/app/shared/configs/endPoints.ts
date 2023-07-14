@@ -22,7 +22,8 @@ export const roots = {
     interview: '/interviews/filter_interviews_by_candidate',
     detailsInterView: '/interviews/interview_detail',
     notification: '/notifications/mobile',
-    applyJob: "/applyJob"
+    applyJob: "/job_applications/apply_for_job",
+    getListQuestionByJobOffer: "/job_offers/get_list_question_by_job_offer"
   },
   profile: {
     editProfile: '/profile/edit',

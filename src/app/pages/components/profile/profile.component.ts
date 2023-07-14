@@ -42,6 +42,12 @@ export class ProfileComponent implements OnInit {
   daysDiff: any;
   aboutMe: any;
   aboutMeId: any;
+
+  isEditExperiences: boolean = false
+  isEditLanguages: boolean = false
+  isEditEducations: boolean = false
+  isEditCertificates: boolean = false
+
   // @ViewChild('aboutTextArea', { static: false }) aboutTextArea!: ElementRef;
   constructor(
     private alertsService: AlertsService,
@@ -269,10 +275,10 @@ export class ProfileComponent implements OnInit {
       }
     });
   }
-  addOrEditEducation(type?: any): any {
+  addOrEditEducation(type?: any, id?: any): any {
     const ref = this.dialogService.open(AddEditEducationComponent, {
       header: type == 'edit' ? this.publicService?.translateTextFromJson('profile.editEducation') : this.publicService?.translateTextFromJson('profile.addEducation'),
-      data: { type: type },
+      data: { type: type, id: id },
       width: '55%',
       styleClass: 'apply-job-dialog',
     });
@@ -283,10 +289,10 @@ export class ProfileComponent implements OnInit {
       }
     });
   }
-  addOrEditCertification(type?: any): any {
+  addOrEditCertification(type?: any, id?: any): any {
     const ref = this.dialogService.open(AddEditCertificationComponent, {
       header: type == 'edit' ? this.publicService?.translateTextFromJson('profile.editCertification') : this.publicService?.translateTextFromJson('profile.addCertification'),
-      data: { type: type },
+      data: { type: type, id: id },
       width: '55%',
       styleClass: 'apply-job-dialog',
     });
@@ -296,10 +302,10 @@ export class ProfileComponent implements OnInit {
       }
     });
   }
-  addOrEditExperience(type?: any): any {
+  addOrEditExperience(type?: any, id?: any): any {
     const ref = this.dialogService.open(AddEditExperienceComponent, {
       header: type == 'edit' ? this.publicService?.translateTextFromJson('profile.editExperience') : this.publicService?.translateTextFromJson('profile.addExperience'),
-      data: { type: type },
+      data: { type: type, id: id },
       width: '55%',
       styleClass: 'apply-job-dialog',
     });
@@ -309,11 +315,11 @@ export class ProfileComponent implements OnInit {
       }
     });
   }
-  addOrEditLanguage(type?: any): any {
+  addOrEditLanguage(type?: any, id?: any): any {
     const ref = this.dialogService.open(AddEditLanguageComponent, {
       header: type == 'edit' ? this.publicService?.translateTextFromJson('profile.editLanguage') : this.publicService?.translateTextFromJson('profile.addLanguage'),
       width: '55%',
-      data: { type: type },
+      data: { type: type, id: id },
       styleClass: 'apply-job-dialog',
     });
     ref.onClose.subscribe((res: any) => {

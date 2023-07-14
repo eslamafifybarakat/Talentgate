@@ -75,4 +75,8 @@ export class HomeService {
   applyJob(data: any): Observable<any> {
     return this.http?.post<any>(this.apiUrl + roots?.home?.applyJob, data);
   }
+
+  getListQuestionByJobOffer(id: any): Observable<any> {
+    return this.http?.get<any>(this.apiUrl + roots?.home?.getListQuestionByJobOffer + '/' + id + '/' + this.langKey);
+  }
 }

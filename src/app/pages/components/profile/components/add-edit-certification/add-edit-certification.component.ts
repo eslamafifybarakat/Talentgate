@@ -21,6 +21,8 @@ export class AddEditCertificationComponent implements OnInit {
   isLoading: boolean = false;
   modalData: any;
   type: any;
+  id: any;
+  data: any;
 
   isSelectStartDate: boolean = false;
   minEndDate: any;
@@ -113,6 +115,7 @@ export class AddEditCertificationComponent implements OnInit {
   ngOnInit(): void {
     this.modalData = this.config?.data;
     this.type = this.modalData?.type;
+    this.id = this.modalData?.id;
     if (this.type == 'edit') {
       this.getProfileDetails();
     }
@@ -123,6 +126,11 @@ export class AddEditCertificationComponent implements OnInit {
     this.homeService.getProfileDetails().subscribe((res: any) => {
       if (res) {
         this.userProfileDetails = res.data.user;
+        this.userProfileDetails?.certificates?.forEach((item: any) => {
+          if (item?._id == this.id) {
+            this.data = item;
+          }
+        });
         this.patchValue();
         this.isLoading = false;
       } else {
@@ -131,15 +139,15 @@ export class AddEditCertificationComponent implements OnInit {
     })
   }
   patchValue(): void {
-    let endDate: any = new Date(this.userProfileDetails?.certificates[0]?.expiration_date);
-    let startDate: any = new Date(this.userProfileDetails?.certificates[0]?.obtain_date);
-    let state: any = this.userProfileDetails?.certificates[0]?.state == 1 ? true : false;
+    let endDate: any = new Date(this.data?.expiration_date);
+    let startDate: any = new Date(this.data?.obtain_date);
+    let state: any = this.data?.state == 1 ? true : false;
     this.profileForm?.patchValue({
-      certificationTitle: this.userProfileDetails?.certificates[0]?.certification_title,
-      providerName: this.userProfileDetails?.certificates[0]?.provider_name,
-      providerWebsite: this.userProfileDetails?.certificates[0]?.provider_website,
-      credentials: this.userProfileDetails?.certificates[0]?.credentials,
-      description: this.userProfileDetails?.certificates[0]?.certification_description,
+      certificationTitle: this.data?.certification_title,
+      providerName: this.data?.provider_name,
+      providerWebsite: this.data?.provider_website,
+      credentials: this.data?.credentials,
+      description: this.data?.certification_description,
       endDate: endDate,
       startDate: startDate,
       state: state
@@ -196,7 +204,7 @@ export class AddEditCertificationComponent implements OnInit {
   }
   remove(): void {
     this.publicService?.show_loader?.next(true);
-    this.profileService?.deleteCertification(this.userProfileDetails?.certificates[0]?._id)?.subscribe(
+    this.profileService?.deleteCertification(this.data?._id)?.subscribe(
       (res: any) => {
         if (res?.status == 200) {
           this.ref?.close({ listChanged: true });

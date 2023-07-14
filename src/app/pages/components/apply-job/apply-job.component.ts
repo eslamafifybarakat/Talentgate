@@ -255,6 +255,7 @@ export class ApplyJobComponent implements OnInit {
   applyForJob(): any {
     const ref = this.dialogService.open(ApplyJobStepperComponent, {
       header: this.publicService?.translateTextFromJson('general.applyTo') + ' ' + this.companyName,
+      data: { companyName: this.companyName, id: this.jobId },
       width: '55%',
       styleClass: 'apply-job-dialog',
     });

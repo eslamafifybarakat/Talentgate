@@ -263,6 +263,32 @@
               </ng-container>
             </div>
           </div>
+          <div class="mb-2">
+            <div class="input-container">
+              <label for="coverLetter" class="mb-1 text-main-color label">
+                {{'labels.coverLetter'|translate}}
+              </label>
+              <textarea type="text" class="form-control textarea" formControlName="coverLetter" autocomplete="cc-name"
+                (input)="publicService.clearValidationErrors(secondFormControls?.coverLetter)"
+                [class.is-invalid]="secondFormControls?.coverLetter?.invalid && (secondFormControls?.coverLetter?.dirty || secondFormControls?.coverLetter?.touched)"
+                placeholder="{{'placeholder.coverLetter'|translate}}"></textarea>
+            </div>
+            <div class="mt-2">
+              <ng-container
+                *ngIf="secondFormControls?.coverLetter?.invalid && (secondFormControls?.coverLetter?.dirty || secondFormControls?.coverLetter?.touched)">
+                <ng-container *ngIf="secondFormControls?.coverLetter?.errors?.['required']">
+                  <span class="text-danger fs-8">
+                    {{'validations.required_field'|translate}}
+                  </span>
+                </ng-container>
+                <ng-container *ngIf="secondFormControls?.coverLetter?.errors?.['minlength']">
+                  <span class="text-danger fs-8 d-block">
+                    {{'validations.length'|translate}}
+                  </span>
+                </ng-container>
+              </ng-container>
+            </div>
+          </div>
           <small class="w-50 w-sm-100 mt-3 d-block">{{'profile.submitApplication'|translate}} <span
               class="text-main-color">{{'general.helpCenter'|translate}}</span></small>
         </form>
@@ -345,7 +371,7 @@
         <div class="col-md-6">
           <div class="px-4 pb-4">
             <h6 class="fw-bold fs-6 text-main-color mb-2 content-p">{{'general.questions'|translate}}</h6>
-            <ng-container *ngFor="let item of userProfileDetails?.questions">
+            <ng-container *ngFor="let item of questions">
               <div>
                 <div class="input-container">
                   <p for="message" class="text-main-color label fs-6-1">

@@ -183,6 +183,7 @@
     "driverArrivedToStation": "Driver Arrived To Station"
   },
   "labels":{
+    "coverLetter":"Cover Letter",
     "level":"Level",
     "language":"Language",
     "skills":"Skills",
@@ -203,6 +204,7 @@
     "certificationTitle":"Certification title"
   },
   "placeholder": {
+    "coverLetter":"Enter cover letter",
     "level":"Select level",
     "language":"Select language",
     "skills":"Select skills",

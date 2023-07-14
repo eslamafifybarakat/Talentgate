@@ -9,7 +9,7 @@ import { CountryISO, SearchCountryField } from 'ngx-intl-tel-input';
 import { HomeService } from 'src/app/pages/services/home.service';
 import { Validators, FormBuilder } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-apply-job-stepper',
@@ -39,6 +39,8 @@ export class ApplyJobStepperComponent implements OnInit {
   cvFileName: any;
   cvLink: any;
   questions: any = [];
+  companyName: any;
+  jobId: any;
 
   firstForm: any = this.fb?.group(
     {
@@ -96,6 +98,16 @@ export class ApplyJobStepperComponent implements OnInit {
           updateOn: 'blur',
         },
       ],
+      coverLetter: [
+        '',
+        {
+          validators: [
+            // Validators.required,
+            Validators?.minLength(3),
+          ],
+          updateOn: 'blur',
+        },
+      ],
     }
   );
   get secondFormControls(): any {
@@ -107,6 +119,7 @@ export class ApplyJobStepperComponent implements OnInit {
     private authUserService: AuthUserService,
     public publicService: PublicService,
     private alertsService: AlertsService,
+    private config: DynamicDialogConfig,
     private homeService: HomeService,
     private cdr: ChangeDetectorRef,
     private ref: DynamicDialogRef,
@@ -116,6 +129,9 @@ export class ApplyJobStepperComponent implements OnInit {
   ngOnInit(): void {
     this.currentStep = 0;
     this.getProfileDetails();
+    this.companyName = this.config?.data?.companyName;
+    this.jobId = this.config?.data?.id;
+    this.getListQuestionByJobOffer(this.jobId);
   }
   getProfileDetails() {
     this.isLoading = true;
@@ -124,13 +140,6 @@ export class ApplyJobStepperComponent implements OnInit {
         this.userProfileDetails = res.data.user;
         this.patchValue();
         console.log(this.userProfileDetails);
-        this.userProfileDetails['questions'] = [
-          { question: 'Lorem ipsum dolor sit amet ?', answer: 'Lorem ipsum dolor sit amet' },
-          { question: 'Lorem ipsum dolor sit amet ?', answer: 'Lorem ipsum dolor sit amet' },
-          { question: 'Lorem ipsum dolor sit amet ?', answer: 'Lorem ipsum dolor sit amet' },
-          { question: 'Lorem ipsum dolor sit amet ?', answer: 'Lorem ipsum dolor sit amet' },
-        ]
-        this.questions = this.userProfileDetails?.questions;
         this.isLoading = false;
       } else {
         this.isLoading = false;
@@ -257,29 +266,55 @@ export class ApplyJobStepperComponent implements OnInit {
       });
     this.cdr?.detectChanges();
   }
-
+  getListQuestionByJobOffer(id: any): void {
+    this.homeService?.getListQuestionByJobOffer(id)?.subscribe(
+      (res: any) => {
+        if (res?.status == 200) {
+          let arr: any = [];
+          arr = res?.data?.questions;
+          arr?.forEach((item: any) => {
+            this.questions?.push({
+              _id: item?._id,
+              question: item?.text,
+              answer: null
+            })
+          });
+        } else {
+          res?.error?.message
+            ? this.alertsService?.openSweetAlert('error', res?.error?.message)
+            : '';
+        }
+      },
+      (err: any) => {
+        err ? this.alertsService?.openSweetAlert('error', err) : '';
+      }
+    );
+  }
   confirm(): void {
     this.publicService?.show_loader?.next(true);
     let formInfo: any = this.firstForm?.value;
-    let cv: any;
-    if (this.cvFile != null) {
-      cv = {
-        name_cv: this.cvFileName,
-        date_upload_cv: this.cvFile?.date_upload_cv,
-        link: this.cvFile?.link
-      }
-    } else {
-      cv = this.userProfileDetails?.cv;
-    }
+
+    let arr: any = [];
+    this.questions?.forEach((item: any) => {
+      arr?.push({
+        _id: item?._id,
+        response: item?.answer ? item?.answer : ''
+      })
+    });
     let data = {
-      email: formInfo?.email,
-      phone_number: formInfo.phone_number?.number,
-      country_code: formInfo.phone_number?.countryCode,
-      country: formInfo?.country?._id,
-      city: formInfo.city?._id,
-      cv: cv,
-      questions: this.questions,
-      message: this.secondForm?.value?.message
+      job_offer: this.companyName,
+      candidate_information: {
+        user_name: 'user',
+        email: formInfo?.email,
+        phone_number: formInfo.phone_number?.number,
+        country_code: formInfo.phone_number?.countryCode,
+        country: formInfo?.country?._id,
+        city: formInfo.city?._id,
+      },
+      cv: this.cvFile != null ? this.cvFile?.link : this.userProfileDetails?.cv?.link,
+      cover_letter: this.secondForm?.value?.coverLetter,
+      message: this.secondForm?.value?.message,
+      questions_responses: arr,
     };
     this.homeService?.applyJob(data)?.subscribe(
       (res: any) => {

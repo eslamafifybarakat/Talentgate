@@ -187,6 +187,7 @@
 "driverArrivedToStation":"وصل السائق إلى المحطة"
   },
   "labels": {
+    "coverLetter":"خطاب",
     "level":"المستوي",
     "language":"اللغة",
     "skills":"المهارات",
@@ -220,6 +221,7 @@
     "palateNo": "رقم اللوحة"
   },
   "placeholder": {
+    "coverLetter":"أدخل خطاب",
     "level":"أختر المستوي",
     "language":"أختر اللغة",
     "skills":"أختر المهارات",

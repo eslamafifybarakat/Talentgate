@@ -20,6 +20,8 @@ export class AddEditEducationComponent implements OnInit {
   isLoading: boolean = false;
   modalData: any;
   type: any;
+  id: any;
+  data: any;
 
   degrees: any = [
     {
@@ -108,6 +110,7 @@ export class AddEditEducationComponent implements OnInit {
   ngOnInit(): void {
     this.modalData = this.config?.data;
     this.type = this.modalData?.type;
+    this.id = this.modalData?.id;
     if (this.type == 'edit') {
       this.getProfileDetails();
     }
@@ -117,6 +120,11 @@ export class AddEditEducationComponent implements OnInit {
     this.homeService.getProfileDetails().subscribe((res: any) => {
       if (res) {
         this.userProfileDetails = res.data.user;
+        this.userProfileDetails?.educations?.forEach((item: any) => {
+          if (item?._id == this.id) {
+            this.data = item;
+          }
+        });
         this.patchValue();
         this.isLoading = false;
       } else {
@@ -125,13 +133,13 @@ export class AddEditEducationComponent implements OnInit {
     })
   }
   patchValue(): void {
-    let endDate: any = new Date(this.userProfileDetails?.educations[0]?.end_date);
-    let startDate: any = new Date(this.userProfileDetails?.educations[0]?.start_date);
-    let state: any = this.userProfileDetails?.educations[0]?.state == 1 ? true : false;
+    let endDate: any = new Date(this.data?.end_date);
+    let startDate: any = new Date(this.data?.start_date);
+    let state: any = this.data?.state == 1 ? true : false;
     this.profileForm?.patchValue({
-      majorName: this.userProfileDetails?.educations[0]?.major_name?.name,
-      instituteName: this.userProfileDetails?.educations[0]?.institute_name,
-      degreeName: this.userProfileDetails?.educations[0]?.degree_name,
+      majorName: this.data?.major_name?.name,
+      instituteName: this.data?.institute_name,
+      degreeName: this.data?.degree_name,
       endDate: endDate,
       startDate: startDate,
       state: state
@@ -186,7 +194,7 @@ export class AddEditEducationComponent implements OnInit {
   }
   remove(): void {
     this.publicService?.show_loader?.next(true);
-    this.profileService?.deleteEducation(this.userProfileDetails?.educations[0]?._id)?.subscribe(
+    this.profileService?.deleteEducation(this.data?._id)?.subscribe(
       (res: any) => {
         if (res?.status == 200) {
           this.ref?.close({ listChanged: true });
