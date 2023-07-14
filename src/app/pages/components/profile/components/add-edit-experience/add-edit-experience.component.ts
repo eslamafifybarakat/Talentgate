@@ -160,6 +160,7 @@ export class AddEditExperienceComponent implements OnInit {
       this.getProfileDetails();
     } else {
       this.getCountries();
+      this.getSkills();
     }
   }
 
@@ -184,14 +185,7 @@ export class AddEditExperienceComponent implements OnInit {
     let endDate: any = new Date(this.data?.end_date);
     let startDate: any = new Date(this.data?.start_date);
     let isCurrentJob: any = this.data?.is_current_job == 1 ? true : false;
-    let skills: any = [{
-      "_id": "648b013c81bb6660b05cb2b7",
-      "name": "javascript",
-      "state": 0,
-      "type": 0,
-      "rate": 3,
-      "rates_number": 1,
-    }]
+
     this.profileForm?.patchValue({
       jobTitle: this.data?.job_title,
       companyName: this.data?.company?.name_company,
@@ -199,9 +193,9 @@ export class AddEditExperienceComponent implements OnInit {
       endDate: endDate,
       startDate: startDate,
       isCurrentJob: isCurrentJob,
-      skills: skills
     });
     this.getCountries();
+    this.getSkills();
   }
 
   getCountries(): any {
@@ -261,7 +255,37 @@ export class AddEditExperienceComponent implements OnInit {
     this.publicService?.removeValidators(this.profileForm, ['endDate']);
     this.profileForm?.get('endDate')?.reset();
   }
-
+  getSkills(): any {
+    this.isLoadingCountry = true;
+    this.profileService?.getSkills()?.subscribe(
+      (res: any) => {
+        if (res?.status == 200) {
+          let arr: any = [];
+          arr = res?.data ? res?.data : [];
+          this.skills = arr;
+          this.isLoadingSkills = false;
+          let arrSkills: any = [];
+          this.skills?.forEach((item: any) => {
+            this.data?.skills?.forEach((element: any) => {
+              if (item?._id == element?._id) {
+                arrSkills?.push(item);
+              }
+            });
+          });
+          this.profileForm?.patchValue({
+            skills: arrSkills
+          });
+        } else {
+          res?.message ? this.alertsService?.openSweetAlert('info', res?.message) : '';
+          this.isLoadingCountry = false;
+        }
+      },
+      (err: any) => {
+        err?.message ? this.alertsService?.openSweetAlert('error', err?.message) : '';
+        this.isLoadingCountry = false;
+      });
+    this.cdr?.detectChanges();
+  }
   submit(): void {
     if (this.profileForm?.valid) {
       this.publicService?.show_loader?.next(true);
@@ -272,16 +296,17 @@ export class AddEditExperienceComponent implements OnInit {
       });
       let data = {
         job_title: formInfo?.jobTitle,
-        name_company: formInfo?.companyName,
+        company: formInfo?.companyName,
         country: formInfo?.country?._id,
         city: formInfo.city?._id,
         description: formInfo?.description,
         start_date: formInfo?.startDate,
         end_date: formInfo?.endDate,
         is_current_job: formInfo?.isCurrentJob == true ? 1 : 0,
-        skillsIds: skillsIds
+        // job_type: 0,
+        skills: skillsIds
       };
-      this.profileService?.addEditExperience(data)?.subscribe(
+      this.profileService?.addEditExperience(data, this.id ? this.id : null)?.subscribe(
         (res: any) => {
           if (res?.status == 200) {
             this.ref?.close({ listChanged: true });

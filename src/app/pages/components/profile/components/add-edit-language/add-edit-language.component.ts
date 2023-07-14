@@ -21,6 +21,7 @@ export class AddEditLanguageComponent implements OnInit {
 
   levels: any = [];
   languages: any = [];
+  isLoadingLanguages: boolean = false;
   type: any;
   id: any;
   data: any;
@@ -69,6 +70,8 @@ export class AddEditLanguageComponent implements OnInit {
     this.id = this.modalData?.id;
     if (this.type == 'edit') {
       this.getProfileDetails();
+    } else {
+      this.getLanguages();
     }
   }
   getProfileDetails() {
@@ -81,8 +84,8 @@ export class AddEditLanguageComponent implements OnInit {
             this.data = item;
           }
         });
-        // this.data = this.userProfileDetails?.languages[0];
         this.patchValue();
+        this.getLanguages();
         this.isLoading = false;
       } else {
         this.isLoading = false;
@@ -107,16 +110,43 @@ export class AddEditLanguageComponent implements OnInit {
       language: language
     });
   }
+  getLanguages(): any {
+    this.isLoadingLanguages = true;
+    this.profileService?.getLanguages()?.subscribe(
+      (res: any) => {
+        if (res?.status == 200) {
+          let arr: any = [];
+          arr = res?.data?.languages ? res?.data?.languages : [];
+          this.languages = arr;
+          this.isLoadingLanguages = false;
 
+          this.languages?.forEach((item: any) => {
+            if (item?.name == this.data?.language?.name) {
+              this.profileForm?.patchValue({
+                language: item
+              })
+            }
+          });
+        } else {
+          res?.message ? this.alertsService?.openSweetAlert('info', res?.message) : '';
+          this.isLoadingLanguages = false;
+        }
+      },
+      (err: any) => {
+        err?.message ? this.alertsService?.openSweetAlert('error', err?.message) : '';
+        this.isLoadingLanguages = false;
+      });
+    this.cdr?.detectChanges();
+  }
   submit(): void {
     if (this.profileForm?.valid) {
       this.publicService?.show_loader?.next(true);
       let formInfo: any = this.profileForm?.value;
       let data = {
-        levelId: formInfo?.level?._id,
-        languageId: formInfo?.language?._id,
+        proficiency_Levels: formInfo?.level?._id,
+        language: formInfo?.language?.name,
       };
-      this.profileService?.addEditLanguage(data)?.subscribe(
+      this.profileService?.addEditLanguage(data, this.id ? this.id : null)?.subscribe(
         (res: any) => {
           if (res?.status == 200) {
             this.ref?.close({ listChanged: true });
@@ -140,7 +170,7 @@ export class AddEditLanguageComponent implements OnInit {
   }
   remove(): void {
     this.publicService?.show_loader?.next(true);
-    this.profileService?.deleteLanguage(this.userProfileDetails?.language[0]?._id)?.subscribe(
+    this.profileService?.deleteLanguage(this.id)?.subscribe(
       (res: any) => {
         if (res?.status == 200) {
           this.ref?.close({ listChanged: true });

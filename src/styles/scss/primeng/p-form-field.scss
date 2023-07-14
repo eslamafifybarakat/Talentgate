@@ -136,6 +136,14 @@ p-inputnumber,
     color: var(--text-white-color) !important;
     border-radius: 29px !important;
   }
+  .p-multiselect-panel
+    .p-multiselect-header
+    .p-multiselect-filter-container
+    .p-inputtext {
+    height: 2.5rem !important;
+    padding: 1rem !important;
+    border-radius: 6px !important;
+  }
 }
 .p-dropdown-trigger {
   justify-content: end !important;

@@ -163,14 +163,14 @@ export class AddEditEducationComponent implements OnInit {
       this.publicService?.show_loader?.next(true);
       let formInfo: any = this.profileForm?.value;
       let data = {
-        degreeId: formInfo?.degreeName?._id,
+        degree_name: formInfo?.degreeName?.name,
         institute_name: formInfo?.instituteName,
         major_name: formInfo?.majorName,
         start_date: formInfo?.startDate,
         end_date: formInfo?.endDate,
-        state: formInfo?.state == true ? 1 : 0
+        // state: formInfo?.state == true ? 1 : 0
       };
-      this.profileService?.addEditEducation(data)?.subscribe(
+      this.profileService?.addEditEducation(data, this.id ? this.id : null)?.subscribe(
         (res: any) => {
           if (res?.status == 200) {
             this.ref?.close({ listChanged: true });
@@ -194,7 +194,7 @@ export class AddEditEducationComponent implements OnInit {
   }
   remove(): void {
     this.publicService?.show_loader?.next(true);
-    this.profileService?.deleteEducation(this.data?._id)?.subscribe(
+    this.profileService?.deleteEducation(this.id)?.subscribe(
       (res: any) => {
         if (res?.status == 200) {
           this.ref?.close({ listChanged: true });

@@ -26,15 +26,21 @@ export const roots = {
     getListQuestionByJobOffer: "/job_offers/get_list_question_by_job_offer"
   },
   profile: {
-    editProfile: '/profile/edit',
-    addEditEducation: '/add_edit_education',
-    deleteEducation: '/delete_education',
-    addEditCertification: '/add_edit_certification',
-    deleteCertification: '/delete_certification',
-    addEditExperience: '/add_edit_experience',
-    deleteExperience: '/delete_experience',
-    addEditLanguage: '/add_edit_Language',
-    deleteLanguage: '/deleteLanguage'
+    editProfile: '/users/update_profile',
+    addEditEducation: '/educations',
+    deleteEducation: '/educations',
+    addCertification: '/certificates/by_candidate',
+    editCertification: '/certificates',
+    deleteCertification: '/certificates',
+    addEditExperience: '/professional_experiences',
+    deleteExperience: '/professional_experiences',
+    addLanguage: '/languages/create_by_candidate',
+    editLanguage: '/languages',
+    byCandidate: '/by_candidate',
+    deleteLanguage: '/languages',
+    getSkills: '/skills',
+    getLanguages: '/languages/list',
+    // getLanguages: '/languages/list_languages',
   },
   scheduler: {
     events: '/events'

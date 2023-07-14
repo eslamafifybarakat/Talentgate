@@ -129,6 +129,8 @@ export class AddEditCertificationComponent implements OnInit {
         this.userProfileDetails?.certificates?.forEach((item: any) => {
           if (item?._id == this.id) {
             this.data = item;
+            console.log(item);
+
           }
         });
         this.patchValue();
@@ -141,7 +143,7 @@ export class AddEditCertificationComponent implements OnInit {
   patchValue(): void {
     let endDate: any = new Date(this.data?.expiration_date);
     let startDate: any = new Date(this.data?.obtain_date);
-    let state: any = this.data?.state == 1 ? true : false;
+    let state: any = this.data?.status == 1 ? true : false;
     this.profileForm?.patchValue({
       certificationTitle: this.data?.certification_title,
       providerName: this.data?.provider_name,
@@ -178,9 +180,9 @@ export class AddEditCertificationComponent implements OnInit {
         certification_description: formInfo?.description,
         obtain_date: formInfo?.startDate,
         expiration_date: formInfo?.endDate,
-        state: formInfo?.state == true ? 1 : 0
+        status: formInfo?.state == true ? 1 : 0
       };
-      this.profileService?.addEditCertification(data)?.subscribe(
+      this.profileService?.addEditCertification(data, this.id ? this.id : null)?.subscribe(
         (res: any) => {
           if (res?.status == 200) {
             this.ref?.close({ listChanged: true });
