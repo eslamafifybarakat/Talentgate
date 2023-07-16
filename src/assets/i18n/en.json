@@ -326,6 +326,8 @@
   "editProfile":"Edit Profile",
   "editEducation":"Edit Education",
   "addEducation":"Add Education",
+  "addSkill":"Add Skill",
+  "editSkill":"Edit Skill",
   "submitApplication":"Submitting this application won’t change your talentgate profile. Application powered by talentgate |",
 
   "analytics":"Analytics",

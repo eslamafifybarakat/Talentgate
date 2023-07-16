@@ -1,4 +1,5 @@
 import { AddEditCertificationComponent } from './components/add-edit-certification/add-edit-certification.component';
+import { AddEditSkillComponent } from './components/add-edit-skill/add-edit-skill.component';
 import { AddEditExperienceComponent } from './components/add-edit-experience/add-edit-experience.component';
 import { AddEditLanguageComponent } from './components/add-edit-language/add-edit-language.component';
 import { AddEditEducationComponent } from './components/add-edit-education/add-edit-education.component';
@@ -47,6 +48,7 @@ export class ProfileComponent implements OnInit {
   isEditLanguages: boolean = false
   isEditEducations: boolean = false
   isEditCertificates: boolean = false
+  isEditSkills: boolean = false
 
   // @ViewChild('aboutTextArea', { static: false }) aboutTextArea!: ElementRef;
   constructor(
@@ -318,6 +320,19 @@ export class ProfileComponent implements OnInit {
   addOrEditLanguage(type?: any, id?: any): any {
     const ref = this.dialogService.open(AddEditLanguageComponent, {
       header: type == 'edit' ? this.publicService?.translateTextFromJson('profile.editLanguage') : this.publicService?.translateTextFromJson('profile.addLanguage'),
+      width: '55%',
+      data: { type: type, id: id },
+      styleClass: 'apply-job-dialog',
+    });
+    ref.onClose.subscribe((res: any) => {
+      if (res?.listChanged) {
+        this.getProfileDetails();
+      }
+    });
+  }
+  addOrEditSkill(type?: any, id?: any): any {
+    const ref = this.dialogService.open(AddEditSkillComponent, {
+      header: type == 'edit' ? this.publicService?.translateTextFromJson('profile.editSkill') : this.publicService?.translateTextFromJson('profile.addSkill'),
       width: '55%',
       data: { type: type, id: id },
       styleClass: 'apply-job-dialog',

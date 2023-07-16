@@ -176,20 +176,32 @@
             <div class="global-card h-100">
               <div class="d-flex justify-content-between">
                 <h5 class="card-title-color fs-5 fw-bold mb-0">{{'profile.skills'|translate}}</h5>
-                <a><i class="fas fa-pen-to-square text-main-color"></i></a>
+                <div class="d-flex gap-3">
+                  <a (click)="addOrEditSkill()"><i class="pi pi-plus fs-5-1 text-main-color fw-600"></i></a>
+                  <a (click)="isEditSkills=true"><i class="fas fa-pen-to-square text-main-color"></i></a>
+                </div>
+
               </div>
               <div class="mt-4 d-flex justify-content-between flex-column">
                 <ng-container *ngIf="userProfileDetails?.skills.length>0; else noSkills">
                   <div class="content-info">
                     <ng-container *ngFor="let item of userProfileDetails?.skills">
-                      <div class="mb-3">
-                        <h6 class="text-main-color fw-600 fs-6-1 mb-1">User Interface Design <span
-                            class="ps-1">(7.5/10)</span>
-                        </h6>
-                        <div class="text-main-color d-flex gap-2 align-items-center">
-                          <i class="fas fa-users"></i>
-                          <p class="fs-6-1">2 Assessments</p>
+                      <div class="d-flex justify-content-between gap-2 w-100">
+                        <div class="mb-3">
+                          <h6 class="text-main-color fw-600 fs-6-1 mb-1">User Interface Design <span
+                              class="ps-1">(7.5/10)</span>
+                          </h6>
+                          <div class="text-main-color d-flex gap-2 align-items-center">
+                            <i class="fas fa-users"></i>
+                            <p class="fs-6-1">2 Assessments</p>
+                          </div>
                         </div>
+                        <ng-container *ngIf="isEditSkills">
+                          <div class="me-auto">
+                            <a (click)="addOrEditSkill('edit',item?._id)"><i
+                                class="fas fa-pen-to-square text-main-color"></i></a>
+                          </div>
+                        </ng-container>
                       </div>
                     </ng-container>
                   </div>

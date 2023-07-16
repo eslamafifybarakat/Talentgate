@@ -114,3 +114,8 @@
 .form-check-label {
   color: var(--grey-100);
 }
+:host::ng-deep {
+  .p-dropdown .p-dropdown-trigger {
+    padding: 1rem !important;
+  }
+}

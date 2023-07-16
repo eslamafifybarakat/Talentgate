@@ -459,6 +459,8 @@
     "editProfile":"تعديل الملف الشخصي",
     "editEducation":"تعديل الدراسة",
     "addEducation":"إضافة دراسة",
+    "addSkill":"إضافة مهارة",
+    "editSkill":"تعديل مهارة",
     "degreeDetails":"تفاصيل الدرجة",
   "analytics":"تحليلات",
     "appliedJobs":"الوظائف التطبيقية",
@@ -472,6 +474,7 @@
   "languages":"اللغات",
   "certifications":"الشهادات",
   "showCredentials":"إظهار أوراق الاعتماد"
+
   },
   "primeng": {
     "startsWith": "إبدا ب",
