@@ -68,4 +68,8 @@ export class ProfileService {
   getLanguages(): Observable<any> {
     return this.http?.get<any>(this.apiUrl + roots?.profile?.getLanguages + '/' + this.langKey);
   }
+
+  getDegreeName(): Observable<any> {
+    return this.http?.get<any>(this.apiUrl + roots?.profile?.degreeNameEducation + '/' + this.langKey);
+  }
 }

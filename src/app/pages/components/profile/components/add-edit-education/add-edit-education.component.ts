@@ -23,23 +23,6 @@ export class AddEditEducationComponent implements OnInit {
   id: any;
   data: any;
 
-  degrees: any = [
-    {
-      "_id": "640f4f876a313a46e4a3c307",
-      "name": "bachelor",
-      "state": 0
-    },
-    {
-      "_id": "640f4f876a313a46e4a3c309",
-      "name": "string",
-      "state": 0
-    },
-    {
-      "_id": "640f4f876a313a46e4a3c308",
-      "name": "string2",
-      "state": 0
-    }
-  ];
   isSelectStartDate: boolean = false;
   minEndDate: any;
 
@@ -92,6 +75,7 @@ export class AddEditEducationComponent implements OnInit {
       state: [null, []]
     }
   );
+  degrees: any;
   get formControls(): any {
     return this.profileForm?.controls;
   }
@@ -114,6 +98,16 @@ export class AddEditEducationComponent implements OnInit {
     if (this.type == 'edit') {
       this.getProfileDetails();
     }
+    this.getDegreeName()
+  }
+
+  getDegreeName()
+  {
+    this.profileService.getDegreeName().subscribe((res)=>{
+      console.log(res)
+      this.degrees = res.data;
+      console.log('dddddddddddddddddd',this.degrees)
+    })
   }
   getProfileDetails() {
     this.isLoading = true;
@@ -220,4 +214,5 @@ export class AddEditEducationComponent implements OnInit {
   ngOnDestroy(): void {
     this.unsubscribe?.forEach((sb) => sb?.unsubscribe());
   }
+
 }

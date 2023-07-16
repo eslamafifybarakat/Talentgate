@@ -40,6 +40,7 @@ export const roots = {
     deleteLanguage: '/languages',
     getSkills: '/skills',
     getLanguages: '/languages/list',
+    degreeNameEducation: '/degree_name_educations'
     // getLanguages: '/languages/list_languages',
   },
   scheduler: {
