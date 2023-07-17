@@ -72,4 +72,20 @@ export class ProfileService {
   getDegreeName(): Observable<any> {
     return this.http?.get<any>(this.apiUrl + roots?.profile?.degreeNameEducation + '/' + this.langKey);
   }
+
+  updateCoverImage(file:File): Observable<any>{
+    const formData = new FormData();
+    formData.append('cover_picture', file);
+
+    return this.http.put<any>(this.apiUrl + '/candidates/update_cover_picture', formData);
+    
+  }
+
+  updateImage(file:File): Observable<any>{
+    const formData = new FormData();
+    formData.append('image', file);
+
+    return this.http.put<any>(this.apiUrl + '/candidates/update_cover_picture', formData);
+    
+  }
 }

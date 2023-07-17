@@ -26,7 +26,7 @@ export const roots = {
     getListQuestionByJobOffer: "/job_offers/get_list_question_by_job_offer"
   },
   profile: {
-    editProfile: '/users/update_profile',
+    editProfile: '/candidates/update_profile',
     addEditEducation: '/educations',
     deleteEducation: '/educations',
     addCertification: '/certificates/by_candidate',
@@ -35,9 +35,9 @@ export const roots = {
     addEditExperience: '/professional_experiences',
     deleteExperience: '/professional_experiences',
     addLanguage: '/languages/create_by_candidate',
-    editLanguage: '/languages',
+    editLanguage: '/languages/updateLanguageByCandidate',
     byCandidate: '/by_candidate',
-    deleteLanguage: '/languages',
+    deleteLanguage: '/languages/deleteLanguageByCandidate',
     getSkills: '/skills',
     getLanguages: '/languages/list',
     degreeNameEducation: '/degree_name_educations'

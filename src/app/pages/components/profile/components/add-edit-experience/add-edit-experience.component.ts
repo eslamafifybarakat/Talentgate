@@ -38,28 +38,7 @@ export class AddEditExperienceComponent implements OnInit {
   isSelectStartDate: boolean = false;
   minEndDate: any;
 
-  skills: any = [{
-    "_id": "648b013c81bb6660b05cb2b7",
-    "name": "angular js",
-    "state": 0,
-    "type": 0,
-    "rate": 3,
-    "rates_number": 1,
-  }, {
-    "_id": "648b013c81bb6660b05cb2b7",
-    "name": "angular",
-    "state": 0,
-    "type": 0,
-    "rate": 3,
-    "rates_number": 1,
-  }, {
-    "_id": "648b013c81bb6660b05cb2b7",
-    "name": "javascript",
-    "state": 0,
-    "type": 0,
-    "rate": 3,
-    "rates_number": 1,
-  },];
+  skills: any 
   isLoadingSkills: boolean = false;
 
   profileForm = this.fb?.group(

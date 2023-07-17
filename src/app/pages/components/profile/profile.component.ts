@@ -9,7 +9,7 @@ import { AlertsService } from './../../../core/services/alerts/alerts.service';
 import { PublicService } from './../../../shared/services/public.service';
 import { HomeService } from './../../services/home.service';
 import { DialogService } from 'primeng/dynamicdialog';
-
+import { ProfileService } from '../../services/profile.service';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -53,6 +53,7 @@ export class ProfileComponent implements OnInit {
   // @ViewChild('aboutTextArea', { static: false }) aboutTextArea!: ElementRef;
   constructor(
     private alertsService: AlertsService,
+    private profileService: ProfileService,
     private publicService: PublicService,
     private dialogService: DialogService,
     private homeService: HomeService,
@@ -250,9 +251,16 @@ export class ProfileComponent implements OnInit {
     this.cdr?.detectChanges();
   }
   selectBgImage(event: any): void {
+    const file: File = event.target.files[0];
     let fileReader = new FileReader();
-    fileReader.readAsDataURL(event?.target?.files[0]);
-    fileReader.onload = this._handleReaderLoadedBgImage.bind(this);
+    fileReader.readAsDataURL(file);
+    fileReader.onload = (e: any) => {
+      this._handleReaderLoadedBgImage(e);
+    this.profileService.updateCoverImage(file).subscribe((res)=>{
+      
+    });
+    this.cdr.detectChanges();
+    }
   }
   _handleReaderLoadedBgImage(e: any): void {
     var reader: any = null;
