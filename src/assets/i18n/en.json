@@ -10,6 +10,7 @@
 "profile":"Profile"
   },
   "general": {
+    "assessments":"Assessments",
     "lastUsed":"Last used on",
     "UploadResume": "Upload resume",
     "resume":"Resume",

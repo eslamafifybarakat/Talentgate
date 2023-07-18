@@ -82,6 +82,14 @@
 }
 
 @media (max-width: 767px) {
+  .profile-skills-modal {
+    .border-right {
+      border-right: 0 !important;
+      border-left: 0 !important;
+      border-bottom: 1px solid #dbdbdb;
+      padding-bottom: 15px !important;
+    }
+  }
   .title-lg {
     font-size: 3.5rem;
   }

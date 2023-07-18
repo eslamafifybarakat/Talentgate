@@ -1,0 +1,26 @@
+.person-img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+.hr {
+  border-width: 2px !important;
+}
+.border-right {
+  border-right: 1px solid #dbdbdb;
+}
+:host::ng-deep {
+  .p-paginator .p-paginator-first,
+  .p-paginator .p-paginator-last {
+    display: none !important;
+  }
+  .p-paginator .p-paginator-pages .p-paginator-page {
+    min-width: 2rem !important;
+    height: 2rem !important;
+    border-radius: 10% !important;
+    border: 1px solid var(--bg-main-color) !important;
+  }
+  .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+    color: var(--text-white-color) !important;
+  }
+}

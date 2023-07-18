@@ -40,8 +40,10 @@ export const roots = {
     deleteLanguage: '/languages/deleteLanguageByCandidate',
     getSkills: '/skills',
     getLanguages: '/languages/list',
-    degreeNameEducation: '/degree_name_educations'
+    degreeNameEducation: '/degree_name_educations',
     // getLanguages: '/languages/list_languages',
+    editResume: '/resumes/update_resume',
+
   },
   scheduler: {
     events: '/events'

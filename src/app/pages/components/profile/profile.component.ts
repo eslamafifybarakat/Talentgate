@@ -130,11 +130,23 @@ export class ProfileComponent implements OnInit {
     this.isEditAbout = true;
   }
   saveEditText(): void {
+    this.profileService?.editResume(this.aboutMe)?.subscribe(
+      (res: any) => {
+        if (res?.status == 200) {
+          this.isEditAbout = false;
+        } else {
+          res?.message ? this.alertsService?.openSweetAlert('info', res?.message) : '';
+        }
+      },
+      (err: any) => {
+        err?.message ? this.alertsService?.openSweetAlert('error', err?.message) : '';
+      });
+    this.cdr?.detectChanges();
     // this.aboutText = this.aboutTextarea;
-    this.homeService.editResume(this.aboutMe, this.aboutMeId).subscribe((res) => {
-      console.log(res);
+    // this.homeService.editResume(this.aboutMe, this.aboutMeId).subscribe((res) => {
+    //   console.log(res);
 
-    })
+    // })
     // this.isEditAbout = false;
   }
 
@@ -256,10 +268,10 @@ export class ProfileComponent implements OnInit {
     fileReader.readAsDataURL(file);
     fileReader.onload = (e: any) => {
       this._handleReaderLoadedBgImage(e);
-    this.profileService.updateCoverImage(file).subscribe((res)=>{
-      
-    });
-    this.cdr.detectChanges();
+      this.profileService.updateCoverImage(file).subscribe((res) => {
+
+      });
+      this.cdr.detectChanges();
     }
   }
   _handleReaderLoadedBgImage(e: any): void {

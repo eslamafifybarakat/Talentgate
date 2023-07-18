@@ -1,42 +1,85 @@
-<div class="mt-3" id="profile-modal">
+<div class="mt-3 profile-skills-modal" id="profile-modal">
   <ng-container *ngIf="isLoading; else noLoading">
     <div class="px-4 pb-4">
       <app-skeleton [type]="'profile-modal'"></app-skeleton>
     </div>
   </ng-container>
   <ng-template #noLoading>
-  <div class="px-4 pb-4">
-    <p>Assesments</p>
-    <div class="d-flex">
-
-    </div>
-
-    <div class="mb-4">
-      <label class="form-label required">
-        {{"labels.skills"|translate}}
-      </label>
-      <span class="p-input-icon-right select-loading d-block">
-        <p-multiSelect appendTo="body" [options]="skills" formControlName="skills" display="chip"
-          [readonly]="isLoadingSkills" [virtualScroll]="true" [showClear]="true" [virtualScrollItemSize]="38"
-          scrollHeight="200px" defaultLabel="{{'placeholder.skills'|translate}}" [showToggleAll]="true"
-          optionLabel="name"
-          [class.ng-dirty]="formControls?.skills?.invalid && (formControls?.skills?.dirty || formControls?.skills?.touched)"></p-multiSelect>
-        <ng-container *ngIf="isLoadingSkills">
-          <i class="pi pi-spin pi-spinner"></i>
+    <div class="px-4 pb-4">
+      <h5 class="mb-4 text-main-color">{{'general.assessments'|translate}}</h5>
+      <div class="row gx-4">
+        <ng-container *ngFor="let item of skillsData?.slice(first, first + rows); let i = index;">
+          <div class="col-md-6 pe-4 mt-md-0 mt-3" [class.border-right]="i==0&&skillsData?.length>1">
+            <div class="h-100">
+              <div class="d-flex justify-content-between gap-2 w-100">
+                <div class="mb-3">
+                  <h6 class="text-main-color fw-600 fs-6-1 mb-1">{{item?.name}} <span
+                      class="ps-1">({{item?.rate}}/{{item?.allRate}})</span>
+                  </h6>
+                  <div class="text-main-color d-flex gap-2 align-items-center">
+                    <i class="fas fa-users"></i>
+                    <p class="fs-6-1">{{item?.assessments?.length}} Assessments</p>
+                  </div>
+                </div>
+                <div class="me-auto">
+                  <a (click)="remove(item?._id)"><i class="fas fa-trash text-main-color"></i></a>
+                </div>
+              </div>
+              <ng-container *ngFor="let item of item?.assessments;let index=index">
+                <div class="ms-sm-5 ms-3">
+                  <div class="d-flex align-items-center gap-3 flex-wrap">
+                    <img class="person-img shadow-sm" [src]="item?.img"
+                      onerror="src='assets/images/not-found/no-user.svg'" alt="">
+                    <div>
+                      <h5 class="text-main-color fs-6 mb-0">{{item?.name}} ({{item?.rate}})</h5>
+                      <p class="mb-0 text-main-color fs-6-1">{{item?.position}}</p>
+                    </div>
+                  </div>
+                  <hr class="my-2 hr" [class.d-none]="index>=skillsData?.length-1">
+                </div>
+              </ng-container>
+            </div>
+          </div>
         </ng-container>
-      </span>
-      <ng-container
-        *ngIf="formControls?.skills?.invalid && (formControls?.skills?.dirty || formControls?.skills?.touched)">
-        <div class="mt-1">
-          <ng-container *ngIf="formControls?.skills?.errors?.['required']">
-            <span class="text-danger fs-8">
-              {{'validations.required_field'|translate}}
-            </span>
+      </div>
+      <p-paginator [rows]="rows" [totalRecords]="totalRecords" [styleClass]="'justify-content-end'" [first]="first"
+        (onPageChange)="onPageChange($event)" [pageLinkSize]="3"></p-paginator>
+      <div class="mb-4">
+        <form [formGroup]="skillsForm">
+          <label class="form-label required">
+            {{"labels.skills"|translate}}
+          </label>
+          <span class="p-input-icon-right select-loading d-block">
+            <p-multiSelect appendTo="body" [options]="skills" formControlName="skills" display="chip"
+              [readonly]="isLoadingSkills" [virtualScroll]="true" [showClear]="true" [virtualScrollItemSize]="38"
+              scrollHeight="200px" defaultLabel="{{'placeholder.skills'|translate}}" [showToggleAll]="true"
+              optionLabel="name"
+              [class.ng-dirty]="formControls?.skills?.invalid && (formControls?.skills?.dirty || formControls?.skills?.touched)"></p-multiSelect>
+            <ng-container *ngIf="isLoadingSkills">
+              <i class="pi pi-spin pi-spinner"></i>
+            </ng-container>
+          </span>
+          <ng-container
+            *ngIf="formControls?.skills?.invalid && (formControls?.skills?.dirty || formControls?.skills?.touched)">
+            <div class="mt-1">
+              <ng-container *ngIf="formControls?.skills?.errors?.['required']">
+                <span class="text-danger fs-8">
+                  {{'validations.required_field'|translate}}
+                </span>
+              </ng-container>
+            </div>
           </ng-container>
-        </div>
-      </ng-container>
-    </div>
+        </form>
+      </div>
 
-    <p class="mt-5">Submitting this application won’t change your talentgate profile. Application powered by talentgate | Help Center</p>
-  </div>
-</ng-template>
+      <p class="mt-5">Submitting this application won’t change your talentgate profile. Application powered by
+        talentgate | Help Center</p>
+    </div>
+    <div class="d-flex gap-3 align-items-center justify-content-end p-4 pt-2 flex-wrap">
+
+      <div class="d-flex gap-3 align-items-center flex-wrap">
+        <a (click)="cancel()" class="text-main-color">{{'general.cancel'|translate}}</a>
+        <button (click)="submit()" class="btn btn-solid-main rounded-pill py-1">{{'general.save'|translate}}</button>
+      </div>
+    </div>
+  </ng-template>

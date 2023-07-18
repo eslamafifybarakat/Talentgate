@@ -138,3 +138,23 @@
 .auth-form .firstdiv {
   background-position: right !important;
 }
+.profile-skills-modal {
+  .border-right {
+    border-right: 0 !important;
+    border-left: 1px solid #dbdbdb;
+  }
+}
+.ms-5 {
+  margin-right: 3rem !important;
+  margin-left: 0 !important;
+}
+.p-paginator .p-paginator-prev,
+.p-paginator .p-paginator-next {
+  transform: scaleX(-1) !important;
+}
+@media (min-width: 576px) {
+  .ms-sm-5 {
+    margin-right: 3rem !important;
+    margin-left: 0 !important;
+  }
+}

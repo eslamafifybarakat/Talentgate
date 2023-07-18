@@ -16,7 +16,6 @@
     min-width: 120px;
     height: 120px;
     margin-top: -65px;
-    border: 2px solid var(--bg-white-color);
     z-index: 8;
     .plus {
       width: 30px;
@@ -26,6 +25,11 @@
       top: 65%;
       z-index: 88;
       background-color: var(--bg-main-color);
+    }
+    img {
+      width: 120px !important;
+      height: 120px !important;
+      border: 2px solid var(--bg-white-color);
     }
   }
   .rate {
@@ -157,7 +161,7 @@
 .no-data {
   width: 200px;
 }
-.skills{
+.skills {
   color: #254472;
   font-size: 0.9rem;
 }

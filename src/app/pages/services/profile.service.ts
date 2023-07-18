@@ -65,6 +65,17 @@ export class ProfileService {
   getSkills(): Observable<any> {
     return this.http?.get<any>(this.apiUrl + roots?.profile?.getSkills + '/' + this.langKey);
   }
+  deleteSkills(id: any): Observable<any> {
+    return this.http?.delete<any>(this.apiUrl + roots?.profile?.getSkills + '/' + id);
+  }
+  addEditSkill(data: any, id?: any): Observable<any> {
+    if (id) {
+      return this.http?.put<any>(this.apiUrl + roots?.profile?.getSkills + '/' + id, data);
+
+    } else {
+      return this.http?.post<any>(this.apiUrl + roots?.profile?.getSkills + '/' + roots?.profile?.byCandidate, data);
+    }
+  }
   getLanguages(): Observable<any> {
     return this.http?.get<any>(this.apiUrl + roots?.profile?.getLanguages + '/' + this.langKey);
   }
@@ -73,19 +84,27 @@ export class ProfileService {
     return this.http?.get<any>(this.apiUrl + roots?.profile?.degreeNameEducation + '/' + this.langKey);
   }
 
-  updateCoverImage(file:File): Observable<any>{
+  updateCoverImage(file: File): Observable<any> {
     const formData = new FormData();
     formData.append('cover_picture', file);
 
     return this.http.put<any>(this.apiUrl + '/candidates/update_cover_picture', formData);
-    
+
   }
 
-  updateImage(file:File): Observable<any>{
+  updateImage(file: File): Observable<any> {
     const formData = new FormData();
     formData.append('image', file);
 
     return this.http.put<any>(this.apiUrl + '/candidates/update_cover_picture', formData);
-    
+  }
+
+  editResume(about_me: any): Observable<any> {
+    let data: any = {};
+    if (about_me) {
+      data['about_me'] = about_me;
+    }
+    return this.http.put<any>(this.apiUrl + roots?.profile?.editResume, data);
+
   }
 }
