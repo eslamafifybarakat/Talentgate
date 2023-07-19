@@ -79,6 +79,7 @@ export class AddEditSkillComponent implements OnInit {
           if (item?._id == this.id) {
             this.data = item;
           }
+          console.log(this.data)
         });
 
         this.isLoading = false;

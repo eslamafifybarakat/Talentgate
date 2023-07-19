@@ -53,13 +53,9 @@ export class ApplyJobComponent implements OnInit {
   links: any = [
     { id: 1, name: 'Most relevant', dropdown: [{ id: 0, name: 'most_recent' }, { id: 1, name: 'most_relevant' }], value: 'mostRelevant' },
     { id: 2, name: 'Experience level', dropdown: [{ id: 0, name: 'Intern ' }, { id: 1, name: 'Entry_level' }, { id: 2, name: 'Junior ' }, { id: 3, name: 'Intermediate' }, { id: 4, name: 'Mid-level' }, { id: 5, name: 'Senior ' }, { id: 6, name: 'Manage' }], value: 'experienceLevel' },
-    { id: 3, name: 'Experience levels', dropdown: [{ id: 1, name: 'Most relevant1' }, { id: 2, name: 'Most relevant2' }, { id: 3, name: 'Most relevant3' }, { id: 4, name: 'Most relevant4' }], value: 'experienceLevels' },
-    { id: 4, name: 'Job type', dropdown: [{ id: 0, name: 'Full time' }, { id: 1, name: 'part_time' }, { id: 2, name: 'other' }], value: 'jobType' },
-    { id: 5, name: 'Onsite/remote', dropdown: [{ id: 0, name: 'on-site' }, { id: 1, name: 'remote' }], value: 'onSite' },
-    { id: 6, name: 'Location', dropdown: [{ id: 1, name: 'Most relevant1' }, { id: 2, name: 'Most relevant2' }, { id: 3, name: 'Most relevant3' }, { id: 4, name: 'Most relevant4' }], value: 'location' },
-    { id: 7, name: 'Industry', dropdown: [{ id: 1, name: 'Most relevant1' }, { id: 2, name: 'Most relevant2' }, { id: 3, name: 'Most relevant3' }, { id: 4, name: 'Most relevant4' }], value: 'industry' },
-    { id: 8, name: 'Job Function', dropdown: [{ id: 1, name: 'Most relevant1' }, { id: 2, name: 'Most relevant2' }, { id: 3, name: 'Most relevant3' }, { id: 4, name: 'Most relevant4' }], value: 'jobFunction' },
-    { id: 9, name: 'Title', dropdown: [], value: 'title' },
+    { id: 3, name: 'Job type', dropdown: [{ id: 0, name: 'Full time' }, { id: 1, name: 'part_time' }, { id: 2, name: 'other' }], value: 'jobType' },
+    { id: 4, name: 'Onsite/remote', dropdown: [{ id: 0, name: 'on-site' }, { id: 1, name: 'remote' }], value: 'onSite' },
+    { id: 5, name: 'Title', dropdown: [], value: 'title' },
   ];
   companyName: any;
 
