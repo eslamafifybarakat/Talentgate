@@ -49,6 +49,15 @@
   input.star:checked ~ label.star:before {
     color: #f8b84e !important;
   }
+  .p-dropdown .p-dropdown-trigger {
+    padding: 10px !important;
+  }
+  .nav .p-dropdown {
+    min-width: 11rem !important;
+  }
+  .nav .p-dropdown .p-dropdown-label {
+    padding: 16px 10px !important;
+  }
 }
 .content {
   height: calc(100vh - 250px);

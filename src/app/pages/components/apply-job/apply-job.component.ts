@@ -60,17 +60,19 @@ export class ApplyJobComponent implements OnInit {
   companyName: any;
 
   form = this.fb?.group({
-    mostRelevant: ['', []],
-    experienceLevel: ['', []],
-    experienceLevels: ['', []],
-    jobType: ['', []],
-    jobFunction: ['', []],
-    onSite: ['', []],
-    location: ['', []],
-    industry: ['', []],
-    title: ['', []]
+    mostRelevant: [null, []],
+    experienceLevel: [null, []],
+    experienceLevels: [null, []],
+    jobType: [null, []],
+    jobFunction: [null, []],
+    onSite: [null, []],
+    location: [null, []],
+    industry: [null, []],
+    title: [null, []]
   })
-
+  get formControls(): any {
+    return this.form?.controls;
+  }
   constructor(
     private alertsService: AlertsService,
     private publicService: PublicService,
@@ -90,6 +92,7 @@ export class ApplyJobComponent implements OnInit {
         this.getSearchResults(res?.searchValue);
       }
     });
+
     this.publicService?.recallLocationSearchResults?.subscribe((res: any) => {
       if (res?.recall == true) {
         this.getSearchLocationResults(this.jobId, res?.searchValue);

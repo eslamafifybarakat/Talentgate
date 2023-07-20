@@ -5,13 +5,13 @@
         <ul class="nav nav-pills gap-2 py-2" id="pills-tab" role="tablist">
           <ng-container *ngFor="let item of links;let i=index">
             <li class="nav-item" role="presentation">
-              <button class="nav-link" [class.active]="i==0" id="pills-{{item?.id}}-tab" data-bs-toggle="pill"
+              <button class="nav-link" [class.active]="form?.get(item?.value)?.value!=null" id="pills-{{item?.id}}-tab"
                 [attr.data-bs-target]="'#pills-'+item?.id" type="button" role="tab"
                 [attr.aria-controls]="'pills-'+item?.id" aria-selected="false">
                 <p-dropdown [options]="item?.dropdown" optionLabel="name" [filter]="true" [virtualScroll]="true"
                   formControlName="{{item?.value}}" [filterPlaceholder]="'placeholder.search'|translate"
                   [virtualScrollItemSize]="40" filterBy="label" appendTo="body" scrollHeight="200px"
-                  [emptyMessage]="'No results found'" [showClear]="false" placeholder="{{item?.name}}"
+                  [emptyMessage]="'No results found'" [showClear]="true" placeholder="{{item?.name}}"
                   (onChange)="filterRecommendedData($event)">
                 </p-dropdown>
               </button>
