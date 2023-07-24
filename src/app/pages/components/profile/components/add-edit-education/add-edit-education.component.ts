@@ -28,7 +28,7 @@ export class AddEditEducationComponent implements OnInit {
 
   profileForm = this.fb?.group(
     {
-      majorName: [
+      major_name: [
         '',
         {
           validators: [
@@ -131,7 +131,7 @@ export class AddEditEducationComponent implements OnInit {
     let startDate: any = new Date(this.data?.start_date);
     let state: any = this.data?.state == 1 ? true : false;
     this.profileForm?.patchValue({
-      majorName: this.data?.major_name?.name,
+      major_name: this.data?.major_name?.name,
       instituteName: this.data?.institute_name,
       degreeName: this.data?.degree_name,
       endDate: endDate,

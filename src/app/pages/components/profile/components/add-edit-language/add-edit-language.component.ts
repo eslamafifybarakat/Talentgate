@@ -144,7 +144,7 @@ export class AddEditLanguageComponent implements OnInit {
       let formInfo: any = this.profileForm?.value;
       let data = {
         proficiency_Levels: formInfo?.level?._id,
-        language: formInfo?.language?.name,
+        language: formInfo?.language?._id,
       };
       this.profileService?.addEditLanguage(data, this.id ? this.id : null)?.subscribe(
         (res: any) => {
