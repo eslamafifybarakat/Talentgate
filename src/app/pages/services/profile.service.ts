@@ -91,20 +91,33 @@ export class ProfileService {
     return this.http.put<any>(this.apiUrl + '/candidates/update_cover_picture', formData);
 
   }
-
+  getSkill(query: any): Observable<any> {
+    return this.http?.get<any>(this.apiUrl + roots?.profile?.getSkills + '/' + this.langKey + '/' + query);
+  }
+  getCompanies(query: any): Observable<any> {
+    return this.http?.get<any>(this.apiUrl + roots?.profile?.getCompanies + '/' + this.langKey + '/' + query);
+  }
   updateImage(file: File): Observable<any> {
     const formData = new FormData();
     formData.append('image', file);
 
     return this.http.put<any>(this.apiUrl + '/candidates/update_cover_picture', formData);
   }
-
   editResume(about_me: any): Observable<any> {
     let data: any = {};
     if (about_me) {
       data['about_me'] = about_me;
     }
     return this.http.put<any>(this.apiUrl + roots?.profile?.editResume, data);
-
+  }
+  getResume(): Observable<any> {
+    return this.http.get<any>(this.apiUrl + roots?.profile?.getResume);
+  }
+  addResume(about_me: any): Observable<any> {
+    let data: any;
+    if (about_me) {
+      data['about_me'] = about_me;
+    }
+    return this.http.post<any>(this.apiUrl + roots?.profile?.addResume, data);
   }
 }

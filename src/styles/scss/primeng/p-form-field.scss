@@ -7,7 +7,8 @@ p-inputnumber,
 .p-inputnumber,
 .p-dropdown,
 .p-input-icon-right > .p-inputtext,
-.p-calendar {
+.p-calendar,
+.p-autocomplete {
   width: 100% !important;
 }
 
@@ -70,6 +71,20 @@ p-inputnumber,
     border-radius: 6px !important;
     padding: 1rem !important;
   }
+  .p-autocomplete {
+    min-height: 2.8rem !important;
+  }
+  .p-autocomplete-dd .p-autocomplete-input,
+  .p-autocomplete-dd .p-autocomplete-multiple-container {
+    padding: 1rem !important;
+    border-radius: 6px 0 0 6px !important;
+    border-right: 0 !important;
+  }
+  .p-autocomplete-dd .p-autocomplete-dropdown {
+    background-color: transparent !important;
+    border-left: 0 !important;
+    border-color: var(--bg-main-color) !important;
+  }
   .iti--allow-dropdown input[type="tel"],
   .iti--allow-dropdown input {
     padding-left: 70px !important;
@@ -123,8 +138,10 @@ p-inputnumber,
     border-radius: 6px;
     .p-dropdown,
     .form-control,
+    .p-autocomplete .p-inputtext,
     .p-calendar-w-btn .p-inputtext,
-    .p-calendar-w-btn .p-datepicker-trigger {
+    .p-calendar-w-btn .p-datepicker-trigger,
+    .p-autocomplete-dd .p-autocomplete-dropdown {
       border: 0 !important;
     }
   }

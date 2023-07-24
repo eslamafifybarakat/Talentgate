@@ -49,12 +49,25 @@
           <label class="form-label required">
             {{"labels.skills"|translate}}
           </label>
+          <div
+            [class.border-red]="formControls?.skills?.invalid && (formControls?.skills?.dirty || formControls?.skills?.touched)">
+            <p-autoComplete formControlName="skills" [suggestions]="filteredSkills"
+              placeholder="{{'placeholder.skills'|translate}}" (completeMethod)="filterSkills($event)" field="name"
+              [dropdown]="true">
+              <ng-template let-skill pTemplate="item">
+                <div class="country-item">
+                  <div>{{skill?.name}}</div>
+                </div>
+              </ng-template>
+            </p-autoComplete>
+          </div>
           <span class="p-input-icon-right select-loading d-block">
-            <p-multiSelect appendTo="body" [options]="skills" formControlName="skills" display="chip"
+
+            <!-- <p-multiSelect appendTo="body" [options]="skills" formControlName="skills" display="chip"
               [readonly]="isLoadingSkills" [virtualScroll]="true" [showClear]="true" [virtualScrollItemSize]="38"
               scrollHeight="200px" defaultLabel="{{'placeholder.skills'|translate}}" [showToggleAll]="true"
               optionLabel="name"
-              [class.ng-dirty]="formControls?.skills?.invalid && (formControls?.skills?.dirty || formControls?.skills?.touched)"></p-multiSelect>
+              [class.ng-dirty]="formControls?.skills?.invalid && (formControls?.skills?.dirty || formControls?.skills?.touched)"></p-multiSelect> -->
             <ng-container *ngIf="isLoadingSkills">
               <i class="pi pi-spin pi-spinner"></i>
             </ng-container>

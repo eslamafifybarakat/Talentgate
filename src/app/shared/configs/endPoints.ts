@@ -43,6 +43,9 @@ export const roots = {
     degreeNameEducation: '/degree_name_educations',
     // getLanguages: '/languages/list_languages',
     editResume: '/resumes/update_resume',
+    getResume: '/resumes/get_resume_by_candidate',
+    addResume: '/resumes/add_resume',
+    getCompanies: '/companys',
 
   },
   scheduler: {

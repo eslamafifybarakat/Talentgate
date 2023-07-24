@@ -27,10 +27,12 @@ import { TreeSelectModule } from 'primeng/treeselect';
 import { SliderModule } from 'primeng/slider';
 import { TooltipModule } from 'primeng/tooltip';
 import { RadioButtonModule } from 'primeng/radiobutton';
+import { AutoCompleteModule } from 'primeng/autocomplete';
 
 const primeNgModules = [
   DynamicDialogModule,
   ConfirmDialogModule,
+  AutoCompleteModule,
   MultiSelectModule,
   ProgressBarModule,
   InputSwitchModule,

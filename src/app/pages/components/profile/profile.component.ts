@@ -27,7 +27,7 @@ export class ProfileComponent implements OnInit {
   isLoadingSearchResults: boolean = false;
 
   isEditAbout: boolean = false;
-  aboutText: any = 'UI refers to the screens, buttons, toggles, icons, and other visual elements that you interact with when using a website, app, or other electronic device.';
+  aboutText: any = '';
   // aboutTextarea: any = 'UI refers to the screens, buttons, toggles, icons, and other visual elements that you interact with when using a website, app, or other electronic device.';
   isLast: boolean = false
   imgProfileFileSrc: any = this.userData?.image;
@@ -116,18 +116,34 @@ export class ProfileComponent implements OnInit {
     this.rate = event
   }
   getResume() {
-    this.homeService.getResume().subscribe((res) => {
-      console.log(res);
-      this.aboutMe = (res.data)[0].about_me;
-      this.aboutMeId = (res.data)[0]._id
-      console.log(this.aboutMe);
-      // this.isEditAbout = true;
-      // this.aboutTextArea.nativeElement.textContent = this.aboutMe;
-    })
+    this.profileService?.getResume()?.subscribe(
+      (res: any) => {
+        if (res?.status == 200) {
+          this.aboutText = res?.data[0]?.about_me;
+          this.aboutMe = this.aboutText;
+        } else {
+          res?.message ? this.alertsService?.openSweetAlert('info', res?.message) : '';
+        }
+      },
+      (err: any) => {
+        err?.message ? this.alertsService?.openSweetAlert('error', err?.message) : '';
+      });
   }
-
   editAbout(): void {
     this.isEditAbout = true;
+  }
+  addAbout(): void {
+    this.profileService?.addResume(this.aboutText)?.subscribe(
+      (res: any) => {
+        if (res?.status == 200) {
+          console.log(res);
+        } else {
+          res?.message ? this.alertsService?.openSweetAlert('info', res?.message) : '';
+        }
+      },
+      (err: any) => {
+        err?.message ? this.alertsService?.openSweetAlert('error', err?.message) : '';
+      });
   }
   saveEditText(): void {
     this.profileService?.editResume(this.aboutMe)?.subscribe(

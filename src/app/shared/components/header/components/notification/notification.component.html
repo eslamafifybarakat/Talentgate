@@ -38,9 +38,9 @@
         </li>
       </ul> -->
       <div class="notification-content ">
-        <div class="mb-2" *ngFor="let item of notifications;let i = index">
+        <div class="mb-1" *ngFor="let item of notifications;let i = index">
           <div class="p-3 px-4 position-relative d-flex align-items-center gap-2 justify-content-between"
-            [class.active-notification]="item.seen">
+            [class.active-notification]="!item.seen">
             <div class="d-flex align-items-center gap-2">
               <img [src]="'https://dev-api.talentsgates.website/getimage/'+item.image"
                 onerror="src='../../../../../../assets/images/not-found/no-notification.svg'"
@@ -51,7 +51,7 @@
             </div>
             <div class="d-flex flex-column align-items-center">
               <!-- <small class="mt-1 d-block d-flex justify-content-end">{{item.createdAt | timeago}}</small> -->
-              <small class="text-desc-color fs-8">{{hoursDiffArray[i]}}</small>
+              <small class="text-desc-color fs-8">{{hoursDiffArray[i]}}h</small>
               <i class="fas fa-ellipsis-vertical fs-5"></i>
             </div>
           </div>

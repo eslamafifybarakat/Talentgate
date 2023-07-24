@@ -31,6 +31,8 @@ export class AddEditSkillComponent implements OnInit {
   totalRecords!: number;
   rows!: number;
   first!: number;
+  filteredSkills: any = [];
+  filteredItems: any = [];
 
   skillsForm = this.fb?.group(
     {
@@ -48,6 +50,7 @@ export class AddEditSkillComponent implements OnInit {
   get formControls(): any {
     return this.skillsForm?.controls;
   }
+
   constructor(
     private checkValidityService: CheckValidityService,
     private profileService: ProfileService,
@@ -58,7 +61,8 @@ export class AddEditSkillComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private ref: DynamicDialogRef,
     private fb: FormBuilder,
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.modalData = this.config?.data;
@@ -66,10 +70,36 @@ export class AddEditSkillComponent implements OnInit {
     this.id = this.modalData?.id;
     this.getProfileDetails();
     this.getSkills()
-    this.rows = 2;
     this.first = 0;
-
+    this.rows = 2;
   }
+
+  filterSkills(event: any) {
+    let query = event.query;
+    this.profileService?.getSkill(query)?.subscribe(
+      (res: any) => {
+        if (res?.status == 200) {
+          let arr: any = [];
+          arr = res?.data ? res?.data : [];
+          this.filteredSkills = arr;
+        } else {
+          res?.message ? this.alertsService?.openSweetAlert('info', res?.message) : '';
+          this.isLoadingSkills = false;
+        }
+      },
+      (err: any) => {
+        err?.message ? this.alertsService?.openSweetAlert('error', err?.message) : '';
+        this.isLoadingSkills = false;
+      });
+    // for (let i = 0; i < this.skills.length; i++) {
+    //   let country = this.skills[i];
+    //   if (country.name.toLowerCase().indexOf(query.toLowerCase()) == 0) {
+    //     filtered.push(country);
+    //   }
+    // }
+    // this.filteredCountries = filtered;
+  }
+
   getProfileDetails() {
     this.isLoading = true;
     this.homeService?.getProfileDetails()?.subscribe((res: any) => {
@@ -79,9 +109,11 @@ export class AddEditSkillComponent implements OnInit {
           if (item?._id == this.id) {
             this.data = item;
           }
-          console.log(this.data)
         });
-
+        console.log(this.data);
+        this.skillsForm?.patchValue({
+          skills: this.data?.name
+        });
         this.isLoading = false;
       } else {
         this.isLoading = false;
@@ -100,17 +132,17 @@ export class AddEditSkillComponent implements OnInit {
           // this.totalRecords = this.skillsData?.length;
 
           this.isLoadingSkills = false;
-          let arrSkills: any = [];
-          this.skills?.forEach((item: any) => {
-            this.data?.skills?.forEach((element: any) => {
-              if (item?._id == element?._id) {
-                arrSkills?.push(item);
-              }
-            });
-          });
-          this.skillsForm?.patchValue({
-            skills: arrSkills
-          });
+          // let arrSkills: any = [];
+          // this.skills?.forEach((item: any) => {
+          //   this.data?.skills?.forEach((element: any) => {
+          //     if (item?._id == element?._id) {
+          //       arrSkills?.push(item);
+          //     }
+          //   });
+          // });
+          // this.skillsForm?.patchValue({
+          //   skills: this.data?.name
+          // });
         } else {
           res?.message ? this.alertsService?.openSweetAlert('info', res?.message) : '';
           this.isLoadingSkills = false;
@@ -176,12 +208,12 @@ export class AddEditSkillComponent implements OnInit {
     if (this.skillsForm?.valid) {
       this.publicService?.show_loader?.next(true);
       let formInfo: any = this.skillsForm?.value;
-      let skillsIds: any = [];
-      formInfo?.skills?.forEach((item: any) => {
-        skillsIds?.push(item?._id);
-      });
+      // let skillsIds: any = [];
+      // formInfo?.skills?.forEach((item: any) => {
+      //   skillsIds?.push(item?._id);
+      // });
       let data = {
-        skills: skillsIds
+        skills: formInfo?.skills
       };
       this.profileService?.addEditSkill(data, this.id ? this.id : null)?.subscribe(
         (res: any) => {
