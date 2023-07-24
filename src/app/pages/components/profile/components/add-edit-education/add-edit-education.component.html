@@ -40,20 +40,20 @@
             <label for="majorName" class="mb-1 text-main-color  label required">
               {{'labels.majorName'|translate}}
             </label>
-            <input type="text" class="form-control" formControlName="majorName" autocomplete="cc-name"
-              (input)="publicService.clearValidationErrors(formControls?.majorName)"
-              [class.is-invalid]="formControls?.majorName?.invalid && (formControls?.majorName?.dirty || formControls?.majorName?.touched)"
+            <input type="text" class="form-control" formControlName="major_name" autocomplete="cc-name"
+              (input)="publicService.clearValidationErrors(formControls?.major_name)"
+              [class.is-invalid]="formControls?.majorName?.invalid && (formControls?.major_name?.dirty || formControls?.major_name?.touched)"
               placeholder="{{'placeholder.majorName'|translate}}">
           </div>
           <ng-container
-            *ngIf="formControls?.majorName?.invalid && (formControls?.majorName?.dirty || formControls?.majorName?.touched)">
+            *ngIf="formControls?.major_name?.invalid && (formControls?.major_name?.dirty || formControls?.major_name?.touched)">
             <div class="mt-1">
-              <ng-container *ngIf="formControls?.majorName?.errors?.['required']">
+              <ng-container *ngIf="formControls?.major_name?.errors?.['required']">
                 <span class="text-danger fs-8">
                   {{'validations.required_field'|translate}}
                 </span>
               </ng-container>
-              <ng-container *ngIf="formControls?.majorName?.errors?.['minlength']">
+              <ng-container *ngIf="formControls?.major_name?.errors?.['minlength']">
                 <span class="text-danger fs-8 d-block">
                   {{'validations.length'|translate}}
                 </span>
