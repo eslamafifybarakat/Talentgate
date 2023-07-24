@@ -140,3 +140,106 @@
     </div>
   </div>
 </ng-container>
+
+
+<ng-container *ngIf="type=='profile'">
+  <div class=" row">
+    <div class="col-lg-9">
+      <div class="global-card p-0 position-relative">
+        <p-skeleton width="100%" borderRadius="6px" height="8rem"></p-skeleton>
+        <div class="px-3 d-flex justify-content-between align-items-center">
+          <div class="d-flex">
+            <div class="profile-img position-relative">
+              <p-skeleton size="7rem" shape="circle"></p-skeleton>
+              <label
+                class="plus position-absolute d-flex justify-content-center align-items-center rounded-circle pointer"
+                for="profilePicture">
+                <i class="pi pi-plus text-white-color"></i>
+              </label>
+            </div>
+            <div class="content-info p-2 d-flex gap-4">
+              <div>
+                <p-skeleton width="9rem" borderRadius="6px" height=".9rem" styleClass="mb-2"></p-skeleton>
+                <p-skeleton width="6rem" borderRadius="6px" height=".9rem" styleClass="mb-2"></p-skeleton>
+                <p-skeleton width="4rem" borderRadius="6px" height=".9rem"></p-skeleton>
+              </div>
+              <p-skeleton width="1rem" borderRadius="6px" height=".9rem" styleClass="mb-3"></p-skeleton>
+            </div>
+          </div>
+
+          <div class="d-flex flex-column">
+            <p-skeleton width="9rem" borderRadius="6px" height=".9rem" styleClass="mb-3"></p-skeleton>
+          </div>
+        </div>
+      </div>
+      <!-- ======================about=============== -->
+      <div class="global-card mt-3">
+        <div class="d-flex justify-content-between">
+          <p-skeleton width="9rem" borderRadius="6px" height=".9rem" styleClass="mb-3"></p-skeleton>
+
+          <p-skeleton width="2rem" borderRadius="6px" height=".9rem" styleClass="mb-3"></p-skeleton>
+        </div>
+        <p-skeleton width="100%" borderRadius="6px" height=".9rem" styleClass="mb-2"></p-skeleton>
+        <p-skeleton width="90%" borderRadius="6px" height=".9rem" styleClass="mb-2"></p-skeleton>
+
+      </div>
+      <!-- ========================experience====================== -->
+      <div class="row mt-3">
+        <div class="col-md-6">
+          <div class="global-card h-100 ">
+            <p-skeleton width="10rem" borderRadius="6px" height=".9rem" styleClass="mb-3"></p-skeleton>
+            <p-skeleton width="100%" borderRadius="6px" height="9rem"></p-skeleton>
+          </div>
+        </div>
+        <div class="col-md-6 mt-md-0 mt-3">
+          <div class="global-card h-100">
+            <p-skeleton width="10rem" borderRadius="6px" height=".9rem" styleClass="mb-3"></p-skeleton>
+            <p-skeleton width="100%" borderRadius="6px" height="9rem"></p-skeleton>
+          </div>
+        </div>
+      </div>
+
+      <!-- ======================education================= -->
+      <div class="global-card mt-3">
+        <p-skeleton width="10rem" borderRadius="6px" height=".9rem" styleClass="mb-3"></p-skeleton>
+        <p-skeleton width="100%" borderRadius="6px" height="6rem"></p-skeleton>
+      </div>
+      <!-- ======================certificate=========== -->
+      <div class="row mt-3">
+        <div class="col-md-6">
+          <div class="global-card h-100">
+            <p-skeleton width="10rem" borderRadius="6px" height=".9rem" styleClass="mb-3"></p-skeleton>
+            <p-skeleton width="100%" borderRadius="6px" height="9rem"></p-skeleton>
+          </div>
+        </div>
+        <!-- ==========language============ -->
+        <div class="col-md-6 mt-md-0 mt-3">
+          <div class="global-card  h-100">
+            <p-skeleton width="10rem" borderRadius="6px" height=".9rem" styleClass="mb-3"></p-skeleton>
+            <p-skeleton width="100%" borderRadius="6px" height="9rem"></p-skeleton>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- =====================right side================= -->
+    <div class="col-lg-3 mt-lg-0 mt-3">
+      <div class="global-card">
+        <p-skeleton width="10rem" borderRadius="6px" height=".9rem" styleClass="mb-3"></p-skeleton>
+        <p-skeleton width="100%" borderRadius="6px" height="9rem"></p-skeleton>
+      </div>
+      <div class="global-card mt-3">
+        <p-skeleton width="10rem" borderRadius="6px" height=".9rem" styleClass="mb-3"></p-skeleton>
+        <p-skeleton width="100%" borderRadius="6px" height="7rem" styleClass="mb-3"></p-skeleton>
+        <p-skeleton width="100%" borderRadius="6px" height="7rem"></p-skeleton>
+      </div>
+      <div class="global-card mt-3">
+        <div class="d-flex justify-content-between align-items-center">
+          <p-skeleton width="7rem" borderRadius="6px" height=".9rem" styleClass="mb-3"></p-skeleton>
+        </div>
+        <p-skeleton width="10rem" borderRadius="6px" height=".9rem" styleClass="mb-3"></p-skeleton>
+        <p-skeleton width="100%" borderRadius="6px" height="9rem"></p-skeleton>
+      </div>
+    </div>
+  </div>
+</ng-container>

@@ -17,6 +17,7 @@ import { ProfileService } from '../../services/profile.service';
 })
 export class ProfileComponent implements OnInit {
   userData: any = {};
+  isLoading: boolean = false;
   imgSrc: string = 'https://dev-api.talentsgates.website/getimage/';
   rate: any;
   recommendedResults: any = [];
@@ -74,10 +75,24 @@ export class ProfileComponent implements OnInit {
   }
 
   getProfileDetails() {
+    this.isLoading = true;
     this.homeService.getProfileDetails().subscribe((res) => {
-      console.log(res)
-      this.userProfileDetails = res.data.user;
-    })
+      if (res) {
+        this.userProfileDetails = res?.data?.user;
+        this.isLoading = false;
+      } else {
+        res?.message ? this.alertsService?.openSweetAlert('info', res?.message) : '';
+        this.isLoading = false;
+      }
+    },
+      (err: any) => {
+        err?.message ? this.alertsService?.openSweetAlert('error', err?.message) : '';
+        this.isLoading = false;
+      });
+    // this.homeService.getProfileDetails().subscribe((res) => {
+    //   console.log(res)
+    //   this.userProfileDetails = res.data.user;
+    // })
   }
   getYearsDiffernce(d1: Date, d2: Date) {
     let startDate = new Date(d1).getFullYear();

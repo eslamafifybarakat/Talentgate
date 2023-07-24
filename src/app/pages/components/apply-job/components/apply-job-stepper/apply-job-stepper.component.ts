@@ -302,7 +302,7 @@ export class ApplyJobStepperComponent implements OnInit {
       })
     });
     let data = {
-      job_offer: this.companyName,
+      job_offer: this.jobId,
       candidate_information: {
         user_name: '',
         email: formInfo?.email,
