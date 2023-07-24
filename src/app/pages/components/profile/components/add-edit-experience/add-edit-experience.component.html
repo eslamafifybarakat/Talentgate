@@ -37,10 +37,22 @@
             <label for="companyName" class="mb-1 text-main-color  label required">
               {{'labels.companyName'|translate}}
             </label>
-            <input type="text" class="form-control" formControlName="companyName" autocomplete="cc-name"
+            <!-- <input type="text" class="form-control" formControlName="companyName" autocomplete="cc-name"
               (input)="publicService.clearValidationErrors(formControls?.companyName)"
               [class.is-invalid]="formControls?.companyName?.invalid && (formControls?.companyName?.dirty || formControls?.companyName?.touched)"
-              placeholder="{{'placeholder.companyName'|translate}}">
+              placeholder="{{'placeholder.companyName'|translate}}"> -->
+            <div class="autoComplete-control"
+              [class.border-red]="formControls?.companyName?.invalid && (formControls?.companyName?.dirty || formControls?.companyName?.touched)">
+              <p-autoComplete formControlName="companyName" [suggestions]="filteredCompanies"
+                placeholder="{{'placeholder.companyName'|translate}}" (completeMethod)="filterCompanies($event)"
+                field="name" [dropdown]="true">
+                <ng-template let-company pTemplate="item">
+                  <div class="country-item">
+                    <div>{{company?.name}}</div>
+                  </div>
+                </ng-template>
+              </p-autoComplete>
+            </div>
           </div>
           <ng-container
             *ngIf="formControls?.companyName?.invalid && (formControls?.companyName?.dirty || formControls?.companyName?.touched)">
@@ -197,7 +209,19 @@
           <label class="form-label required">
             {{"labels.skills"|translate}}
           </label>
-          <span class="p-input-icon-right select-loading d-block">
+          <div
+            [class.border-red]="formControls?.skills?.invalid && (formControls?.skills?.dirty || formControls?.skills?.touched)">
+            <p-autoComplete formControlName="skills" [suggestions]="filteredSkills"
+              placeholder="{{'placeholder.skills'|translate}}" (completeMethod)="filterSkills($event)" field="name"
+              [dropdown]="true">
+              <ng-template let-skill pTemplate="item">
+                <div class="country-item">
+                  <div>{{skill?.name}}</div>
+                </div>
+              </ng-template>
+            </p-autoComplete>
+          </div>
+          <!-- <span class="p-input-icon-right select-loading d-block">
             <p-multiSelect appendTo="body" [options]="skills" formControlName="skills" display="chip"
               [readonly]="isLoadingSkills" [virtualScroll]="true" [showClear]="true" [virtualScrollItemSize]="38"
               scrollHeight="200px" defaultLabel="{{'placeholder.skills'|translate}}" [showToggleAll]="true"
@@ -206,7 +230,7 @@
             <ng-container *ngIf="isLoadingSkills">
               <i class="pi pi-spin pi-spinner"></i>
             </ng-container>
-          </span>
+          </span> -->
           <ng-container
             *ngIf="formControls?.skills?.invalid && (formControls?.skills?.dirty || formControls?.skills?.touched)">
             <div class="mt-1">

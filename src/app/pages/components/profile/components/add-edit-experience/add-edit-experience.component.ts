@@ -38,7 +38,10 @@ export class AddEditExperienceComponent implements OnInit {
   isSelectStartDate: boolean = false;
   minEndDate: any;
 
-  skills: any 
+  skills: any = [];
+  filteredSkills: any = [];
+  filteredCompanies: any = [];
+
   isLoadingSkills: boolean = false;
 
   profileForm = this.fb?.group(
@@ -58,9 +61,8 @@ export class AddEditExperienceComponent implements OnInit {
         {
           validators: [
             Validators.required,
-            Validators?.minLength(3),
+            // Validators?.minLength(3),
           ],
-          updateOn: 'blur',
         },
       ],
       country: [
@@ -115,9 +117,11 @@ export class AddEditExperienceComponent implements OnInit {
       isCurrentJob: [null, []]
     }
   );
+
   get formControls(): any {
     return this.profileForm?.controls;
   }
+
   constructor(
     private checkValidityService: CheckValidityService,
     private authUserService: AuthUserService,
@@ -153,6 +157,8 @@ export class AddEditExperienceComponent implements OnInit {
             this.data = item;
           }
         });
+        console.log(this.data);
+
         this.patchValue();
         this.isLoading = false;
       } else {
@@ -164,10 +170,10 @@ export class AddEditExperienceComponent implements OnInit {
     let endDate: any = new Date(this.data?.end_date);
     let startDate: any = new Date(this.data?.start_date);
     let isCurrentJob: any = this.data?.is_current_job == 1 ? true : false;
-
+    let companyName: any = { name: this.data?.company?.name_company };
     this.profileForm?.patchValue({
       jobTitle: this.data?.job_title,
-      companyName: this.data?.company?.name_company,
+      companyName: companyName,
       description: this.data?.description,
       endDate: endDate,
       startDate: startDate,
@@ -265,6 +271,47 @@ export class AddEditExperienceComponent implements OnInit {
       });
     this.cdr?.detectChanges();
   }
+  filterCompanies(event: any) {
+    let query = event.query;
+    this.profileService?.getCompanies(query)?.subscribe(
+      (res: any) => {
+        if (res?.status == 200) {
+          let arr: any = [];
+          res?.data ? res?.data : [];
+          res?.data ? res?.data?.forEach((item: any) => {
+            arr?.push({
+              name: item?.name_company
+            })
+          }) : '';
+          this.filteredCompanies = arr;
+        } else {
+          res?.message ? this.alertsService?.openSweetAlert('info', res?.message) : '';
+        }
+      },
+      (err: any) => {
+        err?.message ? this.alertsService?.openSweetAlert('error', err?.message) : '';
+      });
+  }
+
+  filterSkills(event: any) {
+    let query = event.query;
+    this.profileService?.getSkill(query)?.subscribe(
+      (res: any) => {
+        if (res?.status == 200) {
+          let arr: any = [];
+          arr = res?.data ? res?.data : [];
+          this.filteredSkills = arr;
+        } else {
+          res?.message ? this.alertsService?.openSweetAlert('info', res?.message) : '';
+          this.isLoadingSkills = false;
+        }
+      },
+      (err: any) => {
+        err?.message ? this.alertsService?.openSweetAlert('error', err?.message) : '';
+        this.isLoadingSkills = false;
+      });
+  }
+
   submit(): void {
     if (this.profileForm?.valid) {
       this.publicService?.show_loader?.next(true);
@@ -275,7 +322,7 @@ export class AddEditExperienceComponent implements OnInit {
       });
       let data = {
         job_title: formInfo?.jobTitle,
-        company: formInfo?.companyName,
+        company: formInfo?.companyName?.name,
         country: formInfo?.country?._id,
         city: formInfo.city?._id,
         description: formInfo?.description,

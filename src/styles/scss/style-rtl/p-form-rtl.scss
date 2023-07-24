@@ -117,3 +117,15 @@
     border-left: 1px solid var(--border-input-color) !important;
   }
 }
+.p-autocomplete-dd .p-autocomplete-input,
+.p-autocomplete-dd .p-autocomplete-multiple-container {
+  border-radius: 0px 6px 6px 0 !important;
+  border-left: 0 !important;
+  border-right: 1px solid var(--bg-main-color) !important;
+}
+.p-autocomplete-dd .p-autocomplete-dropdown {
+  border-right: 0 !important;
+  border-color: var(--bg-main-color) !important;
+  border-radius: 6px 0 0 6px;
+  border-left: 1px solid var(--bg-main-color) !important;
+}

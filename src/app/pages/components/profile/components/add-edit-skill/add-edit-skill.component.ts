@@ -32,7 +32,6 @@ export class AddEditSkillComponent implements OnInit {
   rows!: number;
   first!: number;
   filteredSkills: any = [];
-  filteredItems: any = [];
 
   skillsForm = this.fb?.group(
     {
@@ -74,6 +73,27 @@ export class AddEditSkillComponent implements OnInit {
     this.rows = 2;
   }
 
+  getProfileDetails() {
+    this.isLoading = true;
+    this.homeService?.getProfileDetails()?.subscribe((res: any) => {
+      if (res) {
+        this.userProfileDetails = res?.data?.user;
+        this.userProfileDetails?.skills?.forEach((item: any) => {
+          if (item?._id == this.id) {
+            this.data = item;
+          }
+        });
+        console.log(this.data);
+        this.skillsForm?.patchValue({
+          skills: this.data?.name
+        });
+        this.isLoading = false;
+      } else {
+        this.isLoading = false;
+      }
+    })
+  }
+
   filterSkills(event: any) {
     let query = event.query;
     this.profileService?.getSkill(query)?.subscribe(
@@ -100,26 +120,6 @@ export class AddEditSkillComponent implements OnInit {
     // this.filteredCountries = filtered;
   }
 
-  getProfileDetails() {
-    this.isLoading = true;
-    this.homeService?.getProfileDetails()?.subscribe((res: any) => {
-      if (res) {
-        this.userProfileDetails = res?.data?.user;
-        this.userProfileDetails?.skills?.forEach((item: any) => {
-          if (item?._id == this.id) {
-            this.data = item;
-          }
-        });
-        console.log(this.data);
-        this.skillsForm?.patchValue({
-          skills: this.data?.name
-        });
-        this.isLoading = false;
-      } else {
-        this.isLoading = false;
-      }
-    })
-  }
   getSkills(): any {
     this.isLoadingSkills = true;
     this.profileService?.getSkills()?.subscribe(

@@ -77,13 +77,18 @@ p-inputnumber,
   .p-autocomplete-dd .p-autocomplete-input,
   .p-autocomplete-dd .p-autocomplete-multiple-container {
     padding: 1rem !important;
-    border-radius: 6px 0 0 6px !important;
-    border-right: 0 !important;
+    border-radius: 6px 0 0 6px;
+    border-right: 0;
   }
   .p-autocomplete-dd .p-autocomplete-dropdown {
     background-color: transparent !important;
-    border-left: 0 !important;
-    border-color: var(--bg-main-color) !important;
+    border-left: 0;
+    border-color: var(--bg-main-color);
+  }
+  .autoComplete-control .p-autocomplete,
+  .autoComplete-control .p-autocomplete-dd .p-autocomplete-input,
+  .autoComplete-control .p-autocomplete-dd .p-autocomplete-dropdown {
+    height: 2.4rem !important;
   }
   .iti--allow-dropdown input[type="tel"],
   .iti--allow-dropdown input {
