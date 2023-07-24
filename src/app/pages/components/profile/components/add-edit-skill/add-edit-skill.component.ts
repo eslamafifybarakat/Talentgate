@@ -84,8 +84,9 @@ export class AddEditSkillComponent implements OnInit {
           }
         });
         console.log(this.data);
+        let skills: any = { name: this.data?.name };
         this.skillsForm?.patchValue({
-          skills: this.data?.name
+          skills: skills
         });
         this.isLoading = false;
       } else {
@@ -100,7 +101,12 @@ export class AddEditSkillComponent implements OnInit {
       (res: any) => {
         if (res?.status == 200) {
           let arr: any = [];
-          arr = res?.data ? res?.data : [];
+          // arr = res?.data ? res?.data : [];
+          res?.data ? res?.data?.forEach((item: any) => {
+            arr?.push(
+              { name: item?.name }
+            )
+          }) : '';
           this.filteredSkills = arr;
         } else {
           res?.message ? this.alertsService?.openSweetAlert('info', res?.message) : '';
@@ -111,13 +117,6 @@ export class AddEditSkillComponent implements OnInit {
         err?.message ? this.alertsService?.openSweetAlert('error', err?.message) : '';
         this.isLoadingSkills = false;
       });
-    // for (let i = 0; i < this.skills.length; i++) {
-    //   let country = this.skills[i];
-    //   if (country.name.toLowerCase().indexOf(query.toLowerCase()) == 0) {
-    //     filtered.push(country);
-    //   }
-    // }
-    // this.filteredCountries = filtered;
   }
 
   getSkills(): any {
@@ -213,7 +212,7 @@ export class AddEditSkillComponent implements OnInit {
       //   skillsIds?.push(item?._id);
       // });
       let data = {
-        skills: formInfo?.skills
+        skills: formInfo?.skills?.name ? formInfo?.skills?.name : formInfo?.skills
       };
       this.profileService?.addEditSkill(data, this.id ? this.id : null)?.subscribe(
         (res: any) => {

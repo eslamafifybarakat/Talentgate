@@ -72,10 +72,12 @@ export class HeaderComponent implements OnInit {
     );
     this.cdr?.detectChanges();
   }
+
   clearSearchValue(search?: any): void {
     search.value = '';
     this.searchHandler?.emit('');
   }
+
   clearSearch(): void {
     this.searchInputValue = null;
     this.publicService?.recallSearchResults?.next(
@@ -96,9 +98,17 @@ export class HeaderComponent implements OnInit {
     );
     this.cdr?.detectChanges();
   }
+
   clearLocationSearchValue(search: any): void {
     search.value = '';
-    this.searchHandler?.emit('');
+    this.searchInputValue = null;
+    this.publicService?.recallLocationSearchResults?.next(
+      {
+        recall: true,
+        searchValue: null
+      }
+    );
+    this.cdr?.detectChanges();
   }
 }
 

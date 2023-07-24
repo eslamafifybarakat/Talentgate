@@ -18,6 +18,7 @@ export class ApplyJobComponent implements OnInit {
   isLoadingSearchResults: boolean = false;
 
   recommendedResults: any = [];
+  filteredRecommendedResults: any = [];
   isLoadingRecommendedResults: boolean = false;
   jobDetails: any = {
     id: 1,
@@ -94,8 +95,19 @@ export class ApplyJobComponent implements OnInit {
     });
 
     this.publicService?.recallLocationSearchResults?.subscribe((res: any) => {
+      console.log(res);
       if (res?.recall == true) {
-        this.getSearchLocationResults(this.jobId, res?.searchValue);
+        let arr: any = [];
+        this.filteredRecommendedResults?.forEach((item: any) => {
+          if (item?.address?.includes(res?.searchValue)) {
+            arr?.push(item);
+          }
+        });
+        this.recommendedResults = arr;
+        this.changeData(this.recommendedResults[0]?._id);
+      } if (res?.searchValue == null) {
+        this.recommendedResults = this.filteredRecommendedResults;
+        this.changeData(this.recommendedResults[0]?._id);
       }
     });
     this.userData = JSON?.parse(window?.localStorage?.getItem(keys?.userLoginData) || "{}");
@@ -118,6 +130,7 @@ export class ApplyJobComponent implements OnInit {
           //   })
           // }) : '';
           this.recommendedResults = res.data.job_offers;
+          this.filteredRecommendedResults = res.data.job_offers;
           console.log(this.recommendedResults)
           this.recommendedResults['isActive'] = false;
           this.isLoadingRecommendedResults = false;

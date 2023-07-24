@@ -26,7 +26,8 @@
             <ng-container *ngIf="enableLocation">
               <span class="p-input-icon-right">
                 <ng-container *ngIf="locationSearch.value">
-                  <i (click)="clearLocationSearchValue(search)" class="pi pi-times text-danger cursor-pointer"></i>
+                  <i (click)="clearLocationSearchValue(locationSearch)"
+                    class="pi pi-times text-danger cursor-pointer"></i>
                 </ng-container>
                 <i class="fas fa-location-dot"></i>
                 <input type="text" #locationSearch (keyup.enter)="locationSearchHandlerEmit(locationSearch?.value)"

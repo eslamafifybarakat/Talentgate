@@ -171,6 +171,8 @@ export class AddEditExperienceComponent implements OnInit {
     let startDate: any = new Date(this.data?.start_date);
     let isCurrentJob: any = this.data?.is_current_job == 1 ? true : false;
     let companyName: any = { name: this.data?.company?.name_company };
+    let skills: any = { name: this.data?.skills[0]?.name };
+    // let skills: any = this.data?.skills[0]?.name ;
     this.profileForm?.patchValue({
       jobTitle: this.data?.job_title,
       companyName: companyName,
@@ -178,6 +180,7 @@ export class AddEditExperienceComponent implements OnInit {
       endDate: endDate,
       startDate: startDate,
       isCurrentJob: isCurrentJob,
+      skills: skills
     });
     this.getCountries();
     this.getSkills();
@@ -247,19 +250,25 @@ export class AddEditExperienceComponent implements OnInit {
         if (res?.status == 200) {
           let arr: any = [];
           arr = res?.data ? res?.data : [];
+          // res?.data ? res?.data?.forEach((item: any) => {
+          //   arr?.push(
+          //     item?.name
+          //   )
+          // }) : '';
           this.skills = arr;
           this.isLoadingSkills = false;
-          let arrSkills: any = [];
-          this.skills?.forEach((item: any) => {
-            this.data?.skills?.forEach((element: any) => {
-              if (item?._id == element?._id) {
-                arrSkills?.push(item);
-              }
-            });
-          });
-          this.profileForm?.patchValue({
-            skills: arrSkills
-          });
+
+          // let arrSkills: any = [];
+          // this.skills?.forEach((item: any) => {
+          //   this.data?.skills?.forEach((element: any) => {
+          //     if (item?._id == element?._id) {
+          //       arrSkills?.push(item);
+          //     }
+          //   });
+          // });
+          // this.profileForm?.patchValue({
+          //   skills: arrSkills
+          // });
         } else {
           res?.message ? this.alertsService?.openSweetAlert('info', res?.message) : '';
           this.isLoadingCountry = false;
@@ -299,7 +308,12 @@ export class AddEditExperienceComponent implements OnInit {
       (res: any) => {
         if (res?.status == 200) {
           let arr: any = [];
-          arr = res?.data ? res?.data : [];
+          // arr = res?.data ? res?.data : [];
+          res?.data ? res?.data?.forEach((item: any) => {
+            arr?.push(
+              { name: item?.name }
+            )
+          }) : '';
           this.filteredSkills = arr;
         } else {
           res?.message ? this.alertsService?.openSweetAlert('info', res?.message) : '';
@@ -313,13 +327,14 @@ export class AddEditExperienceComponent implements OnInit {
   }
 
   submit(): void {
+    console.log(this.profileForm?.value?.skills);
     if (this.profileForm?.valid) {
       this.publicService?.show_loader?.next(true);
       let formInfo: any = this.profileForm?.value;
-      let skillsIds: any = [];
-      formInfo?.skills?.forEach((item: any) => {
-        skillsIds?.push(item?._id);
-      });
+      // let skillsIds: any = [];
+      // formInfo?.skills?.forEach((item: any) => {
+      //   skillsIds?.push(item?._id);
+      // });
       let data = {
         job_title: formInfo?.jobTitle,
         company: formInfo?.companyName?.name,
@@ -330,8 +345,10 @@ export class AddEditExperienceComponent implements OnInit {
         end_date: formInfo?.endDate,
         is_current_job: formInfo?.isCurrentJob == true ? 1 : 0,
         // job_type: 0,
-        skills: skillsIds
+        skills: formInfo?.skills?.name ? formInfo?.skills?.name : formInfo?.skills
       };
+      console.log(data);
+
       this.profileService?.addEditExperience(data, this.id ? this.id : null)?.subscribe(
         (res: any) => {
           if (res?.status == 200) {
