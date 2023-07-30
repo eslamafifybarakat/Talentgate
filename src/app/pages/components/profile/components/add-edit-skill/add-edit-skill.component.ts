@@ -23,7 +23,8 @@ export class AddEditSkillComponent implements OnInit {
   type: any;
   id: any;
   data: any;
-
+  texts: string[]=[];
+  imgSrc: string = 'https://dev-api.talentsgates.website/getimage/';
   isLoadingSkills: boolean = false;
   skills: any = [];
   skillsData: any = [];
@@ -45,6 +46,8 @@ export class AddEditSkillComponent implements OnInit {
       ],
     }
   );
+  detailsSkills: any;
+  numberOfSkills: number=0;
 
   get formControls(): any {
     return this.skillsForm?.controls;
@@ -67,10 +70,12 @@ export class AddEditSkillComponent implements OnInit {
     this.modalData = this.config?.data;
     this.type = this.modalData?.type;
     this.id = this.modalData?.id;
-    this.getProfileDetails();
     this.getSkills()
     this.first = 0;
     this.rows = 2;
+    if (this.type == 'edit') {
+      this.getProfileDetails();
+    }
   }
 
   getProfileDetails() {
@@ -78,20 +83,31 @@ export class AddEditSkillComponent implements OnInit {
     this.homeService?.getProfileDetails()?.subscribe((res: any) => {
       if (res) {
         this.userProfileDetails = res?.data?.user;
+        this.skillsData = this.userProfileDetails.skills
+        this.numberOfSkills= this.skillsData.length
+        console.log('ggggggggggggg',this.skillsData)
+        
         this.userProfileDetails?.skills?.forEach((item: any) => {
           if (item?._id == this.id) {
             this.data = item;
           }
         });
         console.log(this.data);
-        let skills: any = { name: this.data?.name };
+        let skills: any = [{ name: this.data?.name }];
         this.skillsForm?.patchValue({
           skills: skills
         });
+        this.patchValue()
         this.isLoading = false;
       } else {
         this.isLoading = false;
       }
+    })
+  }
+  patchValue(): void {
+    this.profileService.getDetailSkill(this.id).subscribe((res)=>{
+      console.log('res',res);
+      this.detailsSkills = res.data
     })
   }
 
@@ -152,52 +168,52 @@ export class AddEditSkillComponent implements OnInit {
         this.isLoadingSkills = false;
       });
     this.cdr?.detectChanges();
-    this.skillsData = [
-      {
-        name: 'User Interface Design',
-        rate: 5.5,
-        allRate: 10,
-        assessments: [
-          { img: '../../../../../../assets/images/profile/ui.jfif', name: 'Ceilne Ahmed', rate: 5.5, position: 'Team Leader at Google' },
-          { img: '../../../../../../assets/images/profile/ltd.png', name: 'John doe', rate: 4.5, position: 'Team Leader at Google' },
-          { img: '../../../../../../assets/images/profile/be.jpg', name: 'Mohamed Ali', rate: 9.5, position: 'Team Leader at Google' },
-          { img: '../../../../../../assets/images/profile/ui.jfif', name: 'John doe', rate: 7.5, position: 'Team Leader at Google' }
-        ]
-      },
-      {
-        name: 'User Interface Design',
-        rate: 8.5,
-        allRate: 10,
-        assessments: [
-          { img: '../../../../../../assets/images/profile/ui.jfif', name: 'Nour Ahmed', rate: 3.5, position: 'Team Leader at Google' },
-          { img: '../../../../../../assets/images/profile/ltd.png', name: 'John doe', rate: 6.5, position: 'Team Leader at Google' },
-          { img: '../../../../../../assets/images/profile/be.jpg', name: 'John doe', rate: 8.5, position: 'Team Leader at Google' },
-          { img: '../../../../../../assets/images/profile/ui.jfif', name: 'John doe', rate: 5.5, position: 'Team Leader at Google' }
-        ]
-      },
-      {
-        name: 'User Interface',
-        rate: 7.5,
-        allRate: 10,
-        assessments: [
-          { img: '../../../../../../assets/images/profile/ui.jfif', name: 'Ali Mohamed', rate: 4.5, position: 'Team Leader at Google' },
-          { img: '../../../../../../assets/images/profile/ltd.png', name: 'Mohamed Ali', rate: 9.5, position: 'Team Leader at Google' },
-          { img: '../../../../../../assets/images/profile/be.jpg', name: 'Nour Ahmed', rate: 7.5, position: 'Team Leader at Google' },
-          { img: '../../../../../../assets/images/profile/ui.jfif', name: 'John doe', rate: 8.5, position: 'Team Leader at Google' }
-        ]
-      },
-      {
-        name: 'User Interface Design',
-        rate: 8.5,
-        allRate: 10,
-        assessments: [
-          { img: '../../../../../../assets/images/profile/ui.jfif', name: 'John doe', rate: 7, position: 'Team Leader at Google' },
-          { img: '../../../../../../assets/images/profile/ltd.png', name: 'John doe', rate: 5, position: 'Team Leader at Google' },
-          { img: '../../../../../../assets/images/profile/be.jpg', name: 'John doe', rate: 6.5, position: 'Team Leader at Google' },
+    // this.skillsData = [
+    //   {
+    //     name: 'User Interface Design',
+    //     rate: 5.5,
+    //     allRate: 10,
+    //     assessments: [
+    //       { img: '../../../../../../assets/images/profile/ui.jfif', name: 'Ceilne Ahmed', rate: 5.5, position: 'Team Leader at Google' },
+    //       { img: '../../../../../../assets/images/profile/ltd.png', name: 'John doe', rate: 4.5, position: 'Team Leader at Google' },
+    //       { img: '../../../../../../assets/images/profile/be.jpg', name: 'Mohamed Ali', rate: 9.5, position: 'Team Leader at Google' },
+    //       { img: '../../../../../../assets/images/profile/ui.jfif', name: 'John doe', rate: 7.5, position: 'Team Leader at Google' }
+    //     ]
+    //   },
+    //   {
+    //     name: 'User Interface Design',
+    //     rate: 8.5,
+    //     allRate: 10,
+    //     assessments: [
+    //       { img: '../../../../../../assets/images/profile/ui.jfif', name: 'Nour Ahmed', rate: 3.5, position: 'Team Leader at Google' },
+    //       { img: '../../../../../../assets/images/profile/ltd.png', name: 'John doe', rate: 6.5, position: 'Team Leader at Google' },
+    //       { img: '../../../../../../assets/images/profile/be.jpg', name: 'John doe', rate: 8.5, position: 'Team Leader at Google' },
+    //       { img: '../../../../../../assets/images/profile/ui.jfif', name: 'John doe', rate: 5.5, position: 'Team Leader at Google' }
+    //     ]
+    //   },
+    //   {
+    //     name: 'User Interface',
+    //     rate: 7.5,
+    //     allRate: 10,
+    //     assessments: [
+    //       { img: '../../../../../../assets/images/profile/ui.jfif', name: 'Ali Mohamed', rate: 4.5, position: 'Team Leader at Google' },
+    //       { img: '../../../../../../assets/images/profile/ltd.png', name: 'Mohamed Ali', rate: 9.5, position: 'Team Leader at Google' },
+    //       { img: '../../../../../../assets/images/profile/be.jpg', name: 'Nour Ahmed', rate: 7.5, position: 'Team Leader at Google' },
+    //       { img: '../../../../../../assets/images/profile/ui.jfif', name: 'John doe', rate: 8.5, position: 'Team Leader at Google' }
+    //     ]
+    //   },
+    //   {
+    //     name: 'User Interface Design',
+    //     rate: 8.5,
+    //     allRate: 10,
+    //     assessments: [
+    //       { img: '../../../../../../assets/images/profile/ui.jfif', name: 'John doe', rate: 7, position: 'Team Leader at Google' },
+    //       { img: '../../../../../../assets/images/profile/ltd.png', name: 'John doe', rate: 5, position: 'Team Leader at Google' },
+    //       { img: '../../../../../../assets/images/profile/be.jpg', name: 'John doe', rate: 6.5, position: 'Team Leader at Google' },
 
-        ]
-      }
-    ];
+    //     ]
+    //   }
+    // ];
     this.totalRecords = this.skillsData?.length;
   }
   onPageChange(event: any): void {

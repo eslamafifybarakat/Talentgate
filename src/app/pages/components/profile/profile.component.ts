@@ -4,6 +4,7 @@ import { AddEditExperienceComponent } from './components/add-edit-experience/add
 import { AddEditLanguageComponent } from './components/add-edit-language/add-edit-language.component';
 import { AddEditEducationComponent } from './components/add-edit-education/add-edit-education.component';
 import { EditProfileModalComponent } from './components/edit-profile-modal/edit-profile-modal.component';
+import { AllSkillsComponent } from './components/all-skills/all-skills.component';
 import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { AlertsService } from './../../../core/services/alerts/alerts.service';
 import { PublicService } from './../../../shared/services/public.service';
@@ -79,6 +80,7 @@ export class ProfileComponent implements OnInit {
     this.homeService.getProfileDetails().subscribe((res) => {
       if (res) {
         this.userProfileDetails = res?.data?.user;
+        console.log(this.userProfileDetails)
         this.isLoading = false;
       } else {
         res?.message ? this.alertsService?.openSweetAlert('info', res?.message) : '';
@@ -103,23 +105,17 @@ export class ProfileComponent implements OnInit {
     return yearsDiff;
   }
   getProficiencyText(num: number) {
-    if (num == 0) {
-      return 'No Proficiency'
-    }
-    else if (num == 1) {
-      return 'Elementary Proficiency'
+    if (num == 1) {
+      return 'Native'
     }
     else if (num == 2) {
-      return 'Limited Working Proficiency'
+      return 'Good'
     }
     else if (num == 3) {
-      return 'Professional Working Proficiency'
+      return 'Very Good'
     }
     else if (num == 4) {
-      return 'Full Professional Proficiency'
-    }
-    else if (num == 5) {
-      return 'Native'
+      return 'Excellent'
     }
     else {
       return 'No Proficiency'
@@ -209,32 +205,32 @@ export class ProfileComponent implements OnInit {
         this.isLoadingRecommendedResults = false;
       });
     this.cdr?.detectChanges();
-    this.recommendedResults = [
-      {
-        _id: 'jkdjd9892',
-        title: 'Product Designer',
-        address: 'Sousse,tunisia',
-        name: 'Google',
-        rate: 4,
-        time: 'Posted 5hours ago'
-      },
-      {
-        _id: 'jkdjd9892',
-        title: 'Product Designer',
-        address: 'Sousse,tunisia',
-        name: 'Google',
-        rate: 4,
-        time: 'Posted 5hours ago'
-      },
-      {
-        _id: 'jkdjd9892',
-        title: 'Product Designer',
-        address: 'Sousse,tunisia',
-        name: 'Google',
-        rate: 4,
-        time: 'Posted 5hours ago'
-      }
-    ]
+    // this.recommendedResults = [
+    //   {
+    //     _id: 'jkdjd9892',
+    //     title: 'Product Designer',
+    //     address: 'Sousse,tunisia',
+    //     name: 'Google',
+    //     rate: 4,
+    //     time: 'Posted 5hours ago'
+    //   },
+    //   {
+    //     _id: 'jkdjd9892',
+    //     title: 'Product Designer',
+    //     address: 'Sousse,tunisia',
+    //     name: 'Google',
+    //     rate: 4,
+    //     time: 'Posted 5hours ago'
+    //   },
+    //   {
+    //     _id: 'jkdjd9892',
+    //     title: 'Product Designer',
+    //     address: 'Sousse,tunisia',
+    //     name: 'Google',
+    //     rate: 4,
+    //     time: 'Posted 5hours ago'
+    //   }
+    // ]
   }
 
   getSearchResults(value: any): any {
@@ -283,9 +279,16 @@ export class ProfileComponent implements OnInit {
   //   })
   // }
   selectImage(event: any): void {
+    const file: File = event.target.files[0];
     let fileReader = new FileReader();
-    fileReader.readAsDataURL(event?.target?.files[0]);
-    fileReader.onload = this._handleReaderLoadedImage.bind(this);
+    fileReader.readAsDataURL(file);
+    fileReader.onload = (e: any) => {
+    this._handleReaderLoadedImage.bind(e);
+    this.profileService.updateProfileImage(file).subscribe((res) => {
+      this.userProfileDetails.image = this.imgProfileFileSrc; 
+      this.cdr.detectChanges();
+    });
+    }
   }
   _handleReaderLoadedImage(e: any): void {
     var reader: any = null;
@@ -300,7 +303,8 @@ export class ProfileComponent implements OnInit {
     fileReader.onload = (e: any) => {
       this._handleReaderLoadedBgImage(e);
       this.profileService.updateCoverImage(file).subscribe((res) => {
-
+        this.getProfileDetails()
+        console.log(res)
       });
       this.cdr.detectChanges();
     }
@@ -386,6 +390,20 @@ export class ProfileComponent implements OnInit {
       header: type == 'edit' ? this.publicService?.translateTextFromJson('profile.editSkill') : this.publicService?.translateTextFromJson('profile.addSkill'),
       width: '55%',
       data: { type: type, id: id },
+      styleClass: 'apply-job-dialog',
+    });
+    ref.onClose.subscribe((res: any) => {
+      if (res?.listChanged) {
+        this.getProfileDetails();
+      }
+    });
+  }
+  showAllSkills(): any 
+  {
+    const ref = this.dialogService.open(AllSkillsComponent, {
+      header:this.publicService?.translateTextFromJson('Skill') ,
+      width: '27%',
+      data: { },
       styleClass: 'apply-job-dialog',
     });
     ref.onClose.subscribe((res: any) => {

@@ -27,6 +27,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxStarRatingModule } from 'ngx-star-rating';
 import { SchedulerModule } from '@progress/kendo-angular-scheduler';
+import {AutoCompleteModule} from 'primeng/autocomplete';
 
 const allSharedComponents = [
   LanguageSelectorComponent,
@@ -56,7 +57,8 @@ const allSharedModule = [
   TranslateModule,
   PrimeNgModule,
   FormsModule,
-  NgbModule
+  NgbModule,
+  AutoCompleteModule
 ]
 
 @NgModule({

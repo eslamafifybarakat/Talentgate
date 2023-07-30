@@ -16,12 +16,29 @@
         <div class="d-flex gap-2 search-inputs">
           <ng-container *ngIf="enableSearch">
             <span class="p-input-icon-right ms-4">
-              <ng-container *ngIf="search.value">
+              <ng-container *ngIf="search?.value">
                 <i (click)="clearSearchValue(search)" class="pi pi-times text-danger pointer"></i>
               </ng-container>
-              <i class="pi pi-search"></i>
-              <input type="text" #search [(ngModel)]="searchInputValue" (keyup.enter)="searchHandlerEmit(search?.value)"
+              <i class="pi pi-search"></i>             
+              <input type="text" [style.width.px]="isDropdownOpen ? 300 : null" #search (input)="onSearchChange(search?.value)"
                 placeholder="{{'placeholder.search'|translate}}" class="form-control search" />
+                  <div *ngIf="searchResults.length > 0" class="search-results" #searchResultsList>
+                    <div class="">
+                      <ul class="list">
+                        <li *ngFor="let item of searchResults"  (click)='chooseItem(item)' class="item d-flex justify-content-between search-result-item">
+                          <div >
+                            <i class="pi pi-search text-main-color" style="color:#3A5380;margin-right: 8px;"></i>
+                            <span class="text-main-color text-capitalize mr-2">{{item?.name}}</span> <span class="ms-2">{{item?.description}}</span>
+                            
+                          </div>
+                          <img [src]="imgSrc+item?.image" class="img-fluid image">
+                          
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+                
             </span>
             <ng-container *ngIf="enableLocation">
               <span class="p-input-icon-right">

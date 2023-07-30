@@ -131,7 +131,7 @@ export class AddEditEducationComponent implements OnInit {
     let startDate: any = new Date(this.data?.start_date);
     let state: any = this.data?.state == 1 ? true : false;
     this.profileForm?.patchValue({
-      major_name: this.data?.major_name?.name,
+      major_name: this.data?.major_name,
       instituteName: this.data?.institute_name,
       degreeName: this.data?.degree_name,
       endDate: endDate,
@@ -156,10 +156,11 @@ export class AddEditEducationComponent implements OnInit {
     if (this.profileForm?.valid) {
       this.publicService?.show_loader?.next(true);
       let formInfo: any = this.profileForm?.value;
+      console.log(formInfo)
       let data = {
-        degree_name: formInfo?.degreeName?.name,
+        degree_name: formInfo?.degreeName?._id,
         institute_name: formInfo?.instituteName,
-        major_name: formInfo?.majorName,
+        major_name: formInfo?.major_name,
         start_date: formInfo?.startDate,
         end_date: formInfo?.endDate,
         // state: formInfo?.state == true ? 1 : 0

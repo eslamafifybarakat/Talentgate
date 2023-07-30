@@ -91,8 +91,19 @@ export class ProfileService {
     return this.http.put<any>(this.apiUrl + '/candidates/update_cover_picture', formData);
 
   }
+  updateProfileImage(file: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('image', file);
+
+    return this.http.put<any>(this.apiUrl + '/candidates/update_image', formData);
+
+  }
   getSkill(query: any): Observable<any> {
     return this.http?.get<any>(this.apiUrl + roots?.profile?.getSkills + '/' + this.langKey + '/' + query);
+  }
+  getDetailSkill(id:number)
+  {
+    return this.http?.get<any>(this.apiUrl + roots?.profile?.detailsSkill + '/' + id + '/'+ this.langKey);
   }
   getCompanies(query: any): Observable<any> {
     return this.http?.get<any>(this.apiUrl + roots?.profile?.getCompanies + '/' + this.langKey + '/' + query);
@@ -119,5 +130,15 @@ export class ProfileService {
       data['about_me'] = about_me;
     }
     return this.http.post<any>(this.apiUrl + roots?.profile?.addResume, data);
+  }
+
+  viewprofileDetails(id:number)
+  {
+    return this.http?.get<any>(this.apiUrl + roots?.profile?.view_candidate_profile + '/' + id + '/'+ this.langKey);
+  }
+
+  viewCompanyDetails(id:number)
+  {
+    return this.http?.get<any>(this.apiUrl + roots?.profile?.view_company_profile + '/' + id + '/'+ this.langKey);
   }
 }

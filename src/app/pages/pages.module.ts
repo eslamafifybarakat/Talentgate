@@ -18,6 +18,8 @@ import { AddEditEducationComponent } from './components/profile/components/add-e
 import { AddEditCertificationComponent } from './components/profile/components/add-edit-certification/add-edit-certification.component';
 import { AddEditLanguageComponent } from './components/profile/components/add-edit-language/add-edit-language.component';
 import { AddEditSkillComponent } from './components/profile/components/add-edit-skill/add-edit-skill.component';
+import { AllSkillsComponent } from './components/profile/components/all-skills/all-skills.component';
+import { AssessComponent } from './components/profile/components/assess/assess.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { AddEditSkillComponent } from './components/profile/components/add-edit-
     AddEditEducationComponent,
     AddEditCertificationComponent,
     AddEditLanguageComponent,
-    AddEditSkillComponent
+    AddEditSkillComponent,
+    AllSkillsComponent,
+    AssessComponent
   ],
   imports: [
     ReactiveFormsModule,

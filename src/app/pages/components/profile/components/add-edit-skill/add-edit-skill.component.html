@@ -8,31 +8,31 @@
     <div class="px-4 pb-4">
       <h5 class="mb-4 text-main-color">{{'general.assessments'|translate}}</h5>
       <div class="row gx-4">
-        <ng-container *ngFor="let item of skillsData?.slice(first, first + rows); let i = index;">
-          <div class="col-md-6 pe-4 mt-md-0 mt-3" [class.border-right]="i==0&&skillsData?.length>1">
+        <ng-container >
+          <div class="col-md-6 pe-4 mt-md-0 mt-3">
             <div class="h-100">
               <div class="d-flex justify-content-between gap-2 w-100">
                 <div class="mb-3">
-                  <h6 class="text-main-color fw-600 fs-6-1 mb-1">{{item?.name}} <span
-                      class="ps-1">({{item?.rate}}/{{item?.allRate}})</span>
+                  <h6 class="text-main-color fw-600 fs-6-1 mb-1">{{detailsSkills?.name}} <span
+                      class="ps-1">({{detailsSkills?.rate}}/{{detailsSkills?.rates_number}})</span>
                   </h6>
                   <div class="text-main-color d-flex gap-2 align-items-center">
                     <i class="fas fa-users"></i>
-                    <p class="fs-6-1">{{item?.assessments?.length}} Assessments</p>
+                    <p class="fs-6-1">{{detailsSkills?.assessments?.length}} Assessments</p>
                   </div>
                 </div>
                 <div class="me-auto">
-                  <a (click)="remove(item?._id)"><i class="fas fa-trash text-main-color"></i></a>
+                  <a (click)="remove(detailsSkills?._id)"><i class="fas fa-trash text-main-color"></i></a>
                 </div>
               </div>
-              <ng-container *ngFor="let item of item?.assessments;let index=index">
+              <ng-container *ngFor="let item of skillsData?.assessments?.rater;let index=index">
                 <div class="ms-sm-5 ms-3">
                   <div class="d-flex align-items-center gap-3 flex-wrap">
-                    <img class="person-img shadow-sm" [src]="item?.img"
+                    <img class="person-img shadow-sm" [src]="imgSrc+item?.image"
                       onerror="src='assets/images/not-found/no-user.svg'" alt="">
                     <div>
-                      <h5 class="text-main-color fs-6 mb-0">{{item?.name}} ({{item?.rate}})</h5>
-                      <p class="mb-0 text-main-color fs-6-1">{{item?.position}}</p>
+                      <h5 class="text-main-color fs-6 mb-0">{{item?.full_name}} ({{item?.rate}})</h5>
+                      <p class="mb-0 text-main-color fs-6-1">{{item?.professional_experiences[0]?.job_title}}</p>
                     </div>
                   </div>
                   <hr class="my-2 hr" [class.d-none]="index>=skillsData?.length-1">
@@ -52,8 +52,7 @@
           <div
             [class.border-red]="formControls?.skills?.invalid && (formControls?.skills?.dirty || formControls?.skills?.touched)">
             <p-autoComplete formControlName="skills" [suggestions]="filteredSkills"
-              placeholder="{{'placeholder.skills'|translate}}" (completeMethod)="filterSkills($event)" field="name"
-              [dropdown]="true">
+              placeholder="{{'placeholder.skills'|translate}}" (completeMethod)="filterSkills($event)" field="name" [multiple]="true">
               <ng-template let-skill pTemplate="item">
                 <div class="country-item">
                   <div>{{skill?.name}}</div>

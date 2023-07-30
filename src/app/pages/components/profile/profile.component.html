@@ -196,12 +196,12 @@
                       <ng-container *ngFor="let item of userProfileDetails?.skills">
                         <div class="d-flex justify-content-between gap-2 w-100">
                           <div class="mb-3">
-                            <h6 class="text-main-color fw-600 fs-6-1 mb-1">User Interface Design <span
+                            <h6 class="text-main-color fw-600 fs-6-1 mb-1">{{item.name}}<span
                                 class="ps-1">(7.5/10)</span>
                             </h6>
                             <div class="text-main-color d-flex gap-2 align-items-center">
                               <i class="fas fa-users"></i>
-                              <p class="fs-6-1">2 Assessments</p>
+                              <p class="fs-6-1">{{item.assessments.length}} Assessments</p>
                             </div>
                           </div>
                           <ng-container *ngIf="isEditSkills">
@@ -213,7 +213,7 @@
                         </div>
                       </ng-container>
                     </div>
-                    <a class="text-center text-desc-color fs-5-1 mt-3 d-block">Show all 23 skills</a>
+                    <a class="text-center text-desc-color fs-5-1 mt-3 d-block" (click)="showAllSkills()">Show all {{userProfileDetails?.skills.length}} skills</a>
                   </ng-container>
                   <ng-template #noSkills>
                     <div class="h-100 d-flex align-items-center justify-content-center flex-column">

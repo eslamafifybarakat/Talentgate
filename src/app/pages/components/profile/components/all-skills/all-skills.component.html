@@ -1,0 +1,33 @@
+<div class="container px-3">
+    <div class="row gx-4">
+          <div class="col-md-12 pe-4 text-capitalize mt-3">
+            <div class="">
+              <div *ngFor="let skill of skills" >
+                <div class="mb-3">
+                  <div class="d-flex justify-content-between">
+                    <h6 class="text-main-color fw-600 fs-6-1 mb-1">{{skill?.name}} <span
+                      class="ps-1">({{skill?.rate}}/{{skill?.rates_number}})</span>
+                  </h6>
+                  <button class="assess" (click)="assess(skill?._id , skill?.name)">Assess</button>
+                  </div>
+                  <div class="text-main-color d-flex gap-2 align-items-center ">
+                    <i class="fas fa-users"></i>
+                    <p class="fs-6-1">{{skill?.assessments?.length}} Assessments</p>
+                  </div>
+                </div>
+                <div class=" h-100" *ngFor="let item of skill?.assessments;let index=index">
+                    <div class="d-flex align-items-center gap-3 flex-wrap ms-3">
+                      <img class="person-img shadow-sm" [src]="imgSrc+item?.rater?.image"
+                        onerror="src='assets/images/not-found/no-user.svg'" alt="" style="width: 25px;height: 25px;">
+                      <div>
+                        <h5 class="text-main-color fs-6 mb-0">{{item?.rater?.full_name}} ({{item?.rater?.rate}})</h5>
+                        <p class="mb-0 text-main-color fs-6-1">{{item?.rater?.professional_experiences[0]?.job_title}}</p>
+                      </div>
+                    </div>
+                    <hr class="my-2 hr" [class.d-none]="index>=skills?.length-1">
+                  </div>
+              </div>
+            </div>
+          </div>
+      </div>
+</div>
