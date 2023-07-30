@@ -40,6 +40,13 @@ const routes: Routes = [
           title: 'titles.profile'
         }
       },
+      {
+        path: 'profile/:id', component: ProfileComponent, data: {
+          enableHeaderSearch: true,
+          type: 'pages',
+          title: 'titles.profile'
+        }
+      },
     ]
   }
 ];
