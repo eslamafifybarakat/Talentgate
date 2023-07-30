@@ -37,7 +37,10 @@
                       {{userProfileDetails?.country?.name}}
                     </p>
                   </div>
-                  <a (click)="editProfile()"> <i class="fas fa-pen-to-square"></i></a>
+                  <ng-container *ngIf="id==null">
+                    <a (click)="editProfile()"> <i class="fas fa-pen-to-square"></i></a>
+                  </ng-container>
+
                 </div>
               </div>
 
@@ -51,19 +54,21 @@
           <div class="global-card mt-3">
             <div class="d-flex justify-content-between">
               <h5 class="card-title-color fs-5 fw-bold mb-0">{{'profile.about'|translate}}</h5>
-              <ng-container *ngIf="!isEditAbout">
-                <div class="d-flex gap-3">
-                  <ng-container *ngIf="aboutText==''">
-                    <a (click)="addAbout()"><i class="pi pi-plus text-main-color"></i></a>
-                  </ng-container>
-                  <a (click)="editAbout()"><i class="fas fa-pen-to-square text-main-color"></i></a>
-                </div>
-              </ng-container>
-              <ng-container *ngIf="isEditAbout">
-                <div class="d-flex gap-3">
-                  <a (click)="saveEditText()"><i class="pi pi-check fs-5 text-main-color"></i></a>
-                  <a (click)="isEditAbout=false"><i class="pi pi-times fs-5-1 text-danger"></i></a>
-                </div>
+              <ng-container *ngIf="id==null">
+                <ng-container *ngIf="!isEditAbout">
+                  <div class="d-flex gap-3">
+                    <ng-container *ngIf="aboutText==''">
+                      <a (click)="addAbout()"><i class="pi pi-plus text-main-color"></i></a>
+                    </ng-container>
+                    <a (click)="editAbout()"><i class="fas fa-pen-to-square text-main-color"></i></a>
+                  </div>
+                </ng-container>
+                <ng-container *ngIf="isEditAbout">
+                  <div class="d-flex gap-3">
+                    <a (click)="saveEditText()"><i class="pi pi-check fs-5 text-main-color"></i></a>
+                    <a (click)="isEditAbout=false"><i class="pi pi-times fs-5-1 text-danger"></i></a>
+                  </div>
+                </ng-container>
               </ng-container>
             </div>
 
@@ -83,13 +88,15 @@
               <div class="global-card h-100 ">
                 <div class="d-flex justify-content-between">
                   <h5 class="card-title-color fs-5 fw-bold mb-0">{{'profile.experience'|translate}}</h5>
-                  <div class="d-flex gap-3">
-                    <a (click)="addOrEditExperience()"><i class="pi pi-plus fs-5-1 text-main-color fw-600"></i></a>
-                    <a (click)="isEditExperiences=true"><i class="fas fa-pen-to-square text-main-color"></i></a>
-                  </div>
+                  <ng-container *ngIf="id==null">
+                    <div class="d-flex gap-3">
+                      <a (click)="addOrEditExperience()"><i class="pi pi-plus fs-5-1 text-main-color fw-600"></i></a>
+                      <a (click)="isEditExperiences=true"><i class="fas fa-pen-to-square text-main-color"></i></a>
+                    </div>
+                  </ng-container>
                 </div>
                 <div class="mt-4 content-info">
-                  <ng-container *ngIf="experiences?.length>0; else noExperiences">
+                  <ng-container *ngIf="userProfileDetails?.professional_experiences?.length>0; else noExperiences">
                     <div class="pe-2 mb-4" *ngFor="let item of userProfileDetails?.professional_experiences">
                       <div class="d-flex justify-content-between gap-2 w-100">
                         <div>
@@ -173,7 +180,7 @@
                   <ng-template #noExperiences>
                     <div class="h-100 d-flex align-items-center justify-content-center flex-column">
                       <img class="no-data" src="assets/images/not-found/no-data.svg" alt="no-data">
-                      <p class="text-dark-color">{{'general.no_search_result'|translate}}</p>
+                      <p class="text-dark-color">{{'general.no_result_found'|translate}}</p>
                     </div>
                   </ng-template>
 
@@ -184,11 +191,12 @@
               <div class="global-card h-100">
                 <div class="d-flex justify-content-between">
                   <h5 class="card-title-color fs-5 fw-bold mb-0">{{'profile.skills'|translate}}</h5>
-                  <div class="d-flex gap-3">
-                    <a (click)="addOrEditSkill()"><i class="pi pi-plus fs-5-1 text-main-color fw-600"></i></a>
-                    <a (click)="isEditSkills=true"><i class="fas fa-pen-to-square text-main-color"></i></a>
-                  </div>
-
+                  <ng-container *ngIf="id==null">
+                    <div class="d-flex gap-3">
+                      <a (click)="addOrEditSkill()"><i class="pi pi-plus fs-5-1 text-main-color fw-600"></i></a>
+                      <a (click)="isEditSkills=true"><i class="fas fa-pen-to-square text-main-color"></i></a>
+                    </div>
+                  </ng-container>
                 </div>
                 <div class="d-flex justify-content-between flex-column h-100 py-4">
                   <ng-container *ngIf="userProfileDetails?.skills.length>0; else noSkills">
@@ -213,12 +221,13 @@
                         </div>
                       </ng-container>
                     </div>
-                    <a class="text-center text-desc-color fs-5-1 mt-3 d-block" (click)="showAllSkills()">Show all {{userProfileDetails?.skills.length}} skills</a>
+                    <a class="text-center text-desc-color fs-5-1 mt-3 d-block" (click)="showAllSkills()">Show all
+                      {{userProfileDetails?.skills.length}} skills</a>
                   </ng-container>
                   <ng-template #noSkills>
                     <div class="h-100 d-flex align-items-center justify-content-center flex-column">
                       <img class="no-data" src="assets/images/not-found/no-data.svg" alt="no-data">
-                      <p class="text-dark-color">{{'general.no_search_result'|translate}}</p>
+                      <p class="text-dark-color">{{'general.no_result_found'|translate}}</p>
                     </div>
                   </ng-template>
 
@@ -232,35 +241,44 @@
           <div class="global-card mt-3">
             <div class="d-flex justify-content-between">
               <h5 class="card-title-color fs-5 fw-bold mb-0">{{'profile.education'|translate}}</h5>
-              <div class="d-flex gap-3">
-                <a (click)="addOrEditEducation()"><i class="pi pi-plus fs-5-1 text-main-color fw-600"></i></a>
-                <a (click)="isEditEducations=true"><i class="fas fa-pen-to-square text-main-color"></i></a>
-              </div>
+              <ng-container *ngIf="id==null">
+                <div class="d-flex gap-3">
+                  <a (click)="addOrEditEducation()"><i class="pi pi-plus fs-5-1 text-main-color fw-600"></i></a>
+                  <a (click)="isEditEducations=true"><i class="fas fa-pen-to-square text-main-color"></i></a>
+                </div>
+              </ng-container>
             </div>
             <div class="mt-4">
               <div class="d-flex align-items-center gap-4 flex-wrap">
-                <ng-container *ngFor="let item of userProfileDetails?.educations">
-                  <div class="d-flex justify-content-between gap-3">
-                    <div class="d-flex align-items-start gap-2">
-                      <img src="../../../../assets/images/profile/school.jpg" class="experiance-img rounded-circle"
-                        alt="school" onerror="src='assets/images/not-found/no-user.svg'">
-                      <div>
-                        <h6 class="mb-0 text-main-color fw-600 fs-6-1">{{item?.institute_name}}</h6>
-                        <p class="text-main-color fs-6-1">{{item?.start_date |date : 'yyy'}}-{{item?.end_date |date :
-                          'yyy'}}</p>
-                        <p class="text-main-color fs-6-1">{{item?.degree_name?.name}}</p>
-                        <p class="text-main-color fs-6-1">{{item?.major_name?.name}}</p>
+                <ng-container *ngIf="userProfileDetails?.educations?.length>0; else noEducation">
+                  <ng-container *ngFor="let item of userProfileDetails?.educations">
+                    <div class="d-flex justify-content-between gap-3">
+                      <div class="d-flex align-items-start gap-2">
+                        <img src="../../../../assets/images/profile/school.jpg" class="experiance-img rounded-circle"
+                          alt="school" onerror="src='assets/images/not-found/no-user.svg'">
+                        <div>
+                          <h6 class="mb-0 text-main-color fw-600 fs-6-1">{{item?.institute_name}}</h6>
+                          <p class="text-main-color fs-6-1">{{item?.start_date |date : 'yyy'}}-{{item?.end_date |date :
+                            'yyy'}}</p>
+                          <p class="text-main-color fs-6-1">{{item?.degree_name?.name}}</p>
+                          <p class="text-main-color fs-6-1">{{item?.major_name?.name}}</p>
+                        </div>
                       </div>
+                      <ng-container *ngIf="isEditEducations">
+                        <div class="me-auto">
+                          <a (click)="addOrEditEducation('edit',item?._id)"><i
+                              class="fas fa-pen-to-square text-main-color"></i></a>
+                        </div>
+                      </ng-container>
                     </div>
-                    <ng-container *ngIf="isEditEducations">
-                      <div class="me-auto">
-                        <a (click)="addOrEditEducation('edit',item?._id)"><i
-                            class="fas fa-pen-to-square text-main-color"></i></a>
-                      </div>
-                    </ng-container>
-                  </div>
+                  </ng-container>
                 </ng-container>
-
+                <ng-template #noEducation>
+                  <div class="h-100 d-flex align-items-center justify-content-center flex-column w-100">
+                    <img class="no-data" src="assets/images/not-found/no-data.svg" alt="no-data">
+                    <p class="text-dark-color">{{'general.no_result_found'|translate}}</p>
+                  </div>
+                </ng-template>
               </div>
             </div>
           </div>
@@ -270,35 +288,46 @@
               <div class="global-card h-100">
                 <div class="d-flex justify-content-between">
                   <h5 class="card-title-color fs-5 fw-bold mb-0">{{'profile.certifications'|translate}}</h5>
-                  <div class="d-flex gap-3">
-                    <a (click)="addOrEditCertification()"><i class="pi pi-plus fs-5-1 text-main-color fw-600"></i></a>
-                    <a (click)="isEditCertificates=true"><i class="fas fa-pen-to-square text-main-color"></i></a>
-                  </div>
+                  <ng-container *ngIf="id==null">
+                    <div class="d-flex gap-3">
+                      <a (click)="addOrEditCertification()"><i class="pi pi-plus fs-5-1 text-main-color fw-600"></i></a>
+                      <a (click)="isEditCertificates=true"><i class="fas fa-pen-to-square text-main-color"></i></a>
+                    </div>
+                  </ng-container>
                 </div>
                 <!-- ======================certificate=========== -->
-                <div class="mt-4" *ngFor="let item of userProfileDetails?.certificates">
-                  <div class="d-flex justify-content-between gap-3 w-100">
-                    <div class="d-flex align-items-start gap-2">
-                      <img src="../../../../assets/images/profile/ui.jfif" class="experiance-img rounded-circle"
-                        alt="be" onerror="src='assets/images/not-found/no-user.svg'">
-                      <div>
-                        <h6 class="mb-0 text-main-color fw-600 fs-6-1">{{item?.certification_title}}</h6>
-                        <p class="text-main-color fs-6-1">{{item?.provider_website}}</p>
-                        <p class="text-main-color fs-6-1">{{item?.obtain_date |date : "dd-MMM-yyyy"}}</p>
-                        <a class="text-main-color fs-6-1 showCredentials py-1 px-2 rounded-pill mt-1 d-flex gap-2">
-                          {{'profile.showCredentials'|translate}}
-                          <a><i class="fas fa-pen-to-square text-main-color fs-8"></i></a>
-                        </a>
+                <ng-container *ngIf="userProfileDetails?.certificates?.length>0; else noCertifications">
+                  <div class="mt-4" *ngFor="let item of userProfileDetails?.certificates">
+                    <div class="d-flex justify-content-between gap-3 w-100">
+                      <div class="d-flex align-items-start gap-2">
+                        <img src="../../../../assets/images/profile/ui.jfif" class="experiance-img rounded-circle"
+                          alt="be" onerror="src='assets/images/not-found/no-user.svg'">
+                        <div>
+                          <h6 class="mb-0 text-main-color fw-600 fs-6-1">{{item?.certification_title}}</h6>
+                          <p class="text-main-color fs-6-1">{{item?.provider_website}}</p>
+                          <p class="text-main-color fs-6-1">{{item?.obtain_date |date : "dd-MMM-yyyy"}}</p>
+                          <a class="text-main-color fs-6-1 showCredentials py-1 px-2 rounded-pill mt-1 d-flex gap-2">
+                            {{'profile.showCredentials'|translate}}
+                            <a><i class="fas fa-pen-to-square text-main-color fs-8"></i></a>
+                          </a>
+                        </div>
                       </div>
+                      <ng-container *ngIf="isEditCertificates">
+                        <div class="me-auto">
+                          <a (click)="addOrEditCertification('edit',item?._id)"><i
+                              class="fas fa-pen-to-square text-main-color"></i></a>
+                        </div>
+                      </ng-container>
                     </div>
-                    <ng-container *ngIf="isEditCertificates">
-                      <div class="me-auto">
-                        <a (click)="addOrEditCertification('edit',item?._id)"><i
-                            class="fas fa-pen-to-square text-main-color"></i></a>
-                      </div>
-                    </ng-container>
                   </div>
-                </div>
+                </ng-container>
+                <ng-template #noCertifications>
+                  <div class="h-100 d-flex align-items-center justify-content-center flex-column">
+                    <img class="no-data" src="assets/images/not-found/no-data.svg" alt="no-data">
+                    <p class="text-dark-color">{{'general.no_result_found'|translate}}</p>
+                  </div>
+                </ng-template>
+
               </div>
             </div>
             <!-- ==========language============ -->
@@ -306,33 +335,43 @@
               <div class="global-card  h-100">
                 <div class="d-flex justify-content-between">
                   <h5 class="card-title-color fs-5 fw-bold mb-0">{{'profile.languages'|translate}}</h5>
-                  <div class="d-flex gap-3">
-                    <a (click)="addOrEditLanguage()"><i class="pi pi-plus fs-5-1 text-main-color fw-600"></i></a>
-                    <a (click)="isEditLanguages=true"><i class="fas fa-pen-to-square text-main-color"></i></a>
-                  </div>
+                  <ng-container *ngIf="id==null">
+                    <div class="d-flex gap-3">
+                      <a (click)="addOrEditLanguage()"><i class="pi pi-plus fs-5-1 text-main-color fw-600"></i></a>
+                      <a (click)="isEditLanguages=true"><i class="fas fa-pen-to-square text-main-color"></i></a>
+                    </div>
+                  </ng-container>
                 </div>
 
                 <div class="mt-4">
                   <div class="d-flex gap-3 flex-wrap">
-                    <ng-container *ngFor="let item of userProfileDetails?.languages;let i=index">
-                      <div class="d-flex justify-content-between gap-2  w-100">
-                        <div class="d-flex align-items-center gap-2">
-                          <div class="language d-flex align-items-center justify-content-center rounded-circle">
-                            <i class="fas fa-globe fs-5 text-main-color "></i>
+                    <ng-container *ngIf="userProfileDetails?.languages?.length>0; else noLangs">
+                      <ng-container *ngFor="let item of userProfileDetails?.languages;let i=index">
+                        <div class="d-flex justify-content-between gap-2  w-100">
+                          <div class="d-flex align-items-center gap-2">
+                            <div class="language d-flex align-items-center justify-content-center rounded-circle">
+                              <i class="fas fa-globe fs-5 text-main-color "></i>
+                            </div>
+                            <div class="text-capitalize">
+                              <h6 class="mb-0 text-main-color fw-600 fs-6-1">{{item?.language?.name}}</h6>
+                              <p class="text-main-color fs-6-1">{{getProficiencyText(item.proficiency_Levels)}}</p>
+                            </div>
                           </div>
-                          <div class="text-capitalize">
-                            <h6 class="mb-0 text-main-color fw-600 fs-6-1">{{item?.language?.name}}</h6>
-                            <p class="text-main-color fs-6-1">{{getProficiencyText(item.proficiency_Levels)}}</p>
-                          </div>
+                          <ng-container *ngIf="isEditLanguages">
+                            <div class="me-auto">
+                              <a (click)="addOrEditLanguage('edit',item?._id)"><i
+                                  class="fas fa-pen-to-square text-main-color"></i></a>
+                            </div>
+                          </ng-container>
                         </div>
-                        <ng-container *ngIf="isEditLanguages">
-                          <div class="me-auto">
-                            <a (click)="addOrEditLanguage('edit',item?._id)"><i
-                                class="fas fa-pen-to-square text-main-color"></i></a>
-                          </div>
-                        </ng-container>
-                      </div>
+                      </ng-container>
                     </ng-container>
+                    <ng-template #noLangs>
+                      <div class="h-100 d-flex align-items-center justify-content-center flex-column w-100">
+                        <img class="no-data" src="assets/images/not-found/no-data.svg" alt="no-data">
+                        <p class="text-dark-color">{{'general.no_result_found'|translate}}</p>
+                      </div>
+                    </ng-template>
                   </div>
                   <!-- <div class="d-flex gap-3 flex-wrap mt-3">
                     <ng-container *ngFor="let item of [9,8];let i=index">
@@ -360,20 +399,20 @@
             <div class="row g-3 mt-1">
               <div class="col-lg-6 col-md-3 col-sm-6">
                 <div class="analysies text-center">
-                  <h5 class="text-main-color mb-1 fw-600">{{userProfileDetails?.number_jobs_applied}}</h5>
+                  <h5 class="text-main-color mb-1 fw-600">{{userProfileDetails?.number_jobs_applied||0}}</h5>
                   <p class="title fw-600 text-dark-color">{{'profile.appliedJobs'|translate}}</p>
                 </div>
               </div>
               <div class="col-lg-6 col-md-3 col-sm-6">
                 <div class="analysies text-center">
-                  <h5 class="text-main-color mb-1 fw-600">{{userProfileDetails?.number_jobs_matched}}</h5>
+                  <h5 class="text-main-color mb-1 fw-600">{{userProfileDetails?.number_jobs_matched||0}}</h5>
                   <p class="title fw-600 text-dark-color">{{'profile.matchingJobs'|translate}}</p>
                 </div>
               </div>
               <div class="col-lg-6 col-md-3 col-sm-6">
                 <div class="analysies text-center">
-                  <h5 class="text-main-color mb-1 fw-600">455</h5>
-                  <p class="title fw-600 text-dark-color">{{userProfileDetails?.view_number |translate}}</p>
+                  <h5 class="text-main-color mb-1 fw-600">{{userProfileDetails?.view_number||0}}</h5>
+                  <p class="title fw-600 text-dark-color">{{'profile.profileView'|translate}}</p>
                 </div>
               </div>
               <div class="col-lg-6 col-md-3 col-sm-6">

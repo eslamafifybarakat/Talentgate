@@ -6,7 +6,9 @@
     "home":"الرئيسية",
     "applyJob":"التقدم لوظيفة",
     "calender":"جدول المواعيد",
-    "profile":"الصفحة الشخصية"
+    "profile":"الصفحة الشخصية",
+"companyProfile":"الصفحة الشخصية للشركة"
+
       },
   "general": {
     "assessments":"التقييمات",

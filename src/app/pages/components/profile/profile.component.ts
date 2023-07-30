@@ -8,15 +8,19 @@ import { AllSkillsComponent } from './components/all-skills/all-skills.component
 import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { AlertsService } from './../../../core/services/alerts/alerts.service';
 import { PublicService } from './../../../shared/services/public.service';
+import { ProfileService } from '../../services/profile.service';
 import { HomeService } from './../../services/home.service';
 import { DialogService } from 'primeng/dynamicdialog';
-import { ProfileService } from '../../services/profile.service';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+  private unsubscribe: Subscription[] = [];
+
   userData: any = {};
   isLoading: boolean = false;
   imgSrc: string = 'https://dev-api.talentsgates.website/getimage/';
@@ -37,7 +41,7 @@ export class ProfileComponent implements OnInit {
   @ViewChild('profilePictureInput') profilePictureInput: any;
 
 
-  experiences: any = [4, 6, 8];
+  experiences: any = [];
   startDate: any;
   end_date: any;
   sx: any;
@@ -51,11 +55,13 @@ export class ProfileComponent implements OnInit {
   isEditEducations: boolean = false
   isEditCertificates: boolean = false
   isEditSkills: boolean = false
+  id: any = null;
 
   // @ViewChild('aboutTextArea', { static: false }) aboutTextArea!: ElementRef;
   constructor(
-    private alertsService: AlertsService,
+    private activatedRoute: ActivatedRoute,
     private profileService: ProfileService,
+    private alertsService: AlertsService,
     private publicService: PublicService,
     private dialogService: DialogService,
     private homeService: HomeService,
@@ -70,8 +76,8 @@ export class ProfileComponent implements OnInit {
       }
     });
     // this.getSearchResults('');
-
-    this.getProfileDetails();
+    this.id = this.activatedRoute?.snapshot?.params['id'];
+    this.id ? this.viewProfileDetails(this.id) : this.getProfileDetails();
     this.getResume();
   }
 
@@ -283,11 +289,11 @@ export class ProfileComponent implements OnInit {
     let fileReader = new FileReader();
     fileReader.readAsDataURL(file);
     fileReader.onload = (e: any) => {
-    this._handleReaderLoadedImage.bind(e);
-    this.profileService.updateProfileImage(file).subscribe((res) => {
-      this.userProfileDetails.image = this.imgProfileFileSrc; 
-      this.cdr.detectChanges();
-    });
+      this._handleReaderLoadedImage.bind(e);
+      this.profileService.updateProfileImage(file).subscribe((res) => {
+        this.userProfileDetails.image = this.imgProfileFileSrc;
+        this.cdr.detectChanges();
+      });
     }
   }
   _handleReaderLoadedImage(e: any): void {
@@ -398,12 +404,11 @@ export class ProfileComponent implements OnInit {
       }
     });
   }
-  showAllSkills(): any 
-  {
+  showAllSkills(): any {
     const ref = this.dialogService.open(AllSkillsComponent, {
-      header:this.publicService?.translateTextFromJson('Skill') ,
+      header: this.publicService?.translateTextFromJson('Skill'),
       width: '27%',
-      data: { },
+      data: {},
       styleClass: 'apply-job-dialog',
     });
     ref.onClose.subscribe((res: any) => {
@@ -411,5 +416,27 @@ export class ProfileComponent implements OnInit {
         this.getProfileDetails();
       }
     });
+  }
+
+  viewProfileDetails(id: any): void {
+    this.isLoading = true;
+    this.profileService?.viewProfileDetails(id).subscribe((res: any) => {
+      if (res?.status == 200) {
+        this.userProfileDetails = res?.data;
+        console.log(this.userProfileDetails)
+        this.isLoading = false;
+      } else {
+        res?.message ? this.alertsService?.openSweetAlert('info', res?.message) : '';
+        this.isLoading = false;
+      }
+    },
+      (err: any) => {
+        err?.message ? this.alertsService?.openSweetAlert('error', err?.message) : '';
+        this.isLoading = false;
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe?.forEach((sb) => sb?.unsubscribe());
   }
 }

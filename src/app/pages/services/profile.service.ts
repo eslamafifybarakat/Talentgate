@@ -101,9 +101,8 @@ export class ProfileService {
   getSkill(query: any): Observable<any> {
     return this.http?.get<any>(this.apiUrl + roots?.profile?.getSkills + '/' + this.langKey + '/' + query);
   }
-  getDetailSkill(id:number)
-  {
-    return this.http?.get<any>(this.apiUrl + roots?.profile?.detailsSkill + '/' + id + '/'+ this.langKey);
+  getDetailSkill(id: number) {
+    return this.http?.get<any>(this.apiUrl + roots?.profile?.detailsSkill + '/' + id + '/' + this.langKey);
   }
   getCompanies(query: any): Observable<any> {
     return this.http?.get<any>(this.apiUrl + roots?.profile?.getCompanies + '/' + this.langKey + '/' + query);
@@ -132,13 +131,11 @@ export class ProfileService {
     return this.http.post<any>(this.apiUrl + roots?.profile?.addResume, data);
   }
 
-  viewprofileDetails(id:number)
-  {
-    return this.http?.get<any>(this.apiUrl + roots?.profile?.view_candidate_profile + '/' + id + '/'+ this.langKey);
+  viewProfileDetails(id: number) {
+    return this.http?.get<any>(this.apiUrl + roots?.profile?.view_candidate_profile + '/' + id + '/' + this.langKey);
   }
 
-  viewCompanyDetails(id:number)
-  {
-    return this.http?.get<any>(this.apiUrl + roots?.profile?.view_company_profile + '/' + id + '/'+ this.langKey);
+  viewCompanyDetails(id: number) {
+    return this.http?.get<any>(this.apiUrl + roots?.profile?.view_company_profile + '/' + id + '/' + this.langKey);
   }
 }

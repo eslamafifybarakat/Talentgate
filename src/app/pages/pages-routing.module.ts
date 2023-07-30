@@ -6,6 +6,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ApplyJobComponent } from './components/apply-job/apply-job.component';
 import { CalenderComponent } from './components/calender/calender.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { CompanyProfileComponent } from './components/profile/components/company-profile/company-profile.component';
 
 const routes: Routes = [
   {
@@ -45,6 +46,13 @@ const routes: Routes = [
           enableHeaderSearch: true,
           type: 'pages',
           title: 'titles.profile'
+        }
+      },
+      {
+        path: 'company-profile/:id', component: CompanyProfileComponent, data: {
+          enableHeaderSearch: true,
+          type: 'pages',
+          title: 'titles.companyProfile'
         }
       },
     ]

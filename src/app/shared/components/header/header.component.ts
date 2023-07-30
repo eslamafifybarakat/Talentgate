@@ -3,7 +3,7 @@ import { Component, EventEmitter, HostListener, Input, OnInit, Output, ViewChild
 import { keys } from 'src/app/shared/configs/localstorage-key';
 import { SharedService } from '../../services/shared.service';
 import { Router } from '@angular/router';
-import { SharedModule} from '../../shared.module'
+import { SharedModule } from '../../shared.module'
 import { ProfileService } from 'src/app/pages/services/profile.service';
 import { HomeService } from 'src/app/pages/services/home.service';
 @Component({
@@ -17,9 +17,9 @@ export class HeaderComponent implements OnInit {
   enableSearch: boolean = false;
   enableLocation: boolean = false;
   userData: any;
-  text: string[]=[];
-  results: string[]=[];
-  searchResults:any = [];
+  text: string[] = [];
+  results: string[] = [];
+  searchResults: any = [];
   imgSrc: string = 'https://dev-api.talentsgates.website/getimage/';
   moduleType: string = '';
   @Input() collapsed: boolean = false;
@@ -49,10 +49,10 @@ export class HeaderComponent implements OnInit {
   constructor(
     private sharedService: SharedService,
     private publicService: PublicService,
-    private HomeService:HomeService,
+    private HomeService: HomeService,
     private cdr: ChangeDetectorRef,
-    private router: Router, private profileService: ProfileService,private eRef: ElementRef,
-    private ProfileService:ProfileService
+    private router: Router, private profileService: ProfileService, private eRef: ElementRef,
+    private ProfileService: ProfileService
   ) { }
 
   ngOnInit(): void {
@@ -73,18 +73,17 @@ export class HeaderComponent implements OnInit {
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent) {
     const targetElement = event.target as HTMLElement;
-    if (targetElement &&this.searchResultsList?.nativeElement !=targetElement ) {
+    if (targetElement && this.searchResultsList?.nativeElement != targetElement) {
       this.searchResults = [];
     }
   }
 
-  onSearchChange(data:any)
-  {
+  onSearchChange(data: any) {
     this.isDropdownOpen = true;
     this.HomeService.getSearchResults(data).subscribe(res => {
       console.log(res)
       // this.hideResults = false;
-      this.searchResults =res.data.search_result;
+      this.searchResults = res.data.search_result;
       console.log(this.searchResults)
     });
   }
@@ -136,20 +135,12 @@ export class HeaderComponent implements OnInit {
     );
     this.cdr?.detectChanges();
   }
-  chooseItem(item:any)
-  {
+  chooseItem(item: any) {
     console.log(item);
-    if (item.result_type == 1)
-    {
-      this.ProfileService.viewprofileDetails(item._id).subscribe((res)=>{
-        console.log(res);
-        this.router.navigateByUrl(`/profile/${item._id}`);
-      })
-    }else if(item.result_type == 0)
-    {
-      this.profileService.viewCompanyDetails(item._id).subscribe((res)=>{
-        console.log(res)
-      })
+    if (item.result_type == 1) {
+      this.router.navigate([`/profile/${item._id}`, { id: item._id }]);
+    } else if (item.result_type == 0) {
+      this.router.navigate([`/company-profile/${item._id}`, { id: item._id }]);
     }
   }
 }

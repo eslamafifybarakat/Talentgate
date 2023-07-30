@@ -20,6 +20,7 @@ import { AddEditLanguageComponent } from './components/profile/components/add-ed
 import { AddEditSkillComponent } from './components/profile/components/add-edit-skill/add-edit-skill.component';
 import { AllSkillsComponent } from './components/profile/components/all-skills/all-skills.component';
 import { AssessComponent } from './components/profile/components/assess/assess.component';
+import { CompanyProfileComponent } from './components/profile/components/company-profile/company-profile.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { AssessComponent } from './components/profile/components/assess/assess.c
     AddEditLanguageComponent,
     AddEditSkillComponent,
     AllSkillsComponent,
-    AssessComponent
+    AssessComponent,
+    CompanyProfileComponent
   ],
   imports: [
     ReactiveFormsModule,
