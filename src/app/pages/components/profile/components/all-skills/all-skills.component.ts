@@ -61,27 +61,31 @@ export class AllSkillsComponent implements OnInit {
     // })
   }
 
-  assess(id: number, type: any) {
-    this.profileService.canAccess(id).subscribe((res) => {
-      if (res?.status == 200) {
-        const ref = this.dialogService.open(AssessComponent, {
-          header: type,
-          width: '30%',
-          data: { id: id },
-          styleClass: 'apply-job-dialog',
+  assess(skill: any, type: any) {
+    if (skill?.assessments[0]?.company_name?.company_name == this.companyName) {
+      this.profileService.canAccess(skill?._id).subscribe((res) => {
+        if (res?.status == 200) {
+          const ref = this.dialogService.open(AssessComponent, {
+            header: type,
+            width: '30%',
+            data: { id: skill?._id },
+            styleClass: 'apply-job-dialog',
+          });
+          ref.onClose.subscribe((res: any) => {
+            if (res?.listChanged) {
+              this.ref?.close();
+            }
+          });
+        } else {
+          res?.message ? this.alertsService?.openSweetAlert('info', res?.message) : '';
+        }
+      },
+        (err: any) => {
+          err?.message ? this.alertsService?.openSweetAlert('error', err?.message) : '';
         });
-        ref.onClose.subscribe((res: any) => {
-          if (res?.listChanged) {
-            this.ref?.close();
-          }
-        });
-      } else {
-        res?.message ? this.alertsService?.openSweetAlert('info', res?.message) : '';
-      }
-    },
-      (err: any) => {
-        err?.message ? this.alertsService?.openSweetAlert('error', err?.message) : '';
-      });
+    } else {
+      this.alertsService?.openSweetAlert('info', this.publicService?.translateTextFromJson('general.assessInfo'));
+    }
   }
 
   ngOnDestroy(): void {
