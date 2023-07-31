@@ -39,7 +39,7 @@ export const roots = {
     byCandidate: '/by_candidate',
     deleteLanguage: '/languages/deleteLanguageByCandidate',
     getSkills: '/skills',
-    detailsSkill:'/skills/detail',
+    detailsSkill: '/skills/detail',
     getLanguages: '/languages/list',
     degreeNameEducation: '/degree_name_educations',
     // getLanguages: '/languages/list_languages',
@@ -47,10 +47,11 @@ export const roots = {
     getResume: '/resumes/get_resume_by_candidate',
     addResume: '/resumes/add_resume',
     getCompanies: '/companys',
-    view_candidate_profile:'/candidates/view_candidate_profile',
-    view_company_profile :'/companys/view_company_profile',
-    assess:'/skills/assess',
-    allCompany:'/companys/list'
+    view_candidate_profile: '/candidates/view_candidate_profile',
+    view_company_profile: '/companys/view_company_profile',
+    canAccess: '/professional_experiences/can_access',
+    assess: '/skills/assess',
+    allCompany: '/companys/list'
   },
   scheduler: {
     events: '/events'

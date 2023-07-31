@@ -407,7 +407,7 @@ export class ProfileComponent implements OnInit {
   showAllSkills(): any {
     const ref = this.dialogService.open(AllSkillsComponent, {
       header: this.publicService?.translateTextFromJson('Skill'),
-      width: '27%',
+      width: '30%',
       data: {},
       styleClass: 'apply-job-dialog',
     });

@@ -11,6 +11,7 @@
 "companyProfile":"Company Profile"
   },
   "general": {
+    "notAllowed":"Not allowed",
     "assessments":"Assessments",
     "lastUsed":"Last used on",
     "UploadResume": "Upload resume",

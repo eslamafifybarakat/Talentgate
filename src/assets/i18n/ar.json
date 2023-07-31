@@ -7,10 +7,10 @@
     "applyJob":"التقدم لوظيفة",
     "calender":"جدول المواعيد",
     "profile":"الصفحة الشخصية",
-"companyProfile":"الصفحة الشخصية للشركة"
-
+    "companyProfile":"الصفحة الشخصية للشركة"
       },
   "general": {
+    "notAllowed":"غير مسموح",
     "assessments":"التقييمات",
     "lastUsed":"آخر استخدام في",
     "UploadResume":"تحميل السيرة الذاتية",

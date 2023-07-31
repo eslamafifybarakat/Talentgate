@@ -131,20 +131,22 @@ export class ProfileService {
     return this.http.post<any>(this.apiUrl + roots?.profile?.addResume, data);
   }
 
-  viewProfileDetails(id: number): Observable<any>  {
+  viewProfileDetails(id: number): Observable<any> {
     return this.http?.get<any>(this.apiUrl + roots?.profile?.view_candidate_profile + '/' + id + '/' + this.langKey);
   }
 
-  viewCompanyDetails(id: number): Observable<any>  {
+  viewCompanyDetails(id: number): Observable<any> {
     return this.http?.get<any>(this.apiUrl + roots?.profile?.view_company_profile + '/' + id + '/' + this.langKey);
   }
-  assess(id:number,data:any,IdCandidate:number): Observable<any> 
-  {
-    return this.http?.post<any>(this.apiUrl + roots?.profile?.assess + '/' + IdCandidate + '/' + id,data);
+  canAccess(IdCandidate: number): Observable<any> {
+    return this.http?.get<any>(this.apiUrl + roots?.profile?.canAccess + '/' + IdCandidate);
   }
 
-  getAllCompany(): Observable<any> 
-  {
+  assess(id: number, IdCandidate: number, data: any): Observable<any> {
+    return this.http?.post<any>(this.apiUrl + roots?.profile?.assess + '/' + IdCandidate + '/' + id, data);
+  }
+
+  getAllCompany(): Observable<any> {
     return this.http?.get<any>(this.apiUrl + roots?.profile?.allCompany + '/' + this.langKey);
   }
 }

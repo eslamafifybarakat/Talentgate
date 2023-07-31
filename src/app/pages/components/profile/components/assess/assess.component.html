@@ -1,41 +1,43 @@
-<div class="container text-capitalize">
-    <div class="border-bottom">
-        <label for=""class='d-block text-main-color'>Connexion Type*</label>
-        <span class="p-input-icon-right select-loading d-block"
+<div class="container text-capitalize mt-3 px-4" id="profile-modal">
+  <form [formGroup]="assessForm">
+    <div class="border-bottom mb-3">
+      <label for="" class='d-block text-main-color mb-1'>Connexion Type*</label>
+      <span class="p-input-icon-right select-loading d-block"
         [class.border-red]="(formControls?.['connexion_type']?.touched || formControls?.['connexion_type']?.dirty) && formControls?.['connexion_type']?.invalid">
-            <p-dropdown [options]="connexion_type" formControlName="connexion_type" optionLabel="name" [filter]="true"
-            [virtualScroll]="true" [virtualScrollItemSize]="38" filterBy="name" appendTo="body"
-            [filterPlaceholder]="'placeholder.search'|translate" [readonly]="false"
-            emptyMessage="{{'general.no_result_found'|translate}}" [showClear]="true"
-            >
-          </p-dropdown>
-        </span>
+        <p-dropdown [options]="connexion_type" formControlName="connexion_type" optionLabel="name" [filter]="true"
+          [virtualScroll]="true" [virtualScrollItemSize]="38" filterBy="name" appendTo="body"
+          [filterPlaceholder]="'placeholder.search'|translate" [readonly]="false"
+          emptyMessage="{{'general.no_result_found'|translate}}" [showClear]="true">
+        </p-dropdown>
+      </span>
     </div>
 
-    <div class="border-bottom">
-        <label for="" class='d-block text-main-color'>Company Name*</label>
-        <span class="p-input-icon-right select-loading d-block"
+    <div class="border-bottom mb-3">
+      <label for="" class='d-block text-main-color mb-1'>Company Name*</label>
+      <span class="p-input-icon-right select-loading d-block"
         [class.border-red]="(formControls?.['company_name']?.touched || formControls?.['company_name']?.dirty) && formControls?.['company_name']?.invalid">
-            <p-dropdown [options]="companies" formControlName="company_name" optionLabel="name_company" [filter]="true"
-            [virtualScroll]="true" [virtualScrollItemSize]="38" filterBy="name" appendTo="body"
-            [filterPlaceholder]="'placeholder.search'|translate" [readonly]="false"
-            emptyMessage="{{'general.no_result_found'|translate}}" [showClear]="true"
-            placeholder="{{'placeholder.country'|translate}}"
-            >
-          </p-dropdown>
-        </span>
+        <p-dropdown [options]="companies" formControlName="company_name" optionLabel="name_company" [filter]="true"
+          [virtualScroll]="true" [virtualScrollItemSize]="38" filterBy="name" appendTo="body"
+          [filterPlaceholder]="'placeholder.search'|translate" [readonly]="false"
+          emptyMessage="{{'general.no_result_found'|translate}}" [showClear]="true"
+          placeholder="{{'placeholder.country'|translate}}">
+        </p-dropdown>
+      </span>
     </div>
     <div class="mt-2">
-        <h5 class="text-main-color">Assess This Skill</h5>
-        <p>How would you rate Goldie's level of Proficiency of this skill</p>
+      <h5 class="text-main-color">Assess This Skill</h5>
+      <p>How would you rate Goldie's level of Proficiency of this skill</p>
     </div>
 
     <div class="d-flex mt-3">
-        <input class="w-75" formControlName="rate" type="range" min="0" max="100" [(ngModel)]="volume">
-        <span>{{volume}}%</span>
+      <input class="w-100" formControlName="rate" type="range" min="0" max="100" [(ngModel)]="volume">
+      <span>{{volume}}%</span>
     </div>
-    <div class="progress-bar" [style.background]="'linear-gradient(to right, red ' + volume + '%, #ddd ' + volume + '%)'"></div>
+    <div class="progress-bar"
+      [style.background]="'linear-gradient(to right, red ' + volume + '%, #ddd ' + volume + '%)'">
+    </div>
 
-    <button class="btn w-100 my-5 text-capitalize" (click)="assess()"
-        style="background-color: #254472; border-radius: 25px; color: white;">assess</button>
+    <button class="btn w-100 my-5 py-3 text-capitalize" (click)="assess()"
+      style="background-color: #254472; border-radius: 25px; color: white;">assess</button>
+  </form>
 </div>
