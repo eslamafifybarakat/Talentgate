@@ -7,7 +7,7 @@
       <div class=" row">
         <div class="col-lg-9">
           <div class="global-card p-0 position-relative">
-            <input type="file" id="profileBg" accept="image/*" (change)="selectBgImage($event)" hidden #profileBgInput>
+            <input type="file" *ngIf="id==null" id="profileBg" accept="image/*" (change)="selectBgImage($event)" hidden #profileBgInput>
             <label
               class="camera position-absolute d-flex justify-content-center align-items-center rounded-circle pointer"
               for="profileBg">
@@ -20,7 +20,7 @@
                 <div class="profile-img rounded-circle position-relative">
                   <img [src]="imgSrc+userProfileDetails?.image" onerror="src='assets/images/not-found/noUser.svg'"
                     class="fit-object-cover rounded-circle w-100 h-100 shadow-sm" alt="user">
-                  <input type="file" id="profilePicture" accept="image/*" (change)="selectImage($event)" hidden
+                  <input type="file" *ngIf="id==null" id="profilePicture" accept="image/*" (change)="selectImage($event)" hidden
                     #profilePictureInput>
                   <label
                     class="plus position-absolute d-flex justify-content-center align-items-center rounded-circle pointer"

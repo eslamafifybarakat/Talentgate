@@ -48,7 +48,9 @@ export const roots = {
     addResume: '/resumes/add_resume',
     getCompanies: '/companys',
     view_candidate_profile:'/candidates/view_candidate_profile',
-    view_company_profile :'/companys/view_company_profile'
+    view_company_profile :'/companys/view_company_profile',
+    assess:'/skills/assess',
+    allCompany:'/companys/list'
   },
   scheduler: {
     events: '/events'
