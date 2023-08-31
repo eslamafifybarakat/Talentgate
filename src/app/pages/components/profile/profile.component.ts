@@ -188,17 +188,6 @@ export class ProfileComponent implements OnInit {
     this.homeService?.getJobRecommended(count)?.subscribe(
       (res: any) => {
         if (res?.status == 200) {
-          // let arr: any = [];
-          // res?.data ? res?.data?.job_offers?.forEach((item: any) => {
-          //   arr?.push({
-          //     _id: item?._id,
-          //     title: item?.title ? item?.title : 'dummy',
-          //     address: item?.address ? item?.address : 'dummy',
-          //     name: item?.name ? item?.name : 'dummy',
-          //     rate: item?.rate ? item?.rate : 0,
-          //     time: item?.time ? item?.time : 'dummy'
-          //   })
-          // }) : '';
           this.recommendedResults = res.data.job_offers;
           this.isLoadingRecommendedResults = false;
         } else {

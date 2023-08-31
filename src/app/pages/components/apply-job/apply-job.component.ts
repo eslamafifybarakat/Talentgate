@@ -52,25 +52,22 @@ export class ApplyJobComponent implements OnInit {
   isLoadingDetails: boolean = false;
   jobId: any;
   links: any = [
-    { id: 1, name: 'Most relevant', dropdown: [{ id: 0, name: 'most_recent' }, { id: 1, name: 'most_relevant' }], value: 'mostRelevant' },
-    { id: 2, name: 'Experience level', dropdown: [{ id: 0, name: 'Intern ' }, { id: 1, name: 'Entry_level' }, { id: 2, name: 'Junior ' }, { id: 3, name: 'Intermediate' }, { id: 4, name: 'Mid-level' }, { id: 5, name: 'Senior ' }, { id: 6, name: 'Manage' }], value: 'experienceLevel' },
-    { id: 3, name: 'Job type', dropdown: [{ id: 0, name: 'Full time' }, { id: 1, name: 'part_time' }, { id: 2, name: 'other' }], value: 'jobType' },
-    { id: 4, name: 'Onsite/remote', dropdown: [{ id: 0, name: 'on-site' }, { id: 1, name: 'remote' }], value: 'onSite' },
+    { id: 1, name: 'Most relevant', dropdown: [{ id: 0, name: 'most_recent' }, { id: 1, name: 'most_relevant' }], value: 'sort_by' },
+    { id: 2, name: 'Experience level', dropdown: [{ id: 0, name: 'Intern ' }, { id: 1, name: 'Entry_level' }, { id: 2, name: 'Junior ' }, { id: 3, name: 'Intermediate' }, { id: 4, name: 'Mid-level' }, { id: 5, name: 'Senior ' }, { id: 6, name: 'Manage' }], value: 'level' },
+    { id: 3, name: 'Job type', dropdown: [{ id: 0, name: 'Full time' }, { id: 1, name: 'part_time' }, { id: 2, name: 'other' }], value: 'type_employment' },
+    { id: 4, name: 'Onsite/remote', dropdown: [{ id: 0, name: 'on-site' }, { id: 1, name: 'remote' }], value: 'type_workplace' },
     { id: 5, name: 'Title', dropdown: [], value: 'title' },
   ];
   companyName: any;
 
   form = this.fb?.group({
-    mostRelevant: [null, []],
-    experienceLevel: [null, []],
-    experienceLevels: [null, []],
-    jobType: [null, []],
-    jobFunction: [null, []],
-    onSite: [null, []],
-    location: [null, []],
-    industry: [null, []],
+    sort_by: [null, []],
+    level: [null, []],
+    type_employment: [null, []],
+    type_workplace: [null, []],
     title: [null, []]
   })
+  filterrecommendedResults: any;
   get formControls(): any {
     return this.form?.controls;
   }
@@ -118,17 +115,6 @@ export class ApplyJobComponent implements OnInit {
     this.homeService?.getJobRecommended(count)?.subscribe(
       (res: any) => {
         if (res?.status == 200) {
-          // let arr: any = [];
-          // res?.data ? res?.data?.job_offers?.forEach((item: any) => {
-          //   arr?.push({
-          //     _id: item?._id,
-          //     title: item?.title ? item?.title : '',
-          //     address: item?.address ? item?.address : '',
-          //     name: item?.name ? item?.name : '',
-          //     rate: item?.rate ? item?.rate : 0,
-          //     time: item?.time ? item?.time : ''
-          //   })
-          // }) : '';
           this.recommendedResults = res.data.job_offers;
           this.filteredRecommendedResults = res.data.job_offers;
           console.log(this.recommendedResults)
@@ -146,10 +132,28 @@ export class ApplyJobComponent implements OnInit {
       });
     this.cdr?.detectChanges();
   }
-  filterRecommendedData(event: any) {
-    const selectedValue = event.value.name;
+  filterRecommendedData(event: any,selectedField:any) {
+    console.log(event , selectedField)
+    const selectedValue = event.value?.id;
+    const selectedItem = event.value?.name
+    const selectedName = this.links.find((link: { value: any; }) => link.value === selectedField)?.dropdown.find((option: { id: any; }) => option.id === selectedValue)?.name;
+    console.log("selected value", selectedValue, "selected field ", selectedField ,selectedName, selectedItem );
+    if (selectedValue) {
+      this.filteredRecommendedResults = this.recommendedResults.filter((item: any) => {
+        return item[selectedName] === selectedItem;
+      });
+    }else{
+      this.filteredRecommendedResults = [...this.recommendedResults];
+    }
     console.log(event);
     this.recommendedResults = this.recommendedResults.filter((item: any) => item.value === selectedValue);
+  }
+  calculateHoursDifference(presentationDate: string): number {
+    const date1 = new Date(presentationDate);
+    const date2 = new Date(); // الوقت الحالي
+    const timeDifference = date2.getTime() - date1.getTime();
+    const hoursDifference = timeDifference / (1000 * 3600); // تحويل الوقت من مللي ثانية إلى ساعات
+    return Math.floor(hoursDifference); // تقريب إلى الأقل
   }
   getJobOffersDetails(id: any): any {
     this.isLoadingDetails = true;
@@ -170,6 +174,53 @@ export class ApplyJobComponent implements OnInit {
       });
     this.cdr?.detectChanges();
   }
+
+  getTypeWorkPlace(id:number)
+  {
+    if(id == 0)
+    {
+      return "Full time";
+    }else if (id == 1)
+    {
+      return "Part time";
+    }
+    else{
+      return "Other";
+    }
+  }
+  getLevels(id:number)
+  {
+    if(id == 0)
+    {
+      return "Intern";
+    }else if (id == 1)
+    {
+      return "Entry level";
+    }
+    else if (id == 2)
+    {
+      return "Junior";
+    }
+    else if (id == 3)
+    {
+      return "Intermediate";
+    }
+    else if (id == 4)
+    {
+      return "Mid-level";
+    }
+    else if (id == 5)
+    {
+      return "Senior";
+    }
+    else if (id == 6)
+    {
+      return "Manage";
+    }
+    else{
+      return "Other";
+    }
+  }
   changeData(id: any): void {
     this.recommendedResults?.forEach((item: any) => {
       if (item?._id == id) {
@@ -181,35 +232,6 @@ export class ApplyJobComponent implements OnInit {
     });
     this.getJobOffersDetails(id);
     this.jobId = id;
-    // this.jobDetails = {
-    //   id: 1,
-    //   title: 'Product Designer 2', address: 'tunisia,tunisia', timeAgo: '5hours', applicationsNumber: 200, time: 'Part-time', position: 'Mid-Senior level', skills: [{ title: 'User interface Design' }, { title: 'User Experience' }], jobDescription: `<div>
-    //   <p class="mb-1 fw-600">Eligiblity</p>
-    //   <p>5-3 Year of experience</p>
-    // </div>
-    // <div>
-    //   <p class="mb-1 fw-600">Missions</p>
-    //   <p>- Lorem ipsum dolor sit amet</p>
-    //   <p>- consectetur adipisicing elit.</p>
-    //   <p>- Excepturi amet odio ex error libero, dicta nam, corporis inventore, qui ipsa sit. Velit
-    //     veritatis reiciendis facere, suscipit id beatae tenetur sint?</p>
-    //   <p>- ex error libero, dicta nam, corporis inventore, qui ipsa sit. Velit
-    //     veritatis reiciendis facere, suscipit id beatae tenetur sint?</p>
-    //   <p>- Excepturi amet odio ex error libero, dicta nam, corporis inventor suscipit id beatae
-    //     tenetur sint?</p>
-    // </div>
-    // <div>
-    //   <p class="mb-1 fw-600">Profile type</p>
-    //   <p>- Lorem ipsum dolor sit amet</p>
-    //   <p>- consectetur adipisicing elit.</p>
-    //   <p>- Excepturi amet odio ex error libero, dicta nam, corporis inventore, qui ipsa sit. Velit
-    //     veritatis reiciendis facere, suscipit id beatae tenetur sint?</p>
-    //   <p>- ex error libero, dicta nam, corporis inventore, qui ipsa sit. Velit
-    //     veritatis reiciendis facere, suscipit id beatae tenetur sint?</p>
-    //   <p>- Excepturi amet odio ex error libero, dicta nam, corporis inventor suscipit id beatae
-    //     tenetur sint?</p>
-    // </div>`
-    // };
   }
   getSearchResults(value: any): any {
     this.isLoadingSearchResults = true;
@@ -218,13 +240,6 @@ export class ApplyJobComponent implements OnInit {
         if (res?.status == 200) {
           let arr: any = [];
           arr = res?.data?.search_result ? res?.data?.search_result : [];
-          // res?.data ? res?.data?.search_result?.forEach((item: any) => {
-          //   arr?.push({
-          //     coupon_name: item?.coupon_name ? item?.coupon_name : '',
-          //     coupon_picture: item?.coupon_picture ? item?.coupon_picture : '',
-          //     description: item?.description ? item?.description : '',
-          //   })
-          // }) : '';
           this.searchResults = arr;
           this.isLoadingSearchResults = false;
         } else {

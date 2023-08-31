@@ -3,6 +3,7 @@ import { PublicService } from './../../../shared/services/public.service';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { keys } from './../../../shared/configs/localstorage-key';
 import { HomeService } from '../../services/home.service';
+import { ProfileService } from '../../services/profile.service';
 
 @Component({
   selector: 'app-home',
@@ -21,11 +22,14 @@ export class HomeComponent implements OnInit {
   count: any = 6;
   userData: any;
   userProfileDetails: any;
+  aboutText: any;
+  aboutMe: any;
   constructor(
     private publicService: PublicService,
     private alertsService: AlertsService,
     private homeService: HomeService,
     private cdr: ChangeDetectorRef,
+    private profileService: ProfileService,
   ) { }
 
   ngOnInit(): void {
@@ -42,6 +46,7 @@ export class HomeComponent implements OnInit {
     this.getHiring();
     this.getJobRecommended(0);
     this.getProfileDetails();
+    this.getResume()
   }
 
   getProfileDetails() {
@@ -193,6 +198,28 @@ export class HomeComponent implements OnInit {
     //     time: 'Posted 5hours ago'
     //   }
     // ];
+  }
+  calculateHoursDifference(presentationDate: string): number {
+    const date1 = new Date(presentationDate);
+    const date2 = new Date(); // الوقت الحالي
+    const timeDifference = date2.getTime() - date1.getTime();
+    const hoursDifference = timeDifference / (1000 * 3600); // تحويل الوقت من مللي ثانية إلى ساعات
+    return Math.floor(hoursDifference); // تقريب إلى الأقل
+  }
+  getResume() {
+    this.profileService?.getResume()?.subscribe(
+      (res: any) => {
+        if (res?.status == 200) {
+          this.aboutText = res?.data[0]?.about_me;
+          this.aboutMe = this.aboutText;
+          console.log(this.aboutMe)
+        } else {
+          res?.message ? this.alertsService?.openSweetAlert('info', res?.message) : '';
+        }
+      },
+      (err: any) => {
+        err?.message ? this.alertsService?.openSweetAlert('error', err?.message) : '';
+      });
   }
   seeMore(): void {
     this.count += 6;
