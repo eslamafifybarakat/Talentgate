@@ -73,7 +73,7 @@
                 [searchCountryField]="[
               SearchCountryField.Iso2,
               SearchCountryField.Name
-            ]" [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.Egypt" [maxLength]="15"
+            ]" [selectFirstCountry]="false" [selectedCountryISO]="selectedCountryISO" [maxLength]="15"
                 [phoneValidation]="true" name="phone_number" formControlName="phone_number"
                 (input)="publicService?.clearValidationErrors(formControls?.phone_number)"
                 (countryChange)="formControls?.phone_number?.reset()">
@@ -100,7 +100,9 @@
               {{'placeholder.country'|translate}}
             </label>
             <span class="p-input-icon-right select-loading d-block">
-              <p-dropdown [options]="countries" formControlName="country" optionLabel="name" [filter]="true"
+              <p-dropdown [options]="countries" formControlName="country"
+              optionValue="_id"
+               optionLabel="name" [filter]="true"
                 [virtualScroll]="true" [virtualScrollItemSize]="38" filterBy="name" appendTo="body"
                 [filterPlaceholder]="'placeholder.search'|translate" [readonly]="isLoadingCountry"
                 (onChange)="onChangeCountry($event)" emptyMessage="{{'general.no_result_found'|translate}}"
@@ -127,7 +129,9 @@
               {{'placeholder.city'|translate}}
             </label>
             <span class="p-input-icon-right select-loading d-block">
-              <p-dropdown [options]="cities" formControlName="city" optionLabel="name" [filter]="true"
+              <p-dropdown [options]="cities" formControlName="city"
+              optionValue="_id"
+               optionLabel="name" [filter]="true"
                 [filterPlaceholder]="'placeholder.search'|translate" [virtualScroll]="true" [virtualScrollItemSize]="38"
                 filterBy="name" appendTo="body" [readonly]="isLoadingCountry"
                 emptyMessage="{{'general.no_result_found'|translate}}"

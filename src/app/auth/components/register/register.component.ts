@@ -38,7 +38,7 @@ export class RegisterComponent implements OnInit {
   CountryISO = CountryISO;
   preferredCountries: CountryISO[] = [
     CountryISO.Egypt,
-    CountryISO.UnitedKingdom
+    CountryISO.SaudiArabia
   ];
 
   constructor(

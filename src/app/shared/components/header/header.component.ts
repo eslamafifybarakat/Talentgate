@@ -59,6 +59,7 @@ export class HeaderComponent implements OnInit {
     this.userData = JSON.parse(window.localStorage.getItem(keys?.userLoginData) || '{}');
 
     this.sharedService?.urlData?.subscribe((res: any) => {
+      console.log(res)
       this.moduleType = res?.type;
       this.enableSearch = res?.enableHeaderSearch;
       this.enableLocation = res?.enableLocation;

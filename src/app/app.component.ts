@@ -64,6 +64,7 @@ export class AppComponent {
   ngOnInit(): void {
     let data = this.activatedRoute.snapshot.data;
     console.log(data);
+    console.log('ssssssssss',this.router.events);
 
     this.router.events
       .pipe(

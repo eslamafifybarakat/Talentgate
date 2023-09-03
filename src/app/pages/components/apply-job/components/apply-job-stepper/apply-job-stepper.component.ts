@@ -41,7 +41,7 @@ export class ApplyJobStepperComponent implements OnInit {
   questions: any = [];
   companyName: any;
   jobId: any;
-
+  selectedCountryISO: any;
   firstForm: any = this.fb?.group(
     {
       email: [
@@ -73,6 +73,14 @@ export class ApplyJobStepperComponent implements OnInit {
         },
       ],
       city: [
+        '',
+        {
+          validators: [
+            Validators.required,
+          ],
+        },
+      ],
+      country_code: [
         '',
         {
           validators: [
@@ -149,15 +157,19 @@ export class ApplyJobStepperComponent implements OnInit {
   patchValue(): void {
     this.firstForm?.patchValue({
       email: this.userProfileDetails?.email,
-      phone_number: {
-        "number": "21644533463",
-        "internationalNumber": "+216 44 533 463",
-        "nationalNumber": "44 533 463",
-        "e164Number": "+21644533463",
-        "countryCode": "TN",
-        "dialCode": "+216",
-      }
+      phone_number: this.userProfileDetails?.phone_number,
+      country: this.userProfileDetails?.country?._id,
+      country_code: this.userProfileDetails?.country_code,
+      // phone_number: {
+      //   "number": "21644533463",
+      //   "internationalNumber": "+216 44 533 463",
+      //   "nationalNumber": "44 533 463",
+      //   "e164Number": "+21644533463",
+      //   "countryCode": "TN",
+      //   "dialCode": "+216",
+      // }
     });
+    this.selectedCountryISO = this.userProfileDetails?.country_code;
     this.getCountries();
   }
   next(step: any): void {
@@ -226,6 +238,7 @@ export class ApplyJobStepperComponent implements OnInit {
     this.cdr?.detectChanges();
   }
   onChangeCountry(event: any): void {
+    console.log(event)
     this.firstForm?.get('city')?.reset();
     let arr: any = [];
     this.countries?.forEach((item: any) => {
@@ -293,6 +306,7 @@ export class ApplyJobStepperComponent implements OnInit {
   confirm(): void {
     this.publicService?.show_loader?.next(true);
     let formInfo: any = this.firstForm?.value;
+    console.log(formInfo)
 
     let arr: any = [];
     this.questions?.forEach((item: any) => {
@@ -306,8 +320,8 @@ export class ApplyJobStepperComponent implements OnInit {
       candidate_information: {
         user_name: this.userProfileDetails?.full_name,
         email: formInfo?.email,
-        phone_number: formInfo.phone_number?.number,
-        country_code: formInfo.phone_number?.countryCode,
+        phone_number: formInfo.phone_number,
+        country_code: formInfo.country_code,
         country: formInfo?.country?._id,
         city: formInfo.city?._id,
       },
